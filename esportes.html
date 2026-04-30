@@ -421,20 +421,13 @@
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
         <section
-          id="reservas"
+          id="requisicoes"
           class="lg:col-span-2 bg-white border border-gray-200 rounded-lg overflow-hidden flex flex-col"
         >
           <div
             class="p-md border-b border-gray-200 flex justify-between items-center"
           >
-            <h3 class="text-label-md font-bold">Reservas do dia</h3>
-            <a
-              class="text-caption font-medium px-3 py-1 border border-black rounded hover:bg-black hover:text-white transition-colors"
-              href="#reservas"
-              data-modal-target="#reservas"
-            >
-              Nova reserva
-            </a>
+            <h3 class="text-label-md font-bold">Requisições de eventos</h3>
           </div>
           <div class="overflow-x-auto">
             <table class="w-full text-left">
@@ -442,35 +435,44 @@
                 class="bg-surface-container text-caption text-on-surface-variant uppercase"
               >
                 <tr>
-                  <th class="px-md py-sm">Quadra</th>
+                  <th class="px-md py-sm">Solicitante / Evento</th>
+                  <th class="px-md py-sm">Local</th>
                   <th class="px-md py-sm">Horário</th>
-                  <th class="px-md py-sm">Modalidade</th>
-                  <th class="px-md py-sm">Status</th>
+                  <th class="px-md py-sm">Ações</th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-100">
                 <tr class="hover:bg-gray-50 transition-colors">
-                  <td class="px-md py-md font-label-md">Ginásio 1</td>
-                  <td class="px-md py-md">08:00 - 10:00</td>
-                  <td class="px-md py-md">Futsal</td>
-                  <td class="px-md py-md text-on-surface-variant">
-                    Confirmado
+                  <td class="px-md py-md font-label-md">Associação Atlética<br><span class="text-caption text-gray-500 font-normal">Torneio de Futsal</span></td>
+                  <td class="px-md py-md">Ginásio 1</td>
+                  <td class="px-md py-md">18/05 • 08:00 - 12:00</td>
+                  <td class="px-md py-md">
+                    <div class="flex flex-wrap gap-2">
+                        <button class="bg-black text-white px-3 py-1 rounded text-xs font-semibold hover:bg-gray-800 transition-colors">Autorizar</button>
+                        <button class="bg-red-50 text-red-600 border border-red-200 px-3 py-1 rounded text-xs font-semibold hover:bg-red-100 transition-colors" data-modal-target="#form-rejeitar">Não Autorizar</button>
+                    </div>
                   </td>
                 </tr>
                 <tr class="hover:bg-gray-50 transition-colors">
-                  <td class="px-md py-md font-label-md">Quadra externa</td>
-                  <td class="px-md py-md">10:30 - 12:00</td>
-                  <td class="px-md py-md">Vôlei</td>
-                  <td class="px-md py-md text-on-surface-variant">
-                    Confirmado
+                  <td class="px-md py-md font-label-md">Turma de Ed. Física<br><span class="text-caption text-gray-500 font-normal">Treino Prático</span></td>
+                  <td class="px-md py-md">Quadra Externa</td>
+                  <td class="px-md py-md">20/05 • 10:30 - 12:00</td>
+                  <td class="px-md py-md">
+                    <div class="flex flex-wrap gap-2">
+                        <button class="bg-black text-white px-3 py-1 rounded text-xs font-semibold hover:bg-gray-800 transition-colors">Autorizar</button>
+                        <button class="bg-red-50 text-red-600 border border-red-200 px-3 py-1 rounded text-xs font-semibold hover:bg-red-100 transition-colors" data-modal-target="#form-rejeitar">Não Autorizar</button>
+                    </div>
                   </td>
                 </tr>
                 <tr class="hover:bg-gray-50 transition-colors">
-                  <td class="px-md py-md font-label-md">Sala de dança</td>
-                  <td class="px-md py-md">14:00 - 15:00</td>
-                  <td class="px-md py-md">Pilates</td>
-                  <td class="px-md py-md text-on-surface-variant">
-                    Programado
+                  <td class="px-md py-md font-label-md">Grupo de Dança<br><span class="text-caption text-gray-500 font-normal">Ensaio Geral</span></td>
+                  <td class="px-md py-md">Sala de Dança</td>
+                  <td class="px-md py-md">21/05 • 14:00 - 16:00</td>
+                  <td class="px-md py-md">
+                    <div class="flex flex-wrap gap-2">
+                        <button class="bg-black text-white px-3 py-1 rounded text-xs font-semibold hover:bg-gray-800 transition-colors">Autorizar</button>
+                        <button class="bg-red-50 text-red-600 border border-red-200 px-3 py-1 rounded text-xs font-semibold hover:bg-red-100 transition-colors" data-modal-target="#form-rejeitar">Não Autorizar</button>
+                    </div>
                   </td>
                 </tr>
               </tbody>
@@ -517,6 +519,47 @@
           </a>
         </section>
       </div>
+
+      <div id="form-rejeitar" class="hidden">
+        <h3 class="hidden">Não Autorizar Reserva</h3>
+        <form class="flex flex-col gap-md">
+          <p class="text-body-md">Por favor, informe o motivo da não autorização:</p>
+          <div class="flex flex-col gap-xs">
+            <label class="text-label-md font-bold">Motivo principal</label>
+            <select
+              class="border border-gray-300 rounded p-sm bg-white text-body-md focus:outline-none focus:ring-1 focus:ring-black"
+              onchange="this.nextElementSibling.style.display = this.value === 'Outros' ? 'flex' : 'none'"
+            >
+              <option value="" disabled selected>Selecione um motivo...</option>
+              <option value="Quadra alugada no horário">Quadra alugada no horário</option>
+              <option value="Indisponibilidade por causa de reforma">Indisponibilidade por causa de reforma</option>
+              <option value="Manutenção de emergência">Manutenção de emergência</option>
+              <option value="Condições climáticas desfavoráveis">Condições climáticas desfavoráveis</option>
+              <option value="Falta de equipamento">Falta de equipamento</option>
+              <option value="Evento institucional prioritário">Evento institucional prioritário</option>
+              <option value="Outros">Outros</option>
+            </select>
+            <div class="hidden flex-col gap-xs mt-sm">
+              <label class="text-label-md font-bold">Especifique o motivo (Outros)</label>
+              <textarea
+                class="border border-gray-300 rounded p-sm bg-white text-body-md focus:outline-none focus:ring-1 focus:ring-black resize-none"
+                rows="3"
+                placeholder="Digite aqui os detalhes da recusa..."
+              ></textarea>
+            </div>
+          </div>
+          <div class="flex justify-end gap-sm mt-md">
+            <button
+              type="button"
+              class="px-4 py-2 bg-red-600 text-white rounded text-label-md font-medium hover:bg-red-700 transition-colors w-full sm:w-auto"
+              onclick="document.querySelector('[data-modal-close]').click()"
+            >
+              Confirmar Rejeição
+            </button>
+          </div>
+        </form>
+      </div>
+
       <div
         class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 p-4"
         data-modal
