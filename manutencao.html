@@ -346,183 +346,100 @@
 
     <main class="md:ml-64 p-md md:p-lg lg:p-xl space-y-lg">
       <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md">
-        <div
-          class="bg-white border border-gray-200 p-md rounded-lg flex flex-col gap-sm"
-        >
-          <span
-            class="text-caption text-on-surface-variant uppercase tracking-wider"
-            >Chamados abertos</span
-          >
+        <div class="bg-white border border-gray-200 p-md rounded-lg flex flex-col gap-sm">
+          <span class="text-caption text-on-surface-variant uppercase tracking-wider">Chamados abertos</span>
           <div class="flex items-end justify-between">
-            <span class="text-h2 font-h2">18</span>
-            <span class="text-xs px-2 py-0.5 bg-gray-100 rounded text-gray-600"
-              >+3</span
-            >
+            <span class="text-h2 font-h2" id="indicador-abertos">18</span>
+            <span class="text-xs px-2 py-0.5 bg-red-100 text-red-700 rounded font-medium">+3 hoje</span>
           </div>
           <div class="w-full h-1 bg-surface-container rounded-full">
-            <div class="w-2/3 h-full bg-black"></div>
+            <div class="w-1/2 h-full bg-red-500"></div>
           </div>
         </div>
-        <div
-          class="bg-white border border-gray-200 p-md rounded-lg flex flex-col gap-sm"
-        >
-          <span
-            class="text-caption text-on-surface-variant uppercase tracking-wider"
-            >Intervenções hoje</span
-          >
+        <div class="bg-white border border-gray-200 p-md rounded-lg flex flex-col gap-sm">
+          <span class="text-caption text-on-surface-variant uppercase tracking-wider">Intervenções hoje</span>
           <div class="flex items-end justify-between">
             <span class="text-h2 font-h2">07</span>
-            <span class="text-xs px-2 py-0.5 bg-gray-100 rounded text-gray-600"
-              >Estável</span
-            >
+            <span class="text-xs px-2 py-0.5 bg-blue-100 text-blue-700 rounded font-medium">2 em andamento</span>
           </div>
           <div class="w-full h-1 bg-surface-container rounded-full">
-            <div class="w-1/2 h-full bg-black"></div>
+            <div class="w-1/3 h-full bg-blue-500"></div>
           </div>
         </div>
-        <div
-          class="bg-white border border-gray-200 p-md rounded-lg flex flex-col gap-sm"
-        >
-          <span
-            class="text-caption text-on-surface-variant uppercase tracking-wider"
-            >Salas críticas</span
-          >
+        <div class="bg-white border border-gray-200 p-md rounded-lg flex flex-col gap-sm">
+          <span class="text-caption text-on-surface-variant uppercase tracking-wider">Salas críticas</span>
           <div class="flex items-end justify-between">
-            <span class="text-h2 font-h2">05</span>
-            <span class="text-xs px-2 py-0.5 bg-gray-100 rounded text-gray-600"
-              >Urgente</span
-            >
+            <span class="text-h2 font-h2">02</span>
+            <span class="text-xs px-2 py-0.5 bg-amber-100 text-amber-700 rounded font-medium">Laboratórios</span>
           </div>
           <div class="w-full h-1 bg-surface-container rounded-full">
-            <div class="w-1/3 h-full bg-black"></div>
+            <div class="w-1/4 h-full bg-amber-500"></div>
           </div>
         </div>
-        <div
-          class="bg-white border border-gray-200 p-md rounded-lg flex flex-col gap-sm"
-        >
-          <span
-            class="text-caption text-on-surface-variant uppercase tracking-wider"
-            >SLA médio</span
-          >
+        <div class="bg-white border border-gray-200 p-md rounded-lg flex flex-col gap-sm">
+          <span class="text-caption text-on-surface-variant uppercase tracking-wider">SLA médio</span>
           <div class="flex items-end justify-between">
-            <span class="text-h2 font-h2">4h</span>
-            <span class="text-xs px-2 py-0.5 bg-gray-100 rounded text-gray-600"
-              >Meta</span
-            >
+            <span class="text-h2 font-h2">4h 30m</span>
+            <span class="text-xs px-2 py-0.5 bg-green-100 text-green-700 rounded font-medium">-15m vs ontem</span>
           </div>
           <div class="w-full h-1 bg-surface-container rounded-full">
-            <div class="w-4/5 h-full bg-black"></div>
+            <div class="w-3/4 h-full bg-green-500"></div>
           </div>
         </div>
       </section>
 
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
-        <section
-          id="chamados"
-          class="lg:col-span-2 bg-white border border-gray-200 rounded-lg overflow-hidden flex flex-col"
-        >
-          <div
-            class="p-md border-b border-gray-200 flex justify-between items-center"
-          >
-            <h3 class="text-label-md font-bold">Chamados em aberto</h3>
-            <a
-              class="text-caption font-medium px-3 py-1 border border-black rounded hover:bg-black hover:text-white transition-colors"
-              href="#chamados"
-              data-modal-target="#chamados"
-            >
-              Ver backlog
-            </a>
+      <div class="grid grid-cols-1 xl:grid-cols-4 gap-lg">
+        <section class="xl:col-span-3 bg-white border border-gray-200 rounded-lg overflow-hidden flex flex-col">
+          <div class="p-md border-b border-gray-200 flex flex-col md:flex-row md:justify-between md:items-center gap-md">
+            <h3 class="text-label-md font-bold">Painel de Chamados</h3>
+            
+            <!-- Filters -->
+            <div class="flex flex-wrap gap-sm">
+              <input type="text" id="filtro-texto" placeholder="Buscar local ou desc..." class="text-sm px-3 py-1.5 border border-gray-300 rounded outline-none focus:border-black w-full md:w-auto" />
+              <select id="filtro-prio" class="text-sm px-3 py-1.5 border border-gray-300 rounded outline-none focus:border-black cursor-pointer">
+                <option value="">Todas as Prioridades</option>
+                <option value="Alta">Alta</option>
+                <option value="Média">Média</option>
+                <option value="Baixa">Baixa</option>
+              </select>
+              <select id="filtro-status" class="text-sm px-3 py-1.5 border border-gray-300 rounded outline-none focus:border-black cursor-pointer">
+                <option value="ativos">Somente Ativos</option>
+                <option value="Aberto">Aberto</option>
+                <option value="Em progresso">Em progresso</option>
+                <option value="Aguardando">Aguardando</option>
+                <option value="Concluído">Concluído</option>
+                <option value="">Todos</option>
+              </select>
+            </div>
           </div>
-          <div class="overflow-x-auto">
-            <table class="w-full text-left">
-              <thead
-                class="bg-surface-container text-caption text-on-surface-variant uppercase"
-              >
+          
+          <div class="overflow-x-auto min-h-[400px]">
+            <table class="w-full text-left bg-white border-0">
+              <thead class="bg-[#f8f9fa] border-b border-gray-200 text-[11px] font-semibold text-gray-500 uppercase tracking-wider">
                 <tr>
-                  <th class="px-md py-sm">Local</th>
-                  <th class="px-md py-sm">Descrição</th>
-                  <th class="px-md py-sm">Prioridade</th>
-                  <th class="px-md py-sm">Status</th>
+                  <th class="px-6 py-4">Local</th>
+                  <th class="px-6 py-4">Descrição</th>
+                  <th class="px-6 py-4 w-32 text-center">Prioridade</th>
+                  <th class="px-6 py-4 w-40 text-center">Status</th>
+                  <th class="px-6 py-4 text-right w-40">Ações</th>
                 </tr>
               </thead>
-              <tbody class="divide-y divide-gray-100">
-                <tr class="hover:bg-gray-50 transition-colors">
-                  <td class="px-md py-md font-label-md">Bloco A - 204</td>
-                  <td class="px-md py-md">Vazamento pia banheiro</td>
-                  <td class="px-md py-md">
-                    <span
-                      class="text-[10px] px-2 py-1 bg-gray-200 rounded font-bold"
-                      >ALTA</span
-                    >
-                  </td>
-                  <td class="px-md py-md text-on-surface-variant">Aberto</td>
-                </tr>
-                <tr class="hover:bg-gray-50 transition-colors">
-                  <td class="px-md py-md font-label-md">Bloco B - 110</td>
-                  <td class="px-md py-md">Lâmpada queimada</td>
-                  <td class="px-md py-md">
-                    <span
-                      class="text-[10px] px-2 py-1 bg-gray-100 rounded font-bold"
-                      >MÉDIA</span
-                    >
-                  </td>
-                  <td class="px-md py-md text-on-surface-variant">
-                    Em progresso
-                  </td>
-                </tr>
-                <tr class="hover:bg-gray-50 transition-colors">
-                  <td class="px-md py-md font-label-md">Laboratório 3</td>
-                  <td class="px-md py-md">Ar-condicionado</td>
-                  <td class="px-md py-md">
-                    <span
-                      class="text-[10px] px-2 py-1 bg-gray-100 rounded font-bold"
-                      >MÉDIA</span
-                    >
-                  </td>
-                  <td class="px-md py-md text-on-surface-variant">
-                    Aguardando
-                  </td>
-                </tr>
+              <tbody id="tabela-chamados" class="divide-y divide-gray-100">
+                <!-- Preenchido via JS -->
               </tbody>
             </table>
           </div>
         </section>
 
-        <section
-          id="inspecao"
-          class="bg-white border border-gray-200 rounded-lg p-md flex flex-col gap-md"
-        >
-          <div>
-            <h3 class="text-label-md font-bold">Checklist diário</h3>
-            <p class="text-caption text-on-surface-variant">
-              Itens críticos para inspeção
-            </p>
+        <!-- Checklist Preventivo -->
+        <section class="xl:col-span-1 bg-white border border-gray-200 rounded-lg flex flex-col flex-1 h-[500px]">
+          <div class="p-6 border-b border-gray-200">
+            <h3 class="text-label-md font-bold text-gray-900">Inspeções Preventivas</h3>
+            <p class="text-xs text-gray-500 mt-1">Marque ou gere ocorrência</p>
           </div>
-          <div class="flex flex-col gap-sm">
-            <label class="flex items-center gap-sm text-body-md">
-              <input class="rounded border-gray-300" type="checkbox" />
-              Geradores e energia reserva
-            </label>
-            <label class="flex items-center gap-sm text-body-md">
-              <input class="rounded border-gray-300" type="checkbox" />
-              Sistemas hidráulicos
-            </label>
-            <label class="flex items-center gap-sm text-body-md">
-              <input class="rounded border-gray-300" type="checkbox" />
-              Laboratórios e equipamentos
-            </label>
-            <label class="flex items-center gap-sm text-body-md">
-              <input class="rounded border-gray-300" type="checkbox" />
-              Áreas comuns
-            </label>
+          <div class="flex-1 overflow-y-auto px-6 py-2 flex flex-col" id="lista-checklist">
+            <!-- Itens de checklist via JS -->
           </div>
-          <button
-            class="mt-auto text-caption font-medium px-3 py-2 border border-black rounded hover:bg-black hover:text-white transition-colors text-center"
-            type="button"
-            data-confirm-inspecao
-          >
-            Registrar inspeção
-          </button>
         </section>
       </div>
       <div
@@ -583,67 +500,137 @@
           }
         });
 
-        const modal = document.querySelector("[data-modal]");
-        const modalContent = modal?.querySelector("[data-modal-content]");
-        const modalTitle = modal?.querySelector("[data-modal-title]");
+        // App State
+        let chamados = [
+          { id: 1, local: "Bloco A - 204", desc: "Vazamento pia banheiro", prio: "Alta", status: "Aberto" },
+          { id: 2, local: "Bloco B - 110", desc: "Lâmpada queimada", prio: "Média", status: "Em progresso" },
+          { id: 3, local: "Laboratório 3", desc: "Ar-condicionado com erro", prio: "Média", status: "Aguardando" },
+          { id: 4, local: "Recepção", desc: "Porta travada", prio: "Baixa", status: "Aberto" }
+        ];
 
-        const openModal = (target) => {
-          if (!modal || !modalContent || !modalTitle || !target) return;
-          const heading = target.querySelector("h3");
-          modalTitle.textContent = heading ? heading.textContent : "Detalhes";
-          modalContent.innerHTML = target.innerHTML;
-          modal.classList.remove("hidden");
-          modal.classList.add("flex");
-          modal.setAttribute("aria-hidden", "false");
-          document.body.classList.add("overflow-hidden");
+        let checklist = [
+          { id: 1, item: "Geradores e energia reserva" },
+          { id: 2, item: "Sistemas hidráulicos (Bombas)" },
+          { id: 3, item: "Extintores e mangueiras" },
+          { id: 4, item: "Elevadores (Painéis e cabos)" },
+          { id: 5, item: "Servidores (Ar-condicionado)" },
+        ];
+
+        const getPrioColor = (prio) => {
+          if (prio === "Alta") return "bg-red-100 text-red-700 font-bold";
+          if (prio === "Média") return "bg-amber-100 text-amber-700 font-bold";
+          return "bg-green-100 text-green-700 font-bold";
         };
 
-        const closeModal = () => {
-          if (!modal || !modalContent) return;
-          modal.classList.add("hidden");
-          modal.classList.remove("flex");
-          modal.setAttribute("aria-hidden", "true");
-          modalContent.innerHTML = "";
-          document.body.classList.remove("overflow-hidden");
+        const getStatusBadge = (status) => {
+          if (status === "Aberto") return '<span class="text-xs px-2 py-1 flex items-center justify-center w-28 rounded bg-blue-100 text-blue-800 font-semibold border border-blue-200">Aberto</span>';
+          if (status === "Em progresso") return '<span class="text-xs px-2 py-1 flex items-center justify-center w-28 rounded bg-purple-100 text-purple-800 font-semibold border border-purple-200">Progresso</span>';
+          if (status === "Aguardando") return '<span class="text-xs px-2 py-1 flex items-center justify-center w-28 rounded bg-orange-100 text-orange-800 font-semibold border border-orange-200">Aguardando</span>';
+          if (status === "Concluído") return '<span class="text-xs px-2 py-1 flex items-center justify-center w-28 rounded bg-gray-200 text-gray-700 font-semibold border border-gray-300">Concluído</span>';
+          return `<span class="text-xs px-2 py-1 flex items-center justify-center w-28 rounded bg-gray-200 text-gray-700 font-semibold border border-gray-300">${status}</span>`;
         };
 
-        document.querySelectorAll("[data-modal-target]").forEach((link) => {
-          link.addEventListener("click", (event) => {
-            event.preventDefault();
-            const selector = link.getAttribute("data-modal-target");
-            const target = selector ? document.querySelector(selector) : null;
-            openModal(target);
+        const renderChamados = () => {
+          const tbody = document.getElementById("tabela-chamados");
+          const texto = document.getElementById("filtro-texto").value.toLowerCase();
+          const prio = document.getElementById("filtro-prio").value;
+          const status = document.getElementById("filtro-status").value;
+
+          let filtrados = chamados.filter(c => {
+            const matchTexto = c.local.toLowerCase().includes(texto) || c.desc.toLowerCase().includes(texto);
+            const matchPrio = prio ? c.prio === prio : true;
+            
+            let matchStatus = true;
+            if (status === "ativos") {
+              matchStatus = c.status !== "Concluído";
+            } else if (status) {
+              matchStatus = c.status === status;
+            }
+
+            return matchTexto && matchPrio && matchStatus;
           });
-        });
 
-        modal?.addEventListener("click", (event) => {
-          if (event.target === modal) {
-            closeModal();
+          // Atualizar card "Chamados abertos" com número real dos ativos
+          const abertosCount = chamados.filter(c => c.status !== "Concluído").length;
+          document.getElementById("indicador-abertos").textContent = abertosCount;
+
+          tbody.innerHTML = filtrados.map(c => `
+            <tr class="hover:bg-gray-50 transition-colors h-14 group">
+              <td class="px-6 py-3 font-medium text-sm w-1/4">${c.local}</td>
+              <td class="px-6 py-3 text-sm text-gray-600">${c.desc}</td>
+              <td class="px-6 py-3 w-32">
+                <span class="text-[10px] px-2 py-1 flex items-center justify-center rounded uppercase ${getPrioColor(c.prio)}">${c.prio}</span>
+              </td>
+              <td class="px-6 py-3 w-40">${getStatusBadge(c.status)}</td>
+              <td class="px-6 py-3 text-right w-40">
+                ${c.status !== "Concluído" ? 
+                  `<button onclick="window.concluirChamado(${c.id})" class="bg-gray-100 text-gray-700 border border-gray-200 px-3 py-1.5 rounded text-xs font-semibold hover:bg-gray-800 hover:text-white hover:border-gray-800 transition-colors shadow-sm">Concluir</button>` 
+                  : 
+                  `<span class="text-xs font-medium text-gray-400 px-3 py-1.5">Finalizado</span>`
+                }
+              </td>
+            </tr>
+          `).join("");
+
+          if(filtrados.length === 0) {
+             tbody.innerHTML = `<tr><td colspan="5" class="p-8 text-center text-sm text-gray-500">Nenhum chamado encontrado.</td></tr>`;
           }
-        });
+        };
 
-        modal
-          ?.querySelector("[data-modal-close]")
-          ?.addEventListener("click", closeModal);
+        const renderChecklist = () => {
+          const list = document.getElementById("lista-checklist");
+          list.innerHTML = checklist.map(item => `
+            <div class="flex items-center justify-between py-3 border-b border-gray-100 last:border-0 hover:bg-gray-50 px-2 rounded -mx-2 transition-colors">
+              <label class="flex items-center gap-3 text-sm cursor-pointer flex-1">
+                <input class="rounded border-gray-300 text-black focus:ring-black h-4 w-4 transition-colors" type="checkbox" />
+                <span class="font-medium text-gray-700">${item.item}</span>
+              </label>
+              <button onclick="window.gerarChamado('${item.item}')" class="text-xs text-gray-500 border border-gray-200 bg-white hover:bg-gray-100 hover:text-gray-900 px-3 py-1.5 rounded font-medium transition-all shadow-sm flex items-center gap-1 opacity-100 md:opacity-0 md:group-hover:opacity-100 focus:opacity-100" style="opacity: 1;" title="Reportar problema">
+                Gerar chamado
+              </button>
+            </div>
+          `).join("");
+        };
 
-        document.addEventListener("keydown", (event) => {
-          if (event.key === "Escape") {
-            closeModal();
+        // Controllers globais
+        window.concluirChamado = (id) => {
+          const idx = chamados.findIndex(c => c.id === id);
+          if (idx > -1) {
+            chamados[idx].status = "Concluído";
+            renderChamados();
           }
-        });
+        };
 
-        const confirmButton = document.querySelector("[data-confirm-inspecao]");
-        if (confirmButton) {
-          confirmButton.addEventListener("click", () => {
-            confirmButton.textContent = "Inspeção registrada";
-            confirmButton.classList.add("bg-black", "text-white");
-            confirmButton.classList.remove(
-              "hover:bg-black",
-              "hover:text-white",
-            );
-            confirmButton.disabled = true;
-          });
-        }
+        window.gerarChamado = (nomeItem) => {
+          const novoLocal = prompt(`Onde está o problema com: ${nomeItem}?`, "Local Não Informado");
+          if (novoLocal) {
+            const novaDesc = prompt("Qual a descrição resumida? (Ex: Barulho na bomba)", "Falha identificada");
+            if (novaDesc) {
+              const novoId = chamados.length > 0 ? Math.max(...chamados.map(c => c.id)) + 1 : 1;
+              chamados.push({
+                id: novoId,
+                local: novoLocal,
+                desc: novaDesc,
+                prio: "Alta", // Assume alta ao via checklist preventivo
+                status: "Aberto"
+              });
+              // Limpar filtros para o chamado novo ser visível
+              document.getElementById("filtro-texto").value = "";
+              document.getElementById("filtro-prio").value = "";
+              document.getElementById("filtro-status").value = "ativos";
+              renderChamados();
+            }
+          }
+        };
+
+        // Listeners dos filtros
+        document.getElementById("filtro-texto").addEventListener("input", renderChamados);
+        document.getElementById("filtro-prio").addEventListener("change", renderChamados);
+        document.getElementById("filtro-status").addEventListener("change", renderChamados);
+
+        // Init
+        renderChamados();
+        renderChecklist();
 
         document.addEventListener("click", closeAll);
       })();
