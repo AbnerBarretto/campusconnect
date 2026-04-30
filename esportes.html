@@ -419,10 +419,10 @@
         </div>
       </section>
 
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+      <div class="w-full">
         <section
           id="requisicoes"
-          class="lg:col-span-2 bg-white border border-gray-200 rounded-lg overflow-hidden flex flex-col"
+          class="bg-white border border-gray-200 rounded-lg overflow-hidden flex flex-col"
         >
           <div
             class="p-md border-b border-gray-200 flex justify-between items-center"
@@ -443,35 +443,77 @@
               </thead>
               <tbody class="divide-y divide-gray-100">
                 <tr class="hover:bg-gray-50 transition-colors">
-                  <td class="px-md py-md font-label-md">Associação Atlética<br><span class="text-caption text-gray-500 font-normal">Torneio de Futsal</span></td>
+                  <td class="px-md py-md font-label-md">
+                    Associação Atlética<br /><span
+                      class="text-caption text-gray-500 font-normal"
+                      >Torneio de Futsal</span
+                    >
+                  </td>
                   <td class="px-md py-md">Ginásio 1</td>
                   <td class="px-md py-md">18/05 • 08:00 - 12:00</td>
                   <td class="px-md py-md">
                     <div class="flex flex-wrap gap-2">
-                        <button class="bg-black text-white px-3 py-1 rounded text-xs font-semibold hover:bg-gray-800 transition-colors">Autorizar</button>
-                        <button class="bg-red-50 text-red-600 border border-red-200 px-3 py-1 rounded text-xs font-semibold hover:bg-red-100 transition-colors" data-modal-target="#form-rejeitar">Não Autorizar</button>
+                      <button
+                        class="bg-black text-white px-3 py-1 rounded text-xs font-semibold hover:bg-gray-800 transition-colors"
+                      >
+                        Autorizar
+                      </button>
+                      <button
+                        class="bg-red-50 text-red-600 border border-red-200 px-3 py-1 rounded text-xs font-semibold hover:bg-red-100 transition-colors"
+                        data-modal-target="#form-rejeitar"
+                      >
+                        Não Autorizar
+                      </button>
                     </div>
                   </td>
                 </tr>
                 <tr class="hover:bg-gray-50 transition-colors">
-                  <td class="px-md py-md font-label-md">Turma de Ed. Física<br><span class="text-caption text-gray-500 font-normal">Treino Prático</span></td>
+                  <td class="px-md py-md font-label-md">
+                    Turma de Ed. Física<br /><span
+                      class="text-caption text-gray-500 font-normal"
+                      >Treino Prático</span
+                    >
+                  </td>
                   <td class="px-md py-md">Quadra Externa</td>
                   <td class="px-md py-md">20/05 • 10:30 - 12:00</td>
                   <td class="px-md py-md">
                     <div class="flex flex-wrap gap-2">
-                        <button class="bg-black text-white px-3 py-1 rounded text-xs font-semibold hover:bg-gray-800 transition-colors">Autorizar</button>
-                        <button class="bg-red-50 text-red-600 border border-red-200 px-3 py-1 rounded text-xs font-semibold hover:bg-red-100 transition-colors" data-modal-target="#form-rejeitar">Não Autorizar</button>
+                      <button
+                        class="bg-black text-white px-3 py-1 rounded text-xs font-semibold hover:bg-gray-800 transition-colors"
+                      >
+                        Autorizar
+                      </button>
+                      <button
+                        class="bg-red-50 text-red-600 border border-red-200 px-3 py-1 rounded text-xs font-semibold hover:bg-red-100 transition-colors"
+                        data-modal-target="#form-rejeitar"
+                      >
+                        Não Autorizar
+                      </button>
                     </div>
                   </td>
                 </tr>
                 <tr class="hover:bg-gray-50 transition-colors">
-                  <td class="px-md py-md font-label-md">Grupo de Dança<br><span class="text-caption text-gray-500 font-normal">Ensaio Geral</span></td>
+                  <td class="px-md py-md font-label-md">
+                    Grupo de Dança<br /><span
+                      class="text-caption text-gray-500 font-normal"
+                      >Ensaio Geral</span
+                    >
+                  </td>
                   <td class="px-md py-md">Sala de Dança</td>
                   <td class="px-md py-md">21/05 • 14:00 - 16:00</td>
                   <td class="px-md py-md">
                     <div class="flex flex-wrap gap-2">
-                        <button class="bg-black text-white px-3 py-1 rounded text-xs font-semibold hover:bg-gray-800 transition-colors">Autorizar</button>
-                        <button class="bg-red-50 text-red-600 border border-red-200 px-3 py-1 rounded text-xs font-semibold hover:bg-red-100 transition-colors" data-modal-target="#form-rejeitar">Não Autorizar</button>
+                      <button
+                        class="bg-black text-white px-3 py-1 rounded text-xs font-semibold hover:bg-gray-800 transition-colors"
+                      >
+                        Autorizar
+                      </button>
+                      <button
+                        class="bg-red-50 text-red-600 border border-red-200 px-3 py-1 rounded text-xs font-semibold hover:bg-red-100 transition-colors"
+                        data-modal-target="#form-rejeitar"
+                      >
+                        Não Autorizar
+                      </button>
                     </div>
                   </td>
                 </tr>
@@ -479,68 +521,46 @@
             </table>
           </div>
         </section>
-
-        <section
-          id="agenda"
-          class="bg-white border border-gray-200 rounded-lg p-md flex flex-col gap-md"
-        >
-          <div>
-            <h3 class="text-label-md font-bold">Agenda rápida</h3>
-            <p class="text-caption text-on-surface-variant">
-              Eventos e treinos desta semana
-            </p>
-          </div>
-          <div class="flex flex-col gap-sm">
-            <div class="flex items-center justify-between">
-              <span class="text-body-md">Treino funcional</span>
-              <span class="text-xs px-2 py-1 bg-gray-100 rounded"
-                >Seg • 18:00</span
-              >
-            </div>
-            <div class="flex items-center justify-between">
-              <span class="text-body-md">Campeonato interno</span>
-              <span class="text-xs px-2 py-1 bg-gray-100 rounded"
-                >Qua • 20:00</span
-              >
-            </div>
-            <div class="flex items-center justify-between">
-              <span class="text-body-md">Aula de yoga</span>
-              <span class="text-xs px-2 py-1 bg-gray-100 rounded"
-                >Sex • 07:30</span
-              >
-            </div>
-          </div>
-          <a
-            class="mt-auto text-caption font-medium px-3 py-2 border border-black rounded hover:bg-black hover:text-white transition-colors text-center"
-            href="#agenda"
-            data-modal-target="#agenda"
-          >
-            Comunicar evento
-          </a>
-        </section>
       </div>
 
       <div id="form-rejeitar" class="hidden">
         <h3 class="hidden">Não Autorizar Reserva</h3>
         <form class="flex flex-col gap-md">
-          <p class="text-body-md">Por favor, informe o motivo da não autorização:</p>
+          <p class="text-body-md">
+            Por favor, informe o motivo da não autorização:
+          </p>
           <div class="flex flex-col gap-xs">
             <label class="text-label-md font-bold">Motivo principal</label>
             <select
               class="border border-gray-300 rounded p-sm bg-white text-body-md focus:outline-none focus:ring-1 focus:ring-black"
-              onchange="this.nextElementSibling.style.display = this.value === 'Outros' ? 'flex' : 'none'"
+              onchange="
+                this.nextElementSibling.style.display =
+                  this.value === 'Outros' ? 'flex' : 'none'
+              "
             >
               <option value="" disabled selected>Selecione um motivo...</option>
-              <option value="Quadra alugada no horário">Quadra alugada no horário</option>
-              <option value="Indisponibilidade por causa de reforma">Indisponibilidade por causa de reforma</option>
-              <option value="Manutenção de emergência">Manutenção de emergência</option>
-              <option value="Condições climáticas desfavoráveis">Condições climáticas desfavoráveis</option>
+              <option value="Quadra alugada no horário">
+                Quadra alugada no horário
+              </option>
+              <option value="Indisponibilidade por causa de reforma">
+                Indisponibilidade por causa de reforma
+              </option>
+              <option value="Manutenção de emergência">
+                Manutenção de emergência
+              </option>
+              <option value="Condições climáticas desfavoráveis">
+                Condições climáticas desfavoráveis
+              </option>
               <option value="Falta de equipamento">Falta de equipamento</option>
-              <option value="Evento institucional prioritário">Evento institucional prioritário</option>
-              <option value="Outros">Outros</option>
+              <option value="Evento institucional prioritário">
+                Evento institucional prioritário
+              </option>
+              <option value="Outros">Outros:</option>
             </select>
             <div class="hidden flex-col gap-xs mt-sm">
-              <label class="text-label-md font-bold">Especifique o motivo (Outros)</label>
+              <label class="text-label-md font-bold"
+                >Especifique o motivo (Outros)</label
+              >
               <textarea
                 class="border border-gray-300 rounded p-sm bg-white text-body-md focus:outline-none focus:ring-1 focus:ring-black resize-none"
                 rows="3"
