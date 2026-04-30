@@ -1,0 +1,621 @@
+<!doctype html>
+<html class="light" lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='0' y='0' width='100' height='100' fill='%23ffffff'/><path d='M20 50V20H80V80H50' stroke='%23000000' stroke-width='10' stroke-linecap='square' fill='none'/><path d='M40 40L60 60' stroke='%23000000' stroke-width='10' stroke-linecap='square'/><rect x='20' y='40' width='15' height='20' fill='%23ffffff'/></svg>"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-fixed-variant": "#464747",
+              "surface-container-lowest": "#ffffff",
+              "primary-fixed-dim": "#c6c6c6",
+              "on-tertiary-fixed": "#1b1b1b",
+              "surface-container-high": "#e8e8e8",
+              primary: "#000000",
+              "inverse-surface": "#2f3131",
+              "surface-container-low": "#f3f3f3",
+              "tertiary-fixed": "#e2e2e2",
+              "inverse-on-surface": "#f1f1f1",
+              outline: "#7e7576",
+              "error-container": "#ffdad6",
+              "outline-variant": "#cfc4c5",
+              "on-error-container": "#93000a",
+              "tertiary-fixed-dim": "#c6c6c6",
+              "surface-bright": "#f9f9f9",
+              "on-primary-container": "#848484",
+              "primary-fixed": "#e2e2e2",
+              "secondary-container": "#e1dfdf",
+              "surface-dim": "#dadada",
+              "on-error": "#ffffff",
+              error: "#ba1a1a",
+              "primary-container": "#1b1b1b",
+              "on-background": "#1a1c1c",
+              tertiary: "#000000",
+              "on-tertiary-fixed-variant": "#474747",
+              "secondary-fixed-dim": "#c7c6c6",
+              "on-surface-variant": "#4c4546",
+              background: "#f9f9f9",
+              "tertiary-container": "#1b1b1b",
+              "on-primary-fixed": "#1b1b1b",
+              "surface-container": "#eeeeee",
+              "inverse-primary": "#c6c6c6",
+              "surface-tint": "#5e5e5e",
+              "secondary-fixed": "#e4e2e2",
+              "surface-container-highest": "#e2e2e2",
+              surface: "#f9f9f9",
+              "surface-variant": "#e2e2e2",
+              secondary: "#5e5e5e",
+              "on-tertiary-container": "#848484",
+              "on-primary-fixed-variant": "#474747",
+              "on-surface": "#1a1c1c",
+              "on-secondary-fixed": "#1b1c1c",
+              "on-secondary-container": "#626262",
+              "on-secondary": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "on-primary": "#ffffff",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              md: "1rem",
+              sm: "0.5rem",
+              lg: "1.5rem",
+              xl: "2rem",
+              xxl: "4rem",
+              xs: "0.25rem",
+            },
+            fontFamily: {
+              "label-md": ["Inter"],
+              "body-md": ["Inter"],
+              "body-lg": ["Inter"],
+              h3: ["Inter"],
+              h1: ["Inter"],
+              h2: ["Inter"],
+              caption: ["Inter"],
+            },
+            fontSize: {
+              "label-md": [
+                "14px",
+                {
+                  lineHeight: "1.4",
+                  letterSpacing: "0.01em",
+                  fontWeight: "500",
+                },
+              ],
+              "body-md": [
+                "16px",
+                { lineHeight: "1.6", letterSpacing: "0", fontWeight: "400" },
+              ],
+              "body-lg": [
+                "18px",
+                { lineHeight: "1.6", letterSpacing: "0", fontWeight: "400" },
+              ],
+              h3: [
+                "24px",
+                { lineHeight: "1.4", letterSpacing: "0", fontWeight: "600" },
+              ],
+              h1: [
+                "40px",
+                {
+                  lineHeight: "1.2",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              h2: [
+                "32px",
+                {
+                  lineHeight: "1.3",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              caption: [
+                "12px",
+                { lineHeight: "1.4", letterSpacing: "0", fontWeight: "400" },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .logo-mark {
+        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .logo-container:hover .logo-mark {
+        transform: rotate(90deg);
+      }
+      .logo-container:hover .logo-text {
+        letter-spacing: 0.12em;
+      }
+      .logo-text {
+        transition: all 0.6s ease;
+      }
+      body {
+        background-color: #f9f9f9;
+      }
+    </style>
+  </head>
+  <body class="font-body-md text-on-surface">
+    <aside
+      class="hidden md:flex flex-col fixed left-0 top-0 h-screen z-40 bg-white border-r border-gray-200 w-64"
+    >
+      <div class="p-lg flex flex-col gap-sm">
+        <div class="flex items-center gap-md mb-lg logo-container">
+          <div class="flex items-center justify-center" aria-hidden="true">
+            <svg
+              width="42"
+              height="42"
+              viewBox="0 0 100 100"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              class="logo-mark"
+            >
+              <path
+                d="M20 20H80V80H20V20Z"
+                stroke="#1b1b1b"
+                stroke-width="4"
+                stroke-opacity="0.12"
+              />
+              <path
+                d="M20 50V20H80V80H50"
+                stroke="#1b1b1b"
+                stroke-width="10"
+                stroke-linecap="square"
+              />
+              <path
+                d="M40 40L60 60"
+                stroke="#1b1b1b"
+                stroke-width="10"
+                stroke-linecap="square"
+              />
+              <rect x="20" y="40" width="15" height="20" fill="white" />
+            </svg>
+          </div>
+          <div class="flex flex-col">
+            <h1 class="text-lg font-light tracking-tight text-black logo-text">
+              CAMPUS<span class="font-black tracking-tighter">CONNECT</span>
+            </h1>
+            <span class="text-[11px] uppercase tracking-[0.28em] text-gray-400"
+              >Área Administrativa</span
+            >
+          </div>
+        </div>
+        <nav class="flex flex-col gap-xs">
+          <a
+            class="flex items-center gap-3 text-gray-600 px-4 py-3 hover:bg-gray-50 transition-colors duration-200"
+            href="index.html"
+          >
+            <span class="material-symbols-outlined" data-icon="dashboard"
+              >dashboard</span
+            >
+            <span class="font-label-md text-label-md">Geral</span>
+          </a>
+          <a
+            class="flex items-center gap-3 text-gray-600 px-4 py-3 hover:bg-gray-50 transition-colors duration-200"
+            href="manutencao.html"
+          >
+            <span class="material-symbols-outlined" data-icon="build"
+              >build</span
+            >
+            <span class="font-label-md text-label-md">Manutenção</span>
+          </a>
+          <a
+            class="flex items-center gap-3 bg-gray-100 text-black font-bold rounded-lg px-4 py-3 transition-colors duration-200"
+            href="refeitorio.html"
+          >
+            <span class="material-symbols-outlined" data-icon="restaurant"
+              >restaurant</span
+            >
+            <span class="font-label-md text-label-md">Refeitório</span>
+          </a>
+          <a
+            class="flex items-center gap-3 text-gray-600 px-4 py-3 hover:bg-gray-50 transition-colors duration-200"
+            href="esportes.html"
+          >
+            <span class="material-symbols-outlined" data-icon="sports_soccer"
+              >sports_soccer</span
+            >
+            <span class="font-label-md text-label-md">Esportes</span>
+          </a>
+        </nav>
+      </div>
+      <div class="mt-auto p-lg border-t border-gray-200">
+        <div class="relative">
+          <button
+            class="w-full flex items-center gap-md rounded-lg p-2 hover:bg-gray-50 transition"
+            type="button"
+            data-user-toggle
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <div
+              class="w-10 h-10 bg-surface-container rounded-full overflow-hidden border border-gray-200"
+            >
+              <img
+                alt="Profile"
+                class="w-full h-full object-cover"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxjHx8uV59E9L2f-Qts_Y2jhQV6ACXcL6KjJHozNpqElWQ8ZunykqYhv2p_5qt6sRxq-I_StaBVClYVRMxOs4PX5khu5ACUMc2QLe5y4pbXVGsEJ4plrrjVA0iBmO5W3neCypX3vDvOP2wlXcr7-nt7mjjswzyreLS8Z_JTZh29oWqbawkQdGUXI0BwF6Q5-X94utZw5c2ib0Wcw5bU0yAZ2SCnXiRAwR2ZROFzlCWAqzESPIV4h4xbI44VqIWOPcfEkGTYVNLFBo"
+              />
+            </div>
+            <div class="flex flex-col overflow-hidden text-left">
+              <span class="text-label-md font-bold truncate">Admin User</span>
+              <span class="text-caption text-on-surface-variant truncate"
+                >cgae@campus.edu.br</span
+              >
+            </div>
+          </button>
+          <div
+            class="absolute bottom-full right-0 mb-3 w-64 bg-white border border-gray-200 rounded-lg shadow-lg hidden"
+            data-user-menu
+          >
+            <div class="px-4 py-3 border-b border-gray-200">
+              <p class="text-label-md font-bold">Admin User</p>
+              <p class="text-caption text-on-surface-variant">
+                cgae@campus.edu.br
+              </p>
+            </div>
+            <a
+              class="flex items-center gap-2 px-4 py-3 text-sm hover:bg-gray-50"
+              href="index.html"
+            >
+              <span class="material-symbols-outlined text-[18px]">person</span>
+              Perfil
+            </a>
+            <button
+              class="w-full flex items-center gap-2 px-4 py-3 text-sm text-left hover:bg-gray-50"
+              type="button"
+              data-sign-out
+            >
+              <span class="material-symbols-outlined text-[18px]">logout</span>
+              Sair
+            </button>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <header
+      class="flex justify-between items-center w-full px-4 h-16 sticky top-0 z-50 bg-white border-b border-gray-200 md:ml-64 md:w-[calc(100%-16rem)]"
+    >
+      <div class="flex items-center gap-md">
+        <button
+          class="md:hidden p-2 rounded-full hover:bg-gray-100"
+          type="button"
+          aria-label="Abrir menu"
+        >
+          <span class="material-symbols-outlined" data-icon="menu">menu</span>
+        </button>
+        <div>
+          <h2 class="font-h3 text-h3 text-black">Painel do Refeitório</h2>
+          <p class="text-caption text-on-surface-variant">
+            Fluxo, cardápio e logística alimentar
+          </p>
+        </div>
+      </div>
+      <div class="flex items-center gap-md">
+        <button
+          class="p-2 rounded-full hover:bg-gray-100"
+          type="button"
+          aria-label="Notificações"
+        >
+          <span class="material-symbols-outlined" data-icon="notifications"
+            >notifications</span
+          >
+        </button>
+        <button
+          class="p-2 rounded-full hover:bg-gray-100"
+          type="button"
+          aria-label="Buscar"
+        >
+          <span class="material-symbols-outlined" data-icon="search"
+            >search</span
+          >
+        </button>
+      </div>
+    </header>
+
+    <main class="md:ml-64 p-md md:p-lg lg:p-xl space-y-lg">
+      <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md">
+        <div
+          class="bg-white border border-gray-200 p-md rounded-lg flex flex-col gap-sm"
+        >
+          <span
+            class="text-caption text-on-surface-variant uppercase tracking-wider"
+            >Refeições hoje</span
+          >
+          <div class="flex items-end justify-between">
+            <span class="text-h2 font-h2">856</span>
+            <span class="text-xs px-2 py-0.5 bg-gray-100 rounded text-gray-600"
+              >Média</span
+            >
+          </div>
+          <div class="w-full h-1 bg-surface-container rounded-full">
+            <div class="w-4/5 h-full bg-black"></div>
+          </div>
+        </div>
+        <div
+          class="bg-white border border-gray-200 p-md rounded-lg flex flex-col gap-sm"
+        >
+          <span
+            class="text-caption text-on-surface-variant uppercase tracking-wider"
+            >Fila atual</span
+          >
+          <div class="flex items-end justify-between">
+            <span class="text-h2 font-h2">92</span>
+            <span class="text-xs px-2 py-0.5 bg-gray-100 rounded text-gray-600"
+              >Pico</span
+            >
+          </div>
+          <div class="w-full h-1 bg-surface-container rounded-full">
+            <div class="w-3/4 h-full bg-black"></div>
+          </div>
+        </div>
+        <div
+          class="bg-white border border-gray-200 p-md rounded-lg flex flex-col gap-sm"
+        >
+          <span
+            class="text-caption text-on-surface-variant uppercase tracking-wider"
+            >Avaliação média</span
+          >
+          <div class="flex items-end justify-between">
+            <span class="text-h2 font-h2">4,6</span>
+            <span class="text-xs px-2 py-0.5 bg-gray-100 rounded text-gray-600"
+              >+0,2</span
+            >
+          </div>
+          <div class="w-full h-1 bg-surface-container rounded-full">
+            <div class="w-5/6 h-full bg-black"></div>
+          </div>
+        </div>
+        <div
+          class="bg-white border border-gray-200 p-md rounded-lg flex flex-col gap-sm"
+        >
+          <span
+            class="text-caption text-on-surface-variant uppercase tracking-wider"
+            >Estoque crítico</span
+          >
+          <div class="flex items-end justify-between">
+            <span class="text-h2 font-h2">03</span>
+            <span class="text-xs px-2 py-0.5 bg-gray-100 rounded text-gray-600"
+              >Itens</span
+            >
+            >
+          </div>
+          <div class="w-full h-1 bg-surface-container rounded-full">
+            <div class="w-1/4 h-full bg-black"></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+        <section
+          id="cardapio"
+          class="lg:col-span-2 bg-white border border-gray-200 rounded-lg overflow-hidden flex flex-col"
+        >
+          <div
+            class="p-md border-b border-gray-200 flex justify-between items-center"
+          >
+            <h3 class="text-label-md font-bold">Cardápio do dia</h3>
+            <a
+              class="text-caption font-medium px-3 py-1 border border-black rounded hover:bg-black hover:text-white transition-colors"
+              href="#cardapio"
+              data-modal-target="#cardapio"
+            >
+              Atualizar menu
+            </a>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left">
+              <thead
+                class="bg-surface-container text-caption text-on-surface-variant uppercase"
+              >
+                <tr>
+                  <th class="px-md py-sm">Refeição</th>
+                  <th class="px-md py-sm">Opções</th>
+                  <th class="px-md py-sm">Dieta</th>
+                  <th class="px-md py-sm">Status</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-100">
+                <tr class="hover:bg-gray-50 transition-colors">
+                  <td class="px-md py-md font-label-md">Almoço</td>
+                  <td class="px-md py-md">Frango grelhado, legumes</td>
+                  <td class="px-md py-md">Sem glúten</td>
+                  <td class="px-md py-md text-on-surface-variant">Servindo</td>
+                </tr>
+                <tr class="hover:bg-gray-50 transition-colors">
+                  <td class="px-md py-md font-label-md">Jantar</td>
+                  <td class="px-md py-md">Risoto de cogumelos</td>
+                  <td class="px-md py-md">Vegetariano</td>
+                  <td class="px-md py-md text-on-surface-variant">
+                    Programado
+                  </td>
+                </tr>
+                <tr class="hover:bg-gray-50 transition-colors">
+                  <td class="px-md py-md font-label-md">Lanche</td>
+                  <td class="px-md py-md">Sanduíche natural</td>
+                  <td class="px-md py-md">Sem lactose</td>
+                  <td class="px-md py-md text-on-surface-variant">
+                    Programado
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section
+          id="logistica"
+          class="bg-white border border-gray-200 rounded-lg p-md flex flex-col gap-md"
+        >
+          <div>
+            <h3 class="text-label-md font-bold">Logística rápida</h3>
+            <p class="text-caption text-on-surface-variant">
+              Itens com atenção imediata
+            </p>
+          </div>
+          <div class="flex flex-col gap-sm">
+            <div class="flex items-center justify-between">
+              <span class="text-body-md">Reposição de frutas</span>
+              <span class="text-xs px-2 py-1 bg-gray-100 rounded">13:00</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-body-md">Checagem de temperatura</span>
+              <span class="text-xs px-2 py-1 bg-gray-100 rounded">15:00</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-body-md">Equipe de limpeza</span>
+              <span class="text-xs px-2 py-1 bg-gray-100 rounded">16:30</span>
+            </div>
+          </div>
+          <a
+            class="mt-auto text-caption font-medium px-3 py-2 border border-black rounded hover:bg-black hover:text-white transition-colors text-center"
+            href="#logistica"
+            data-modal-target="#logistica"
+          >
+            Registrar ocorrência
+          </a>
+        </section>
+      </div>
+      <div
+        class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 p-4"
+        data-modal
+        aria-hidden="true"
+      >
+        <div
+          class="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[85vh] overflow-y-auto"
+          role="dialog"
+          aria-modal="true"
+        >
+          <div
+            class="flex items-center justify-between p-4 border-b border-gray-200"
+          >
+            <h3 class="text-lg font-bold" data-modal-title>Detalhes</h3>
+            <button
+              class="text-xs font-semibold px-3 py-2 border border-black rounded hover:bg-black hover:text-white transition-colors"
+              type="button"
+              data-modal-close
+            >
+              Fechar
+            </button>
+          </div>
+          <div class="p-6 space-y-4" data-modal-content></div>
+        </div>
+      </div>
+    </main>
+    <script>
+      (() => {
+        const toggles = document.querySelectorAll("[data-user-toggle]");
+        const menus = document.querySelectorAll("[data-user-menu]");
+        const closeAll = () => {
+          menus.forEach((menu) => menu.classList.add("hidden"));
+          toggles.forEach((toggle) =>
+            toggle.setAttribute("aria-expanded", "false"),
+          );
+        };
+
+        toggles.forEach((toggle) => {
+          const menu = toggle.parentElement.querySelector("[data-user-menu]");
+          toggle.addEventListener("click", (event) => {
+            event.stopPropagation();
+            const isOpen = !menu.classList.contains("hidden");
+            closeAll();
+            if (!isOpen) {
+              menu.classList.remove("hidden");
+              toggle.setAttribute("aria-expanded", "true");
+            }
+          });
+
+          const signOut = menu.querySelector("[data-sign-out]");
+          if (signOut) {
+            signOut.addEventListener("click", () => {
+              closeAll();
+              window.location.href = "index.html";
+            });
+          }
+        });
+
+        const modal = document.querySelector("[data-modal]");
+        const modalContent = modal?.querySelector("[data-modal-content]");
+        const modalTitle = modal?.querySelector("[data-modal-title]");
+
+        const openModal = (target) => {
+          if (!modal || !modalContent || !modalTitle || !target) return;
+          const heading = target.querySelector("h3");
+          modalTitle.textContent = heading ? heading.textContent : "Detalhes";
+          modalContent.innerHTML = target.innerHTML;
+          modal.classList.remove("hidden");
+          modal.classList.add("flex");
+          modal.setAttribute("aria-hidden", "false");
+          document.body.classList.add("overflow-hidden");
+        };
+
+        const closeModal = () => {
+          if (!modal || !modalContent) return;
+          modal.classList.add("hidden");
+          modal.classList.remove("flex");
+          modal.setAttribute("aria-hidden", "true");
+          modalContent.innerHTML = "";
+          document.body.classList.remove("overflow-hidden");
+        };
+
+        document.querySelectorAll("[data-modal-target]").forEach((link) => {
+          link.addEventListener("click", (event) => {
+            event.preventDefault();
+            const selector = link.getAttribute("data-modal-target");
+            const target = selector ? document.querySelector(selector) : null;
+            openModal(target);
+          });
+        });
+
+        modal?.addEventListener("click", (event) => {
+          if (event.target === modal) {
+            closeModal();
+          }
+        });
+
+        modal
+          ?.querySelector("[data-modal-close]")
+          ?.addEventListener("click", closeModal);
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") {
+            closeModal();
+          }
+        });
+
+        document.addEventListener("click", closeAll);
+      })();
+    </script>
+  </body>
+</html>

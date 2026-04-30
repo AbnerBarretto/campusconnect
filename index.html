@@ -1,0 +1,1051 @@
+<!doctype html>
+
+<html class="light" lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='0' y='0' width='100' height='100' fill='%23ffffff'/><path d='M20 50V20H80V80H50' stroke='%23000000' stroke-width='10' stroke-linecap='square' fill='none'/><path d='M40 40L60 60' stroke='%23000000' stroke-width='10' stroke-linecap='square'/><rect x='20' y='40' width='15' height='20' fill='%23ffffff'/></svg>"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-fixed-variant": "#464747",
+              "surface-container-lowest": "#ffffff",
+              "primary-fixed-dim": "#c6c6c6",
+              "on-tertiary-fixed": "#1b1b1b",
+              "surface-container-high": "#e8e8e8",
+              primary: "#000000",
+              "inverse-surface": "#2f3131",
+              "surface-container-low": "#f3f3f3",
+              "tertiary-fixed": "#e2e2e2",
+              "inverse-on-surface": "#f1f1f1",
+              outline: "#7e7576",
+              "error-container": "#ffdad6",
+              "outline-variant": "#cfc4c5",
+              "on-error-container": "#93000a",
+              "tertiary-fixed-dim": "#c6c6c6",
+              "surface-bright": "#f9f9f9",
+              "on-primary-container": "#848484",
+              "primary-fixed": "#e2e2e2",
+              "secondary-container": "#e1dfdf",
+              "surface-dim": "#dadada",
+              "on-error": "#ffffff",
+              error: "#ba1a1a",
+              "primary-container": "#1b1b1b",
+              "on-background": "#1a1c1c",
+              tertiary: "#000000",
+              "on-tertiary-fixed-variant": "#474747",
+              "secondary-fixed-dim": "#c7c6c6",
+              "on-surface-variant": "#4c4546",
+              background: "#f9f9f9",
+              "tertiary-container": "#1b1b1b",
+              "on-primary-fixed": "#1b1b1b",
+              "surface-container": "#eeeeee",
+              "inverse-primary": "#c6c6c6",
+              "surface-tint": "#5e5e5e",
+              "secondary-fixed": "#e4e2e2",
+              "surface-container-highest": "#e2e2e2",
+              surface: "#f9f9f9",
+              "surface-variant": "#e2e2e2",
+              secondary: "#5e5e5e",
+              "on-tertiary-container": "#848484",
+              "on-primary-fixed-variant": "#474747",
+              "on-surface": "#1a1c1c",
+              "on-secondary-fixed": "#1b1c1c",
+              "on-secondary-container": "#626262",
+              "on-secondary": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "on-primary": "#ffffff",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              md: "1rem",
+              sm: "0.5rem",
+              lg: "1.5rem",
+              xl: "2rem",
+              xxl: "4rem",
+              xs: "0.25rem",
+            },
+            fontFamily: {
+              "label-md": ["Inter"],
+              "body-md": ["Inter"],
+              "body-lg": ["Inter"],
+              h3: ["Inter"],
+              h1: ["Inter"],
+              h2: ["Inter"],
+              caption: ["Inter"],
+            },
+            fontSize: {
+              "label-md": [
+                "14px",
+                {
+                  lineHeight: "1.4",
+                  letterSpacing: "0.01em",
+                  fontWeight: "500",
+                },
+              ],
+              "body-md": [
+                "16px",
+                { lineHeight: "1.6", letterSpacing: "0", fontWeight: "400" },
+              ],
+              "body-lg": [
+                "18px",
+                { lineHeight: "1.6", letterSpacing: "0", fontWeight: "400" },
+              ],
+              h3: [
+                "24px",
+                { lineHeight: "1.4", letterSpacing: "0", fontWeight: "600" },
+              ],
+              h1: [
+                "40px",
+                {
+                  lineHeight: "1.2",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              h2: [
+                "32px",
+                {
+                  lineHeight: "1.3",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              caption: [
+                "12px",
+                { lineHeight: "1.4", letterSpacing: "0", fontWeight: "400" },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .logo-mark {
+        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .logo-container:hover .logo-mark {
+        transform: rotate(90deg);
+      }
+      .logo-container:hover .logo-text {
+        letter-spacing: 0.12em;
+      }
+      .logo-text {
+        transition: all 0.6s ease;
+      }
+      body {
+        background-color: #f9f9f9;
+      }
+    </style>
+  </head>
+  <body class="font-body-md text-on-surface">
+    <!-- Desktop Navigation Drawer -->
+    <aside
+      class="hidden md:flex flex-col fixed left-0 top-0 h-screen z-40 bg-white border-r border-gray-200 w-64"
+    >
+      <div class="p-lg flex flex-col gap-sm">
+        <div class="flex items-center gap-md mb-lg logo-container">
+          <div class="flex items-center justify-center" aria-hidden="true">
+            <svg
+              width="42"
+              height="42"
+              viewBox="0 0 100 100"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              class="logo-mark"
+            >
+              <path
+                d="M20 20H80V80H20V20Z"
+                stroke="#1b1b1b"
+                stroke-width="4"
+                stroke-opacity="0.12"
+              />
+              <path
+                d="M20 50V20H80V80H50"
+                stroke="#1b1b1b"
+                stroke-width="10"
+                stroke-linecap="square"
+              />
+              <path
+                d="M40 40L60 60"
+                stroke="#1b1b1b"
+                stroke-width="10"
+                stroke-linecap="square"
+              />
+              <rect x="20" y="40" width="15" height="20" fill="white" />
+            </svg>
+          </div>
+          <div class="flex flex-col">
+            <h1 class="text-lg font-light tracking-tight text-black logo-text">
+              CAMPUS<span class="font-black tracking-tighter">CONNECT</span>
+            </h1>
+            <span class="text-[11px] uppercase tracking-[0.28em] text-gray-400"
+              >Área Administrativa</span
+            >
+          </div>
+        </div>
+        <nav class="flex flex-col gap-xs">
+          <!-- Geral - Active State -->
+          <a
+            class="flex items-center gap-3 bg-gray-100 text-black font-bold rounded-lg px-4 py-3 transition-colors duration-200"
+            href="index.html"
+          >
+            <span class="material-symbols-outlined" data-icon="dashboard"
+              >dashboard</span
+            >
+            <span class="font-label-md text-label-md">Geral</span>
+          </a>
+          <a
+            class="flex items-center gap-3 text-gray-600 px-4 py-3 hover:bg-gray-50 transition-colors duration-200"
+            href="manutencao.html"
+          >
+            <span class="material-symbols-outlined" data-icon="build"
+              >build</span
+            >
+            <span class="font-label-md text-label-md">Manutenção</span>
+          </a>
+          <a
+            class="flex items-center gap-3 text-gray-600 px-4 py-3 hover:bg-gray-50 transition-colors duration-200"
+            href="refeitorio.html"
+          >
+            <span class="material-symbols-outlined" data-icon="restaurant"
+              >restaurant</span
+            >
+            <span class="font-label-md text-label-md">Refeitório</span>
+          </a>
+          <a
+            class="flex items-center gap-3 text-gray-600 px-4 py-3 hover:bg-gray-50 transition-colors duration-200"
+            href="esportes.html"
+          >
+            <span class="material-symbols-outlined" data-icon="sports_soccer"
+              >sports_soccer</span
+            >
+            <span class="font-label-md text-label-md">Esportes</span>
+          </a>
+        </nav>
+      </div>
+      <div class="mt-auto p-lg border-t border-gray-200">
+        <div class="relative">
+          <button
+            class="w-full flex items-center gap-md rounded-lg p-2 hover:bg-gray-50 transition"
+            type="button"
+            data-user-toggle
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <div
+              class="w-10 h-10 bg-surface-container rounded-full overflow-hidden border border-gray-200"
+            >
+              <img
+                alt="Profile"
+                class="w-full h-full object-cover"
+                data-alt="minimalist user avatar illustration in grayscale with simple geometric features and a neutral background"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxjHx8uV59E9L2f-Qts_Y2jhQV6ACXcL6KjJHozNpqElWQ8ZunykqYhv2p_5qt6sRxq-I_StaBVClYVRMxOs4PX5khu5ACUMc2QLe5y4pbXVGsEJ4plrrjVA0iBmO5W3neCypX3vDvOP2wlXcr7-nt7mjjswzyreLS8Z_JTZh29oWqbawkQdGUXI0BwF6Q5-X94utZw5c2ib0Wcw5bU0yAZ2SCnXiRAwR2ZROFzlCWAqzESPIV4h4xbI44VqIWOPcfEkGTYVNLFBo"
+              />
+            </div>
+            <div class="flex flex-col overflow-hidden text-left">
+              <span class="text-label-md font-bold truncate">Admin User</span>
+              <span class="text-caption text-on-surface-variant truncate"
+                >cgae@campus.edu.br</span
+              >
+            </div>
+          </button>
+          <div
+            class="absolute bottom-full right-0 mb-3 w-64 bg-white border border-gray-200 rounded-lg shadow-lg hidden"
+            data-user-menu
+          >
+            <div class="px-4 py-3 border-b border-gray-200">
+              <p class="text-label-md font-bold">Admin User</p>
+              <p class="text-caption text-on-surface-variant">
+                cgae@campus.edu.br
+              </p>
+            </div>
+            <a
+              class="flex items-center gap-2 px-4 py-3 text-sm hover:bg-gray-50"
+              href="index.html"
+            >
+              <span class="material-symbols-outlined text-[18px]">person</span>
+              Perfil
+            </a>
+            <button
+              class="w-full flex items-center gap-2 px-4 py-3 text-sm text-left hover:bg-gray-50"
+              type="button"
+              data-sign-out
+            >
+              <span class="material-symbols-outlined text-[18px]">logout</span>
+              Sair
+            </button>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <!-- Top Bar for Mobile/Tablet context -->
+    <header
+      class="flex justify-between items-center w-full px-4 h-16 sticky top-0 z-50 bg-white border-b border-gray-200 md:ml-64 md:w-[calc(100%-16rem)]"
+    >
+      <div class="flex items-center gap-md">
+        <button
+          class="md:hidden p-2 rounded-full hover:bg-gray-100"
+          type="button"
+          aria-label="Abrir menu"
+        >
+          <span class="material-symbols-outlined" data-icon="menu">menu</span>
+        </button>
+        <h2 class="font-h3 text-h3 text-black">Dashboard Administrativo</h2>
+      </div>
+      <div class="flex items-center gap-md">
+        <button
+          class="p-2 rounded-full hover:bg-gray-100"
+          type="button"
+          aria-label="Notificações"
+        >
+          <span class="material-symbols-outlined" data-icon="notifications"
+            >notifications</span
+          >
+        </button>
+        <button
+          class="p-2 rounded-full hover:bg-gray-100"
+          type="button"
+          aria-label="Buscar"
+        >
+          <span class="material-symbols-outlined" data-icon="search"
+            >search</span
+          >
+        </button>
+      </div>
+    </header>
+    <!-- Main Content Canvas -->
+    <main class="md:ml-64 p-md md:p-lg lg:p-xl space-y-lg">
+      <!-- Bento Grid Stats -->
+      <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md">
+        <div
+          class="bg-white border border-gray-200 p-md rounded-lg flex flex-col gap-sm"
+        >
+          <span
+            class="text-caption text-on-surface-variant uppercase tracking-wider"
+            >Total de Chamados</span
+          >
+          <div class="flex items-end justify-between">
+            <span class="text-h2 font-h2">42</span>
+            <span class="text-xs px-2 py-0.5 bg-gray-100 rounded text-gray-600"
+              >+12%</span
+            >
+          </div>
+          <div
+            class="w-full h-1 bg-surface-container rounded-full overflow-hidden"
+          >
+            <div class="w-2/3 h-full bg-black"></div>
+          </div>
+        </div>
+        <div
+          class="bg-white border border-gray-200 p-md rounded-lg flex flex-col gap-sm"
+        >
+          <span
+            class="text-caption text-on-surface-variant uppercase tracking-wider"
+            >Refeições Hoje</span
+          >
+          <div class="flex items-end justify-between">
+            <span class="text-h2 font-h2">856</span>
+            <span class="text-xs px-2 py-0.5 bg-gray-100 rounded text-gray-600"
+              >Média</span
+            >
+          </div>
+          <div
+            class="w-full h-1 bg-surface-container rounded-full overflow-hidden"
+          >
+            <div class="w-4/5 h-full bg-black"></div>
+          </div>
+        </div>
+        <div
+          class="bg-white border border-gray-200 p-md rounded-lg flex flex-col gap-sm"
+        >
+          <span
+            class="text-caption text-on-surface-variant uppercase tracking-wider"
+            >Ocupação Academia</span
+          >
+          <div class="flex items-end justify-between">
+            <span class="text-h2 font-h2">78%</span>
+            <span class="text-xs px-2 py-0.5 bg-gray-100 rounded text-gray-600"
+              >Pico</span
+            >
+          </div>
+          <div
+            class="w-full h-1 bg-surface-container rounded-full overflow-hidden"
+          >
+            <div class="w-3/4 h-full bg-black"></div>
+          </div>
+        </div>
+        <div
+          class="bg-white border border-gray-200 p-md rounded-lg flex flex-col gap-sm"
+        >
+          <span
+            class="text-caption text-on-surface-variant uppercase tracking-wider"
+            >Salas Manutenção</span
+          >
+          <div class="flex items-end justify-between">
+            <span class="text-h2 font-h2">05</span>
+            <span class="text-xs px-2 py-0.5 bg-gray-100 rounded text-gray-600"
+              >Crítico</span
+            >
+          </div>
+          <div
+            class="w-full h-1 bg-surface-container rounded-full overflow-hidden"
+          >
+            <div class="w-1/4 h-full bg-black"></div>
+          </div>
+        </div>
+      </section>
+      <!-- Main Dashboard Layout: 2/3 Content, 1/3 Chart -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+        <!-- Table Section -->
+        <section
+          class="lg:col-span-2 bg-white border border-gray-200 rounded-lg overflow-hidden flex flex-col"
+        >
+          <div
+            class="p-md border-b border-gray-200 flex justify-between items-center"
+          >
+            <h3 class="text-label-md font-bold">Tabela de chamados recentes</h3>
+            <a
+              class="text-caption font-medium px-3 py-1 border border-black rounded hover:bg-black hover:text-white transition-colors"
+              href="manutencao.html#chamados"
+            >
+              Ver todos
+            </a>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left">
+              <thead
+                class="bg-surface-container text-caption text-on-surface-variant uppercase"
+              >
+                <tr>
+                  <th class="px-md py-sm">Quarto</th>
+                  <th class="px-md py-sm">Assunto</th>
+                  <th class="px-md py-sm">Status</th>
+                  <th class="px-md py-sm">Ações</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-100">
+                <tr class="hover:bg-gray-50 transition-colors">
+                  <td class="px-md py-md font-label-md">Bloco A - 204</td>
+                  <td class="px-md py-md">Vazamento pia banheiro</td>
+                  <td class="px-md py-md">
+                    <span
+                      class="text-[10px] px-2 py-1 bg-gray-200 rounded font-bold"
+                      >ABERTO</span
+                    >
+                  </td>
+                  <td class="px-md py-md">
+                    <button
+                      class="material-symbols-outlined text-gray-400 hover:text-black"
+                      data-icon="more_vert"
+                      type="button"
+                      aria-label="Mais ações"
+                    >
+                      more_vert
+                    </button>
+                  </td>
+                </tr>
+                <tr class="hover:bg-gray-50 transition-colors">
+                  <td class="px-md py-md font-label-md">Bloco B - 110</td>
+                  <td class="px-md py-md">Lâmpada queimada</td>
+                  <td class="px-md py-md">
+                    <span
+                      class="text-[10px] px-2 py-1 bg-gray-100 text-gray-400 rounded font-bold"
+                      >EM PROGRESSO</span
+                    >
+                  </td>
+                  <td class="px-md py-md">
+                    <button
+                      class="material-symbols-outlined text-gray-400 hover:text-black"
+                      data-icon="more_vert"
+                      type="button"
+                      aria-label="Mais ações"
+                    >
+                      more_vert
+                    </button>
+                  </td>
+                </tr>
+                <tr class="hover:bg-gray-50 transition-colors">
+                  <td class="px-md py-md font-label-md">Bloco C - 302</td>
+                  <td class="px-md py-md">Ar condicionado barulhento</td>
+                  <td class="px-md py-md">
+                    <span
+                      class="text-[10px] px-2 py-1 bg-gray-200 rounded font-bold"
+                      >ABERTO</span
+                    >
+                  </td>
+                  <td class="px-md py-md">
+                    <button
+                      class="material-symbols-outlined text-gray-400 hover:text-black"
+                      data-icon="more_vert"
+                      type="button"
+                      aria-label="Mais ações"
+                    >
+                      more_vert
+                    </button>
+                  </td>
+                </tr>
+                <tr class="hover:bg-gray-50 transition-colors">
+                  <td class="px-md py-md font-label-md">Refeitório</td>
+                  <td class="px-md py-md">Troca de filtro de água</td>
+                  <td class="px-md py-md">
+                    <span
+                      class="text-[10px] px-2 py-1 bg-gray-800 text-white rounded font-bold"
+                      >FINALIZADO</span
+                    >
+                  </td>
+                  <td class="px-md py-md">
+                    <button
+                      class="material-symbols-outlined text-gray-400 hover:text-black"
+                      data-icon="more_vert"
+                      type="button"
+                      aria-label="Mais ações"
+                    >
+                      more_vert
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <!-- Chart Section -->
+        <section
+          class="bg-white border border-gray-200 rounded-lg p-md flex flex-col gap-md"
+        >
+          <div class="flex flex-col gap-xs">
+            <h3 class="text-label-md font-bold">
+              Ocupação da academia por horário
+            </h3>
+            <p class="text-caption text-on-surface-variant">
+              Dados em tempo real (Hoje)
+            </p>
+          </div>
+          <!-- Skeleton Bar Chart Placeholder -->
+          <div
+            class="flex-grow flex items-end justify-between gap-2 h-48 px-2 pb-6 border-b border-gray-100"
+          >
+            <div class="w-full bg-gray-100 rounded-t h-[20%]"></div>
+            <div class="w-full bg-gray-200 rounded-t h-[40%]"></div>
+            <div class="w-full bg-gray-300 rounded-t h-[75%]"></div>
+            <div class="w-full bg-black rounded-t h-[95%]"></div>
+            <div class="w-full bg-gray-300 rounded-t h-[60%]"></div>
+            <div class="w-full bg-gray-200 rounded-t h-[30%]"></div>
+            <div class="w-full bg-gray-100 rounded-t h-[15%]"></div>
+          </div>
+          <div class="flex justify-between text-[10px] text-gray-400 px-1">
+            <span>06h</span>
+            <span>09h</span>
+            <span>12h</span>
+            <span>15h</span>
+            <span>18h</span>
+            <span>21h</span>
+            <span>00h</span>
+          </div>
+          <div
+            class="mt-md p-sm bg-surface-container-low rounded border border-gray-100 flex items-center gap-md"
+          >
+            <span
+              class="material-symbols-outlined text-gray-400"
+              data-icon="info"
+              >info</span
+            >
+            <span class="text-caption"
+              >Pico esperado às 18:30. Sugerimos monitoramento extra.</span
+            >
+          </div>
+        </section>
+      </div>
+      <!-- Secondary Section: Maintenance Schedule & Quick Actions -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+        <div class="bg-white border border-gray-200 p-md rounded-lg">
+          <h3 class="text-label-md font-bold mb-md">Próximas Manutenções</h3>
+          <div class="space-y-sm">
+            <div
+              class="flex items-center gap-md p-sm border border-gray-100 rounded"
+            >
+              <div
+                class="w-10 h-10 bg-surface-container rounded flex flex-col items-center justify-center"
+              >
+                <span class="text-[10px] font-bold">OUT</span>
+                <span class="text-sm font-black">24</span>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-label-md font-bold">Limpeza da Piscina</span>
+                <span class="text-caption text-on-surface-variant"
+                  >Área de Esportes • 08:00</span
+                >
+              </div>
+            </div>
+            <div
+              class="flex items-center gap-md p-sm border border-gray-100 rounded"
+            >
+              <div
+                class="w-10 h-10 bg-surface-container rounded flex flex-col items-center justify-center"
+              >
+                <span class="text-[10px] font-bold">OUT</span>
+                <span class="text-sm font-black">25</span>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-label-md font-bold">Revisão Elevadores</span>
+                <span class="text-caption text-on-surface-variant"
+                  >Blocos A/B • 14:00</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-md">
+          <button
+            class="bg-black text-white p-md rounded-lg flex flex-col items-center justify-center gap-sm active:scale-95 transition-transform"
+            type="button"
+            data-action
+            data-action-type="novo-chamado"
+            data-action-title="Novo chamado"
+            data-action-body="Deseja registrar um novo chamado agora?"
+            data-action-confirm-text="Chamado criado"
+            data-action-confirm-label="Registrar chamado"
+          >
+            <span
+              class="material-symbols-outlined text-3xl"
+              data-icon="add_circle"
+              >add_circle</span
+            >
+            <span class="text-label-md">Novo Chamado</span>
+          </button>
+          <button
+            class="bg-white border border-black p-md rounded-lg flex flex-col items-center justify-center gap-sm active:scale-95 transition-transform"
+            type="button"
+            data-action
+            data-action-type="relatorio"
+            data-action-title="Gerar relatório"
+            data-action-body="Vamos gerar o relatório do dia e registrar o envio."
+            data-action-confirm-text="Relatório gerado"
+            data-action-confirm-label="Gerar relatório"
+          >
+            <span
+              class="material-symbols-outlined text-3xl"
+              data-icon="assessment"
+              >assessment</span
+            >
+            <span class="text-label-md">Gerar Relatório</span>
+          </button>
+          <button
+            class="bg-white border border-gray-200 p-md rounded-lg flex flex-col items-center justify-center gap-sm active:scale-95 transition-transform text-gray-500"
+            type="button"
+            data-action
+            data-action-type="config"
+            data-action-title="Configurações"
+            data-action-body="Configurações avançadas estarão disponíveis em breve."
+            data-action-confirm-text="Configurações salvas"
+            data-action-confirm-label="Salvar"
+          >
+            <span
+              class="material-symbols-outlined text-3xl"
+              data-icon="settings"
+              >settings</span
+            >
+            <span class="text-label-md">Configurações</span>
+          </button>
+          <button
+            class="bg-white border border-gray-200 p-md rounded-lg flex flex-col items-center justify-center gap-sm active:scale-95 transition-transform text-gray-500"
+            type="button"
+            data-action
+            data-action-type="info"
+            data-action-title="Suporte CGAE"
+            data-action-body="Sua solicitação foi registrada com a equipe CGAE."
+            data-action-confirm-label="Entendi"
+          >
+            <span class="material-symbols-outlined text-3xl" data-icon="help"
+              >help</span
+            >
+            <span class="text-label-md">Suporte CGAE</span>
+          </button>
+        </div>
+      </div>
+      <div
+        class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 p-4"
+        data-action-modal
+        aria-hidden="true"
+      >
+        <div
+          class="bg-white rounded-lg shadow-xl w-full max-w-lg"
+          role="dialog"
+          aria-modal="true"
+        >
+          <div
+            class="flex items-center justify-between p-4 border-b border-gray-200"
+          >
+            <h3 class="text-lg font-bold" data-action-modal-title>Detalhes</h3>
+            <button
+              class="text-xs font-semibold px-3 py-2 border border-black rounded hover:bg-black hover:text-white transition-colors"
+              type="button"
+              data-action-modal-close
+            >
+              Fechar
+            </button>
+          </div>
+          <div class="p-5 space-y-4">
+            <div class="text-body-md space-y-3" data-action-modal-content></div>
+            <p class="text-caption text-red-600 hidden" data-action-modal-alert>
+              Não foi possível concluir a ação. Tente novamente.
+            </p>
+            <div class="flex items-center justify-end gap-2">
+              <button
+                class="px-4 py-2 text-sm font-semibold border border-gray-200 rounded hover:bg-gray-100"
+                type="button"
+                data-action-modal-cancel
+              >
+                Cancelar
+              </button>
+              <button
+                class="px-4 py-2 text-sm font-semibold border border-black rounded hover:bg-black hover:text-white transition-colors"
+                type="button"
+                data-action-modal-confirm
+              >
+                Confirmar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- Mobile Bottom Nav -->
+    <nav
+      class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-white border-t border-gray-200"
+    >
+      <a
+        class="flex flex-col items-center justify-center bg-gray-200 text-black rounded-lg p-1 transition-transform active:scale-95"
+        href="index.html"
+      >
+        <span class="material-symbols-outlined" data-icon="home">home</span>
+        <span class="font-['Inter'] text-[10px] font-medium">Início</span>
+      </a>
+      <a
+        class="flex flex-col items-center justify-center text-gray-500 p-1 transition-transform active:scale-95"
+        href="esportes.html#agenda"
+      >
+        <span class="material-symbols-outlined" data-icon="calendar_today"
+          >calendar_today</span
+        >
+        <span class="font-['Inter'] text-[10px] font-medium">Agenda</span>
+      </a>
+      <a
+        class="flex flex-col items-center justify-center text-gray-500 p-1 transition-transform active:scale-95"
+        href="refeitorio.html"
+      >
+        <span class="material-symbols-outlined" data-icon="restaurant"
+          >restaurant</span
+        >
+        <span class="font-['Inter'] text-[10px] font-medium">Refeitório</span>
+      </a>
+      <a
+        class="flex flex-col items-center justify-center text-gray-500 p-1 transition-transform active:scale-95"
+        href="manutencao.html#chamados"
+      >
+        <span class="material-symbols-outlined" data-icon="report_problem"
+          >report_problem</span
+        >
+        <span class="font-['Inter'] text-[10px] font-medium">Chamados</span>
+      </a>
+    </nav>
+    <script>
+      (() => {
+        const toggles = document.querySelectorAll("[data-user-toggle]");
+        const menus = document.querySelectorAll("[data-user-menu]");
+        const closeAll = () => {
+          menus.forEach((menu) => menu.classList.add("hidden"));
+          toggles.forEach((toggle) =>
+            toggle.setAttribute("aria-expanded", "false"),
+          );
+        };
+
+        toggles.forEach((toggle) => {
+          const menu = toggle.parentElement.querySelector("[data-user-menu]");
+          toggle.addEventListener("click", (event) => {
+            event.stopPropagation();
+            const isOpen = !menu.classList.contains("hidden");
+            closeAll();
+            if (!isOpen) {
+              menu.classList.remove("hidden");
+              toggle.setAttribute("aria-expanded", "true");
+            }
+          });
+
+          const signOut = menu.querySelector("[data-sign-out]");
+          if (signOut) {
+            signOut.addEventListener("click", () => {
+              closeAll();
+              window.location.href = "index.html";
+            });
+          }
+        });
+
+        const actionModal = document.querySelector("[data-action-modal]");
+        const actionTitle = document.querySelector("[data-action-modal-title]");
+        const actionContent = document.querySelector(
+          "[data-action-modal-content]",
+        );
+        const actionAlert = document.querySelector("[data-action-modal-alert]");
+        const actionConfirm = document.querySelector(
+          "[data-action-modal-confirm]",
+        );
+        const defaultConfirmLabel = actionConfirm?.textContent || "Confirmar";
+        let activeActionButton = null;
+
+        const closeActionModal = () => {
+          if (!actionModal) return;
+          actionModal.classList.add("hidden");
+          actionModal.classList.remove("flex");
+          actionModal.setAttribute("aria-hidden", "true");
+          document.body.classList.remove("overflow-hidden");
+          activeActionButton = null;
+          if (actionAlert) {
+            actionAlert.classList.add("hidden");
+          }
+        };
+
+        const openActionModal = (button) => {
+          if (!actionModal || !actionTitle || !actionContent || !button) return;
+          activeActionButton = button;
+          const actionType = button.getAttribute("data-action-type") || "info";
+          const actionTitleText =
+            button.getAttribute("data-action-title") || "Ação";
+          const actionBodyText =
+            button.getAttribute("data-action-body") || "Confirme a ação.";
+          const confirmLabel =
+            button.getAttribute("data-action-confirm-label") ||
+            defaultConfirmLabel;
+          actionTitle.textContent = actionTitleText;
+          if (actionAlert) {
+            actionAlert.classList.add("hidden");
+          }
+
+          if (actionType === "novo-chamado") {
+            actionContent.innerHTML = `
+              <p>${actionBodyText}</p>
+              <form class="space-y-3" data-action-form>
+                <label class="flex flex-col gap-1 text-caption">
+                  Título
+                  <input
+                    class="rounded border border-gray-300 px-3 py-2 text-body-md"
+                    name="titulo"
+                    placeholder="Ex: Vazamento no banheiro"
+                    required
+                  />
+                </label>
+                <label class="flex flex-col gap-1 text-caption">
+                  Descrição
+                  <textarea
+                    class="rounded border border-gray-300 px-3 py-2 text-body-md"
+                    name="descricao"
+                    rows="3"
+                    placeholder="Descreva o problema"
+                    required
+                  ></textarea>
+                </label>
+                <label class="flex flex-col gap-1 text-caption">
+                  Prioridade
+                  <select
+                    class="rounded border border-gray-300 px-3 py-2 text-body-md"
+                    name="prioridade"
+                  >
+                    <option value="normal">Normal</option>
+                    <option value="alta">Alta</option>
+                  </select>
+                </label>
+              </form>
+            `;
+          } else if (actionType === "config") {
+            actionContent.innerHTML = `
+              <p>${actionBodyText}</p>
+              <form class="space-y-3" data-config-form>
+                <label class="flex items-center gap-2 text-body-md">
+                  <input
+                    class="rounded border-gray-300"
+                    type="checkbox"
+                    name="notificacoes"
+                    checked
+                  />
+                  Notificações por e-mail
+                </label>
+                <label class="flex items-center gap-2 text-body-md">
+                  <input
+                    class="rounded border-gray-300"
+                    type="checkbox"
+                    name="alertas"
+                    checked
+                  />
+                  Alertas críticos em tempo real
+                </label>
+                <label class="flex flex-col gap-1 text-caption">
+                  Frequência de relatórios
+                  <select
+                    class="rounded border border-gray-300 px-3 py-2 text-body-md"
+                    name="frequencia"
+                  >
+                    <option value="diario">Diário</option>
+                    <option value="semanal">Semanal</option>
+                    <option value="mensal">Mensal</option>
+                  </select>
+                </label>
+              </form>
+            `;
+          } else {
+            actionContent.innerHTML = `<p>${actionBodyText}</p>`;
+          }
+
+          if (actionConfirm) {
+            actionConfirm.textContent = confirmLabel;
+          }
+          actionModal.classList.remove("hidden");
+          actionModal.classList.add("flex");
+          actionModal.setAttribute("aria-hidden", "false");
+          document.body.classList.add("overflow-hidden");
+        };
+
+        document.querySelectorAll("[data-action]").forEach((button) => {
+          button.addEventListener("click", () => openActionModal(button));
+        });
+
+        actionConfirm?.addEventListener("click", async () => {
+          if (!activeActionButton) {
+            closeActionModal();
+            return;
+          }
+
+          const actionType =
+            activeActionButton.getAttribute("data-action-type") || "info";
+          const confirmText = activeActionButton.getAttribute(
+            "data-action-confirm-text",
+          );
+
+          if (actionType === "novo-chamado") {
+            const form = actionContent?.querySelector("[data-action-form]");
+            if (!form) return;
+            const formData = new FormData(form);
+            const payload = {
+              titulo: formData.get("titulo"),
+              descricao: formData.get("descricao"),
+              prioridade: formData.get("prioridade"),
+            };
+
+            if (!payload.titulo || !payload.descricao) {
+              if (actionAlert) {
+                actionAlert.textContent =
+                  "Preencha título e descrição para continuar.";
+                actionAlert.classList.remove("hidden");
+              }
+              return;
+            }
+
+            try {
+              const response = await fetch(
+                "http://localhost:3333/api/chamados",
+                {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify(payload),
+                },
+              );
+
+              if (!response.ok) {
+                throw new Error("Falha ao registrar chamado");
+              }
+            } catch (error) {
+              if (actionAlert) {
+                actionAlert.textContent =
+                  "Não foi possível registrar o chamado. Verifique o backend.";
+                actionAlert.classList.remove("hidden");
+              }
+              return;
+            }
+          }
+
+          if (actionType === "relatorio") {
+            const now = new Date();
+            const report = [
+              "Relatório diário - CampusConnect",
+              `Data: ${now.toLocaleDateString("pt-BR")}`,
+              "Resumo:",
+              "- Chamados recentes: 4",
+              "- Refeições hoje: 856",
+              "- Ocupação academia: 78%",
+            ].join("\n");
+            const blob = new Blob([report], { type: "text/plain" });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = `relatorio-${now.toISOString().slice(0, 10)}.txt`;
+            link.click();
+            URL.revokeObjectURL(url);
+          }
+
+          if (actionType === "config") {
+            const form = actionContent?.querySelector("[data-config-form]");
+            if (!form) return;
+          }
+
+          if (confirmText) {
+            const label = activeActionButton.querySelector(".text-label-md");
+            if (label) {
+              label.textContent = confirmText;
+            }
+            activeActionButton.classList.add("bg-black", "text-white");
+            activeActionButton.disabled = true;
+          }
+
+          closeActionModal();
+        });
+
+        actionModal
+          ?.querySelector("[data-action-modal-close]")
+          ?.addEventListener("click", closeActionModal);
+        actionModal
+          ?.querySelector("[data-action-modal-cancel]")
+          ?.addEventListener("click", closeActionModal);
+        actionModal?.addEventListener("click", (event) => {
+          if (event.target === actionModal) {
+            closeActionModal();
+          }
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") {
+            closeActionModal();
+          }
+        });
+
+        document.addEventListener("click", closeAll);
+      })();
+    </script>
+  </body>
+</html>
