@@ -1,2 +1,20 @@
 node_modules
 postgresql-18.3-3-windows-x64
+
+# PostgreSQL / Postgres data and installers
+postgres*
+pgdata/
+**/pgdata/
+postgresql/
+**/postgresql/
+*.psql
+*.dump
+*.sql
+data/postgres
+
+# Ignora Postgres
+*postgres*
+*postgree*
+pgdata/
+pg_data/
+
