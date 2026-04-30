@@ -428,8 +428,8 @@
             <h3 class="text-label-md font-bold">Cardápio do dia</h3>
             <a
               class="text-caption font-medium px-3 py-1 border border-black rounded hover:bg-black hover:text-white transition-colors"
-              href="#cardapio"
-              data-modal-target="#cardapio"
+              href="#form-atualizar-menu"
+              data-modal-target="#form-atualizar-menu"
             >
               Atualizar menu
             </a>
@@ -498,15 +498,54 @@
               <span class="text-xs px-2 py-1 bg-gray-100 rounded">16:30</span>
             </div>
           </div>
-          <a
-            class="mt-auto text-caption font-medium px-3 py-2 border border-black rounded hover:bg-black hover:text-white transition-colors text-center"
-            href="#logistica"
-            data-modal-target="#logistica"
-          >
-            Registrar ocorrência
-          </a>
         </section>
       </div>
+
+      <div id="form-atualizar-menu" class="hidden">
+        <h3 class="hidden">Atualizar Menu</h3>
+        <form class="flex flex-col gap-md">
+          <div class="flex flex-col gap-xs">
+            <label class="text-label-md font-bold">Refeição</label>
+            <select class="border border-gray-300 rounded p-sm bg-white text-body-md focus:outline-none focus:ring-1 focus:ring-black">
+              <option value="" disabled selected>Selecione a refeição</option>
+              <option>Café da Manhã</option>
+              <option>Almoço</option>
+              <option>Lanche</option>
+              <option>Jantar</option>
+            </select>
+          </div>
+          <div class="flex flex-col gap-xs">
+            <label class="text-label-md font-bold">Opções</label>
+            <input type="text" placeholder="Ex: Frango grelhado, legumes" class="border border-gray-300 rounded p-sm bg-white text-body-md focus:outline-none focus:ring-1 focus:ring-black">
+          </div>
+          <div class="flex flex-col gap-xs">
+            <label class="text-label-md font-bold">Dieta</label>
+            <select class="border border-gray-300 rounded p-sm bg-white text-body-md focus:outline-none focus:ring-1 focus:ring-black">
+              <option value="" disabled selected>Selecione a dieta</option>
+              <option>Normal</option>
+              <option>Vegetariano</option>
+              <option>Vegano</option>
+              <option>Sem lactose</option>
+              <option>Sem glúten</option>
+            </select>
+          </div>
+          <div class="flex flex-col gap-xs">
+            <label class="text-label-md font-bold">Status</label>
+            <select class="border border-gray-300 rounded p-sm bg-white text-body-md focus:outline-none focus:ring-1 focus:ring-black">
+              <option value="" disabled selected>Selecione o status</option>
+              <option>Programado</option>
+              <option>Servindo</option>
+              <option>Finalizado</option>
+            </select>
+          </div>
+          <div class="flex justify-end gap-sm mt-md">
+            <button type="button" class="px-4 py-2 bg-black text-white rounded text-label-md font-medium hover:bg-gray-800 transition-colors w-full sm:w-auto">
+              Adicionar ao Cardápio
+            </button>
+          </div>
+        </form>
+      </div>
+
       <div
         class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 p-4"
         data-modal
