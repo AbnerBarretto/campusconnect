@@ -32,12 +32,10 @@ app.use((req, res, next) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
-// Apenas listen em desenvolvimento local
-if (process.env.NODE_ENV !== "production") {
-  const PORT = process.env.PORT || 3000;
-  app.listen(PORT, () => {
-    console.log(`✅ CampusConnect rodando em http://localhost:${PORT}`);
-  });
-}
+// Iniciar o servidor
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`✅ CampusConnect rodando na porta ${PORT}`);
+});
 
 module.exports = app;

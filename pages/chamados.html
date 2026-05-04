@@ -57,7 +57,11 @@
         --info-soft: rgba(59, 130, 246, 0.12);
       }
       .material-symbols-outlined {
-        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
       }
       .logo-mark {
         transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
@@ -76,7 +80,11 @@
         color: #ffffff;
       }
       .nav-item.active .material-symbols-outlined {
-        font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
+        font-variation-settings:
+          "FILL" 1,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
       }
       .sidebar-scroll::-webkit-scrollbar {
         width: 4px;
@@ -91,14 +99,38 @@
     </style>
     <script src="../js/api.js"></script>
   </head>
-  <body class="font-sans text-[var(--text-primary)] bg-[var(--bg)] selection:bg-[var(--accent)] selection:text-white min-h-screen flex">
+  <body
+    class="font-sans text-[var(--text-primary)] bg-[var(--bg)] selection:bg-[var(--accent)] selection:text-white min-h-screen flex"
+  >
     <!-- Sidebar -->
-    <aside class="hidden md:flex flex-col w-[260px] h-screen border-r border-[var(--border-soft)] fixed left-0 top-0 bg-[var(--card)] z-50">
+    <aside
+      class="hidden md:flex flex-col w-[260px] h-screen border-r border-[var(--border-soft)] fixed left-0 top-0 bg-[var(--card)] z-50"
+    >
       <div class="p-8">
-        <a href="../index.html" class="flex items-center gap-3 logo-container group">
-          <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-mark">
-            <path d="M20 50V20H80V80H50" stroke="#000" stroke-width="12" stroke-linecap="square" />
-            <path d="M40 40L60 60" stroke="#000" stroke-width="12" stroke-linecap="square" />
+        <a
+          href="../index.html"
+          class="flex items-center gap-3 logo-container group"
+        >
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 100 100"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="logo-mark"
+          >
+            <path
+              d="M20 50V20H80V80H50"
+              stroke="#000"
+              stroke-width="12"
+              stroke-linecap="square"
+            />
+            <path
+              d="M40 40L60 60"
+              stroke="#000"
+              stroke-width="12"
+              stroke-linecap="square"
+            />
             <rect x="20" y="40" width="15" height="20" fill="white" />
           </svg>
           <h1 class="text-sm font-black tracking-widest uppercase">
@@ -108,34 +140,58 @@
       </div>
 
       <nav class="flex-grow px-4 space-y-1 sidebar-scroll overflow-y-auto">
-        <a href="../index.html" class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[var(--text-secondary)] hover:text-black">
+        <a
+          href="../index.html"
+          class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[var(--text-secondary)] hover:text-black"
+        >
           <span class="material-symbols-outlined">home</span>
           Início
         </a>
-        <a href="chamados.html" class="nav-item active flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight">
+        <a
+          href="chamados.html"
+          class="nav-item active flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight"
+        >
           <span class="material-symbols-outlined">confirmation_number</span>
           Chamados
         </a>
-        <a href="reservas.html" class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[var(--text-secondary)] hover:text-black">
+        <a
+          href="reservas.html"
+          class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[var(--text-secondary)] hover:text-black"
+        >
           <span class="material-symbols-outlined">event_available</span>
           Espaços e Reservas
         </a>
-        <a href="cardapio.html" class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[var(--text-secondary)] hover:text-black">
+        <a
+          href="cardapio.html"
+          class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[var(--text-secondary)] hover:text-black"
+        >
           <span class="material-symbols-outlined">restaurant_menu</span>
           Cardápio
         </a>
-        <a href="historico.html" class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[var(--text-secondary)] hover:text-black">
+        <a
+          href="historico.html"
+          class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[var(--text-secondary)] hover:text-black"
+        >
           <span class="material-symbols-outlined">history</span>
           Histórico
         </a>
         <div class="pt-6 pb-2 px-4">
-          <span class="text-[10px] font-black uppercase tracking-[0.3em] text-[var(--text-secondary)]">Explorar</span>
+          <span
+            class="text-[10px] font-black uppercase tracking-[0.3em] text-[var(--text-secondary)]"
+            >Explorar</span
+          >
         </div>
-        <a href="mapa-campus.html" class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[var(--text-secondary)] hover:text-black">
+        <a
+          href="mapa-campus.html"
+          class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[var(--text-secondary)] hover:text-black"
+        >
           <span class="material-symbols-outlined">map</span>
           Mapa do Campus
         </a>
-        <a href="calendario.html" class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[var(--text-secondary)] hover:text-black">
+        <a
+          href="calendario.html"
+          class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[var(--text-secondary)] hover:text-black"
+        >
           <span class="material-symbols-outlined">calendar_today</span>
           Calendário
         </a>
@@ -179,36 +235,66 @@
     </aside>
 
     <div class="flex-grow md:ml-[260px] flex flex-col min-h-screen">
-      <header class="md:hidden sticky top-0 bg-[var(--card)]/80 backdrop-blur-md border-b border-[var(--border-soft)] h-16 flex items-center px-6 z-40">
+      <header
+        class="md:hidden sticky top-0 bg-[var(--card)]/80 backdrop-blur-md border-b border-[var(--border-soft)] h-16 flex items-center px-6 z-40"
+      >
         <h1 class="text-sm font-black tracking-widest uppercase">
           Campus<span class="font-light">Connect</span>
         </h1>
       </header>
 
-      <main class="max-w-4xl mx-auto w-full px-6 py-10 md:py-20 space-y-16 flex-grow">
-        <header class="flex flex-col md:flex-row md:items-center justify-between gap-8">
+      <main
+        class="max-w-4xl mx-auto w-full px-6 py-10 md:py-20 space-y-16 flex-grow"
+      >
+        <header
+          class="flex flex-col md:flex-row md:items-center justify-between gap-8"
+        >
           <div class="space-y-2">
-            <h2 class="text-3xl md:text-5xl font-black tracking-tighter text-black">Meus Chamados</h2>
-            <p class="text-[var(--text-secondary)] font-medium text-lg">Gerencie suas solicitações de manutenção e serviços.</p>
+            <h2
+              class="text-3xl md:text-5xl font-black tracking-tighter text-black"
+            >
+              Meus Chamados
+            </h2>
+            <p class="text-[var(--text-secondary)] font-medium text-lg">
+              Gerencie suas solicitações de manutenção e serviços.
+            </p>
           </div>
-          <button data-action data-action-type="novo-chamado" data-action-title="Novo Chamado" class="bg-[var(--accent)] text-white px-8 py-4 rounded-2xl font-bold text-sm tracking-tight hover:shadow-2xl hover:shadow-black/20 transition-all active:scale-95 flex items-center justify-center gap-3">
+          <button
+            data-action
+            data-action-type="novo-chamado"
+            data-action-title="Novo Chamado"
+            class="bg-[var(--accent)] text-white px-8 py-4 rounded-2xl font-bold text-sm tracking-tight hover:shadow-2xl hover:shadow-black/20 transition-all active:scale-95 flex items-center justify-center gap-3"
+          >
             <span class="material-symbols-outlined">add_circle</span>
             Novo Chamado
           </button>
         </header>
 
         <section class="space-y-6">
-          <div class="flex items-center gap-4 p-6 bg-[#f9f9f9] border border-[var(--border-soft)] rounded-[32px]">
-            <div class="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-black">
+          <div
+            class="flex items-center gap-4 p-6 bg-[#f9f9f9] border border-[var(--border-soft)] rounded-[32px]"
+          >
+            <div
+              class="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-black"
+            >
               <span class="material-symbols-outlined">info</span>
             </div>
-            <p class="text-sm font-medium text-[var(--text-secondary)]" id="chamados-count-text">Carregando chamados...</p>
+            <p
+              class="text-sm font-medium text-[var(--text-secondary)]"
+              id="chamados-count-text"
+            >
+              Carregando chamados...
+            </p>
           </div>
 
           <div class="space-y-4" id="chamados-list">
             <div class="p-12 text-center space-y-4">
-              <div class="animate-spin inline-block w-8 h-8 border-4 border-[var(--accent)] border-t-transparent rounded-full"></div>
-              <p class="text-[var(--text-secondary)] font-bold">Buscando solicitações...</p>
+              <div
+                class="animate-spin inline-block w-8 h-8 border-4 border-[var(--accent)] border-t-transparent rounded-full"
+              ></div>
+              <p class="text-[var(--text-secondary)] font-bold">
+                Buscando solicitações...
+              </p>
             </div>
           </div>
         </section>
@@ -216,63 +302,159 @@
     </div>
 
     <!-- Modal (Reusable) -->
-    <div class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/60 p-4 backdrop-blur-sm" data-action-modal aria-hidden="true">
-      <div class="bg-white rounded-[40px] shadow-2xl w-full max-w-lg overflow-hidden animate-in fade-in zoom-in duration-300" role="dialog" aria-modal="true">
+    <div
+      class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/60 p-4 backdrop-blur-sm"
+      data-action-modal
+      aria-hidden="true"
+    >
+      <div
+        class="bg-white rounded-[40px] shadow-2xl w-full max-w-lg overflow-hidden animate-in fade-in zoom-in duration-300"
+        role="dialog"
+        aria-modal="true"
+      >
         <div class="pt-8 px-8 pb-4 border-b border-gray-50">
           <div class="flex items-center justify-between mb-1">
-            <h3 class="text-2xl font-black tracking-tight" data-action-modal-title>Detalhes</h3>
-            <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-50 transition-colors" type="button" data-action-modal-close>
-              <span class="material-symbols-outlined text-[var(--text-secondary)]">close</span>
+            <h3
+              class="text-2xl font-black tracking-tight"
+              data-action-modal-title
+            >
+              Detalhes
+            </h3>
+            <button
+              class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-50 transition-colors"
+              type="button"
+              data-action-modal-close
+            >
+              <span
+                class="material-symbols-outlined text-[var(--text-secondary)]"
+                >close</span
+              >
             </button>
           </div>
-          <p class="text-sm font-medium text-[var(--text-secondary)]" data-action-modal-subtitle></p>
+          <p
+            class="text-sm font-medium text-[var(--text-secondary)]"
+            data-action-modal-subtitle
+          ></p>
         </div>
         <div class="px-8 pt-6 pb-2">
-            <div class="text-sm font-medium text-[var(--text-secondary)]" data-action-modal-content></div>
-            <p class="text-xs font-bold text-red-500 hidden bg-red-50 p-4 rounded-2xl mt-4" data-action-modal-alert></p>
+          <div
+            class="text-sm font-medium text-[var(--text-secondary)]"
+            data-action-modal-content
+          ></div>
+          <p
+            class="text-xs font-bold text-red-500 hidden bg-red-50 p-4 rounded-2xl mt-4"
+            data-action-modal-alert
+          ></p>
         </div>
         <div class="flex items-center justify-end gap-3 p-8">
-            <button class="px-6 py-3 text-sm font-bold text-red-500 hover:bg-red-50 rounded-xl transition-colors hidden" type="button" data-action-modal-delete>Cancelar Chamado</button>
-            <button class="px-6 py-3 text-sm font-bold text-[var(--text-secondary)] hover:text-black transition-colors" type="button" data-action-modal-cancel>Cancelar</button>
-            <button class="px-8 py-3 bg-[var(--accent)] text-white rounded-2xl text-sm font-bold hover:shadow-xl hover:shadow-black/20 transition-all" type="button" data-action-modal-confirm>Confirmar</button>
+          <button
+            class="px-6 py-3 text-sm font-bold text-red-500 hover:bg-red-50 rounded-xl transition-colors hidden"
+            type="button"
+            data-action-modal-delete
+          >
+            Cancelar Chamado
+          </button>
+          <button
+            class="px-6 py-3 text-sm font-bold text-[var(--text-secondary)] hover:text-black transition-colors"
+            type="button"
+            data-action-modal-cancel
+          >
+            Cancelar
+          </button>
+          <button
+            class="px-8 py-3 bg-[var(--accent)] text-white rounded-2xl text-sm font-bold hover:shadow-xl hover:shadow-black/20 transition-all"
+            type="button"
+            data-action-modal-confirm
+          >
+            Confirmar
+          </button>
         </div>
       </div>
     </div>
 
     <!-- Confirmation Modal -->
-    <div class="fixed inset-0 z-[110] hidden items-center justify-center bg-black/60 p-4 backdrop-blur-sm" data-confirm-modal aria-hidden="true">
-      <div class="bg-white rounded-[40px] shadow-2xl w-full max-w-sm overflow-hidden animate-in fade-in zoom-in duration-300" role="dialog" aria-modal="true">
+    <div
+      class="fixed inset-0 z-[110] hidden items-center justify-center bg-black/60 p-4 backdrop-blur-sm"
+      data-confirm-modal
+      aria-hidden="true"
+    >
+      <div
+        class="bg-white rounded-[40px] shadow-2xl w-full max-w-sm overflow-hidden animate-in fade-in zoom-in duration-300"
+        role="dialog"
+        aria-modal="true"
+      >
         <div class="p-8 text-center space-y-6">
-          <div class="w-20 h-20 bg-red-50 text-red-500 rounded-full flex items-center justify-center mx-auto">
+          <div
+            class="w-20 h-20 bg-red-50 text-red-500 rounded-full flex items-center justify-center mx-auto"
+          >
             <span class="material-symbols-outlined text-4xl">warning</span>
           </div>
           <div class="space-y-2">
-            <h3 class="text-xl font-black tracking-tight">Confirmar Cancelamento</h3>
-            <p class="text-sm text-[var(--text-secondary)] font-medium">Esta ação não pode ser desfeita. Deseja realmente prosseguir?</p>
+            <h3 class="text-xl font-black tracking-tight">
+              Confirmar Cancelamento
+            </h3>
+            <p class="text-sm text-[var(--text-secondary)] font-medium">
+              Esta ação não pode ser desfeita. Deseja realmente prosseguir?
+            </p>
           </div>
           <div class="flex flex-col gap-3 pt-2">
-            <button class="w-full py-4 bg-red-500 text-white rounded-2xl text-sm font-bold hover:bg-red-600 transition-all" data-confirm-yes>Sim, Cancelar</button>
-            <button class="w-full py-4 bg-gray-50 text-[var(--text-secondary)] rounded-2xl text-sm font-bold hover:text-black transition-all" data-confirm-no>Não, Voltar</button>
+            <button
+              class="w-full py-4 bg-red-500 text-white rounded-2xl text-sm font-bold hover:bg-red-600 transition-all"
+              data-confirm-yes
+            >
+              Sim, Cancelar
+            </button>
+            <button
+              class="w-full py-4 bg-gray-50 text-[var(--text-secondary)] rounded-2xl text-sm font-bold hover:text-black transition-all"
+              data-confirm-no
+            >
+              Não, Voltar
+            </button>
           </div>
         </div>
       </div>
     </div>
 
-    <nav class="md:hidden fixed bottom-0 left-0 w-full bg-[var(--card)] border-t border-[var(--border-soft)] flex justify-around items-center h-16 z-50 px-4">
-      <a href="../index.html" class="flex flex-col items-center justify-center gap-1 text-[var(--text-secondary)]">
+    <nav
+      class="md:hidden fixed bottom-0 left-0 w-full bg-[var(--card)] border-t border-[var(--border-soft)] flex justify-around items-center h-16 z-50 px-4"
+    >
+      <a
+        href="../index.html"
+        class="flex flex-col items-center justify-center gap-1 text-[var(--text-secondary)]"
+      >
         <span class="material-symbols-outlined text-[28px]">home</span>
       </a>
-      <a href="chamados.html" class="flex flex-col items-center justify-center gap-1 text-black">
-        <span class="material-symbols-outlined text-[28px]">confirmation_number</span>
+      <a
+        href="chamados.html"
+        class="flex flex-col items-center justify-center gap-1 text-black"
+      >
+        <span class="material-symbols-outlined text-[28px]"
+          >confirmation_number</span
+        >
       </a>
-      <a href="reservas.html" class="flex flex-col items-center justify-center gap-1 text-[var(--text-secondary)]">
-        <span class="material-symbols-outlined text-[28px]">event_available</span>
+      <a
+        href="reservas.html"
+        class="flex flex-col items-center justify-center gap-1 text-[var(--text-secondary)]"
+      >
+        <span class="material-symbols-outlined text-[28px]"
+          >event_available</span
+        >
       </a>
-      <a href="cardapio.html" class="flex flex-col items-center justify-center gap-1 text-[var(--text-secondary)]">
-        <span class="material-symbols-outlined text-[28px]">restaurant_menu</span>
+      <a
+        href="cardapio.html"
+        class="flex flex-col items-center justify-center gap-1 text-[var(--text-secondary)]"
+      >
+        <span class="material-symbols-outlined text-[28px]"
+          >restaurant_menu</span
+        >
       </a>
-      <a href="calendario.html" class="flex flex-col items-center justify-center gap-1 text-[var(--text-secondary)]">
-        <span class="material-symbols-outlined text-[28px]">calendar_today</span>
+      <a
+        href="calendario.html"
+        class="flex flex-col items-center justify-center gap-1 text-[var(--text-secondary)]"
+      >
+        <span class="material-symbols-outlined text-[28px]"
+          >calendar_today</span
+        >
       </a>
     </nav>
 
@@ -285,7 +467,7 @@
         const actionAlert = document.querySelector("[data-action-modal-alert]");
         const actionConfirm = document.querySelector("[data-action-modal-confirm]");
         const actionDelete = document.querySelector("[data-action-modal-delete]");
-        
+
         const confirmModal = document.querySelector("[data-confirm-modal]");
         const confirmYes = document.querySelector("[data-confirm-yes]");
         const confirmNo = document.querySelector("[data-confirm-no]");
@@ -296,7 +478,7 @@
 
         const loadChamados = async () => {
           try {
-            const response = await fetch(`${1}/api/chamados");
+            const response = await fetch(`${API_BASE_URL}/api/chamados`);
             if (!response.ok) throw new Error();
             currentChamados = await response.json();
             renderChamados(currentChamados);
@@ -340,10 +522,10 @@
           if (!c) return;
           actionTitle.textContent = "Detalhes do Chamado";
           actionSubtitle.textContent = `ID: ${c.id.substring(0,8).toUpperCase()}`;
-          
+
           const cancelBtn = actionModal.querySelector("[data-action-modal-cancel]");
           if (cancelBtn) cancelBtn.classList.add("hidden");
-          
+
           if (actionDelete) {
             actionDelete.classList.remove("hidden");
             actionDelete.onclick = () => showConfirmation(c.id);
@@ -375,7 +557,7 @@
           confirmYes.onclick = async () => {
             confirmYes.disabled = true;
             try {
-              const res = await fetch(`${API_BASE_URL}/api/chamados/${id}`, { method: `DELETE" });
+              const res = await fetch(`${API_BASE_URL}/api/chamados/${id}`, { method: `DELETE` });
               if (!res.ok) throw new Error();
               confirmModal.classList.add("hidden");
               confirmYes.disabled = false;
@@ -397,10 +579,10 @@
         const openActionModal = (button) => {
           const type = button.getAttribute("data-action-type");
           if (type !== "novo-chamado") return;
-          
+
           actionTitle.textContent = "Novo Chamado";
           actionSubtitle.textContent = "Selecione o problema e informe o local.";
-          
+
           const cancelBtn = actionModal.querySelector("[data-action-modal-cancel]");
           if (cancelBtn) cancelBtn.classList.remove("hidden");
           if (actionDelete) actionDelete.classList.add("hidden");
@@ -474,10 +656,10 @@
               error.className = "error-msg text-[10px] font-bold text-red-500 mt-1 ml-1 block";
               error.textContent = "Preencha este campo";
               input.parentNode.appendChild(error);
-              
+
               // Apply red border
               input.style.boxShadow = "0 0 0 2px #ef4444";
-              
+
               input.addEventListener("input", () => {
                 error.remove();
                 input.style.boxShadow = "";
@@ -497,7 +679,7 @@
           }
 
           try {
-            const res = await fetch(`${1}/api/chamados", {
+            const res = await fetch(`${API_BASE_URL}/api/chamados`, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
@@ -509,14 +691,14 @@
             if (!res.ok) throw new Error();
             closeActionModal();
             loadChamados();
-          } catch (e) { 
+          } catch (e) {
             // We can add a toast here later if needed
           }
         };
 
         document.querySelectorAll("[data-action]").forEach(b => b.addEventListener("click", () => openActionModal(b)));
         [actionModal.querySelector("[data-action-modal-close]"), actionModal.querySelector("[data-action-modal-cancel]")].forEach(el => el.addEventListener("click", closeActionModal));
-        
+
         loadChamados().then(() => {
           const id = new URLSearchParams(window.location.search).get('id');
           if (id) window.openTicketDetails(id);

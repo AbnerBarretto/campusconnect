@@ -6,7 +6,9 @@
     <script>
       (() => {
         const savedTheme = localStorage.getItem("theme");
-        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
         const shouldUseDark = savedTheme ? savedTheme === "dark" : prefersDark;
         document.documentElement.classList.toggle("dark", shouldUseDark);
         document.documentElement.classList.toggle("light", !shouldUseDark);
@@ -157,7 +159,6 @@
       }
     </style>
     <script src="../js/api.js"></script>
-  <script src="../js/api.js"></script>
   </head>
   <body
     class="font-sans text-[#0f172a] dark:text-slate-200 bg-[#f6f8ff] dark:bg-darkbg selection:bg-accent selection:text-white flex h-screen overflow-hidden antialiased transition-colors duration-300"
@@ -166,7 +167,10 @@
       class="w-64 bg-white dark:bg-darkcard border-r border-gray-100 dark:border-darkborder flex flex-col shrink-0 z-50"
     >
       <div class="p-8 border-b border-gray-100 dark:border-darkborder">
-        <a href="../index.html" class="flex items-center gap-3 logo-container group">
+        <a
+          href="../index.html"
+          class="flex items-center gap-3 logo-container group"
+        >
           <svg
             width="32"
             height="32"
@@ -191,7 +195,9 @@
             />
             <rect x="20" y="40" width="15" height="20" fill="white" />
           </svg>
-          <h1 class="text-sm font-black tracking-widest uppercase dark:text-white">
+          <h1
+            class="text-sm font-black tracking-widest uppercase dark:text-white"
+          >
             Campus<span class="font-light">Connect</span>
           </h1>
         </a>
@@ -266,7 +272,9 @@
         </div>
       </nav>
 
-      <div class="p-6 border-t border-slate-50 dark:border-darkborder/50 space-y-6 mt-auto">
+      <div
+        class="p-6 border-t border-slate-50 dark:border-darkborder/50 space-y-6 mt-auto"
+      >
         <!-- Suporte -->
         <div
           class="bg-slate-50 dark:bg-slate-900/50 p-4 rounded-2xl border border-slate-100 dark:border-darkborder"
@@ -463,21 +471,56 @@
                 Pessoas Presentes
               </p>
               <div class="mt-3 grid grid-cols-3 gap-3">
-                <div class="rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-darkborder p-2 text-center">
-                  <p class="text-[9px] font-bold uppercase tracking-widest text-slate-500">Almoço</p>
-                  <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-1" id="count-almoco">0</h3>
+                <div
+                  class="rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-darkborder p-2 text-center"
+                >
+                  <p
+                    class="text-[9px] font-bold uppercase tracking-widest text-slate-500"
+                  >
+                    Almoço
+                  </p>
+                  <h3
+                    class="text-lg font-bold text-slate-900 dark:text-white mt-1"
+                    id="count-almoco"
+                  >
+                    0
+                  </h3>
                 </div>
-                <div class="rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-darkborder p-2 text-center">
-                  <p class="text-[9px] font-bold uppercase tracking-widest text-slate-500">Jantar</p>
-                  <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-1" id="count-jantar">0</h3>
+                <div
+                  class="rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-darkborder p-2 text-center"
+                >
+                  <p
+                    class="text-[9px] font-bold uppercase tracking-widest text-slate-500"
+                  >
+                    Jantar
+                  </p>
+                  <h3
+                    class="text-lg font-bold text-slate-900 dark:text-white mt-1"
+                    id="count-jantar"
+                  >
+                    0
+                  </h3>
                 </div>
-                <div class="rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-darkborder p-2 text-center">
-                  <p class="text-[9px] font-bold uppercase tracking-widest text-slate-500">Lanche</p>
-                  <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-1" id="count-lanche">0</h3>
+                <div
+                  class="rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-darkborder p-2 text-center"
+                >
+                  <p
+                    class="text-[9px] font-bold uppercase tracking-widest text-slate-500"
+                  >
+                    Lanche
+                  </p>
+                  <h3
+                    class="text-lg font-bold text-slate-900 dark:text-white mt-1"
+                    id="count-lanche"
+                  >
+                    0
+                  </h3>
                 </div>
               </div>
             </div>
-            <div class="bg-accent text-white p-5 rounded-xl shadow-lg shadow-accent/20">
+            <div
+              class="bg-accent text-white p-5 rounded-xl shadow-lg shadow-accent/20"
+            >
               <p
                 class="text-[10px] font-bold text-white/50 uppercase tracking-widest"
               >
@@ -547,7 +590,12 @@
                 <h3 class="font-bold text-sm text-slate-900 dark:text-white">
                   Registros de Acesso
                 </h3>
-                <button onclick="clearAccessRecords()" class="text-[9px] font-black text-danger uppercase hover:underline">Limpar</button>
+                <button
+                  onclick="clearAccessRecords()"
+                  class="text-[9px] font-black text-danger uppercase hover:underline"
+                >
+                  Limpar
+                </button>
               </div>
               <div
                 id="refeicoes-list"
@@ -643,7 +691,9 @@
           </button>
         </div>
         <div class="p-6 space-y-4" id="modal-content"></div>
-        <div class="p-6 bg-slate-50/50 dark:bg-slate-800/20 flex flex-col gap-2">
+        <div
+          class="p-6 bg-slate-50/50 dark:bg-slate-800/20 flex flex-col gap-2"
+        >
           <button
             id="save-btn"
             class="w-full py-3 bg-accent text-white rounded-xl text-xs font-bold shadow-lg shadow-accent/20 hover:scale-[1.02] transition-all"
@@ -669,16 +719,35 @@
         class="bg-white dark:bg-darkcard rounded-[32px] shadow-2xl w-full max-w-sm overflow-hidden border border-slate-200 dark:border-darkborder animate-dropdown"
       >
         <div class="p-8 text-center space-y-6">
-          <div class="w-16 h-16 bg-amber-50 dark:bg-amber-900/20 text-amber-500 rounded-2xl flex items-center justify-center mx-auto">
+          <div
+            class="w-16 h-16 bg-amber-50 dark:bg-amber-900/20 text-amber-500 rounded-2xl flex items-center justify-center mx-auto"
+          >
             <span class="material-symbols-outlined text-3xl">warning</span>
           </div>
           <div class="space-y-2">
-            <h3 class="text-lg font-black text-slate-900 dark:text-white tracking-tight">Confirmar Ação</h3>
-            <p class="text-sm text-slate-600 dark:text-slate-400 font-medium leading-relaxed" id="confirm-modal-text"></p>
+            <h3
+              class="text-lg font-black text-slate-900 dark:text-white tracking-tight"
+            >
+              Confirmar Ação
+            </h3>
+            <p
+              class="text-sm text-slate-600 dark:text-slate-400 font-medium leading-relaxed"
+              id="confirm-modal-text"
+            ></p>
           </div>
           <div class="flex flex-col gap-3 pt-2">
-            <button id="confirm-modal-yes" class="w-full py-4 bg-accent text-white rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-accent-hover transition-all shadow-lg shadow-accent/20">Sim, Confirmar</button>
-            <button id="confirm-modal-no" class="w-full py-4 bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-slate-100 dark:hover:bg-slate-700 transition-all">Cancelar</button>
+            <button
+              id="confirm-modal-yes"
+              class="w-full py-4 bg-accent text-white rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-accent-hover transition-all shadow-lg shadow-accent/20"
+            >
+              Sim, Confirmar
+            </button>
+            <button
+              id="confirm-modal-no"
+              class="w-full py-4 bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-slate-100 dark:hover:bg-slate-700 transition-all"
+            >
+              Cancelar
+            </button>
           </div>
         </div>
       </div>
@@ -832,7 +901,7 @@
           container.innerHTML = menuData[dayName].map((m, index) => {
             const status = getMealStatus(m.tipo, isFriday);
             const statusColor = status === "SERVINDO AGORA" ? "text-success bg-success/10" : "text-slate-400 bg-slate-100 dark:bg-slate-800";
-            
+
             let displayItens = m.itens;
             const mealKey = m.tipo.toLowerCase();
             if (latestRefeicoes[mealKey]) {
@@ -904,7 +973,7 @@
             if (!newItensStr.trim()) return;
             const newItens = newItensStr.split(",").map(i => i.trim());
             try {
-              const res = await fetch(`${1}/api/refeicoes", {
+              const res = await fetch(`${API_BASE_URL}/api/refeicoes`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ refeicao: m.tipo, itens: newItens }),
@@ -933,7 +1002,7 @@
           try {
             await Promise.all([
               load(),
-              fetch(`${1}/api/chamados").then((r) => r.json()).then((data) => {
+              fetch(`${API_BASE_URL}/api/chamados`).then((r) => r.json()).then((data) => {
                 allTickets = data;
                 renderChamadosDropdown();
               }),
@@ -948,9 +1017,9 @@
 
         const load = async () => {
           try {
-            const res = await fetch(`${1}/api/refeicoes");
+            const res = await fetch(`${API_BASE_URL}/api/refeicoes`);
             const data = await res.json();
-            
+
             latestRefeicoes = data.slice().sort((a, b) => new Date(b.criadoEm) - new Date(a.criadoEm)).reduce((acc, item) => {
                 const key = (item.refeicao || "").toLowerCase();
                 if (!acc[key]) acc[key] = item;
@@ -965,7 +1034,7 @@
             document.getElementById("count-almoco").textContent = filteredData.filter(r => (r.refeicao || "").toLowerCase().includes("almo")).length;
             document.getElementById("count-jantar").textContent = filteredData.filter(r => (r.refeicao || "").toLowerCase() === "jantar").length;
             document.getElementById("count-lanche").textContent = filteredData.filter(r => (r.refeicao || "").toLowerCase() === "lanche").length;
-            
+
             list.innerHTML = filteredData.sort((a, b) => new Date(b.criadoEm) - new Date(a.criadoEm)).slice(0, 10).map(r => `
                 <div class="py-4">
                     <div class="flex items-center justify-between">
@@ -975,7 +1044,7 @@
                     <p class="text-[10px] text-slate-600 dark:text-slate-400 mt-1 truncate italic">${(r.itens || []).join(", ")}</p>
                 </div>
             `).join("");
-            
+
             if (filteredData.length === 0) {
               list.innerHTML = '<div class="p-8 text-center text-[10px] font-bold text-slate-400 uppercase italic">Nenhum novo registro</div>';
             }
@@ -997,7 +1066,7 @@
             const itens = document.getElementById("meal-items-new").value.split(",").map(i => i.trim());
             if (!itens[0]) return;
             try {
-              await fetch(`${1}/api/refeicoes", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ refeicao, itens }) });
+              await fetch(`${API_BASE_URL}/api/refeicoes`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ refeicao, itens }) });
               showToast("Cardápio atualizado");
               closeModal();
               load();
@@ -1022,7 +1091,7 @@
         };
 
         window.quickTicket = async (titulo, local) => {
-          const res = await fetch(`${1}/api/chamados", {
+          const res = await fetch(`${API_BASE_URL}/api/chamados`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -1037,7 +1106,7 @@
             fetchData();
           }
         };
-        
+
         window.fetchData = fetchData;
         fetchData();
         // Profile Dropdown

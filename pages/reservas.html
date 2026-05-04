@@ -58,7 +58,11 @@
         --info-soft: rgba(59, 130, 246, 0.12);
       }
       .material-symbols-outlined {
-        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
       }
       .logo-mark {
         transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
@@ -77,7 +81,11 @@
         color: #ffffff;
       }
       .nav-item.active .material-symbols-outlined {
-        font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
+        font-variation-settings:
+          "FILL" 1,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
       }
       .sidebar-scroll::-webkit-scrollbar {
         width: 4px;
@@ -92,14 +100,38 @@
     </style>
     <script src="../js/api.js"></script>
   </head>
-  <body class="font-sans text-[var(--text-primary)] bg-[var(--bg)] selection:bg-[var(--accent)] selection:text-white min-h-screen flex">
+  <body
+    class="font-sans text-[var(--text-primary)] bg-[var(--bg)] selection:bg-[var(--accent)] selection:text-white min-h-screen flex"
+  >
     <!-- Sidebar -->
-    <aside class="hidden md:flex flex-col w-[260px] h-screen border-r border-[var(--border-soft)] fixed left-0 top-0 bg-[var(--card)] z-50">
+    <aside
+      class="hidden md:flex flex-col w-[260px] h-screen border-r border-[var(--border-soft)] fixed left-0 top-0 bg-[var(--card)] z-50"
+    >
       <div class="p-8">
-        <a href="../index.html" class="flex items-center gap-3 logo-container group">
-          <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-mark">
-            <path d="M20 50V20H80V80H50" stroke="#000" stroke-width="12" stroke-linecap="square" />
-            <path d="M40 40L60 60" stroke="#000" stroke-width="12" stroke-linecap="square" />
+        <a
+          href="../index.html"
+          class="flex items-center gap-3 logo-container group"
+        >
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 100 100"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="logo-mark"
+          >
+            <path
+              d="M20 50V20H80V80H50"
+              stroke="#000"
+              stroke-width="12"
+              stroke-linecap="square"
+            />
+            <path
+              d="M40 40L60 60"
+              stroke="#000"
+              stroke-width="12"
+              stroke-linecap="square"
+            />
             <rect x="20" y="40" width="15" height="20" fill="white" />
           </svg>
           <h1 class="text-sm font-black tracking-widest uppercase">
@@ -109,34 +141,58 @@
       </div>
 
       <nav class="flex-grow px-4 space-y-1 overflow-y-auto">
-        <a href="../index.html" class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black transition-all">
+        <a
+          href="../index.html"
+          class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black transition-all"
+        >
           <span class="material-symbols-outlined">home</span>
           Início
         </a>
-        <a href="chamados.html" class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black transition-all">
+        <a
+          href="chamados.html"
+          class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black transition-all"
+        >
           <span class="material-symbols-outlined">confirmation_number</span>
           Chamados
         </a>
-        <a href="reservas.html" class="nav-item active flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight transition-all">
+        <a
+          href="reservas.html"
+          class="nav-item active flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight transition-all"
+        >
           <span class="material-symbols-outlined">event_available</span>
           Espaços e Reservas
         </a>
-        <a href="cardapio.html" class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black transition-all">
+        <a
+          href="cardapio.html"
+          class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black transition-all"
+        >
           <span class="material-symbols-outlined">restaurant_menu</span>
           Cardápio
         </a>
-        <a href="historico.html" class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black transition-all">
+        <a
+          href="historico.html"
+          class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black transition-all"
+        >
           <span class="material-symbols-outlined">history</span>
           Histórico
         </a>
         <div class="pt-6 pb-2 px-4">
-          <span class="text-[10px] font-black uppercase tracking-[0.3em] text-[#475569]">Explorar</span>
+          <span
+            class="text-[10px] font-black uppercase tracking-[0.3em] text-[#475569]"
+            >Explorar</span
+          >
         </div>
-        <a href="mapa-campus.html" class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black transition-all">
+        <a
+          href="mapa-campus.html"
+          class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black transition-all"
+        >
           <span class="material-symbols-outlined">map</span>
           Mapa do Campus
         </a>
-        <a href="calendario.html" class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black transition-all">
+        <a
+          href="calendario.html"
+          class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black transition-all"
+        >
           <span class="material-symbols-outlined">calendar_today</span>
           Calendário
         </a>
@@ -182,24 +238,63 @@
     </aside>
 
     <div class="flex-grow md:ml-[260px] flex flex-col min-h-screen">
-      <main class="max-w-4xl mx-auto w-full px-6 py-10 md:py-20 space-y-12 flex-grow">
+      <main
+        class="max-w-4xl mx-auto w-full px-6 py-10 md:py-20 space-y-12 flex-grow"
+      >
         <header class="space-y-4">
           <div class="space-y-2">
-            <h2 class="text-3xl md:text-5xl font-black tracking-tighter text-black">Explorar Espaços</h2>
-            <p class="text-[#475569] font-medium text-lg">Encontre e reserve o local ideal para sua atividade.</p>
+            <h2
+              class="text-3xl md:text-5xl font-black tracking-tighter text-black"
+            >
+              Explorar Espaços
+            </h2>
+            <p class="text-[#475569] font-medium text-lg">
+              Encontre e reserve o local ideal para sua atividade.
+            </p>
           </div>
-          
+
           <!-- Search and Filter Bar -->
           <div class="flex flex-col md:flex-row gap-4 pt-4">
             <div class="relative flex-grow group">
-              <span class="material-symbols-outlined absolute left-5 top-1/2 -translate-y-1/2 text-[#475569] group-focus-within:text-black transition-colors">search</span>
-              <input type="text" id="space-search" placeholder="Buscar por sala, bloco ou nome..." class="w-full pl-14 pr-6 py-4 bg-[var(--border-soft)] border-none rounded-2xl font-bold text-sm focus:ring-2 focus:ring-[var(--accent)] transition-all" />
+              <span
+                class="material-symbols-outlined absolute left-5 top-1/2 -translate-y-1/2 text-[#475569] group-focus-within:text-black transition-colors"
+                >search</span
+              >
+              <input
+                type="text"
+                id="space-search"
+                placeholder="Buscar por sala, bloco ou nome..."
+                class="w-full pl-14 pr-6 py-4 bg-[var(--border-soft)] border-none rounded-2xl font-bold text-sm focus:ring-2 focus:ring-[var(--accent)] transition-all"
+              />
             </div>
-            <div class="flex gap-2 overflow-x-auto pb-2 md:pb-0" id="filter-buttons">
-              <button data-filter="Mais Recentes" class="filter-btn active px-6 py-4 bg-[var(--accent)] text-white rounded-2xl text-xs font-black uppercase tracking-widest transition-all">Mais Recentes</button>
-              <button data-filter="Estudo" class="filter-btn px-6 py-4 bg-[var(--border-soft)] text-[#475569] hover:text-black rounded-2xl text-xs font-black uppercase tracking-widest transition-all">Estudo</button>
-              <button data-filter="Esportes" class="filter-btn px-6 py-4 bg-[var(--border-soft)] text-[#475569] hover:text-black rounded-2xl text-xs font-black uppercase tracking-widest transition-all">Esportes</button>
-              <button data-filter="Labs" class="filter-btn px-6 py-4 bg-[var(--border-soft)] text-[#475569] hover:text-black rounded-2xl text-xs font-black uppercase tracking-widest transition-all">Labs</button>
+            <div
+              class="flex gap-2 overflow-x-auto pb-2 md:pb-0"
+              id="filter-buttons"
+            >
+              <button
+                data-filter="Mais Recentes"
+                class="filter-btn active px-6 py-4 bg-[var(--accent)] text-white rounded-2xl text-xs font-black uppercase tracking-widest transition-all"
+              >
+                Mais Recentes
+              </button>
+              <button
+                data-filter="Estudo"
+                class="filter-btn px-6 py-4 bg-[var(--border-soft)] text-[#475569] hover:text-black rounded-2xl text-xs font-black uppercase tracking-widest transition-all"
+              >
+                Estudo
+              </button>
+              <button
+                data-filter="Esportes"
+                class="filter-btn px-6 py-4 bg-[var(--border-soft)] text-[#475569] hover:text-black rounded-2xl text-xs font-black uppercase tracking-widest transition-all"
+              >
+                Esportes
+              </button>
+              <button
+                data-filter="Labs"
+                class="filter-btn px-6 py-4 bg-[var(--border-soft)] text-[#475569] hover:text-black rounded-2xl text-xs font-black uppercase tracking-widest transition-all"
+              >
+                Labs
+              </button>
             </div>
           </div>
         </header>
@@ -207,15 +302,22 @@
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
           <!-- Left: Space Catalog & My Reservations -->
           <div class="lg:col-span-2 space-y-16">
-            <section class="grid grid-cols-1 sm:grid-cols-2 gap-6" id="space-catalog">
+            <section
+              class="grid grid-cols-1 sm:grid-cols-2 gap-6"
+              id="space-catalog"
+            >
               <!-- Dynamically populated -->
             </section>
 
             <section class="space-y-8 pt-8 border-t border-gray-50">
-              <h3 class="font-black text-xl tracking-tight">Minhas Reservas Ativas</h3>
+              <h3 class="font-black text-xl tracking-tight">
+                Minhas Reservas Ativas
+              </h3>
               <div class="space-y-4" id="reservas-list">
                 <div class="p-12 text-center">
-                  <div class="animate-spin inline-block w-6 h-6 border-4 border-[var(--accent)] border-t-transparent rounded-full"></div>
+                  <div
+                    class="animate-spin inline-block w-6 h-6 border-4 border-[var(--accent)] border-t-transparent rounded-full"
+                  ></div>
                 </div>
               </div>
             </section>
@@ -223,25 +325,46 @@
 
           <!-- Right: Global Schedule -->
           <aside class="space-y-8">
-            <h3 class="font-black text-xl tracking-tight">Ocupação do Campus</h3>
-            <div class="bg-black text-white p-10 rounded-[40px] space-y-8 shadow-2xl shadow-black/20">
+            <h3 class="font-black text-xl tracking-tight">
+              Ocupação do Campus
+            </h3>
+            <div
+              class="bg-black text-white p-10 rounded-[40px] space-y-8 shadow-2xl shadow-black/20"
+            >
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-3">
-                  <span class="material-symbols-outlined text-white/50">calendar_month</span>
-                  <span class="text-[10px] font-black uppercase tracking-widest text-white/50">Próximos dias</span>
+                  <span class="material-symbols-outlined text-white/50"
+                    >calendar_month</span
+                  >
+                  <span
+                    class="text-[10px] font-black uppercase tracking-widest text-white/50"
+                    >Próximos dias</span
+                  >
                 </div>
                 <span class="w-2 h-2 rounded-full bg-green-500"></span>
               </div>
               <div class="space-y-8" id="agenda-global">
-                <p class="text-xs font-bold opacity-40 italic text-center py-4">Carregando agenda...</p>
+                <p class="text-xs font-bold opacity-40 italic text-center py-4">
+                  Carregando agenda...
+                </p>
               </div>
-              <button onclick="window.location.href='calendario.html'" class="w-full py-4 bg-white/10 hover:bg-white/20 border border-white/5 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all">Calendário Acadêmico</button>
+              <button
+                onclick="window.location.href = 'calendario.html'"
+                class="w-full py-4 bg-white/10 hover:bg-white/20 border border-white/5 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all"
+              >
+                Calendário Acadêmico
+              </button>
             </div>
 
             <!-- Promotion Card for large institutions -->
             <div class="p-8 bg-blue-50 rounded-[40px] space-y-4">
-              <h4 class="font-black text-sm text-blue-900">Uso de Laboratórios</h4>
-              <p class="text-xs text-blue-800/70 font-medium leading-relaxed">Prioridade para grupos de pesquisa e monitorias. Consulte o coordenador do seu bloco.</p>
+              <h4 class="font-black text-sm text-blue-900">
+                Uso de Laboratórios
+              </h4>
+              <p class="text-xs text-blue-800/70 font-medium leading-relaxed">
+                Prioridade para grupos de pesquisa e monitorias. Consulte o
+                coordenador do seu bloco.
+              </p>
               <div class="h-1 bg-blue-200 w-full rounded-full overflow-hidden">
                 <div class="h-full bg-blue-600 w-1/3"></div>
               </div>
@@ -252,63 +375,159 @@
     </div>
 
     <!-- Modal Component -->
-    <div class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/60 p-4 backdrop-blur-sm" data-action-modal aria-hidden="true">
-      <div class="bg-white rounded-[40px] shadow-2xl w-full max-lg overflow-hidden animate-in fade-in zoom-in duration-300" role="dialog" aria-modal="true">
+    <div
+      class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/60 p-4 backdrop-blur-sm"
+      data-action-modal
+      aria-hidden="true"
+    >
+      <div
+        class="bg-white rounded-[40px] shadow-2xl w-full max-lg overflow-hidden animate-in fade-in zoom-in duration-300"
+        role="dialog"
+        aria-modal="true"
+      >
         <div class="pt-8 px-8 pb-4 border-b border-gray-50">
           <div class="flex items-center justify-between mb-1">
-            <h3 class="text-2xl font-black tracking-tight" data-action-modal-title>Detalhes</h3>
-            <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-50 transition-colors" type="button" data-action-modal-close>
-              <span class="material-symbols-outlined text-[var(--text-secondary)]">close</span>
+            <h3
+              class="text-2xl font-black tracking-tight"
+              data-action-modal-title
+            >
+              Detalhes
+            </h3>
+            <button
+              class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-50 transition-colors"
+              type="button"
+              data-action-modal-close
+            >
+              <span
+                class="material-symbols-outlined text-[var(--text-secondary)]"
+                >close</span
+              >
             </button>
           </div>
-          <p class="text-sm font-medium text-[var(--text-secondary)]" data-action-modal-subtitle></p>
+          <p
+            class="text-sm font-medium text-[var(--text-secondary)]"
+            data-action-modal-subtitle
+          ></p>
         </div>
         <div class="px-8 pt-6 pb-2">
-          <div class="text-sm font-medium text-[var(--text-secondary)]" data-action-modal-content></div>
-          <p class="text-xs font-bold text-red-500 hidden bg-red-50 p-4 rounded-2xl mt-4" data-action-modal-alert></p>
+          <div
+            class="text-sm font-medium text-[var(--text-secondary)]"
+            data-action-modal-content
+          ></div>
+          <p
+            class="text-xs font-bold text-red-500 hidden bg-red-50 p-4 rounded-2xl mt-4"
+            data-action-modal-alert
+          ></p>
         </div>
         <div class="flex items-center justify-end gap-3 p-8">
-          <button class="px-6 py-3 text-sm font-bold text-red-500 hover:bg-red-50 rounded-xl transition-colors hidden" type="button" data-action-modal-delete>Cancelar Reserva</button>
-          <button class="px-6 py-3 text-sm font-bold text-[var(--text-secondary)] hover:text-black transition-colors" type="button" data-action-modal-cancel>Cancelar</button>
-          <button class="px-8 py-3 bg-[var(--accent)] text-white rounded-2xl text-sm font-bold hover:shadow-xl hover:shadow-black/20 transition-all" type="button" data-action-modal-confirm>Confirmar</button>
+          <button
+            class="px-6 py-3 text-sm font-bold text-red-500 hover:bg-red-50 rounded-xl transition-colors hidden"
+            type="button"
+            data-action-modal-delete
+          >
+            Cancelar Reserva
+          </button>
+          <button
+            class="px-6 py-3 text-sm font-bold text-[var(--text-secondary)] hover:text-black transition-colors"
+            type="button"
+            data-action-modal-cancel
+          >
+            Cancelar
+          </button>
+          <button
+            class="px-8 py-3 bg-[var(--accent)] text-white rounded-2xl text-sm font-bold hover:shadow-xl hover:shadow-black/20 transition-all"
+            type="button"
+            data-action-modal-confirm
+          >
+            Confirmar
+          </button>
         </div>
       </div>
     </div>
 
     <!-- Confirmation Modal -->
-    <div class="fixed inset-0 z-[110] hidden items-center justify-center bg-black/60 p-4 backdrop-blur-sm" data-confirm-modal aria-hidden="true">
-      <div class="bg-white rounded-[40px] shadow-2xl w-full max-w-sm overflow-hidden animate-in fade-in zoom-in duration-300" role="dialog" aria-modal="true">
+    <div
+      class="fixed inset-0 z-[110] hidden items-center justify-center bg-black/60 p-4 backdrop-blur-sm"
+      data-confirm-modal
+      aria-hidden="true"
+    >
+      <div
+        class="bg-white rounded-[40px] shadow-2xl w-full max-w-sm overflow-hidden animate-in fade-in zoom-in duration-300"
+        role="dialog"
+        aria-modal="true"
+      >
         <div class="p-8 text-center space-y-6">
-          <div class="w-20 h-20 bg-red-50 text-red-500 rounded-full flex items-center justify-center mx-auto">
+          <div
+            class="w-20 h-20 bg-red-50 text-red-500 rounded-full flex items-center justify-center mx-auto"
+          >
             <span class="material-symbols-outlined text-4xl">warning</span>
           </div>
           <div class="space-y-2">
-            <h3 class="text-xl font-black tracking-tight">Confirmar Cancelamento</h3>
-            <p class="text-sm text-[var(--text-secondary)] font-medium">Esta ação liberará o espaço para outros alunos. Confirmar?</p>
+            <h3 class="text-xl font-black tracking-tight">
+              Confirmar Cancelamento
+            </h3>
+            <p class="text-sm text-[var(--text-secondary)] font-medium">
+              Esta ação liberará o espaço para outros alunos. Confirmar?
+            </p>
           </div>
           <div class="flex flex-col gap-3 pt-2">
-            <button class="w-full py-4 bg-red-500 text-white rounded-2xl text-sm font-bold hover:bg-red-600 transition-all" data-confirm-yes>Sim, Cancelar</button>
-            <button class="w-full py-4 bg-gray-50 text-[var(--text-secondary)] rounded-2xl text-sm font-bold hover:text-black transition-all" data-confirm-no>Não, Voltar</button>
+            <button
+              class="w-full py-4 bg-red-500 text-white rounded-2xl text-sm font-bold hover:bg-red-600 transition-all"
+              data-confirm-yes
+            >
+              Sim, Cancelar
+            </button>
+            <button
+              class="w-full py-4 bg-gray-50 text-[var(--text-secondary)] rounded-2xl text-sm font-bold hover:text-black transition-all"
+              data-confirm-no
+            >
+              Não, Voltar
+            </button>
           </div>
         </div>
       </div>
     </div>
 
-    <nav class="md:hidden fixed bottom-0 left-0 w-full bg-[var(--card)] border-t border-[var(--border-soft)] flex justify-around items-center h-16 z-50 px-4">
-      <a href="../index.html" class="flex flex-col items-center justify-center gap-1 text-[var(--text-secondary)]">
+    <nav
+      class="md:hidden fixed bottom-0 left-0 w-full bg-[var(--card)] border-t border-[var(--border-soft)] flex justify-around items-center h-16 z-50 px-4"
+    >
+      <a
+        href="../index.html"
+        class="flex flex-col items-center justify-center gap-1 text-[var(--text-secondary)]"
+      >
         <span class="material-symbols-outlined text-[28px]">home</span>
       </a>
-      <a href="chamados.html" class="flex flex-col items-center justify-center gap-1 text-[var(--text-secondary)]">
-        <span class="material-symbols-outlined text-[28px]">confirmation_number</span>
+      <a
+        href="chamados.html"
+        class="flex flex-col items-center justify-center gap-1 text-[var(--text-secondary)]"
+      >
+        <span class="material-symbols-outlined text-[28px]"
+          >confirmation_number</span
+        >
       </a>
-      <a href="reservas.html" class="flex flex-col items-center justify-center gap-1 text-black">
-        <span class="material-symbols-outlined text-[28px]">event_available</span>
+      <a
+        href="reservas.html"
+        class="flex flex-col items-center justify-center gap-1 text-black"
+      >
+        <span class="material-symbols-outlined text-[28px]"
+          >event_available</span
+        >
       </a>
-      <a href="cardapio.html" class="flex flex-col items-center justify-center gap-1 text-[var(--text-secondary)]">
-        <span class="material-symbols-outlined text-[28px]">restaurant_menu</span>
+      <a
+        href="cardapio.html"
+        class="flex flex-col items-center justify-center gap-1 text-[var(--text-secondary)]"
+      >
+        <span class="material-symbols-outlined text-[28px]"
+          >restaurant_menu</span
+        >
       </a>
-      <a href="calendario.html" class="flex flex-col items-center justify-center gap-1 text-[var(--text-secondary)]">
-        <span class="material-symbols-outlined text-[28px]">calendar_today</span>
+      <a
+        href="calendario.html"
+        class="flex flex-col items-center justify-center gap-1 text-[var(--text-secondary)]"
+      >
+        <span class="material-symbols-outlined text-[28px]"
+          >calendar_today</span
+        >
       </a>
     </nav>
 
@@ -321,7 +540,7 @@
         const actionAlert = document.querySelector("[data-action-modal-alert]");
         const actionConfirm = document.querySelector("[data-action-modal-confirm]");
         const actionDelete = document.querySelector("[data-action-modal-delete]");
-        
+
         const confirmModal = document.querySelector("[data-confirm-modal]");
         const confirmYes = document.querySelector("[data-confirm-yes]");
         const confirmNo = document.querySelector("[data-confirm-no]");
@@ -331,7 +550,7 @@
         const spaceCatalog = document.getElementById("space-catalog");
         const searchInput = document.getElementById("space-search");
         const filterButtons = document.querySelectorAll(".filter-btn");
-        
+
         let currentReservas = [];
         let activeFilter = "Mais Recentes";
 
@@ -356,7 +575,7 @@
           spaceCatalog.innerHTML = filtered.map(s => {
             const statusClass = s.status === "Livre" ? "bg-green-50 text-green-600" : "bg-yellow-50 text-yellow-600";
             const pulse = s.status === "Livre" ? '<span class="w-1.5 h-1.5 rounded-full bg-green-600 animate-pulse"></span>' : '<span class="w-1.5 h-1.5 rounded-full bg-yellow-600"></span>';
-            
+
             return `
               <div class="p-8 bg-white border border-[var(--border)] rounded-[32px] hover:border-[var(--accent)]/10 hover:shadow-xl hover:shadow-black/5 transition-all group relative overflow-hidden">
                 <div class="absolute top-6 right-6 flex items-center gap-1.5 px-3 py-1 ${statusClass} rounded-full">
@@ -396,7 +615,7 @@
 
         const loadReservas = async () => {
           try {
-            const response = await fetch(`${1}/api/reservas");
+            const response = await fetch(`${API_BASE_URL}/api/reservas`);
             if (!response.ok) throw new Error();
             currentReservas = await response.json();
             renderReservas(currentReservas);
@@ -487,7 +706,7 @@
           confirmYes.onclick = async () => {
             confirmYes.disabled = true;
             try {
-              const res = await fetch(`${API_BASE_URL}/api/reservas/${id}`, { method: `DELETE" });
+              const res = await fetch(`${API_BASE_URL}/api/reservas/${id}`, { method: `DELETE` });
               if (!res.ok) throw new Error();
               confirmModal.classList.add("hidden");
               confirmYes.disabled = false;
@@ -513,10 +732,10 @@
           const cancelBtn = actionModal.querySelector("[data-action-modal-cancel]");
           if (cancelBtn) cancelBtn.classList.remove("hidden");
           if (actionDelete) actionDelete.classList.add("hidden");
-          
+
           actionConfirm.textContent = "Finalizar Reserva";
           actionConfirm.onclick = handleCreate;
-          
+
           actionContent.innerHTML = `
             <form id="res-form" class="space-y-4">
               <div class="space-y-2">
@@ -573,10 +792,10 @@
               error.className = "error-msg text-[10px] font-bold text-red-500 mt-1 ml-1 block";
               error.textContent = "Preencha este campo";
               input.parentNode.appendChild(error);
-              
+
               // Apply red border
               input.style.boxShadow = "0 0 0 2px #ef4444";
-              
+
               input.addEventListener("input", () => {
                 error.remove();
                 input.style.boxShadow = "";
@@ -588,7 +807,7 @@
 
           const data = Object.fromEntries(new FormData(form).entries());
           try {
-            const res = await fetch(`${1}/api/reservas", {
+            const res = await fetch(`${API_BASE_URL}/api/reservas`, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify(data)
@@ -596,14 +815,14 @@
             if (!res.ok) throw new Error();
             closeActionModal();
             loadReservas();
-          } catch (e) { 
+          } catch (e) {
             console.error(e);
           }
         };
 
         document.querySelectorAll("[data-action]").forEach(b => b.addEventListener("click", () => openActionModal(b)));
         [actionModal.querySelector("[data-action-modal-close]"), actionModal.querySelector("[data-action-modal-cancel]")].forEach(el => el.addEventListener("click", closeActionModal));
-        
+
         loadReservas().then(() => {
           renderCatalog();
           const id = new URLSearchParams(window.location.search).get('id');

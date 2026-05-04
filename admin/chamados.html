@@ -260,7 +260,6 @@
       }
     </style>
     <script src="../js/api.js"></script>
-  <script src="../js/api.js"></script>
   </head>
   <body
     class="font-sans text-[#0f172a] dark:text-slate-200 bg-[#f6f8ff] dark:bg-darkbg selection:bg-accent selection:text-white flex h-screen overflow-hidden antialiased transition-colors duration-300"
@@ -269,7 +268,10 @@
       class="w-64 bg-white dark:bg-darkcard border-r border-gray-100 dark:border-darkborder flex flex-col shrink-0 z-50"
     >
       <div class="p-8 border-b border-gray-100 dark:border-darkborder">
-        <a href="../index.html" class="flex items-center gap-3 logo-container group">
+        <a
+          href="../index.html"
+          class="flex items-center gap-3 logo-container group"
+        >
           <svg
             width="32"
             height="32"
@@ -371,7 +373,9 @@
         </div>
       </nav>
 
-      <div class="p-6 border-t border-slate-50 dark:border-darkborder/50 space-y-6 mt-auto">
+      <div
+        class="p-6 border-t border-slate-50 dark:border-darkborder/50 space-y-6 mt-auto"
+      >
         <!-- Suporte -->
         <div
           class="bg-slate-50 dark:bg-slate-900/50 p-4 rounded-2xl border border-slate-100 dark:border-darkborder"
@@ -872,7 +876,7 @@
 
         const loadTickets = async () => {
           try {
-            const res = await fetch(`${1}/api/chamados");
+            const res = await fetch(`${API_BASE_URL}/api/chamados`);
             allTickets = await res.json();
             renderTickets();
             renderChamadosDropdown();
@@ -944,7 +948,7 @@
         };
 
         window.quickTicket = async (titulo, local) => {
-          const res = await fetch(`${1}/api/chamados", {
+          const res = await fetch(`${API_BASE_URL}/api/chamados`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -1002,6 +1006,6 @@
           }
         });
         })();
-        </script>
+    </script>
   </body>
 </html>

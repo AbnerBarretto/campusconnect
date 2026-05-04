@@ -6,7 +6,9 @@
     <script>
       (() => {
         const savedTheme = localStorage.getItem("theme");
-        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
         const shouldUseDark = savedTheme ? savedTheme === "dark" : prefersDark;
         document.documentElement.classList.toggle("dark", shouldUseDark);
         document.documentElement.classList.toggle("light", !shouldUseDark);
@@ -230,8 +232,14 @@
 
       /* Dropdown Animation */
       @keyframes dropdown-in {
-        from { opacity: 0; transform: translateY(-8px) scale(0.98); }
-        to { opacity: 1; transform: translateY(0) scale(1); }
+        from {
+          opacity: 0;
+          transform: translateY(-8px) scale(0.98);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
       }
       .animate-dropdown {
         animation: dropdown-in 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -242,48 +250,52 @@
       .logo-container:hover .logo-mark {
         transform: rotate(90deg);
       }
-      </style>
-      <script src="../js/api.js"></script>
-      </head>
-      <body
-        class="font-sans text-[#0f172a] dark:text-slate-200 bg-[#f6f8ff] dark:bg-darkbg selection:bg-accent selection:text-white flex h-screen overflow-hidden antialiased transition-colors duration-300"
-      >
-        <!-- Sidebar -->
-        <aside
-          class="w-64 bg-white dark:bg-darkcard border-r border-gray-100 dark:border-darkborder flex flex-col shrink-0 z-50"
+    </style>
+    <script src="../js/api.js"></script>
+  </head>
+  <body
+    class="font-sans text-[#0f172a] dark:text-slate-200 bg-[#f6f8ff] dark:bg-darkbg selection:bg-accent selection:text-white flex h-screen overflow-hidden antialiased transition-colors duration-300"
+  >
+    <!-- Sidebar -->
+    <aside
+      class="w-64 bg-white dark:bg-darkcard border-r border-gray-100 dark:border-darkborder flex flex-col shrink-0 z-50"
+    >
+      <div class="p-8 border-b border-gray-100 dark:border-darkborder">
+        <a
+          href="../index.html"
+          class="flex items-center gap-3 logo-container group"
         >
-
-          <div class="p-8 border-b border-gray-100 dark:border-darkborder">
-            <a href="../index.html" class="flex items-center gap-3 logo-container group">
-              <svg
-                width="32"
-                height="32"
-                viewBox="0 0 100 100"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                class="logo-mark"
-              >
-                <path
-                  d="M20 50V20H80V80H50"
-                  stroke="#000"
-                  stroke-width="12"
-                  stroke-linecap="square"
-                  class="dark:stroke-white"
-                />
-                <path
-                  d="M40 40L60 60"
-                  stroke="#000"
-                  stroke-width="12"
-                  stroke-linecap="square"
-                  class="dark:stroke-white"
-                />
-                <rect x="20" y="40" width="15" height="20" fill="white" />
-              </svg>
-              <h1 class="text-sm font-black tracking-widest uppercase dark:text-white">
-                Campus<span class="font-light">Connect</span>
-              </h1>
-            </a>
-          </div>
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 100 100"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="logo-mark"
+          >
+            <path
+              d="M20 50V20H80V80H50"
+              stroke="#000"
+              stroke-width="12"
+              stroke-linecap="square"
+              class="dark:stroke-white"
+            />
+            <path
+              d="M40 40L60 60"
+              stroke="#000"
+              stroke-width="12"
+              stroke-linecap="square"
+              class="dark:stroke-white"
+            />
+            <rect x="20" y="40" width="15" height="20" fill="white" />
+          </svg>
+          <h1
+            class="text-sm font-black tracking-widest uppercase dark:text-white"
+          >
+            Campus<span class="font-light">Connect</span>
+          </h1>
+        </a>
+      </div>
       <nav class="flex-grow p-6 space-y-6 overflow-y-auto custom-scrollbar">
         <div>
           <p
@@ -353,7 +365,9 @@
         </div>
       </nav>
 
-      <div class="p-6 border-t border-slate-50 dark:border-darkborder/50 space-y-6 mt-auto">
+      <div
+        class="p-6 border-t border-slate-50 dark:border-darkborder/50 space-y-6 mt-auto"
+      >
         <!-- Suporte -->
         <div
           class="bg-slate-50 dark:bg-slate-900/50 p-4 rounded-2xl border border-slate-100 dark:border-darkborder"
@@ -412,9 +426,9 @@
           </div>
         </div>
       </div>
-      </aside>
+    </aside>
 
-      <div class="flex-grow flex flex-col overflow-hidden">
+    <div class="flex-grow flex flex-col overflow-hidden">
       <!-- Top Bar -->
       <header
         class="h-20 bg-white/90 dark:bg-darkcard/90 backdrop-blur-md border-b border-gray-100 dark:border-darkborder flex items-center justify-between px-10 shrink-0 z-40"
@@ -524,8 +538,7 @@
             >
               <div class="flex justify-between items-start mb-4">
                 <div class="p-2 bg-accent/5 dark:bg-accent/10 rounded-xl">
-                  <span
-                    class="material-symbols-outlined text-accent text-xl"
+                  <span class="material-symbols-outlined text-accent text-xl"
                     >speed</span
                   >
                 </div>
@@ -631,38 +644,100 @@
 
           <!-- KPI Cards -->
           <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div class="bg-white dark:bg-darkcard border border-slate-200 dark:border-darkborder p-8 rounded-[32px] group overflow-hidden relative shadow-sm hover:shadow-md transition-all">
-              <span class="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em]">Abertos</span>
-              <div class="mt-6 flex items-baseline justify-between relative z-10">
-                <p class="text-5xl font-black text-slate-900 dark:text-white tracking-tighter" id="stat-open">0</p>
-                <span class="text-[10px] font-black text-accent dark:text-accent bg-accent/5 dark:bg-accent/10 px-3 py-1 rounded-xl" id="stat-open-today">+0 hoje</span>
+            <div
+              class="bg-white dark:bg-darkcard border border-slate-200 dark:border-darkborder p-8 rounded-[32px] group overflow-hidden relative shadow-sm hover:shadow-md transition-all"
+            >
+              <span
+                class="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em]"
+                >Abertos</span
+              >
+              <div
+                class="mt-6 flex items-baseline justify-between relative z-10"
+              >
+                <p
+                  class="text-5xl font-black text-slate-900 dark:text-white tracking-tighter"
+                  id="stat-open"
+                >
+                  0
+                </p>
+                <span
+                  class="text-[10px] font-black text-accent dark:text-accent bg-accent/5 dark:bg-accent/10 px-3 py-1 rounded-xl"
+                  id="stat-open-today"
+                  >+0 hoje</span
+                >
               </div>
             </div>
 
-            <div class="bg-white dark:bg-darkcard border border-slate-200 dark:border-darkborder p-8 rounded-[32px] group overflow-hidden relative shadow-sm hover:shadow-md transition-all">
-              <span class="text-[10px] font-black text-danger uppercase tracking-[0.2em]">Críticos</span>
-              <div class="mt-6 flex items-baseline justify-between relative z-10">
-                <p class="text-5xl font-black text-slate-900 dark:text-white tracking-tighter" id="stat-critical">0</p>
+            <div
+              class="bg-white dark:bg-darkcard border border-slate-200 dark:border-darkborder p-8 rounded-[32px] group overflow-hidden relative shadow-sm hover:shadow-md transition-all"
+            >
+              <span
+                class="text-[10px] font-black text-danger uppercase tracking-[0.2em]"
+                >Críticos</span
+              >
+              <div
+                class="mt-6 flex items-baseline justify-between relative z-10"
+              >
+                <p
+                  class="text-5xl font-black text-slate-900 dark:text-white tracking-tighter"
+                  id="stat-critical"
+                >
+                  0
+                </p>
                 <div class="flex items-center gap-1.5">
-                  <div class="w-2.5 h-2.5 rounded-full bg-danger animate-ping"></div>
-                  <span class="text-[10px] font-black text-danger uppercase">Urgente</span>
+                  <div
+                    class="w-2.5 h-2.5 rounded-full bg-danger animate-ping"
+                  ></div>
+                  <span class="text-[10px] font-black text-danger uppercase"
+                    >Urgente</span
+                  >
                 </div>
               </div>
             </div>
 
-            <div class="bg-white dark:bg-darkcard border border-slate-200 dark:border-darkborder p-8 rounded-[32px] group overflow-hidden relative shadow-sm hover:shadow-md transition-all">
-              <span class="text-[10px] font-black text-warning uppercase tracking-[0.2em]">Atrasados</span>
-              <div class="mt-6 flex items-baseline justify-between relative z-10">
-                <p class="text-5xl font-black text-slate-900 dark:text-white tracking-tighter" id="stat-delayed">0</p>
-                <span class="material-symbols-outlined text-warning text-3xl">history_toggle_off</span>
+            <div
+              class="bg-white dark:bg-darkcard border border-slate-200 dark:border-darkborder p-8 rounded-[32px] group overflow-hidden relative shadow-sm hover:shadow-md transition-all"
+            >
+              <span
+                class="text-[10px] font-black text-warning uppercase tracking-[0.2em]"
+                >Atrasados</span
+              >
+              <div
+                class="mt-6 flex items-baseline justify-between relative z-10"
+              >
+                <p
+                  class="text-5xl font-black text-slate-900 dark:text-white tracking-tighter"
+                  id="stat-delayed"
+                >
+                  0
+                </p>
+                <span class="material-symbols-outlined text-warning text-3xl"
+                  >history_toggle_off</span
+                >
               </div>
             </div>
 
-            <div class="bg-white dark:bg-darkcard border border-slate-200 dark:border-darkborder p-8 rounded-[32px] group overflow-hidden relative shadow-sm hover:shadow-md transition-all">
-              <span class="text-[10px] font-black text-accent uppercase tracking-[0.2em]">Reservas</span>
-              <div class="mt-6 flex items-baseline justify-between relative z-10">
-                <p class="text-5xl font-black text-slate-900 dark:text-white tracking-tighter" id="stat-reservas">0</p>
-                <span class="text-[10px] font-black text-accent bg-accent-soft px-3 py-1 rounded-xl" id="stat-reservas-pending">0 pend.</span>
+            <div
+              class="bg-white dark:bg-darkcard border border-slate-200 dark:border-darkborder p-8 rounded-[32px] group overflow-hidden relative shadow-sm hover:shadow-md transition-all"
+            >
+              <span
+                class="text-[10px] font-black text-accent uppercase tracking-[0.2em]"
+                >Reservas</span
+              >
+              <div
+                class="mt-6 flex items-baseline justify-between relative z-10"
+              >
+                <p
+                  class="text-5xl font-black text-slate-900 dark:text-white tracking-tighter"
+                  id="stat-reservas"
+                >
+                  0
+                </p>
+                <span
+                  class="text-[10px] font-black text-accent bg-accent-soft px-3 py-1 rounded-xl"
+                  id="stat-reservas-pending"
+                  >0 pend.</span
+                >
               </div>
             </div>
           </section>
@@ -1140,8 +1215,8 @@
 
           try {
             const [ticketsRes, reservasRes] = await Promise.all([
-              fetch(`${1}/api/chamados"),
-              fetch(`${1}/api/reservas"),
+              fetch(`${API_BASE_URL}/api/chamados`),
+              fetch(`${API_BASE_URL}/api/reservas`),
             ]);
             allTickets = await ticketsRes.json();
             allReservas = await reservasRes.json();
@@ -1499,7 +1574,7 @@
         };
 
         window.quickTicket = async (titulo, local) => {
-          const res = await fetch(`${1}/api/chamados", {
+          const res = await fetch(`${API_BASE_URL}/api/chamados`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
