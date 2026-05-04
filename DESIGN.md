@@ -15,36 +15,36 @@ colors:
   inverse-on-surface: "#f1f1f1"
   outline: "#7e7576"
   outline-variant: "#cfc4c5"
-  surface-tint: "#5e5e5e"
+  surface-tint: "#475569"
   primary: "#000000"
   on-primary: "#ffffff"
   primary-container: "#1b1b1b"
-  on-primary-container: "#848484"
-  inverse-primary: "#c6c6c6"
-  secondary: "#5e5e5e"
+  on-primary-container: "#475569"
+  inverse-primary: "#475569"
+  secondary: "#475569"
   on-secondary: "#ffffff"
   secondary-container: "#e1dfdf"
-  on-secondary-container: "#626262"
+  on-secondary-container: "#475569"
   tertiary: "#000000"
   on-tertiary: "#ffffff"
   tertiary-container: "#1b1b1b"
-  on-tertiary-container: "#848484"
+  on-tertiary-container: "#475569"
   error: "#ba1a1a"
   on-error: "#ffffff"
   error-container: "#ffdad6"
   on-error-container: "#93000a"
   primary-fixed: "#e2e2e2"
-  primary-fixed-dim: "#c6c6c6"
+  primary-fixed-dim: "#475569"
   on-primary-fixed: "#1b1b1b"
-  on-primary-fixed-variant: "#474747"
+  on-primary-fixed-variant: "#475569"
   secondary-fixed: "#e4e2e2"
   secondary-fixed-dim: "#c7c6c6"
   on-secondary-fixed: "#1b1c1c"
   on-secondary-fixed-variant: "#464747"
   tertiary-fixed: "#e2e2e2"
-  tertiary-fixed-dim: "#c6c6c6"
+  tertiary-fixed-dim: "#475569"
   on-tertiary-fixed: "#1b1b1b"
-  on-tertiary-fixed-variant: "#474747"
+  on-tertiary-fixed-variant: "#475569"
   background: "#f9f9f9"
   on-background: "#1a1c1c"
   surface-variant: "#e2e2e2"
@@ -115,11 +115,10 @@ O estilo visual baseia-se no **Minimalismo**, utilizando uma estética de "esque
 
 ## Cores
 
-A paleta deste sistema de design é estritamente em tons de cinza (grayscale). Não são permitidas cores cromáticas.
+A paleta deste sistema de design é baseada em tons de cinza funcionais, com o objetivo de manter a clareza e o foco na estrutura.
 
 - **Preto (#000000):** Utilizado para textos principais, ícones ativos e elementos de máxima ênfase.
-- **Cinza Escuro (#666666):** Reservado para textos secundários e estados desabilitados.
-- **Cinza Médio (#CCCCCC):** Cor padrão para bordas e divisores.
+- **Cinza Unificado (#475569):** Cor padrão para textos secundários, bordas, divisores e estados desabilitados. Esta cor unifica os tons anteriormente fragmentados para garantir consistência visual.
 - **Cinza Claro (#F2F2F2):** Utilizado para preenchimentos de "skeletons" e fundos de containers.
 - **Branco (#FFFFFF):** Cor de fundo principal da interface.
 
@@ -144,7 +143,7 @@ A hierarquia visual é transmitida através de **Camadas Tonais** e **Contornos 
 Não utilizamos sombras realistas ou gradientes. A profundidade é sugerida pelo empilhamento de planos:
 
 1. **Nível de Base:** Fundo branco puro.
-2. **Nível de Superfície:** Containers com bordas de 1px (#CCCCCC) ou fundos em cinza claro (#F2F2F2).
+2. **Nível de Superfície:** Containers com bordas de 1px (#475569) ou fundos em cinza claro (#F2F2F2).
 3. **Nível de Destaque:** Elementos com bordas mais espessas ou preenchimento em cinza médio para indicar foco ou interação.
 
 A separação de profundidade deve ser clara, mas discreta, mantendo o aspecto de "wireframe" plano.
@@ -163,7 +162,7 @@ Os componentes devem ser representados em sua forma mais essencial:
 
 - **Botões:** Bordas de 1px pretas com texto centralizado. Para estados primários, preenchimento preto com texto branco. Para secundários, apenas contorno.
 - **Skeletons (Marcadores):** Blocos sólidos de cor `#F2F2F2` com cantos arredondados, usados para representar imagens ou blocos de texto em carregamento.
-- **Campos de Entrada (Inputs):** Retângulos com borda `#CCCCCC`, canto arredondado e texto de placeholder em cinza escuro.
+- **Campos de Entrada (Inputs):** Retângulos com borda `#475569`, canto arredondado e texto de placeholder em cinza escuro.
 - **Ícones:** Representações geométricas simples (linhas e formas básicas) em preto, sem detalhes ornamentais.
 - **Cards:** Containers com borda fina e padding generoso (usualmente `md` ou `lg`), servindo como base para agrupar informações relacionadas.
 - **Listas:** Separadas por divisores de 1px em cinza claro, com alinhamento rigoroso à esquerda.
