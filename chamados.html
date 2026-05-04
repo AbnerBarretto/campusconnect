@@ -1,0 +1,551 @@
+<!doctype html>
+<html class="light" lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Meus Chamados - CampusConnect</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='0' y='0' width='100' height='100' fill='%23ffffff'/><path d='M20 50V20H80V80H50' stroke='%23000000' stroke-width='10' stroke-linecap='square' fill='none'/><path d='M40 40L60 60' stroke='%23000000' stroke-width='10' stroke-linecap='square'/><rect x='20' y='40' width='15' height='20' fill='%23ffffff'/></svg>"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#000000",
+              surface: "#ffffff",
+            },
+            borderRadius: {
+              xl: "0.75rem",
+              "2xl": "1rem",
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      :root {
+        --bg: #f6f8ff;
+        --card: #ffffff;
+        --card-hover: #fafafa;
+        --border: #e5e7eb;
+        --border-soft: #f1f5f9;
+        --text-primary: #0f172a;
+        --text-secondary: #64748b;
+        --text-muted: #94a3b8;
+        --accent: #8b5cf6;
+        --accent-hover: #7c3aed;
+        --accent-soft: rgba(139, 92, 246, 0.12);
+        --success: #10b981;
+        --success-soft: rgba(16, 185, 129, 0.12);
+        --warning: #f59e0b;
+        --warning-soft: rgba(245, 158, 11, 0.12);
+        --danger: #ef4444;
+        --danger-soft: rgba(239, 68, 68, 0.12);
+        --info: #3b82f6;
+        --info-soft: rgba(59, 130, 246, 0.12);
+      }
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+      .logo-mark {
+        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .logo-container:hover .logo-mark {
+        transform: rotate(90deg);
+      }
+      .nav-item {
+        transition: all 0.2s ease;
+      }
+      .nav-item:hover {
+        background-color: var(--card-hover);
+      }
+      .nav-item.active {
+        background-color: var(--accent);
+        color: #ffffff;
+      }
+      .nav-item.active .material-symbols-outlined {
+        font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+      .sidebar-scroll::-webkit-scrollbar {
+        width: 4px;
+      }
+      .sidebar-scroll::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .sidebar-scroll::-webkit-scrollbar-thumb {
+        background: #e5e7eb;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body class="font-sans text-[var(--text-primary)] bg-[var(--bg)] selection:bg-[var(--accent)] selection:text-white min-h-screen flex">
+    <!-- Sidebar -->
+    <aside class="hidden md:flex flex-col w-[260px] h-screen border-r border-[var(--border-soft)] fixed left-0 top-0 bg-[var(--card)] z-50">
+      <div class="p-8">
+        <a href="index.html" class="flex items-center gap-3 logo-container group">
+          <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-mark">
+            <path d="M20 50V20H80V80H50" stroke="#000" stroke-width="12" stroke-linecap="square" />
+            <path d="M40 40L60 60" stroke="#000" stroke-width="12" stroke-linecap="square" />
+            <rect x="20" y="40" width="15" height="20" fill="white" />
+          </svg>
+          <h1 class="text-sm font-black tracking-widest uppercase">
+            Campus<span class="font-light">Connect</span>
+          </h1>
+        </a>
+      </div>
+
+      <nav class="flex-grow px-4 space-y-1 sidebar-scroll overflow-y-auto">
+        <a href="index.html" class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[var(--text-secondary)] hover:text-black">
+          <span class="material-symbols-outlined">home</span>
+          Início
+        </a>
+        <a href="chamados.html" class="nav-item active flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight">
+          <span class="material-symbols-outlined">confirmation_number</span>
+          Chamados
+        </a>
+        <a href="reservas.html" class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[var(--text-secondary)] hover:text-black">
+          <span class="material-symbols-outlined">event_available</span>
+          Espaços e Reservas
+        </a>
+        <a href="cardapio.html" class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[var(--text-secondary)] hover:text-black">
+          <span class="material-symbols-outlined">restaurant_menu</span>
+          Cardápio
+        </a>
+        <a href="historico.html" class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[var(--text-secondary)] hover:text-black">
+          <span class="material-symbols-outlined">history</span>
+          Histórico
+        </a>
+        <div class="pt-6 pb-2 px-4">
+          <span class="text-[10px] font-black uppercase tracking-[0.3em] text-[var(--text-secondary)]">Explorar</span>
+        </div>
+        <a href="mapa-campus.html" class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[var(--text-secondary)] hover:text-black">
+          <span class="material-symbols-outlined">map</span>
+          Mapa do Campus
+        </a>
+        <a href="calendario.html" class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[var(--text-secondary)] hover:text-black">
+          <span class="material-symbols-outlined">calendar_today</span>
+          Calendário
+        </a>
+      </nav>
+
+      <div class="p-4 mt-auto relative" id="profile-container">
+        <button
+          onclick="toggleProfileDropdown(event)"
+          class="flex items-center gap-4 w-full p-4 rounded-2xl hover:bg-gray-50 transition-all group"
+        >
+          <div class="w-10 h-10 rounded-full overflow-hidden">
+            <img
+              src="https://ui-avatars.com/api/?name=Aluno&background=000&color=fff"
+              alt="Avatar"
+            />
+          </div>
+          <div class="text-left">
+            <p class="text-sm font-bold">Aluno</p>
+            <p
+              class="text-[10px] font-black uppercase tracking-widest text-[var(--text-secondary)]"
+            >
+              Ver Perfil
+            </p>
+          </div>
+        </button>
+
+        <!-- Dropdown Menu -->
+        <div
+          id="profile-dropdown"
+          class="absolute bottom-full left-4 mb-2 w-48 bg-[var(--card)] border border-[var(--border-soft)] rounded-2xl shadow-xl hidden z-50 overflow-hidden"
+        >
+          <button
+            onclick="logout()"
+            class="w-full flex items-center gap-3 px-5 py-4 text-sm font-bold text-red-600 hover:bg-red-50 transition-colors"
+          >
+            <span class="material-symbols-outlined text-lg">logout</span>
+            Sair
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="flex-grow md:ml-[260px] flex flex-col min-h-screen">
+      <header class="md:hidden sticky top-0 bg-[var(--card)]/80 backdrop-blur-md border-b border-[var(--border-soft)] h-16 flex items-center px-6 z-40">
+        <h1 class="text-sm font-black tracking-widest uppercase">
+          Campus<span class="font-light">Connect</span>
+        </h1>
+      </header>
+
+      <main class="max-w-4xl mx-auto w-full px-6 py-10 md:py-20 space-y-16 flex-grow">
+        <header class="flex flex-col md:flex-row md:items-center justify-between gap-8">
+          <div class="space-y-2">
+            <h2 class="text-3xl md:text-5xl font-black tracking-tighter text-black">Meus Chamados</h2>
+            <p class="text-[var(--text-secondary)] font-medium text-lg">Gerencie suas solicitações de manutenção e serviços.</p>
+          </div>
+          <button data-action data-action-type="novo-chamado" data-action-title="Novo Chamado" class="bg-[var(--accent)] text-white px-8 py-4 rounded-2xl font-bold text-sm tracking-tight hover:shadow-2xl hover:shadow-black/20 transition-all active:scale-95 flex items-center justify-center gap-3">
+            <span class="material-symbols-outlined">add_circle</span>
+            Novo Chamado
+          </button>
+        </header>
+
+        <section class="space-y-6">
+          <div class="flex items-center gap-4 p-6 bg-[#f9f9f9] border border-[var(--border-soft)] rounded-[32px]">
+            <div class="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-black">
+              <span class="material-symbols-outlined">info</span>
+            </div>
+            <p class="text-sm font-medium text-[var(--text-secondary)]" id="chamados-count-text">Carregando chamados...</p>
+          </div>
+
+          <div class="space-y-4" id="chamados-list">
+            <div class="p-12 text-center space-y-4">
+              <div class="animate-spin inline-block w-8 h-8 border-4 border-[var(--accent)] border-t-transparent rounded-full"></div>
+              <p class="text-[var(--text-secondary)] font-bold">Buscando solicitações...</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Modal (Reusable) -->
+    <div class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/60 p-4 backdrop-blur-sm" data-action-modal aria-hidden="true">
+      <div class="bg-white rounded-[40px] shadow-2xl w-full max-w-lg overflow-hidden animate-in fade-in zoom-in duration-300" role="dialog" aria-modal="true">
+        <div class="pt-8 px-8 pb-4 border-b border-gray-50">
+          <div class="flex items-center justify-between mb-1">
+            <h3 class="text-2xl font-black tracking-tight" data-action-modal-title>Detalhes</h3>
+            <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-50 transition-colors" type="button" data-action-modal-close>
+              <span class="material-symbols-outlined text-[var(--text-secondary)]">close</span>
+            </button>
+          </div>
+          <p class="text-sm font-medium text-[var(--text-secondary)]" data-action-modal-subtitle></p>
+        </div>
+        <div class="px-8 pt-6 pb-2">
+            <div class="text-sm font-medium text-[var(--text-secondary)]" data-action-modal-content></div>
+            <p class="text-xs font-bold text-red-500 hidden bg-red-50 p-4 rounded-2xl mt-4" data-action-modal-alert></p>
+        </div>
+        <div class="flex items-center justify-end gap-3 p-8">
+            <button class="px-6 py-3 text-sm font-bold text-red-500 hover:bg-red-50 rounded-xl transition-colors hidden" type="button" data-action-modal-delete>Cancelar Chamado</button>
+            <button class="px-6 py-3 text-sm font-bold text-[var(--text-secondary)] hover:text-black transition-colors" type="button" data-action-modal-cancel>Cancelar</button>
+            <button class="px-8 py-3 bg-[var(--accent)] text-white rounded-2xl text-sm font-bold hover:shadow-xl hover:shadow-black/20 transition-all" type="button" data-action-modal-confirm>Confirmar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div class="fixed inset-0 z-[110] hidden items-center justify-center bg-black/60 p-4 backdrop-blur-sm" data-confirm-modal aria-hidden="true">
+      <div class="bg-white rounded-[40px] shadow-2xl w-full max-w-sm overflow-hidden animate-in fade-in zoom-in duration-300" role="dialog" aria-modal="true">
+        <div class="p-8 text-center space-y-6">
+          <div class="w-20 h-20 bg-red-50 text-red-500 rounded-full flex items-center justify-center mx-auto">
+            <span class="material-symbols-outlined text-4xl">warning</span>
+          </div>
+          <div class="space-y-2">
+            <h3 class="text-xl font-black tracking-tight">Confirmar Cancelamento</h3>
+            <p class="text-sm text-[var(--text-secondary)] font-medium">Esta ação não pode ser desfeita. Deseja realmente prosseguir?</p>
+          </div>
+          <div class="flex flex-col gap-3 pt-2">
+            <button class="w-full py-4 bg-red-500 text-white rounded-2xl text-sm font-bold hover:bg-red-600 transition-all" data-confirm-yes>Sim, Cancelar</button>
+            <button class="w-full py-4 bg-gray-50 text-[var(--text-secondary)] rounded-2xl text-sm font-bold hover:text-black transition-all" data-confirm-no>Não, Voltar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="md:hidden fixed bottom-0 left-0 w-full bg-[var(--card)] border-t border-[var(--border-soft)] flex justify-around items-center h-16 z-50 px-4">
+      <a href="index.html" class="flex flex-col items-center justify-center gap-1 text-[var(--text-secondary)]">
+        <span class="material-symbols-outlined text-[28px]">home</span>
+      </a>
+      <a href="chamados.html" class="flex flex-col items-center justify-center gap-1 text-black">
+        <span class="material-symbols-outlined text-[28px]">confirmation_number</span>
+      </a>
+      <a href="reservas.html" class="flex flex-col items-center justify-center gap-1 text-[var(--text-secondary)]">
+        <span class="material-symbols-outlined text-[28px]">event_available</span>
+      </a>
+      <a href="cardapio.html" class="flex flex-col items-center justify-center gap-1 text-[var(--text-secondary)]">
+        <span class="material-symbols-outlined text-[28px]">restaurant_menu</span>
+      </a>
+      <a href="calendario.html" class="flex flex-col items-center justify-center gap-1 text-[var(--text-secondary)]">
+        <span class="material-symbols-outlined text-[28px]">calendar_today</span>
+      </a>
+    </nav>
+
+    <script>
+      (() => {
+        const actionModal = document.querySelector("[data-action-modal]");
+        const actionTitle = document.querySelector("[data-action-modal-title]");
+        const actionSubtitle = document.querySelector("[data-action-modal-subtitle]");
+        const actionContent = document.querySelector("[data-action-modal-content]");
+        const actionAlert = document.querySelector("[data-action-modal-alert]");
+        const actionConfirm = document.querySelector("[data-action-modal-confirm]");
+        const actionDelete = document.querySelector("[data-action-modal-delete]");
+        
+        const confirmModal = document.querySelector("[data-confirm-modal]");
+        const confirmYes = document.querySelector("[data-confirm-yes]");
+        const confirmNo = document.querySelector("[data-confirm-no]");
+
+        const chamadosList = document.getElementById("chamados-list");
+        const chamadosCountText = document.getElementById("chamados-count-text");
+        let currentChamados = [];
+
+        const loadChamados = async () => {
+          try {
+            const response = await fetch("http://localhost:3333/api/chamados");
+            if (!response.ok) throw new Error();
+            currentChamados = await response.json();
+            renderChamados(currentChamados);
+          } catch (error) {
+            chamadosList.innerHTML = `<p class="text-center p-12 text-[var(--text-secondary)] font-bold">Erro ao conectar com o servidor.</p>`;
+          }
+        };
+
+        const renderChamados = (chamados) => {
+          if (chamados.length === 0) {
+            chamadosCountText.innerHTML = "Você não tem <span class='font-black text-black'>nenhum chamado</span> ativo.";
+            chamadosList.innerHTML = `<div class="p-12 text-center bg-gray-50 rounded-[40px] border-2 border-dashed border-[var(--border-soft)]"><p class="text-[var(--text-secondary)] font-bold">Nenhum chamado encontrado.</p></div>`;
+            return;
+          }
+          chamadosCountText.innerHTML = `Você tem <span class="font-black text-black">${chamados.length} chamado${chamados.length > 1 ? "s" : ""}</span> ativo${chamados.length > 1 ? "s" : ""} no momento.`;
+          chamadosList.innerHTML = chamados.map(c => {
+             const date = new Date(c.criadoEm).toLocaleDateString('pt-BR');
+             const statusColor = c.status === "Em análise" ? "bg-yellow-50 text-yellow-700" : "bg-green-50 text-green-700";
+             return `
+              <div class="p-8 bg-white border border-[var(--border-soft)] rounded-[32px] hover:border-[var(--accent)]/10 transition-all flex items-center justify-between group">
+                <div class="flex items-center gap-6">
+                  <div class="w-16 h-16 rounded-2xl bg-gray-50 flex items-center justify-center text-black">
+                    <span class="material-symbols-outlined text-3xl">build</span>
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-3 mb-1">
+                      <h4 class="font-black text-lg">${c.titulo}</h4>
+                      <span class="px-3 py-1 ${statusColor} text-[10px] font-black uppercase tracking-widest rounded-full">${c.status || "Em análise"}</span>
+                    </div>
+                    <p class="text-sm text-[var(--text-secondary)] font-medium">${c.local || "Campus"} • Aberto em ${date}</p>
+                  </div>
+                </div>
+                <button onclick="window.openTicketDetails('${c.id}')" class="px-6 py-3 border border-[var(--border-soft)] rounded-xl text-sm font-bold hover:bg-gray-50 transition-colors">Ver Detalhes</button>
+              </div>
+             `;
+          }).join("");
+        };
+
+        window.openTicketDetails = (id) => {
+          const c = currentChamados.find(i => i.id === id);
+          if (!c) return;
+          actionTitle.textContent = "Detalhes do Chamado";
+          actionSubtitle.textContent = `ID: ${c.id.substring(0,8).toUpperCase()}`;
+          
+          const cancelBtn = actionModal.querySelector("[data-action-modal-cancel]");
+          if (cancelBtn) cancelBtn.classList.add("hidden");
+          
+          if (actionDelete) {
+            actionDelete.classList.remove("hidden");
+            actionDelete.onclick = () => showConfirmation(c.id);
+          }
+
+          actionConfirm.textContent = "Fechar";
+          actionConfirm.onclick = closeActionModal;
+
+          actionContent.innerHTML = `
+            <div class="space-y-6">
+              <div><label class="text-[10px] font-black uppercase text-[var(--text-secondary)]">Assunto</label><p class="text-lg font-black">${c.titulo}</p></div>
+              <div><label class="text-[10px] font-black uppercase text-[var(--text-secondary)]">Local</label><p class="font-bold">${c.local || "Não informado"}</p></div>
+              <div><label class="text-[10px] font-black uppercase text-[var(--text-secondary)]">Descrição</label><p class="text-sm text-[var(--text-secondary)] bg-gray-50 p-4 rounded-2xl mt-2">${c.descricao}</p></div>
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-yellow-400 animate-pulse"></span>
+                <p class="text-[10px] font-black uppercase tracking-widest text-black">Status: ${c.status || "Em análise"}</p>
+              </div>
+            </div>
+          `;
+          actionModal.classList.remove("hidden");
+          actionModal.classList.add("flex");
+          document.body.classList.add("overflow-hidden");
+        };
+
+        const showConfirmation = (id) => {
+          confirmModal.classList.remove("hidden");
+          confirmModal.classList.add("flex");
+          confirmNo.onclick = () => { confirmModal.classList.add("hidden"); confirmModal.classList.remove("flex"); };
+          confirmYes.onclick = async () => {
+            confirmYes.disabled = true;
+            try {
+              const res = await fetch(`http://localhost:3333/api/chamados/${id}`, { method: "DELETE" });
+              if (!res.ok) throw new Error();
+              confirmModal.classList.add("hidden");
+              confirmYes.disabled = false;
+              closeActionModal();
+              loadChamados();
+            } catch (e) {
+              alert("Erro ao cancelar.");
+              confirmYes.disabled = false;
+            }
+          };
+        };
+
+        const closeActionModal = () => {
+          actionModal.classList.add("hidden");
+          actionModal.classList.remove("flex");
+          document.body.classList.remove("overflow-hidden");
+        };
+
+        const openActionModal = (button) => {
+          const type = button.getAttribute("data-action-type");
+          if (type !== "novo-chamado") return;
+          
+          actionTitle.textContent = "Novo Chamado";
+          actionSubtitle.textContent = "Selecione o problema e informe o local.";
+          
+          const cancelBtn = actionModal.querySelector("[data-action-modal-cancel]");
+          if (cancelBtn) cancelBtn.classList.remove("hidden");
+          if (actionDelete) actionDelete.classList.add("hidden");
+
+          actionConfirm.textContent = "Abrir Chamado";
+          actionConfirm.onclick = handleCreate;
+
+          actionContent.innerHTML = `
+            <form id="create-form" class="space-y-4">
+              <div class="space-y-2">
+                <label class="text-[10px] font-black uppercase tracking-widest text-[var(--text-secondary)] ml-1">Categoria da Falha</label>
+                <select name="categoria" id="categoria-select" class="w-full rounded-2xl border-none bg-gray-50 p-4 font-bold focus:ring-2 focus:ring-[var(--accent)]" required>
+                  <option value="" disabled selected>Selecione uma opção...</option>
+                  <option value="Lâmpada Queimada">Lâmpada Queimada / Elétrica</option>
+                  <option value="Vazamento / Hidráulica">Vazamento / Hidráulica</option>
+                  <option value="Ar Condicionado">Problema no Ar Condicionado</option>
+                  <option value="Limpeza">Solicitação de Limpeza</option>
+                  <option value="Mobiliário">Mobiliário (Mesa/Cadeira)</option>
+                  <option value="Internet / Rede">Internet / Rede</option>
+                  <option value="OUTROS">OUTROS (Especificar...)</option>
+                </select>
+              </div>
+
+              <div id="outros-container" class="space-y-2 hidden">
+                <label class="text-[10px] font-black uppercase tracking-widest text-[var(--text-secondary)] ml-1">Especifique o Problema</label>
+                <input name="titulo_custom" id="titulo-custom" placeholder="Descreva brevemente o assunto" class="w-full rounded-2xl border-none bg-gray-50 p-4 font-bold focus:ring-2 focus:ring-[var(--accent)]" />
+              </div>
+
+              <div class="space-y-2">
+                <label class="text-[10px] font-black uppercase tracking-widest text-[var(--text-secondary)] ml-1">Bloco / Local</label>
+                <input name="local" placeholder="Ex: Bloco A, Sala 204" class="w-full rounded-2xl border-none bg-gray-50 p-4 font-bold focus:ring-2 focus:ring-[var(--accent)]" required />
+              </div>
+
+              <div class="space-y-2">
+                <label class="text-[10px] font-black uppercase tracking-widest text-[var(--text-secondary)] ml-1">Descrição Detalhada</label>
+                <textarea name="descricao" placeholder="Explique o que está acontecendo..." class="w-full rounded-2xl border-none bg-gray-50 p-4 font-bold focus:ring-2 focus:ring-[var(--accent)]" rows="3" required></textarea>
+              </div>
+            </form>
+          `;
+
+          const select = document.getElementById("categoria-select");
+          const outrosContainer = document.getElementById("outros-container");
+          const tituloCustom = document.getElementById("titulo-custom");
+
+          select.addEventListener("change", () => {
+            if (select.value === "OUTROS") {
+              outrosContainer.classList.remove("hidden");
+              tituloCustom.required = true;
+            } else {
+              outrosContainer.classList.add("hidden");
+              tituloCustom.required = false;
+            }
+          });
+
+          actionModal.classList.remove("hidden");
+          actionModal.classList.add("flex");
+        };
+
+        const handleCreate = async () => {
+          const form = document.getElementById("create-form");
+          const inputs = form.querySelectorAll("[required]");
+          let hasError = false;
+
+          // Clear previous errors
+          form.querySelectorAll(".error-msg").forEach(e => e.remove());
+
+          inputs.forEach(input => {
+            if (!input.value.trim() && !input.closest(".hidden")) {
+              hasError = true;
+              const error = document.createElement("span");
+              error.className = "error-msg text-[10px] font-bold text-red-500 mt-1 ml-1 block";
+              error.textContent = "Preencha este campo";
+              input.parentNode.appendChild(error);
+              
+              // Apply red border
+              input.style.boxShadow = "0 0 0 2px #ef4444";
+              
+              input.addEventListener("input", () => {
+                error.remove();
+                input.style.boxShadow = "";
+              }, { once: true });
+            }
+          });
+
+          if (hasError) return;
+
+          const formData = new FormData(form);
+          const data = Object.fromEntries(formData.entries());
+
+          if (data.categoria === "OUTROS") {
+            data.titulo = data.titulo_custom;
+          } else {
+            data.titulo = data.categoria;
+          }
+
+          try {
+            const res = await fetch("http://localhost:3333/api/chamados", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                titulo: data.titulo,
+                local: data.local,
+                descricao: data.descricao
+              })
+            });
+            if (!res.ok) throw new Error();
+            closeActionModal();
+            loadChamados();
+          } catch (e) { 
+            // We can add a toast here later if needed
+          }
+        };
+
+        document.querySelectorAll("[data-action]").forEach(b => b.addEventListener("click", () => openActionModal(b)));
+        [actionModal.querySelector("[data-action-modal-close]"), actionModal.querySelector("[data-action-modal-cancel]")].forEach(el => el.addEventListener("click", closeActionModal));
+        
+        loadChamados().then(() => {
+          const id = new URLSearchParams(window.location.search).get('id');
+          if (id) window.openTicketDetails(id);
+        });
+
+        // Profile Dropdown
+        window.toggleProfileDropdown = (e) => {
+          e.stopPropagation();
+          const dropdown = document.getElementById("profile-dropdown");
+          dropdown.classList.toggle("hidden");
+        };
+
+        window.logout = () => {
+          localStorage.removeItem("userRole");
+          window.location.href = "login.html";
+        };
+
+        // Close dropdown when clicking outside
+        document.addEventListener("click", (e) => {
+          const dropdown = document.getElementById("profile-dropdown");
+          const container = document.getElementById("profile-container");
+          if (
+            dropdown &&
+            !dropdown.classList.contains("hidden") &&
+            !container.contains(e.target)
+          ) {
+            dropdown.classList.add("hidden");
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

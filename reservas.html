@@ -1,0 +1,639 @@
+<!doctype html>
+<html class="light" lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Reservas - CampusConnect</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='0' y='0' width='100' height='100' fill='%23ffffff'/><path d='M20 50V20H80V80H50' stroke='%23000000' stroke-width='10' stroke-linecap='square' fill='none'/><path d='M40 40L60 60' stroke='%23000000' stroke-width='10' stroke-linecap='square'/><rect x='20' y='40' width='15' height='20' fill='%23ffffff'/></svg>"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#000000",
+              surface: "#ffffff",
+            },
+            borderRadius: {
+              xl: "0.75rem",
+              "2xl": "1rem",
+              "3xl": "1.5rem",
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      :root {
+        --bg: #f6f8ff;
+        --card: #ffffff;
+        --card-hover: #fafafa;
+        --border: #e5e7eb;
+        --border-soft: #f1f5f9;
+        --text-primary: #0f172a;
+        --text-secondary: #64748b;
+        --text-muted: #94a3b8;
+        --accent: #8b5cf6;
+        --accent-hover: #7c3aed;
+        --accent-soft: rgba(139, 92, 246, 0.12);
+        --success: #10b981;
+        --success-soft: rgba(16, 185, 129, 0.12);
+        --warning: #f59e0b;
+        --warning-soft: rgba(245, 158, 11, 0.12);
+        --danger: #ef4444;
+        --danger-soft: rgba(239, 68, 68, 0.12);
+        --info: #3b82f6;
+        --info-soft: rgba(59, 130, 246, 0.12);
+      }
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+      .logo-mark {
+        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .logo-container:hover .logo-mark {
+        transform: rotate(90deg);
+      }
+      .nav-item {
+        transition: all 0.2s ease;
+      }
+      .nav-item:hover {
+        background-color: var(--card-hover);
+      }
+      .nav-item.active {
+        background-color: var(--accent);
+        color: #ffffff;
+      }
+      .nav-item.active .material-symbols-outlined {
+        font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+      .sidebar-scroll::-webkit-scrollbar {
+        width: 4px;
+      }
+      .sidebar-scroll::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .sidebar-scroll::-webkit-scrollbar-thumb {
+        background: #e5e7eb;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body class="font-sans text-[var(--text-primary)] bg-[var(--bg)] selection:bg-[var(--accent)] selection:text-white min-h-screen flex">
+    <!-- Sidebar -->
+    <aside class="hidden md:flex flex-col w-[260px] h-screen border-r border-[var(--border-soft)] fixed left-0 top-0 bg-[var(--card)] z-50">
+      <div class="p-8">
+        <a href="index.html" class="flex items-center gap-3 logo-container group">
+          <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-mark">
+            <path d="M20 50V20H80V80H50" stroke="#000" stroke-width="12" stroke-linecap="square" />
+            <path d="M40 40L60 60" stroke="#000" stroke-width="12" stroke-linecap="square" />
+            <rect x="20" y="40" width="15" height="20" fill="white" />
+          </svg>
+          <h1 class="text-sm font-black tracking-widest uppercase">
+            Campus<span class="font-light">Connect</span>
+          </h1>
+        </a>
+      </div>
+
+      <nav class="flex-grow px-4 space-y-1 overflow-y-auto">
+        <a href="index.html" class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black transition-all">
+          <span class="material-symbols-outlined">home</span>
+          Início
+        </a>
+        <a href="chamados.html" class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black transition-all">
+          <span class="material-symbols-outlined">confirmation_number</span>
+          Chamados
+        </a>
+        <a href="reservas.html" class="nav-item active flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight transition-all">
+          <span class="material-symbols-outlined">event_available</span>
+          Espaços e Reservas
+        </a>
+        <a href="cardapio.html" class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black transition-all">
+          <span class="material-symbols-outlined">restaurant_menu</span>
+          Cardápio
+        </a>
+        <a href="historico.html" class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black transition-all">
+          <span class="material-symbols-outlined">history</span>
+          Histórico
+        </a>
+        <div class="pt-6 pb-2 px-4">
+          <span class="text-[10px] font-black uppercase tracking-[0.3em] text-[#475569]">Explorar</span>
+        </div>
+        <a href="mapa-campus.html" class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black transition-all">
+          <span class="material-symbols-outlined">map</span>
+          Mapa do Campus
+        </a>
+        <a href="calendario.html" class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black transition-all">
+          <span class="material-symbols-outlined">calendar_today</span>
+          Calendário
+        </a>
+      </nav>
+
+      <div class="p-4 mt-auto relative" id="profile-container">
+        <button
+          onclick="toggleProfileDropdown(event)"
+          class="flex items-center gap-4 w-full p-4 rounded-2xl hover:bg-gray-50 transition-all group"
+        >
+          <div
+            class="w-10 h-10 rounded-full overflow-hidden border-2 border-transparent group-hover:border-black transition-all"
+          >
+            <img
+              src="https://ui-avatars.com/api/?name=Aluno&background=000&color=fff"
+              alt="Avatar"
+            />
+          </div>
+          <div class="text-left">
+            <p class="text-sm font-bold">Aluno</p>
+            <p
+              class="text-[10px] font-black uppercase tracking-widest text-[#475569]"
+            >
+              Ver Perfil
+            </p>
+          </div>
+        </button>
+
+        <!-- Dropdown Menu -->
+        <div
+          id="profile-dropdown"
+          class="absolute bottom-full left-4 mb-2 w-48 bg-white border border-gray-100 rounded-2xl shadow-xl hidden z-50 overflow-hidden"
+        >
+          <button
+            onclick="logout()"
+            class="w-full flex items-center gap-3 px-5 py-4 text-sm font-bold text-red-600 hover:bg-red-50 transition-colors"
+          >
+            <span class="material-symbols-outlined text-lg">logout</span>
+            Sair
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="flex-grow md:ml-[260px] flex flex-col min-h-screen">
+      <main class="max-w-4xl mx-auto w-full px-6 py-10 md:py-20 space-y-12 flex-grow">
+        <header class="space-y-4">
+          <div class="space-y-2">
+            <h2 class="text-3xl md:text-5xl font-black tracking-tighter text-black">Explorar Espaços</h2>
+            <p class="text-[#475569] font-medium text-lg">Encontre e reserve o local ideal para sua atividade.</p>
+          </div>
+          
+          <!-- Search and Filter Bar -->
+          <div class="flex flex-col md:flex-row gap-4 pt-4">
+            <div class="relative flex-grow group">
+              <span class="material-symbols-outlined absolute left-5 top-1/2 -translate-y-1/2 text-[#475569] group-focus-within:text-black transition-colors">search</span>
+              <input type="text" id="space-search" placeholder="Buscar por sala, bloco ou nome..." class="w-full pl-14 pr-6 py-4 bg-[var(--border-soft)] border-none rounded-2xl font-bold text-sm focus:ring-2 focus:ring-[var(--accent)] transition-all" />
+            </div>
+            <div class="flex gap-2 overflow-x-auto pb-2 md:pb-0" id="filter-buttons">
+              <button data-filter="Mais Recentes" class="filter-btn active px-6 py-4 bg-[var(--accent)] text-white rounded-2xl text-xs font-black uppercase tracking-widest transition-all">Mais Recentes</button>
+              <button data-filter="Estudo" class="filter-btn px-6 py-4 bg-[var(--border-soft)] text-[#475569] hover:text-black rounded-2xl text-xs font-black uppercase tracking-widest transition-all">Estudo</button>
+              <button data-filter="Esportes" class="filter-btn px-6 py-4 bg-[var(--border-soft)] text-[#475569] hover:text-black rounded-2xl text-xs font-black uppercase tracking-widest transition-all">Esportes</button>
+              <button data-filter="Labs" class="filter-btn px-6 py-4 bg-[var(--border-soft)] text-[#475569] hover:text-black rounded-2xl text-xs font-black uppercase tracking-widest transition-all">Labs</button>
+            </div>
+          </div>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          <!-- Left: Space Catalog & My Reservations -->
+          <div class="lg:col-span-2 space-y-16">
+            <section class="grid grid-cols-1 sm:grid-cols-2 gap-6" id="space-catalog">
+              <!-- Dynamically populated -->
+            </section>
+
+            <section class="space-y-8 pt-8 border-t border-gray-50">
+              <h3 class="font-black text-xl tracking-tight">Minhas Reservas Ativas</h3>
+              <div class="space-y-4" id="reservas-list">
+                <div class="p-12 text-center">
+                  <div class="animate-spin inline-block w-6 h-6 border-4 border-[var(--accent)] border-t-transparent rounded-full"></div>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <!-- Right: Global Schedule -->
+          <aside class="space-y-8">
+            <h3 class="font-black text-xl tracking-tight">Ocupação do Campus</h3>
+            <div class="bg-black text-white p-10 rounded-[40px] space-y-8 shadow-2xl shadow-black/20">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <span class="material-symbols-outlined text-white/50">calendar_month</span>
+                  <span class="text-[10px] font-black uppercase tracking-widest text-white/50">Próximos dias</span>
+                </div>
+                <span class="w-2 h-2 rounded-full bg-green-500"></span>
+              </div>
+              <div class="space-y-8" id="agenda-global">
+                <p class="text-xs font-bold opacity-40 italic text-center py-4">Carregando agenda...</p>
+              </div>
+              <button onclick="window.location.href='calendario.html'" class="w-full py-4 bg-white/10 hover:bg-white/20 border border-white/5 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all">Calendário Acadêmico</button>
+            </div>
+
+            <!-- Promotion Card for large institutions -->
+            <div class="p-8 bg-blue-50 rounded-[40px] space-y-4">
+              <h4 class="font-black text-sm text-blue-900">Uso de Laboratórios</h4>
+              <p class="text-xs text-blue-800/70 font-medium leading-relaxed">Prioridade para grupos de pesquisa e monitorias. Consulte o coordenador do seu bloco.</p>
+              <div class="h-1 bg-blue-200 w-full rounded-full overflow-hidden">
+                <div class="h-full bg-blue-600 w-1/3"></div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </main>
+    </div>
+
+    <!-- Modal Component -->
+    <div class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/60 p-4 backdrop-blur-sm" data-action-modal aria-hidden="true">
+      <div class="bg-white rounded-[40px] shadow-2xl w-full max-lg overflow-hidden animate-in fade-in zoom-in duration-300" role="dialog" aria-modal="true">
+        <div class="pt-8 px-8 pb-4 border-b border-gray-50">
+          <div class="flex items-center justify-between mb-1">
+            <h3 class="text-2xl font-black tracking-tight" data-action-modal-title>Detalhes</h3>
+            <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-50 transition-colors" type="button" data-action-modal-close>
+              <span class="material-symbols-outlined text-[var(--text-secondary)]">close</span>
+            </button>
+          </div>
+          <p class="text-sm font-medium text-[var(--text-secondary)]" data-action-modal-subtitle></p>
+        </div>
+        <div class="px-8 pt-6 pb-2">
+          <div class="text-sm font-medium text-[var(--text-secondary)]" data-action-modal-content></div>
+          <p class="text-xs font-bold text-red-500 hidden bg-red-50 p-4 rounded-2xl mt-4" data-action-modal-alert></p>
+        </div>
+        <div class="flex items-center justify-end gap-3 p-8">
+          <button class="px-6 py-3 text-sm font-bold text-red-500 hover:bg-red-50 rounded-xl transition-colors hidden" type="button" data-action-modal-delete>Cancelar Reserva</button>
+          <button class="px-6 py-3 text-sm font-bold text-[var(--text-secondary)] hover:text-black transition-colors" type="button" data-action-modal-cancel>Cancelar</button>
+          <button class="px-8 py-3 bg-[var(--accent)] text-white rounded-2xl text-sm font-bold hover:shadow-xl hover:shadow-black/20 transition-all" type="button" data-action-modal-confirm>Confirmar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div class="fixed inset-0 z-[110] hidden items-center justify-center bg-black/60 p-4 backdrop-blur-sm" data-confirm-modal aria-hidden="true">
+      <div class="bg-white rounded-[40px] shadow-2xl w-full max-w-sm overflow-hidden animate-in fade-in zoom-in duration-300" role="dialog" aria-modal="true">
+        <div class="p-8 text-center space-y-6">
+          <div class="w-20 h-20 bg-red-50 text-red-500 rounded-full flex items-center justify-center mx-auto">
+            <span class="material-symbols-outlined text-4xl">warning</span>
+          </div>
+          <div class="space-y-2">
+            <h3 class="text-xl font-black tracking-tight">Confirmar Cancelamento</h3>
+            <p class="text-sm text-[var(--text-secondary)] font-medium">Esta ação liberará o espaço para outros alunos. Confirmar?</p>
+          </div>
+          <div class="flex flex-col gap-3 pt-2">
+            <button class="w-full py-4 bg-red-500 text-white rounded-2xl text-sm font-bold hover:bg-red-600 transition-all" data-confirm-yes>Sim, Cancelar</button>
+            <button class="w-full py-4 bg-gray-50 text-[var(--text-secondary)] rounded-2xl text-sm font-bold hover:text-black transition-all" data-confirm-no>Não, Voltar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="md:hidden fixed bottom-0 left-0 w-full bg-[var(--card)] border-t border-[var(--border-soft)] flex justify-around items-center h-16 z-50 px-4">
+      <a href="index.html" class="flex flex-col items-center justify-center gap-1 text-[var(--text-secondary)]">
+        <span class="material-symbols-outlined text-[28px]">home</span>
+      </a>
+      <a href="chamados.html" class="flex flex-col items-center justify-center gap-1 text-[var(--text-secondary)]">
+        <span class="material-symbols-outlined text-[28px]">confirmation_number</span>
+      </a>
+      <a href="reservas.html" class="flex flex-col items-center justify-center gap-1 text-black">
+        <span class="material-symbols-outlined text-[28px]">event_available</span>
+      </a>
+      <a href="cardapio.html" class="flex flex-col items-center justify-center gap-1 text-[var(--text-secondary)]">
+        <span class="material-symbols-outlined text-[28px]">restaurant_menu</span>
+      </a>
+      <a href="calendario.html" class="flex flex-col items-center justify-center gap-1 text-[var(--text-secondary)]">
+        <span class="material-symbols-outlined text-[28px]">calendar_today</span>
+      </a>
+    </nav>
+
+    <script>
+      (() => {
+        const actionModal = document.querySelector("[data-action-modal]");
+        const actionTitle = document.querySelector("[data-action-modal-title]");
+        const actionSubtitle = document.querySelector("[data-action-modal-subtitle]");
+        const actionContent = document.querySelector("[data-action-modal-content]");
+        const actionAlert = document.querySelector("[data-action-modal-alert]");
+        const actionConfirm = document.querySelector("[data-action-modal-confirm]");
+        const actionDelete = document.querySelector("[data-action-modal-delete]");
+        
+        const confirmModal = document.querySelector("[data-confirm-modal]");
+        const confirmYes = document.querySelector("[data-confirm-yes]");
+        const confirmNo = document.querySelector("[data-confirm-no]");
+
+        const reservasList = document.getElementById("reservas-list");
+        const agendaGlobal = document.getElementById("agenda-global");
+        const spaceCatalog = document.getElementById("space-catalog");
+        const searchInput = document.getElementById("space-search");
+        const filterButtons = document.querySelectorAll(".filter-btn");
+        
+        let currentReservas = [];
+        let activeFilter = "Mais Recentes";
+
+        const spaces = [
+          { id: 1, name: "Quadra Poliesportiva", category: "Esportes", location: "Bloco de Esportes • Externo", icon: "sports_soccer", status: "Livre" },
+          { id: 4, name: "Sala de Estudo B", category: "Estudo", location: "Bloco Central • 2º Andar", icon: "menu_book", status: "Livre" }
+        ];
+
+        const renderCatalog = () => {
+          const searchTerm = searchInput.value.toLowerCase();
+          const filtered = spaces.filter(s => {
+            const matchesFilter = activeFilter === "Mais Recentes" || s.category === activeFilter;
+            const matchesSearch = s.name.toLowerCase().includes(searchTerm) || s.location.toLowerCase().includes(searchTerm);
+            return matchesFilter && matchesSearch;
+          });
+
+          if (filtered.length === 0) {
+            spaceCatalog.innerHTML = `<div class="col-span-full py-12 text-center text-[#475569] font-bold">Nenhum espaço encontrado.</div>`;
+            return;
+          }
+
+          spaceCatalog.innerHTML = filtered.map(s => {
+            const statusClass = s.status === "Livre" ? "bg-green-50 text-green-600" : "bg-yellow-50 text-yellow-600";
+            const pulse = s.status === "Livre" ? '<span class="w-1.5 h-1.5 rounded-full bg-green-600 animate-pulse"></span>' : '<span class="w-1.5 h-1.5 rounded-full bg-yellow-600"></span>';
+            
+            return `
+              <div class="p-8 bg-white border border-[var(--border)] rounded-[32px] hover:border-[var(--accent)]/10 hover:shadow-xl hover:shadow-black/5 transition-all group relative overflow-hidden">
+                <div class="absolute top-6 right-6 flex items-center gap-1.5 px-3 py-1 ${statusClass} rounded-full">
+                  ${pulse}
+                  <span class="text-[10px] font-black uppercase tracking-widest">${s.status}</span>
+                </div>
+                <div class="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center text-black mb-6">
+                  <span class="material-symbols-outlined text-2xl">${s.icon}</span>
+                </div>
+                <h4 class="font-black text-lg mb-1">${s.name}</h4>
+                <p class="text-xs text-[#475569] font-bold uppercase tracking-wider mb-6">${s.location}</p>
+                <button data-action data-action-type="nova-reserva" data-action-title="Reserva: ${s.name}" class="w-full py-4 bg-[var(--accent)] text-white rounded-2xl text-sm font-bold hover:scale-[1.02] active:scale-95 transition-all" onclick="openActionModalFromElement(this)">
+                  ${s.status === "Livre" ? "Reservar Agora" : "Reservar Horário"}
+                </button>
+              </div>
+            `;
+          }).join("");
+        };
+
+        window.openActionModalFromElement = (el) => {
+          openActionModal(el);
+        };
+
+        searchInput.addEventListener("input", renderCatalog);
+        filterButtons.forEach(btn => {
+          btn.addEventListener("click", () => {
+            filterButtons.forEach(b => {
+              b.classList.remove("active", "bg-[var(--accent)]", "text-white");
+              b.classList.add("bg-[var(--border-soft)]", "text-[#475569]");
+            });
+            btn.classList.add("active", "bg-[var(--accent)]", "text-white");
+            btn.classList.remove("bg-[var(--border-soft)]", "text-[#475569]");
+            activeFilter = btn.getAttribute("data-filter");
+            renderCatalog();
+          });
+        });
+
+        const loadReservas = async () => {
+          try {
+            const response = await fetch("http://localhost:3333/api/reservas");
+            if (!response.ok) throw new Error();
+            currentReservas = await response.json();
+            renderReservas(currentReservas);
+            renderAgenda(currentReservas);
+          } catch (error) {
+            console.error(error);
+          }
+        };
+
+        const renderReservas = (reservas) => {
+          if (reservas.length === 0) {
+            reservasList.innerHTML = `<p class="text-[#475569] font-bold p-8 border-2 border-dashed border-[var(--border-soft)] rounded-[32px] text-center">Nenhum agendamento realizado.</p>`;
+            return;
+          }
+          reservasList.innerHTML = reservas.map(res => {
+            let icon = "event_available";
+            if (res.local.toLowerCase().includes("quadra")) icon = "sports_soccer";
+            if (res.local.toLowerCase().includes("sala")) icon = "menu_book";
+            return `
+              <div class="p-6 bg-white border border-[var(--border-soft)] rounded-[28px] flex items-center justify-between hover:bg-gray-50 transition-all cursor-pointer group" onclick="window.openDetails('${res.id}')">
+                <div class="flex items-center gap-6">
+                  <div class="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center text-black">
+                    <span class="material-symbols-outlined text-2xl">${icon}</span>
+                  </div>
+                  <div>
+                    <h4 class="font-black text-base">${res.local}</h4>
+                    <p class="text-[11px] text-[#475569] font-black uppercase tracking-wider mt-1">${res.data} às ${res.horario}</p>
+                  </div>
+                </div>
+                <button class="px-4 py-2 text-[10px] font-black uppercase tracking-widest border border-[var(--border-soft)] rounded-lg hover:bg-black hover:text-white transition-all">Detalhes</button>
+              </div>
+            `;
+          }).join("");
+        };
+
+        const renderAgenda = (reservas) => {
+          const dates = [...new Set(reservas.map(r => r.data))].sort().slice(0, 4);
+          if (dates.length === 0) {
+            agendaGlobal.innerHTML = `<p class="text-xs font-bold opacity-40 italic">Sem eventos próximos.</p>`;
+            return;
+          }
+          agendaGlobal.innerHTML = dates.map(date => {
+            const bookings = reservas.filter(r => r.data === date);
+            return `
+              <div class="space-y-4">
+                <p class="text-[10px] font-black uppercase tracking-[0.2em] text-white/40">${date}</p>
+                <div class="space-y-3">
+                  ${bookings.map(b => `<div class="flex items-center justify-between"><span class="text-xs font-black text-white/90">${b.local}</span><span class="text-[10px] font-black text-white/50">${b.horario.split(' - ')[0]}</span></div>`).join("")}
+                </div>
+              </div>
+            `;
+          }).join('<div class="h-[1px] bg-white/10 w-full my-4"></div>');
+        };
+
+        window.openDetails = (id) => {
+          const res = currentReservas.find(r => r.id === id);
+          if (!res) return;
+          actionTitle.textContent = "Detalhes da Reserva";
+          actionSubtitle.textContent = `Protocolo #${id.substring(0, 5).toUpperCase()}`;
+          if (actionDelete) {
+            actionDelete.classList.remove("hidden");
+            actionDelete.onclick = () => showConfirmation(res.id);
+          }
+          actionConfirm.textContent = "Fechar";
+          actionConfirm.onclick = closeActionModal;
+          const cancelBtn = actionModal.querySelector("[data-action-modal-cancel]");
+          if (cancelBtn) cancelBtn.classList.add("hidden");
+
+          actionContent.innerHTML = `
+            <div class="space-y-6">
+              <div class="grid grid-cols-2 gap-6">
+                <div><label class="text-[10px] font-black uppercase text-[#475569]">Local</label><p class="font-black text-black">${res.local}</p></div>
+                <div><label class="text-[10px] font-black uppercase text-[#475569]">Data</label><p class="font-black text-black">${res.data}</p></div>
+              </div>
+              <div><label class="text-[10px] font-black uppercase text-[#475569]">Horário</label><p class="text-xl font-black text-black">${res.horario}</p></div>
+              <div><label class="text-[10px] font-black uppercase text-[#475569]">Atividade</label><p class="text-sm text-[#475569] bg-gray-50 p-4 rounded-2xl mt-2 font-bold">${res.obs || "Nenhuma observação."}</p></div>
+            </div>
+          `;
+          actionModal.classList.remove("hidden");
+          actionModal.classList.add("flex");
+          document.body.classList.add("overflow-hidden");
+        };
+
+        const showConfirmation = (id) => {
+          confirmModal.classList.remove("hidden");
+          confirmModal.classList.add("flex");
+          confirmNo.onclick = () => { confirmModal.classList.add("hidden"); confirmModal.classList.remove("flex"); };
+          confirmYes.onclick = async () => {
+            confirmYes.disabled = true;
+            try {
+              const res = await fetch(`http://localhost:3333/api/reservas/${id}`, { method: "DELETE" });
+              if (!res.ok) throw new Error();
+              confirmModal.classList.add("hidden");
+              confirmYes.disabled = false;
+              closeActionModal();
+              loadReservas();
+            } catch (e) { alert("Erro ao cancelar."); confirmYes.disabled = false; }
+          };
+        };
+
+        const closeActionModal = () => {
+          actionModal.classList.add("hidden");
+          actionModal.classList.remove("flex");
+          document.body.classList.remove("overflow-hidden");
+        };
+
+        const openActionModal = (button) => {
+          const type = button.getAttribute("data-action-type");
+          if (type !== "nova-reserva") return;
+          const title = button.getAttribute("data-action-title") || "Nova Reserva";
+
+          actionTitle.textContent = "Confirmar Agendamento";
+          actionSubtitle.textContent = "Preencha os dados finais.";
+          const cancelBtn = actionModal.querySelector("[data-action-modal-cancel]");
+          if (cancelBtn) cancelBtn.classList.remove("hidden");
+          if (actionDelete) actionDelete.classList.add("hidden");
+          
+          actionConfirm.textContent = "Finalizar Reserva";
+          actionConfirm.onclick = handleCreate;
+          
+          actionContent.innerHTML = `
+            <form id="res-form" class="space-y-4">
+              <div class="space-y-2">
+                <label class="text-[10px] font-black uppercase tracking-widest text-[#475569] ml-1">Espaço Selecionado</label>
+                <select name="local" id="espaco-select" class="w-full rounded-2xl border-none bg-gray-50 p-4 font-bold focus:ring-2 focus:ring-[var(--accent)] transition-all">
+                    <option value="Quadra Poliesportiva">Quadra Poliesportiva</option>
+                    <option value="Sala de Estudo A">Sala de Estudo A</option>
+                    <option value="Sala de Estudo B">Sala de Estudo B</option>
+                    <option value="Laboratório 01">Laboratório 01</option>
+                </select>
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+                <div class="space-y-2">
+                    <label class="text-[10px] font-black uppercase tracking-widest text-[#475569] ml-1">Data</label>
+                    <input type="date" name="data" class="w-full rounded-2xl border-none bg-gray-50 p-4 font-bold transition-all focus:ring-2 focus:ring-[var(--accent)]" required />
+                </div>
+                <div class="space-y-2">
+                    <label class="text-[10px] font-black uppercase tracking-widest text-[#475569] ml-1">Horário</label>
+                    <select name="horario" class="w-full rounded-2xl border-none bg-gray-50 p-4 font-bold transition-all focus:ring-2 focus:ring-[var(--accent)]">
+                        <option value="08:00 - 10:00">08:00 - 10:00</option>
+                        <option value="10:00 - 12:00">10:00 - 12:00</option>
+                        <option value="14:00 - 16:00">14:00 - 16:00</option>
+                        <option value="16:00 - 18:00">16:00 - 18:00</option>
+                    </select>
+                </div>
+              </div>
+              <div class="space-y-2">
+                <label class="text-[10px] font-black uppercase tracking-widest text-[#475569] ml-1">Finalidade (Opcional)</label>
+                <input name="obs" placeholder="Ex: Treino de Vôlei" class="w-full rounded-2xl border-none bg-gray-50 p-4 font-bold transition-all focus:ring-2 focus:ring-[var(--accent)]" />
+              </div>
+            </form>
+          `;
+
+          const select = document.getElementById("espaco-select");
+          if (title.includes("Quadra")) select.value = "Quadra Poliesportiva";
+          if (title.includes("Sala B")) select.value = "Sala de Estudo B";
+
+          actionModal.classList.remove("hidden");
+          actionModal.classList.add("flex");
+        };
+
+        const handleCreate = async () => {
+          const form = document.getElementById("res-form");
+          const inputs = form.querySelectorAll("[required]");
+          let hasError = false;
+
+          // Clear previous errors
+          form.querySelectorAll(".error-msg").forEach(e => e.remove());
+
+          inputs.forEach(input => {
+            if (!input.value.trim()) {
+              hasError = true;
+              const error = document.createElement("span");
+              error.className = "error-msg text-[10px] font-bold text-red-500 mt-1 ml-1 block";
+              error.textContent = "Preencha este campo";
+              input.parentNode.appendChild(error);
+              
+              // Apply red border
+              input.style.boxShadow = "0 0 0 2px #ef4444";
+              
+              input.addEventListener("input", () => {
+                error.remove();
+                input.style.boxShadow = "";
+              }, { once: true });
+            }
+          });
+
+          if (hasError) return;
+
+          const data = Object.fromEntries(new FormData(form).entries());
+          try {
+            const res = await fetch("http://localhost:3333/api/reservas", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(data)
+            });
+            if (!res.ok) throw new Error();
+            closeActionModal();
+            loadReservas();
+          } catch (e) { 
+            console.error(e);
+          }
+        };
+
+        document.querySelectorAll("[data-action]").forEach(b => b.addEventListener("click", () => openActionModal(b)));
+        [actionModal.querySelector("[data-action-modal-close]"), actionModal.querySelector("[data-action-modal-cancel]")].forEach(el => el.addEventListener("click", closeActionModal));
+        
+        loadReservas().then(() => {
+          renderCatalog();
+          const id = new URLSearchParams(window.location.search).get('id');
+          if (id) window.openDetails(id);
+        });
+
+        // Profile Dropdown
+        window.toggleProfileDropdown = (e) => {
+          e.stopPropagation();
+          const dropdown = document.getElementById("profile-dropdown");
+          dropdown.classList.toggle("hidden");
+        };
+
+        window.logout = () => {
+          localStorage.removeItem("userRole");
+          window.location.href = "login.html";
+        };
+
+        // Close dropdown when clicking outside
+        document.addEventListener("click", (e) => {
+          const dropdown = document.getElementById("profile-dropdown");
+          const container = document.getElementById("profile-container");
+          if (
+            dropdown &&
+            !dropdown.classList.contains("hidden") &&
+            !container.contains(e.target)
+          ) {
+            dropdown.classList.add("hidden");
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

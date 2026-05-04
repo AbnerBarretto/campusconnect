@@ -1,0 +1,382 @@
+<!doctype html>
+<html class="light" lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Cardápio - CampusConnect</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='0' y='0' width='100' height='100' fill='%23ffffff'/><path d='M20 50V20H80V80H50' stroke='%23000000' stroke-width='10' stroke-linecap='square' fill='none'/><path d='M40 40L60 60' stroke='%23000000' stroke-width='10' stroke-linecap='square'/><rect x='20' y='40' width='15' height='20' fill='%23ffffff'/></svg>"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#000000",
+              surface: "#ffffff",
+            },
+            borderRadius: {
+              xl: "0.75rem",
+              "2xl": "1rem",
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+      .logo-mark {
+        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .logo-container:hover .logo-mark {
+        transform: rotate(90deg);
+      }
+      .nav-item {
+        transition: all 0.2s ease;
+      }
+      .nav-item:hover {
+        background-color: #f3f4f6;
+      }
+      .nav-item.active {
+        background-color: #8b5cf6;
+        color: #ffffff;
+      }
+      .nav-item.active .material-symbols-outlined {
+        font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+    </style>
+  </head>
+  <body class="font-sans text-[#1a1c1c] bg-[#f6f8ff] min-h-screen flex">
+    <!-- Sidebar -->
+    <aside class="hidden md:flex flex-col w-[260px] h-screen border-r border-gray-100 fixed left-0 top-0 bg-white z-50">
+      <div class="p-8">
+        <a href="index.html" class="flex items-center gap-3 logo-container group">
+          <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-mark">
+            <path d="M20 50V20H80V80H50" stroke="#000" stroke-width="12" stroke-linecap="square" />
+            <path d="M40 40L60 60" stroke="#000" stroke-width="12" stroke-linecap="square" />
+            <rect x="20" y="40" width="15" height="20" fill="white" />
+          </svg>
+          <h1 class="text-sm font-black tracking-widest uppercase">
+            Campus<span class="font-light">Connect</span>
+          </h1>
+        </a>
+      </div>
+
+      <nav class="flex-grow px-4 space-y-1 overflow-y-auto">
+        <a href="index.html" class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black">
+          <span class="material-symbols-outlined">home</span>
+          Início
+        </a>
+        <a href="chamados.html" class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black">
+          <span class="material-symbols-outlined">confirmation_number</span>
+          Chamados
+        </a>
+        <a href="reservas.html" class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black">
+          <span class="material-symbols-outlined">event_available</span>
+          Espaços e Reservas
+        </a>
+        <a href="cardapio.html" class="nav-item active flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight">
+          <span class="material-symbols-outlined">restaurant_menu</span>
+          Cardápio
+        </a>
+        <a href="historico.html" class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black">
+          <span class="material-symbols-outlined">history</span>
+          Histórico
+        </a>
+        <div class="pt-6 pb-2 px-4">
+          <span class="text-[10px] font-black uppercase tracking-[0.3em] text-[#475569]">Explorar</span>
+        </div>
+        <a href="mapa-campus.html" class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black">
+          <span class="material-symbols-outlined">map</span>
+          Mapa do Campus
+        </a>
+        <a href="calendario.html" class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black">
+          <span class="material-symbols-outlined">calendar_today</span>
+          Calendário
+        </a>
+      </nav>
+
+      <div class="p-4 mt-auto relative" id="profile-container">
+        <button
+          onclick="toggleProfileDropdown(event)"
+          class="flex items-center gap-4 w-full p-4 rounded-2xl hover:bg-gray-50 transition-all group"
+        >
+          <div class="w-10 h-10 rounded-full overflow-hidden">
+            <img
+              src="https://ui-avatars.com/api/?name=Aluno&background=000&color=fff"
+              alt="Avatar"
+            />
+          </div>
+          <div class="text-left">
+            <p class="text-sm font-bold">Aluno</p>
+            <p
+              class="text-[10px] font-black uppercase tracking-widest text-[#475569]"
+            >
+              Ver Perfil
+            </p>
+          </div>
+        </button>
+
+        <!-- Dropdown Menu -->
+        <div
+          id="profile-dropdown"
+          class="absolute bottom-full left-4 mb-2 w-48 bg-white border-2 border-black rounded-2xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hidden z-50 overflow-hidden"
+        >
+          <button
+            onclick="logout()"
+            class="w-full flex items-center gap-3 px-5 py-4 text-sm font-bold text-red-600 hover:bg-red-50 transition-colors"
+          >
+            <span class="material-symbols-outlined text-lg">logout</span>
+            Sair
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="flex-grow md:ml-[260px] flex flex-col min-h-screen">
+      <main class="max-w-4xl mx-auto w-full px-6 py-10 md:py-20 space-y-12 flex-grow">
+        <header class="flex flex-col md:flex-row md:items-center justify-between gap-8">
+          <div class="space-y-2">
+            <h2 class="text-3xl md:text-5xl font-black tracking-tighter text-black">Cardápio do Dia</h2>
+            <p class="text-[#475569] font-medium text-lg">Confira as opções de refeições para hoje no campus.</p>
+          </div>
+          
+          <!-- Navegação de Dias -->
+          <div class="flex items-center bg-white border-2 border-black p-2 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+            <button onclick="changeDay(-1)" class="w-10 h-10 flex items-center justify-center hover:bg-black hover:text-white transition-colors">
+              <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+            <div class="px-6 text-center min-w-[140px]">
+              <p class="text-[10px] font-black uppercase tracking-widest text-[#475569]">Dia Selecionado</p>
+              <h3 id="current-day-display" class="font-black text-lg uppercase tracking-tight">Segunda-Feira</h3>
+            </div>
+            <button onclick="changeDay(1)" class="w-10 h-10 flex items-center justify-center hover:bg-black hover:text-white transition-colors">
+              <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+          </div>
+        </header>
+
+        <section class="space-y-8">
+          <div class="bg-white border-2 border-black rounded-none overflow-hidden shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse">
+                <thead>
+                  <tr class="border-b-2 border-black bg-black text-white">
+                    <th class="px-8 py-5 text-xs font-black uppercase tracking-widest">Refeição / Horário</th>
+                    <th class="px-8 py-5 text-xs font-black uppercase tracking-widest">Opções do Dia</th>
+                    <th class="px-8 py-5 text-xs font-black uppercase tracking-widest">Dieta</th>
+                    <th class="px-8 py-5 text-xs font-black uppercase tracking-widest">Status</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y-2 divide-black" id="cardapio-tbody">
+                  <!-- JS Inject -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <nav class="md:hidden fixed bottom-0 left-0 w-full bg-white border-t border-gray-100 flex justify-around items-center h-16 z-50 px-4">
+      <a href="index.html" class="flex flex-col items-center justify-center gap-1 text-[#475569]">
+        <span class="material-symbols-outlined text-[28px]">home</span>
+      </a>
+      <a href="chamados.html" class="flex flex-col items-center justify-center gap-1 text-[#475569]">
+        <span class="material-symbols-outlined text-[28px]">confirmation_number</span>
+      </a>
+      <a href="reservas.html" class="flex flex-col items-center justify-center gap-1 text-[#475569]">
+        <span class="material-symbols-outlined text-[28px]">event_available</span>
+      </a>
+      <a href="cardapio.html" class="flex flex-col items-center justify-center gap-1 text-[#8b5cf6]">
+        <span class="material-symbols-outlined text-[28px]">restaurant_menu</span>
+      </a>
+      <a href="calendario.html" class="flex flex-col items-center justify-center gap-1 text-[#475569]">
+        <span class="material-symbols-outlined text-[28px]">calendar_today</span>
+      </a>
+    </nav>
+
+    <script>
+      (() => {
+        const days = ["Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira"];
+        const menuData = {
+          "Segunda-Feira": [
+            { tipo: "CAFÉ", icone: "coffee", itens: "Pão na chapa, café com leite, frutas da estação", dieta: "NORMAL", cor: "bg-amber-500" },
+            { tipo: "ALMOÇO", icone: "sunny", itens: "Frango grelhado, arroz integral, feijão preto e legumes", dieta: "SEM GLÚTEN", cor: "bg-emerald-600" },
+            { tipo: "JANTAR", icone: "nights_stay", itens: "Sopa de legumes com torradas", dieta: "LEVE", cor: "bg-indigo-600" }
+          ],
+          "Terça-Feira": [
+            { tipo: "CAFÉ", icone: "coffee", itens: "Cuscuz com ovo, café e suco", dieta: "NORMAL", cor: "bg-amber-500" },
+            { tipo: "ALMOÇO", icone: "sunny", itens: "Bife acebolado, arroz branco, feijão carioca e farofa", dieta: "NORMAL", cor: "bg-amber-500" },
+            { tipo: "JANTAR", icone: "nights_stay", itens: "Macarrão ao sugo com manjericão", dieta: "VEGETARIANO", cor: "bg-indigo-600" }
+          ],
+          "Quarta-Feira": [
+            { tipo: "CAFÉ", icone: "coffee", itens: "Bolo de milho, café e iogurte", dieta: "NORMAL", cor: "bg-amber-500" },
+            { tipo: "ALMOÇO", icone: "sunny", itens: "Feijoada completa com couve e laranja", dieta: "NORMAL", cor: "bg-amber-500" },
+            { tipo: "JANTAR", icone: "nights_stay", itens: "Caldo verde com paio", dieta: "NORMAL", cor: "bg-amber-500" }
+          ],
+          "Quinta-Feira": [
+            { tipo: "CAFÉ", icone: "coffee", itens: "Tapioca com queijo, café e suco", dieta: "NORMAL", cor: "bg-amber-500" },
+            { tipo: "ALMOÇO", icone: "sunny", itens: "Peixe assado, pirão e arroz com brócolis", dieta: "NORMAL", cor: "bg-amber-500" },
+            { tipo: "JANTAR", icone: "nights_stay", itens: "Sanduíche natural de frango", dieta: "NORMAL", cor: "bg-amber-500" }
+          ],
+          "Sexta-Feira": [
+            { tipo: "CAFÉ", icone: "coffee", itens: "Ovos mexidos, torrada e café", dieta: "PROTEICO", cor: "bg-red-500" },
+            { tipo: "ALMOÇO", icone: "sunny", itens: "Estrogonofe de frango, arroz e batata palha", dieta: "NORMAL", cor: "bg-amber-500" },
+            { tipo: "JANTAR", icone: "nights_stay", itens: "Pizza de mussarela e calabresa", dieta: "NORMAL", cor: "bg-amber-500" }
+          ]
+        };
+
+        let currentDayIndex = new Date().getDay() - 1;
+        let latestRefeicoes = {};
+        if (currentDayIndex < 0 || currentDayIndex > 4) currentDayIndex = 0; // Default to Monday if weekend
+
+        const loadLatestRefeicoes = async () => {
+          try {
+            const response = await fetch("http://localhost:3333/api/refeicoes");
+            const data = await response.json();
+            latestRefeicoes = data
+              .slice()
+              .sort((a, b) => new Date(b.criadoEm) - new Date(a.criadoEm))
+              .reduce((acc, item) => {
+                const key = (item.refeicao || "").toLowerCase();
+                if (!acc[key]) acc[key] = item;
+                return acc;
+              }, {});
+          } catch (_) {
+            latestRefeicoes = {};
+          }
+        };
+
+        const getMealStatus = (tipo, isFriday) => {
+          const now = new Date();
+          const currentTime = now.getHours() * 60 + now.getMinutes();
+          
+          let start, end;
+          if (tipo === "CAFÉ") {
+            start = 6 * 60 + 30; // 6:30
+            end = 7 * 60; // 7:00
+          } else if (tipo === "ALMOÇO") {
+            start = 12 * 60; // 12:00
+            end = 13 * 60; // 13:00
+          } else if (tipo === "JANTAR") {
+            if (isFriday) {
+              start = 17 * 60 + 30; // 17:30
+              end = 18 * 60 + 30; // 18:30
+            } else {
+              start = 18 * 60; // 18:00
+              end = 19 * 60; // 19:00
+            }
+          }
+
+          if (currentTime >= start && currentTime <= end) {
+            return `
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-red-600 animate-pulse border border-black"></span>
+                <span class="text-sm font-black text-black uppercase">SERVINDO AGORA</span>
+              </div>
+            `;
+          } else if (currentTime < start) {
+            return `<span class="text-sm font-black text-[#475569] uppercase tracking-widest">PROGRAMADO</span>`;
+          } else {
+            return `<span class="text-sm font-black text-slate-300 uppercase tracking-widest italic">ENCERRADO</span>`;
+          }
+        };
+
+        const getMealTimeLabel = (tipo, isFriday) => {
+          if (tipo === "CAFÉ") return "06:30 - 07:00";
+          if (tipo === "ALMOÇO") return "12:00 - 13:00";
+          if (tipo === "JANTAR") return isFriday ? "17:30 - 18:30" : "18:00 - 19:00";
+          return "";
+        };
+
+        const render = () => {
+          const dayName = days[currentDayIndex];
+          document.getElementById("current-day-display").textContent = dayName;
+          const tbody = document.getElementById("cardapio-tbody");
+          const isFriday = dayName === "Sexta-Feira";
+
+          tbody.innerHTML = menuData[dayName].map(m => {
+            let dynamicItens = m.itens;
+            const mealKey = m.tipo === "ALMOÇO" ? ["almoço", "almoco"] : [m.tipo.toLowerCase()];
+            const match = latestRefeicoes[mealKey[0]] || latestRefeicoes[mealKey[1]];
+            if (match && Array.isArray(match.itens) && match.itens.length > 0) {
+              dynamicItens = match.itens.join(", ");
+            }
+
+            return `
+            <tr class="hover:bg-yellow-50 transition-colors group">
+              <td class="px-8 py-6 border-r-2 border-black/5">
+                <div class="flex items-center gap-3">
+                  <span class="material-symbols-outlined text-black font-bold">${m.icone}</span>
+                  <div>
+                    <span class="font-black text-lg text-black block leading-none">${m.tipo}</span>
+                    <span class="text-[10px] font-black text-[#475569] uppercase tracking-widest">${getMealTimeLabel(m.tipo, isFriday)}</span>
+                  </div>
+                </div>
+              </td>
+              <td class="px-8 py-6 border-r-2 border-black/5">
+                <p class="font-bold text-black text-base">${dynamicItens}</p>
+              </td>
+              <td class="px-8 py-6 border-r-2 border-black/5">
+                <span class="inline-block px-4 py-2 ${m.cor} text-white text-xs font-black uppercase tracking-widest border border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] whitespace-nowrap">${m.dieta}</span>
+              </td>
+              <td class="px-8 py-6">
+                ${getMealStatus(m.tipo, isFriday)}
+              </td>
+            </tr>
+          `;
+          }).join("");
+        };
+
+        window.changeDay = (dir) => {
+          currentDayIndex = (currentDayIndex + dir + 5) % 5;
+          render();
+        };
+
+        loadLatestRefeicoes().then(render);
+        // Update status every minute
+        setInterval(() => {
+          loadLatestRefeicoes().then(render);
+        }, 60000);
+
+        // Profile Dropdown
+        window.toggleProfileDropdown = (e) => {
+          e.stopPropagation();
+          const dropdown = document.getElementById("profile-dropdown");
+          dropdown.classList.toggle("hidden");
+        };
+
+        window.logout = () => {
+          localStorage.removeItem("userRole");
+          window.location.href = "login.html";
+        };
+
+        // Close dropdown when clicking outside
+        document.addEventListener("click", (e) => {
+          const dropdown = document.getElementById("profile-dropdown");
+          const container = document.getElementById("profile-container");
+          if (
+            dropdown &&
+            !dropdown.classList.contains("hidden") &&
+            !container.contains(e.target)
+          ) {
+            dropdown.classList.add("hidden");
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

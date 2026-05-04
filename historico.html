@@ -1,0 +1,460 @@
+<!doctype html>
+<html class="light" lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Histórico - CampusConnect</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='0' y='0' width='100' height='100' fill='%23ffffff'/><path d='M20 50V20H80V80H50' stroke='%23000000' stroke-width='10' stroke-linecap='square' fill='none'/><path d='M40 40L60 60' stroke='%23000000' stroke-width='10' stroke-linecap='square'/><rect x='20' y='40' width='15' height='20' fill='%23ffffff'/></svg>"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#000000",
+              surface: "#ffffff",
+            },
+            borderRadius: {
+              xl: "0.75rem",
+              "2xl": "1rem",
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      :root {
+        --bg: #f6f8ff;
+        --card: #ffffff;
+        --card-hover: #fafafa;
+        --border: #e5e7eb;
+        --border-soft: #f1f5f9;
+        --text-primary: #0f172a;
+        --text-secondary: #64748b;
+        --text-muted: #94a3b8;
+        --accent: #8b5cf6;
+        --accent-hover: #7c3aed;
+        --accent-soft: rgba(139, 92, 246, 0.12);
+        --success: #10b981;
+        --success-soft: rgba(16, 185, 129, 0.12);
+        --warning: #f59e0b;
+        --warning-soft: rgba(245, 158, 11, 0.12);
+        --danger: #ef4444;
+        --danger-soft: rgba(239, 68, 68, 0.12);
+        --info: #3b82f6;
+        --info-soft: rgba(59, 130, 246, 0.12);
+      }
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+      .logo-mark {
+        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .logo-container:hover .logo-mark {
+        transform: rotate(90deg);
+      }
+      .nav-item {
+        transition: all 0.2s ease;
+      }
+      .nav-item:hover {
+        background-color: var(--card-hover);
+      }
+      .nav-item.active {
+        background-color: var(--accent);
+        color: #ffffff;
+      }
+      .nav-item.active .material-symbols-outlined {
+        font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+    </style>
+  </head>
+  <body class="font-sans text-[var(--text-primary)] bg-[var(--bg)] min-h-screen flex">
+    <!-- Sidebar -->
+    <aside class="hidden md:flex flex-col w-[260px] h-screen border-r border-[var(--border-soft)] fixed left-0 top-0 bg-[var(--card)] z-50">
+      <div class="p-8">
+        <a href="index.html" class="flex items-center gap-3 logo-container group">
+          <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-mark">
+            <path d="M20 50V20H80V80H50" stroke="#000" stroke-width="12" stroke-linecap="square" />
+            <path d="M40 40L60 60" stroke="#000" stroke-width="12" stroke-linecap="square" />
+            <rect x="20" y="40" width="15" height="20" fill="white" />
+          </svg>
+          <h1 class="text-sm font-black tracking-widest uppercase">
+            Campus<span class="font-light">Connect</span>
+          </h1>
+        </a>
+      </div>
+
+      <nav class="flex-grow px-4 space-y-1 overflow-y-auto">
+        <a href="index.html" class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[var(--text-secondary)] hover:text-black">
+          <span class="material-symbols-outlined">home</span>
+          Início
+        </a>
+        <a href="chamados.html" class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[var(--text-secondary)] hover:text-black">
+          <span class="material-symbols-outlined">confirmation_number</span>
+          Chamados
+        </a>
+        <a href="reservas.html" class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[var(--text-secondary)] hover:text-black">
+          <span class="material-symbols-outlined">event_available</span>
+          Espaços e Reservas
+        </a>
+        <a href="cardapio.html" class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[var(--text-secondary)] hover:text-black">
+          <span class="material-symbols-outlined">restaurant_menu</span>
+          Cardápio
+        </a>
+        <a href="historico.html" class="nav-item active flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight">
+          <span class="material-symbols-outlined">history</span>
+          Histórico
+        </a>
+        <div class="pt-6 pb-2 px-4">
+          <span class="text-[10px] font-black uppercase tracking-[0.3em] text-[var(--text-secondary)]">Explorar</span>
+        </div>
+        <a href="mapa-campus.html" class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[var(--text-secondary)] hover:text-black">
+          <span class="material-symbols-outlined">map</span>
+          Mapa do Campus
+        </a>
+        <a href="calendario.html" class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[var(--text-secondary)] hover:text-black">
+          <span class="material-symbols-outlined">calendar_today</span>
+          Calendário
+        </a>
+      </nav>
+
+      <div class="p-4 mt-auto relative" id="profile-container">
+        <button
+          onclick="toggleProfileDropdown(event)"
+          class="flex items-center gap-4 w-full p-4 rounded-2xl hover:bg-gray-50 transition-all group"
+        >
+          <div class="w-10 h-10 rounded-full overflow-hidden">
+            <img
+              src="https://ui-avatars.com/api/?name=Aluno&background=000&color=fff"
+              alt="Avatar"
+            />
+          </div>
+          <div class="text-left">
+            <p class="text-sm font-bold">Aluno</p>
+            <p
+              class="text-[10px] font-black uppercase tracking-widest text-[var(--text-secondary)]"
+            >
+              Ver Perfil
+            </p>
+          </div>
+        </button>
+
+        <!-- Dropdown Menu -->
+        <div
+          id="profile-dropdown"
+          class="absolute bottom-full left-4 mb-2 w-48 bg-[var(--card)] border border-[var(--border-soft)] rounded-2xl shadow-xl hidden z-50 overflow-hidden"
+        >
+          <button
+            onclick="logout()"
+            class="w-full flex items-center gap-3 px-5 py-4 text-sm font-bold text-red-600 hover:bg-red-50 transition-colors"
+          >
+            <span class="material-symbols-outlined text-lg">logout</span>
+            Sair
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="flex-grow md:ml-[260px] flex flex-col min-h-screen">
+      <main class="max-w-4xl mx-auto w-full px-6 py-10 md:py-20 space-y-12 flex-grow">
+        <header class="flex flex-col md:flex-row md:items-center justify-between gap-8">
+          <div class="space-y-2">
+            <h2 class="text-3xl md:text-5xl font-black tracking-tighter text-black">Histórico</h2>
+            <p class="text-[var(--text-secondary)] font-medium text-lg">Registro completo de todas as suas atividades e solicitações.</p>
+          </div>
+        </header>
+
+        <!-- Filters -->
+        <div class="flex flex-wrap gap-3" id="history-filters">
+          <button data-filter="all" class="px-6 py-2 bg-[var(--accent)] text-white rounded-full text-xs font-black uppercase tracking-widest transition-all shadow-xl shadow-black/10">Todos</button>
+          <button data-filter="chamado" class="px-6 py-2 bg-gray-50 text-[var(--text-secondary)] rounded-full text-xs font-black uppercase tracking-widest hover:bg-gray-100 transition-all">Chamados</button>
+          <button data-filter="reserva" class="px-6 py-2 bg-gray-50 text-[var(--text-secondary)] rounded-full text-xs font-black uppercase tracking-widest hover:bg-gray-100 transition-all">Reservas</button>
+          <button data-filter="refeicao" class="px-6 py-2 bg-gray-50 text-[var(--text-secondary)] rounded-full text-xs font-black uppercase tracking-widest hover:bg-gray-100 transition-all">Refeições</button>
+        </div>
+
+        <section class="space-y-4" id="history-content">
+          <div class="p-12 text-center">
+            <div class="animate-spin inline-block w-6 h-6 border-4 border-[var(--accent)] border-t-transparent rounded-full"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Modal Component -->
+    <div class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/60 p-4 backdrop-blur-sm" data-action-modal aria-hidden="true">
+      <div class="bg-white rounded-[40px] shadow-2xl w-full max-w-lg overflow-hidden animate-in fade-in zoom-in duration-300" role="dialog" aria-modal="true">
+        <div class="pt-8 px-8 pb-4 border-b border-gray-50">
+          <div class="flex items-center justify-between mb-1">
+            <h3 class="text-2xl font-black tracking-tight" data-action-modal-title>Detalhes</h3>
+            <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-50 transition-colors" type="button" data-action-modal-close>
+              <span class="material-symbols-outlined text-[var(--text-secondary)]">close</span>
+            </button>
+          </div>
+          <p class="text-sm font-medium text-[var(--text-secondary)]" data-action-modal-subtitle></p>
+        </div>
+        <div class="px-8 pt-6 pb-8">
+            <div class="text-sm font-medium text-[var(--text-secondary)]" data-action-modal-content></div>
+            <button class="w-full mt-8 px-8 py-3 bg-[var(--accent)] text-white rounded-2xl text-sm font-bold hover:shadow-xl hover:shadow-black/20 transition-all" type="button" data-action-modal-close-btn>Fechar</button>
+        </div>
+      </div>
+    </div>
+
+    <nav class="md:hidden fixed bottom-0 left-0 w-full bg-[var(--card)] border-t border-[var(--border-soft)] flex justify-around items-center h-16 z-50 px-4">
+      <a href="index.html" class="flex flex-col items-center justify-center gap-1 text-[var(--text-secondary)]">
+        <span class="material-symbols-outlined text-[28px]">home</span>
+      </a>
+      <a href="chamados.html" class="flex flex-col items-center justify-center gap-1 text-[var(--text-secondary)]">
+        <span class="material-symbols-outlined text-[28px]">confirmation_number</span>
+      </a>
+      <a href="reservas.html" class="flex flex-col items-center justify-center gap-1 text-[var(--text-secondary)]">
+        <span class="material-symbols-outlined text-[28px]">event_available</span>
+      </a>
+      <a href="cardapio.html" class="flex flex-col items-center justify-center gap-1 text-[var(--text-secondary)]">
+        <span class="material-symbols-outlined text-[28px]">restaurant_menu</span>
+      </a>
+      <a href="historico.html" class="flex flex-col items-center justify-center gap-1 text-black">
+        <span class="material-symbols-outlined text-[28px]">history</span>
+      </a>
+    </nav>
+
+    <script>
+      // Profile Dropdown
+      window.toggleProfileDropdown = (e) => {
+        e.stopPropagation();
+        const dropdown = document.getElementById("profile-dropdown");
+        dropdown.classList.toggle("hidden");
+      };
+
+      window.logout = () => {
+        localStorage.removeItem("userRole");
+        window.location.href = "login.html";
+      };
+
+      // Close dropdown when clicking outside
+      document.addEventListener("click", (e) => {
+        const dropdown = document.getElementById("profile-dropdown");
+        const container = document.getElementById("profile-container");
+        if (
+          dropdown &&
+          !dropdown.classList.contains("hidden") &&
+          !container.contains(e.target)
+        ) {
+          dropdown.classList.add("hidden");
+        }
+      });
+
+      (() => {
+        const historyContent = document.getElementById("history-content");
+        const filterBtns = document.querySelectorAll("[data-filter]");
+        const actionModal = document.querySelector("[data-action-modal]");
+        const actionTitle = document.querySelector("[data-action-modal-title]");
+        const actionSubtitle = document.querySelector("[data-action-modal-subtitle]");
+        const actionContent = document.querySelector("[data-action-modal-content]");
+        
+        let allActivities = [];
+        let currentFilter = "all";
+
+        const fetchData = async () => {
+          try {
+            const [cRes, rRes, fRes] = await Promise.all([
+              fetch("http://localhost:3333/api/chamados"),
+              fetch("http://localhost:3333/api/reservas"),
+              fetch("http://localhost:3333/api/refeicoes")
+            ]);
+
+            const chamados = (await cRes.json()).map(i => ({ ...i, type: 'chamado' }));
+            const reservas = (await rRes.json()).map(i => ({ ...i, type: 'reserva' }));
+            const refeicoes = (await fRes.json()).map(i => ({ ...i, type: 'refeicao' }));
+
+            allActivities = [...chamados, ...reservas, ...refeicoes].sort((a, b) => new Date(b.criadoEm) - new Date(a.criadoEm));
+            renderHistory();
+          } catch (error) {
+            historyContent.innerHTML = `<p class="text-center p-12 text-[var(--text-secondary)] font-bold">Erro ao carregar histórico.</p>`;
+          }
+        };
+
+        const renderHistory = () => {
+          const filtered = currentFilter === "all" ? allActivities : allActivities.filter(a => a.type === currentFilter);
+
+          if (filtered.length === 0) {
+            historyContent.innerHTML = `
+              <div class="p-12 text-center bg-gray-50 rounded-[40px] border-2 border-dashed border-[var(--border-soft)]">
+                <p class="text-[var(--text-secondary)] font-bold">Nenhum registro encontrado para este filtro.</p>
+              </div>
+            `;
+            return;
+          }
+
+          historyContent.innerHTML = filtered.map(act => {
+            let icon = "info";
+            let label = "";
+            let subtitle = "";
+            let status = "Concluído";
+            let statusClass = "bg-gray-100 text-[var(--text-secondary)]";
+
+            if (act.type === 'chamado') {
+              icon = "build";
+              label = act.titulo;
+              subtitle = `Manutenção • ${act.local}`;
+              status = "Em análise";
+              statusClass = "bg-yellow-50 text-yellow-700";
+            } else if (act.type === 'reserva') {
+              icon = "event_available";
+              label = `Reserva: ${act.local}`;
+              subtitle = `Agendamento • ${act.data}`;
+              status = "Confirmado";
+              statusClass = "bg-green-50 text-green-700";
+            } else if (act.type === 'refeicao') {
+              icon = "restaurant";
+              label = act.refeicao;
+              subtitle = `Consumo • ${act.itens.join(", ")}`;
+              status = "Registrado";
+              statusClass = "bg-blue-50 text-blue-700";
+            }
+
+            const date = new Date(act.criadoEm);
+            const dateStr = date.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
+
+            return `
+              <div onclick="window.showDetails('${act.id}', '${act.type}')" class="p-6 bg-white border border-[var(--border-soft)] rounded-[32px] flex items-center justify-between hover:bg-gray-50 transition-all cursor-pointer group">
+                <div class="flex items-center gap-6">
+                  <div class="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center text-black">
+                    <span class="material-symbols-outlined text-2xl">${icon}</span>
+                  </div>
+                  <div>
+                    <h4 class="font-black text-base">${label}</h4>
+                    <p class="text-[11px] text-[var(--text-secondary)] font-black uppercase tracking-wider mt-1">${subtitle}</p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-4">
+                  <span class="hidden md:inline-block px-3 py-1 ${statusClass} text-[10px] font-black uppercase tracking-widest rounded-full">${status}</span>
+                  <span class="text-xs font-black text-[var(--text-muted)]">#${act.id.substring(0,4).toUpperCase()}</span>
+                </div>
+              </div>
+            `;
+          }).join("");
+        };
+
+        window.showDetails = (id, type) => {
+          const act = allActivities.find(a => a.id === id);
+          if (!act) return;
+
+          actionTitle.textContent = "Detalhes do Registro";
+          actionSubtitle.textContent = `Protocolo #${id.substring(0,8).toUpperCase()}`;
+          
+          let content = "";
+          if (type === 'chamado') {
+            content = `
+              <div class="space-y-6">
+                <div>
+                  <label class="text-[10px] font-black uppercase tracking-widest text-[var(--text-secondary)]">Assunto</label>
+                  <p class="text-lg font-black text-black">${act.titulo}</p>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                  <div>
+                    <label class="text-[10px] font-black uppercase tracking-widest text-[var(--text-secondary)]">Local</label>
+                    <p class="text-sm font-bold text-black">${act.local}</p>
+                  </div>
+                  <div>
+                    <label class="text-[10px] font-black uppercase tracking-widest text-[var(--text-secondary)]">Status</label>
+                    <p class="text-sm font-bold text-yellow-600">Em Análise</p>
+                  </div>
+                </div>
+                <div>
+                  <label class="text-[10px] font-black uppercase tracking-widest text-[var(--text-secondary)]">Descrição</label>
+                  <div class="mt-2 p-4 bg-gray-50 rounded-2xl border border-[var(--border-soft)]">
+                    <p class="text-sm leading-relaxed text-[var(--text-secondary)] font-medium">${act.descricao}</p>
+                  </div>
+                </div>
+                <p class="text-[10px] font-bold text-[var(--text-secondary)] uppercase">Aberto em ${new Date(act.criadoEm).toLocaleString()}</p>
+              </div>
+            `;
+          } else if (type === 'reserva') {
+            content = `
+              <div class="space-y-6">
+                <div>
+                  <label class="text-[10px] font-black uppercase tracking-widest text-[var(--text-secondary)]">Espaço Reservado</label>
+                  <p class="text-lg font-black text-black">${act.local}</p>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                  <div>
+                    <label class="text-[10px] font-black uppercase tracking-widest text-[var(--text-secondary)]">Data</label>
+                    <p class="text-sm font-bold text-black">${act.data}</p>
+                  </div>
+                  <div>
+                    <label class="text-[10px] font-black uppercase tracking-widest text-[var(--text-secondary)]">Horário</label>
+                    <p class="text-sm font-bold text-black">${act.horario}</p>
+                  </div>
+                </div>
+                <div>
+                  <label class="text-[10px] font-black uppercase tracking-widest text-[var(--text-secondary)]">Observações</label>
+                  <p class="text-sm font-medium text-[var(--text-secondary)]">${act.obs || "Nenhuma observação informada."}</p>
+                </div>
+              </div>
+            `;
+          } else {
+            content = `
+              <div class="space-y-6">
+                <div class="flex items-center gap-4 p-6 bg-blue-50 rounded-[32px] text-blue-700">
+                  <span class="material-symbols-outlined text-4xl">restaurant</span>
+                  <div>
+                    <p class="text-[10px] font-black uppercase tracking-widest opacity-60">Refeição Confirmada</p>
+                    <h4 class="font-black text-xl">${act.refeicao}</h4>
+                  </div>
+                </div>
+                <div>
+                  <label class="text-[10px] font-black uppercase tracking-widest text-[var(--text-secondary)]">Itens Consumidos</label>
+                  <ul class="mt-2 space-y-2">
+                    ${act.itens.map(i => `<li class="flex items-center gap-2 text-sm font-bold text-black"><span class="w-1.5 h-1.5 rounded-full bg-black"></span> ${i}</li>`).join("")}
+                  </ul>
+                </div>
+                <p class="text-[10px] font-bold text-[var(--text-secondary)] uppercase">Registrado em ${new Date(act.criadoEm).toLocaleString()}</p>
+              </div>
+            `;
+          }
+          
+          actionContent.innerHTML = content;
+          actionModal.classList.remove("hidden");
+          actionModal.classList.add("flex");
+          document.body.classList.add("overflow-hidden");
+        };
+
+        const closeActionModal = () => {
+          actionModal.classList.add("hidden");
+          actionModal.classList.remove("flex");
+          document.body.classList.remove("overflow-hidden");
+        };
+
+        filterBtns.forEach(btn => {
+          btn.addEventListener("click", () => {
+            filterBtns.forEach(b => {
+              b.classList.remove("bg-black", "text-white", "shadow-xl", "shadow-black/10");
+              b.classList.add("bg-gray-50", "text-[var(--text-secondary)]");
+            });
+            btn.classList.add("bg-black", "text-white", "shadow-xl", "shadow-black/10");
+            btn.classList.remove("bg-gray-50", "text-[var(--text-secondary)]");
+            currentFilter = btn.getAttribute("data-filter");
+            renderHistory();
+          });
+        });
+
+        actionModal.querySelector("[data-action-modal-close]").addEventListener("click", closeActionModal);
+        actionModal.querySelector("[data-action-modal-close-btn]").addEventListener("click", closeActionModal);
+        
+        fetchData();
+      })();
+    </script>
+  </body>
+</html>
