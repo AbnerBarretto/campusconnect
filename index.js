@@ -11,12 +11,9 @@ app.use(cors());
 app.use(express.json({ limit: "1mb" }));
 app.use(express.urlencoded({ limit: "1mb", extended: true }));
 
-// Em desenvolvimento local, importar backend PRIMEIRO
-// Em produção (Vercel), o backend roda como serviço separado
-if (process.env.NODE_ENV !== "production") {
-  const backendApp = require("./backend/app");
-  app.use(backendApp); // Sem prefixo, pega tudo antes do fallback
-}
+// Importar backend sempre, porque este app serve frontend e API juntos
+const backendApp = require("./backend/app");
+app.use("/api", backendApp); // Sem prefixo, o backend trata /api/* e falhas de rota
 
 // Servir arquivos estáticos (HTML, CSS, JS)
 app.use(express.static(path.join(__dirname)));
@@ -30,7 +27,7 @@ app.use((req, res, next) => {
     res.status(404).send("Arquivo não encontrado");
     return;
   }
-  
+
   // Se chegou aqui, é uma rota SPA (sem extensão) - servir index.html
   res.sendFile(path.join(__dirname, "index.html"));
 });

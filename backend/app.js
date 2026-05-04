@@ -21,11 +21,10 @@ const app = express();
 
 app.use(cors());
 app.use(express.json({ limit: "1mb" }));
-app.use(express.static(path.join(__dirname, "..")));
 
 // Status
 // Status (suporta /api/status e /status)
-app.get("/api/status", (req, res) => {
+app.get("/status", (req, res) => {
   res.json(getStatus());
 });
 app.get("/status", (req, res) => {
@@ -34,14 +33,14 @@ app.get("/status", (req, res) => {
 
 // Chamados
 // Chamados (suporta /api/chamados e /chamados)
-app.get("/api/chamados", (req, res) => {
+app.get("/chamados", (req, res) => {
   res.json(listChamados());
 });
 app.get("/chamados", (req, res) => {
   res.json(listChamados());
 });
 
-app.post("/api/chamados", (req, res) => {
+app.post("/chamados", (req, res) => {
   const { titulo, descricao, prioridade, local } = req.body || {};
 
   if (!titulo || !descricao) {
@@ -78,7 +77,7 @@ app.post("/chamados", (req, res) => {
   return res.status(201).json(chamado);
 });
 
-app.patch("/api/chamados/:id", (req, res) => {
+app.patch("/chamados/:id", (req, res) => {
   const { id } = req.params;
   const atualizado = updateChamado(id, req.body);
   if (atualizado) {
@@ -95,7 +94,7 @@ app.patch("/chamados/:id", (req, res) => {
   return res.status(404).json({ erro: "Não encontrado." });
 });
 
-app.delete("/api/chamados/:id", (req, res) => {
+app.delete("/chamados/:id", (req, res) => {
   const { id } = req.params;
   const removido = removeChamado(id);
   if (removido) {
@@ -106,14 +105,14 @@ app.delete("/api/chamados/:id", (req, res) => {
 
 // Reservas
 // Reservas (suporta /api/reservas e /reservas)
-app.get("/api/reservas", (req, res) => {
+app.get("/reservas", (req, res) => {
   res.json(listReservas());
 });
 app.get("/reservas", (req, res) => {
   res.json(listReservas());
 });
 
-app.post("/api/reservas", (req, res) => {
+app.post("/reservas", (req, res) => {
   const { local, data, horario, obs } = req.body || {};
 
   if (!local || !data || !horario) {
@@ -138,7 +137,7 @@ app.post("/reservas", (req, res) => {
   return res.status(201).json(reserva);
 });
 
-app.patch("/api/reservas/:id", (req, res) => {
+app.patch("/reservas/:id", (req, res) => {
   const { id } = req.params;
   const atualizada = updateReserva(id, req.body);
   if (atualizada) {
@@ -155,7 +154,7 @@ app.patch("/reservas/:id", (req, res) => {
   return res.status(404).json({ erro: "Não encontrado." });
 });
 
-app.delete("/api/reservas/:id", (req, res) => {
+app.delete("/reservas/:id", (req, res) => {
   const { id } = req.params;
   const removido = removeReserva(id);
   if (removido) {
@@ -174,14 +173,14 @@ app.delete("/reservas/:id", (req, res) => {
 
 // Refeições
 // Refeições (suporta /api/refeicoes e /refeicoes)
-app.get("/api/refeicoes", (req, res) => {
+app.get("/refeicoes", (req, res) => {
   res.json(listRefeicoes());
 });
 app.get("/refeicoes", (req, res) => {
   res.json(listRefeicoes());
 });
 
-app.post("/api/refeicoes", (req, res) => {
+app.post("/refeicoes", (req, res) => {
   const { refeicao, itens } = req.body || {};
 
   if (!refeicao || !Array.isArray(itens)) {
@@ -206,7 +205,7 @@ app.post("/refeicoes", (req, res) => {
   return res.status(201).json(registro);
 });
 
-app.delete("/api/refeicoes", (req, res) => {
+app.delete("/refeicoes", (req, res) => {
   clearRefeicoes();
   res.status(200).json({ mensagem: "Registros limpos." });
 });

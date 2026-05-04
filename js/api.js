@@ -6,13 +6,16 @@
 
 function getApiUrl() {
   // Em desenvolvimento local (localhost)
-  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-    return 'http://localhost:3333';
+  if (
+    window.location.hostname === "localhost" ||
+    window.location.hostname === "127.0.0.1"
+  ) {
+    return "http://localhost:3333";
   }
-  
+
   // Em produção (Vercel ou qualquer servidor)
   // Use URL relativa para pegar do mesmo domínio
-  return '/api';
+  return "/api";
 }
 
 // Criar um objeto global para facilitar acesso
