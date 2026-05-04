@@ -1,0 +1,1005 @@
+<!doctype html>
+<html class="light" lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script>
+      (() => {
+        const savedTheme = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
+        const shouldUseDark = savedTheme ? savedTheme === "dark" : prefersDark;
+        document.documentElement.classList.toggle("dark", shouldUseDark);
+        document.documentElement.classList.toggle("light", !shouldUseDark);
+      })();
+    </script>
+    <title>Manutenção Operacional | CampusConnect Admin</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='0' y='0' width='100' height='100' fill='%23ffffff'/><path d='M20 50V20H80V80H50' stroke='%23000000' stroke-width='10' stroke-linecap='square' fill='none'/><path d='M40 40L60 60' stroke='%23000000' stroke-width='10' stroke-linecap='square'/><rect x='20' y='40' width='15' height='20' fill='%23ffffff'/></svg>"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                50: "#f8fafc",
+                100: "#f1f5f9",
+                200: "#e2e8f0",
+                300: "#94a3b8",
+                400: "#64748b",
+                500: "#475569",
+                600: "#334155",
+                700: "#1e293b",
+                800: "#0f172a",
+                900: "#020617",
+              },
+              accent: {
+                DEFAULT: "#8b5cf6",
+                hover: "#7c3aed",
+                soft: "rgba(139, 92, 246, 0.12)",
+              },
+              success: { DEFAULT: "#10b981", soft: "rgba(16, 185, 129, 0.12)" },
+              warning: { DEFAULT: "#f59e0b", soft: "rgba(245, 158, 11, 0.12)" },
+              danger: { DEFAULT: "#ef4444", soft: "rgba(239, 68, 68, 0.12)" },
+              info: { DEFAULT: "#3b82f6", soft: "rgba(59, 130, 246, 0.12)" },
+              darkbg: "#0b1220",
+              darkcard: "#111827",
+              darkborder: "#1f2937",
+            },
+            fontFamily: { sans: ["'Inter'", "sans-serif"] },
+            boxShadow: {
+              premium:
+                "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+              "premium-hover":
+                "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+        vertical-align: middle;
+      }
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 4px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #e2e8f0;
+        border-radius: 10px;
+      }
+      .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #1e293b;
+      }
+
+      .table-row-hover:hover {
+        background-color: #fcfcfc;
+      }
+      .dark .table-row-hover:hover {
+        background-color: rgba(255, 255, 255, 0.02);
+      }
+
+      .status-badge {
+        font-size: 10px;
+        font-weight: 700;
+        padding: 6px 32px 6px 12px;
+        border-radius: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        min-width: 140px;
+        text-align: left;
+        appearance: none !important;
+        -webkit-appearance: none !important;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23475569' stroke-width='3'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7' /%3E%3C/svg%3E") !important;
+        background-repeat: no-repeat !important;
+        background-position: right 10px center !important;
+        background-size: 12px !important;
+        border: 1.5px solid transparent !important;
+        @apply outline-none;
+      }
+      .status-badge:hover {
+        filter: brightness(0.98);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      }
+      /* High Contrast Classes */
+      .badge-success {
+        background-color: #ecfdf5;
+        color: #065f46;
+        border-color: #10b98133 !important;
+      }
+      .badge-warning {
+        background-color: #fffbeb;
+        color: #92400e;
+        border-color: #f59e0b33 !important;
+      }
+      .badge-danger {
+        background-color: #fef2f2;
+        color: #991b1b;
+        border-color: #ef444433 !important;
+      }
+      .badge-accent {
+        background-color: #eff6ff;
+        color: #1e40af;
+        border-color: #3b82f633 !important;
+      }
+      .badge-info {
+        background-color: #eff6ff;
+        color: #1e40af;
+        border-color: #3b82f633 !important;
+      }
+      .badge-neutral {
+        background-color: #f8fafc;
+        color: #475569;
+        border-color: #e2e8f0 !important;
+      }
+      .filter-chip {
+        @apply px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard text-slate-600 dark:text-slate-300 transition-all;
+      }
+      .filter-chip:hover {
+        @apply bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white;
+      }
+      .filter-chip.active {
+        @apply bg-accent text-white border-transparent shadow-lg shadow-accent/30;
+      }
+      .dark .badge-success {
+        background-color: #14532d !important;
+        color: #dcfce7 !important;
+        border-color: #22c55e !important;
+      }
+      .dark .badge-warning {
+        background-color: #78350f !important;
+        color: #fffbeb !important;
+        border-color: #fbbf24 !important;
+      }
+      .dark .badge-danger {
+        background-color: #7f1d1d !important;
+        color: #fee2e2 !important;
+        border-color: #f87171 !important;
+      }
+      .dark .badge-accent,
+      .dark .badge-info {
+        background-color: #4c1d95 !important;
+        color: #ede9fe !important;
+        border-color: #a78bfa !important;
+      }
+      .dark .badge-neutral {
+        background-color: #1f2937 !important;
+        color: #e5e7eb !important;
+        border-color: #374151 !important;
+      }
+      .dark .bg-success-soft {
+        background-color: #14532d !important;
+        color: #dcfce7 !important;
+      }
+      .dark .bg-warning-soft {
+        background-color: #78350f !important;
+        color: #fffbeb !important;
+      }
+      .dark .bg-danger-soft {
+        background-color: #7f1d1d !important;
+        color: #fee2e2 !important;
+      }
+      .dark .bg-accent-soft {
+        background-color: #4c1d95 !important;
+        color: #ede9fe !important;
+      }
+      .dark .bg-success\/5 {
+        background-color: #14532d !important;
+      }
+      .dark .bg-warning\/5 {
+        background-color: #78350f !important;
+      }
+      .dark .bg-danger\/5 {
+        background-color: #7f1d1d !important;
+      }
+      .dark .bg-accent\/5 {
+        background-color: #4c1d95 !important;
+      }
+
+      .glass-effect {
+        @apply backdrop-blur-md bg-white/80;
+      }
+
+      /* Dropdown Animation */
+      @keyframes dropdown-in {
+        from {
+          opacity: 0;
+          transform: translateY(-8px) scale(0.98);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+      .animate-dropdown {
+        animation: dropdown-in 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+      .logo-mark {
+        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .logo-container:hover .logo-mark {
+        transform: rotate(90deg);
+      }
+
+      .syncing {
+        @apply opacity-50 pointer-events-none grayscale-[0.5] blur-[1px] transition-all duration-500;
+      }
+
+      @keyframes slideIn {
+        from {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+      .toast-animate {
+        animation: slideIn 0.3s ease forwards;
+      }
+    </style>
+  </head>
+  <body
+    class="font-sans text-[#0f172a] dark:text-slate-200 bg-[#f6f8ff] dark:bg-darkbg selection:bg-accent selection:text-white flex h-screen overflow-hidden antialiased transition-colors duration-300"
+  >
+    <aside
+      class="w-64 bg-white dark:bg-darkcard border-r border-gray-100 dark:border-darkborder flex flex-col shrink-0 z-50"
+    >
+      <div class="p-8 border-b border-gray-100 dark:border-darkborder">
+        <a href="index.html" class="flex items-center gap-3 logo-container group">
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 100 100"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="logo-mark"
+          >
+            <path
+              d="M20 50V20H80V80H50"
+              stroke="#000"
+              stroke-width="12"
+              stroke-linecap="square"
+              class="dark:stroke-white"
+            />
+            <path
+              d="M40 40L60 60"
+              stroke="#000"
+              stroke-width="12"
+              stroke-linecap="square"
+              class="dark:stroke-white"
+            />
+            <rect x="20" y="40" width="15" height="20" fill="white" />
+          </svg>
+          <h1
+            class="text-sm font-black tracking-widest uppercase dark:text-white"
+          >
+            Campus<span class="font-light">Connect</span>
+          </h1>
+        </a>
+      </div>
+
+      <nav class="flex-grow p-6 space-y-6 overflow-y-auto custom-scrollbar">
+        <div>
+          <p
+            class="text-[10px] font-black text-slate-400 dark:text-slate-600 uppercase tracking-[0.2em] px-4 mb-4"
+          >
+            Operação
+          </p>
+          <div class="space-y-1">
+            <a
+              href="geral-admin.html"
+              class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1"
+            >
+              <span class="material-symbols-outlined text-[20px]"
+                >dashboard</span
+              >
+              Painel Geral
+            </a>
+            <a
+              href="chamados-admin.html"
+              class="flex items-center gap-3 px-4 py-3 bg-accent text-white rounded-2xl text-xs font-bold shadow-lg shadow-accent/20 transition-all hover:translate-x-1"
+            >
+              <span
+                class="material-symbols-outlined text-[20px]"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >confirmation_number</span
+              >
+              Chamados
+            </a>
+            <a
+              href="refeitorio-admin.html"
+              class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1"
+            >
+              <span class="material-symbols-outlined text-[20px]"
+                >restaurant</span
+              >
+              Refeitório
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <p
+            class="text-[10px] font-black text-slate-400 dark:text-slate-600 uppercase tracking-[0.2em] px-4 mb-4"
+          >
+            Gestão
+          </p>
+          <div class="space-y-1">
+            <a
+              href="reservas-admin.html"
+              class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1"
+            >
+              <span class="material-symbols-outlined text-[20px]"
+                >event_seat</span
+              >
+              Reservas
+            </a>
+            <a
+              href="calendario-admin.html"
+              class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1"
+            >
+              <span class="material-symbols-outlined text-[20px]"
+                >calendar_today</span
+              >
+              Calendário
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="p-6 border-t border-slate-50 dark:border-darkborder/50 space-y-6 mt-auto">
+        <!-- Suporte -->
+        <div
+          class="bg-slate-50 dark:bg-slate-900/50 p-4 rounded-2xl border border-slate-100 dark:border-darkborder"
+        >
+          <p
+            class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2"
+          >
+            Suporte
+          </p>
+          <button
+            class="w-full flex items-center justify-center gap-2 py-2 bg-white dark:bg-darkcard border border-slate-200 dark:border-darkborder rounded-xl text-[10px] font-black uppercase hover:bg-slate-50 transition-colors"
+          >
+            <span class="material-symbols-outlined text-sm">help_outline</span>
+            Central de Ajuda
+          </button>
+        </div>
+
+        <!-- Perfil -->
+        <div class="relative" id="profile-container">
+          <button
+            onclick="toggleProfileDropdown(event)"
+            class="flex items-center gap-3 w-full p-2 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-all group"
+          >
+            <div
+              class="w-10 h-10 rounded-full overflow-hidden border-2 border-transparent group-hover:border-accent transition-all"
+            >
+              <img
+                src="https://ui-avatars.com/api/?name=Admin&background=000&color=fff"
+                alt="Avatar"
+              />
+            </div>
+            <div class="text-left">
+              <p class="text-xs font-bold text-slate-900 dark:text-white">
+                Admin
+              </p>
+              <p
+                class="text-[9px] font-black uppercase tracking-widest text-slate-400"
+              >
+                Administrador
+              </p>
+            </div>
+          </button>
+
+          <!-- Dropdown Menu -->
+          <div
+            id="profile-dropdown"
+            class="absolute bottom-full left-0 mb-2 w-full bg-white dark:bg-darkcard border border-slate-100 dark:border-darkborder rounded-2xl shadow-xl hidden z-50 overflow-hidden"
+          >
+            <button
+              onclick="logout()"
+              class="w-full flex items-center gap-3 px-5 py-4 text-xs font-bold text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+            >
+              <span class="material-symbols-outlined text-lg">logout</span>
+              Sair
+            </button>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="flex-grow flex flex-col overflow-hidden">
+      <!-- Top Bar -->
+      <header
+        class="h-20 bg-white/90 dark:bg-darkcard/90 backdrop-blur-md border-b border-gray-100 dark:border-darkborder flex items-center justify-between px-10 shrink-0 z-40"
+      >
+        <div>
+          <h2
+            class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]"
+          >
+            Ambiente Operacional
+          </h2>
+          <div class="flex items-center gap-2 mt-1">
+            <div
+              class="w-1.5 h-1.5 rounded-full bg-success animate-pulse"
+            ></div>
+            <p
+              id="welcome-msg"
+              class="text-xs text-slate-600 dark:text-slate-300 font-bold tracking-tight"
+            >
+              Status: Monitorando fluxos em tempo real
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center gap-4">
+          <!-- Chamados Dropdown -->
+          <div class="relative" id="chamados-dropdown-container">
+            <button
+              onclick="toggleChamadosDropdown()"
+              id="chamados-dropdown-btn"
+              class="w-10 h-10 flex items-center justify-center rounded-2xl bg-slate-100 dark:bg-darkborder text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all active:scale-90 shadow-sm relative"
+            >
+              <span class="material-symbols-outlined text-[20px]"
+                >confirmation_number</span
+              >
+              <span
+                id="chamados-badge"
+                class="absolute -top-1 -right-1 w-4 h-4 bg-danger text-white text-[9px] font-black rounded-full flex items-center justify-center hidden"
+                >0</span
+              >
+            </button>
+
+            <!-- Dropdown Menu -->
+            <div
+              id="chamados-dropdown-menu"
+              class="absolute right-0 mt-3 w-80 bg-white dark:bg-darkcard border border-gray-100 dark:border-darkborder rounded-[24px] shadow-premium hidden z-[100]"
+            >
+              <div
+                class="p-5 border-b border-gray-50 dark:border-darkborder/50 flex items-center justify-between"
+              >
+                <h4
+                  class="text-[10px] font-black text-slate-400 uppercase tracking-widest"
+                >
+                  Chamados Recentes
+                </h4>
+                <a
+                  href="chamados-admin.html"
+                  class="text-[9px] font-black text-brand-900 dark:text-accent uppercase hover:underline"
+                  >Ver todos</a
+                >
+              </div>
+              <div
+                id="chamados-dropdown-list"
+                class="max-h-[400px] overflow-y-auto custom-scrollbar"
+              >
+                <div class="p-8 text-center">
+                  <p class="text-[10px] font-bold text-slate-400 uppercase">
+                    Nenhum chamado aberto
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Theme Toggle -->
+          <button
+            onclick="toggleTheme()"
+            id="theme-toggle"
+            class="w-10 h-10 flex items-center justify-center rounded-2xl bg-slate-100 dark:bg-darkborder text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all active:scale-90 shadow-sm"
+          >
+            <span id="theme-icon" class="material-symbols-outlined text-[20px]"
+              >dark_mode</span
+            >
+          </button>
+
+          <div class="h-8 w-[2px] bg-slate-200 dark:bg-darkborder mx-2"></div>
+
+          <div
+            id="refresh-indicator"
+            class="hidden animate-spin w-5 h-5 border-2 border-accent border-t-transparent rounded-full"
+          ></div>
+          <button
+            onclick="fetchData()"
+            class="w-10 h-10 flex items-center justify-center rounded-2xl bg-accent text-white hover:opacity-90 transition-all active:scale-90 shadow-lg shadow-accent/20"
+          >
+            <span class="material-symbols-outlined text-[20px]">refresh</span>
+          </button>
+        </div>
+      </header>
+
+      <div class="flex-grow flex overflow-hidden">
+        <main class="flex-grow overflow-y-auto custom-scrollbar p-8 space-y-8">
+          <section
+            class="bg-white dark:bg-darkcard border border-slate-200 dark:border-darkborder rounded-xl shadow-sm flex flex-col min-h-[600px]"
+          >
+            <div
+              class="p-6 border-b border-slate-50 dark:border-darkborder/50 flex items-center justify-between"
+            >
+              <h3 class="font-bold text-sm text-slate-900 dark:text-white">
+                Gerenciar Operações
+              </h3>
+              <div
+                class="flex items-center bg-slate-50 dark:bg-slate-900/50 px-3 py-1.5 rounded-lg border border-slate-100 dark:border-darkborder"
+              >
+                <span
+                  class="material-symbols-outlined text-slate-600 dark:text-slate-400 text-[16px]"
+                  >search</span
+                >
+                <input
+                  type="text"
+                  id="search-input"
+                  placeholder="Filtrar por local..."
+                  class="bg-transparent border-none p-0 text-xs font-medium focus:ring-0 w-48 text-slate-900 dark:text-white"
+                />
+              </div>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left">
+                <thead
+                  class="bg-slate-50/50 dark:bg-slate-800/20 text-[10px] font-bold text-slate-600 dark:text-slate-400 uppercase tracking-widest border-b border-slate-100 dark:border-darkborder/50"
+                >
+                  <tr>
+                    <th class="px-6 py-3">Local</th>
+                    <th class="px-6 py-3">Assunto</th>
+                    <th class="px-6 py-3 text-center">Prioridade</th>
+                    <th class="px-6 py-3 text-center">Status</th>
+                    <th class="px-6 py-3 text-right">Ação</th>
+                  </tr>
+                </thead>
+                <tbody
+                  id="tickets-tbody"
+                  class="divide-y divide-slate-50 dark:divide-darkborder/50"
+                ></tbody>
+              </table>
+            </div>
+          </section>
+        </main>
+
+        <!-- Sidebar: Checklist -->
+        <aside
+          class="w-72 bg-white dark:bg-darkcard border-l border-slate-200 dark:border-darkborder flex flex-col shrink-0 z-40"
+        >
+          <div
+            class="p-6 border-b border-slate-50 dark:border-darkborder/50 flex items-center justify-between"
+          >
+            <h4
+              class="font-bold text-[10px] uppercase tracking-widest text-slate-600 dark:text-slate-400"
+            >
+              Inspeção Preventiva
+            </h4>
+          </div>
+          <div class="flex-grow overflow-y-auto custom-scrollbar p-5 space-y-4">
+            <div class="flex items-center justify-between gap-3 group py-1">
+              <div class="flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  class="w-3.5 h-3.5 rounded border-slate-600 dark:border-slate-500 text-brand-900 focus:ring-slate-200 cursor-pointer bg-transparent"
+                />
+                <span
+                  class="text-xs font-medium text-slate-600 dark:text-slate-400"
+                  >Ar condicionado A</span
+                >
+              </div>
+              <button
+                onclick="quickTicket('Revisão AC Bloco A', 'Bloco A')"
+                class="p-1 text-slate-600 dark:text-slate-500 hover:text-accent"
+                title="Gerar chamado"
+              >
+                <span class="material-symbols-outlined text-[18px]"
+                  >add_circle</span
+                >
+              </button>
+            </div>
+            <div class="flex items-center justify-between gap-3 group py-1">
+              <div class="flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  class="w-3.5 h-3.5 rounded border-slate-600 dark:border-slate-500 text-brand-900 focus:ring-slate-200 cursor-pointer bg-transparent"
+                />
+                <span
+                  class="text-xs font-medium text-slate-600 dark:text-slate-400"
+                  >Iluminação B</span
+                >
+              </div>
+              <button
+                onclick="quickTicket('Troca Lâmpadas B', 'Bloco B')"
+                class="p-1 text-slate-600 dark:text-slate-500 hover:text-accent"
+                title="Gerar chamado"
+              >
+                <span class="material-symbols-outlined text-[18px]"
+                  >add_circle</span
+                >
+              </button>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <!-- Details Modal -->
+    <div
+      id="details-modal"
+      class="fixed inset-0 z-[110] hidden items-center justify-center bg-slate-900/20 dark:bg-black/80 backdrop-blur-md p-6"
+    >
+      <div
+        class="bg-white dark:bg-darkcard rounded-[2.5rem] shadow-2xl w-full max-w-lg overflow-hidden border border-slate-100 dark:border-darkborder animate-in fade-in zoom-in duration-300"
+      >
+        <div
+          class="p-8 border-b border-slate-50 dark:border-darkborder/50 flex items-center justify-between bg-slate-50/50 dark:bg-slate-800/50"
+        >
+          <div>
+            <h3
+              class="text-lg font-black text-slate-900 dark:text-white tracking-tight"
+            >
+              Detalhes do Chamado
+            </h3>
+            <p
+              class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1"
+            >
+              Informações completas da solicitação
+            </p>
+          </div>
+          <button
+            onclick="closeDetails()"
+            class="w-10 h-10 flex items-center justify-center bg-white dark:bg-darkcard rounded-2xl text-slate-400 hover:text-danger hover:rotate-90 transition-all shadow-sm border border-slate-100 dark:border-darkborder"
+          >
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+        <div
+          class="p-10 space-y-8 text-slate-900 dark:text-slate-100"
+          id="details-content"
+        ></div>
+      </div>
+    </div>
+
+    <div
+      id="toast-container"
+      class="fixed bottom-8 right-8 z-[9999] flex flex-col gap-3"
+    ></div>
+
+    <script>
+      (() => {
+        const tbody = document.getElementById("tickets-tbody");
+        const toastContainer = document.getElementById("toast-container");
+        const detailsModal = document.getElementById("details-modal");
+        const detailsContent = document.getElementById("details-content");
+
+        let allTickets = [];
+
+        window.viewDetails = (id) => {
+          const t = allTickets.find((x) => x.id === id);
+          if (!t) return;
+
+          detailsContent.innerHTML = `
+            <div class="space-y-6">
+              <div>
+                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Assunto do Chamado</p>
+                <h4 class="text-xl font-black text-slate-900 dark:text-white">${t.titulo}</h4>
+              </div>
+              <div class="grid grid-cols-2 gap-6">
+                <div>
+                  <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Localização</p>
+                  <p class="text-sm font-bold text-slate-700 dark:text-slate-300">${t.local}</p>
+                </div>
+                <div>
+                  <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Prioridade</p>
+                  <p class="text-sm font-bold text-slate-700 dark:text-slate-300">${t.prioridade}</p>
+                </div>
+              </div>
+              <div class="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-3xl border border-slate-100 dark:border-darkborder/50">
+                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Descrição Técnica</p>
+                <p class="text-sm font-medium leading-relaxed text-slate-600 dark:text-slate-400 italic">"${t.descricao || "Nenhuma descrição detalhada fornecida."}"</p>
+              </div>
+              <div class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-darkborder/30">
+                <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Aberto em: ${new Date(t.criadoEm).toLocaleString()}</p>
+                <span class="text-[10px] font-black text-accent uppercase tracking-widest">${t.status}</span>
+              </div>
+            </div>
+          `;
+          detailsModal.classList.remove("hidden");
+          detailsModal.classList.add("flex");
+        };
+
+        window.closeDetails = () => {
+          detailsModal.classList.add("hidden");
+          detailsModal.classList.remove("flex");
+        };
+
+        // Theme management
+        window.toggleTheme = () => {
+          const isDark = document.documentElement.classList.contains("dark");
+          if (isDark) {
+            document.documentElement.classList.remove("dark");
+            document.documentElement.classList.add("light");
+            localStorage.setItem("theme", "light");
+            document.getElementById("theme-icon").textContent = "dark_mode";
+          } else {
+            document.documentElement.classList.add("dark");
+            document.documentElement.classList.remove("light");
+            localStorage.setItem("theme", "dark");
+            document.getElementById("theme-icon").textContent = "light_mode";
+          }
+        };
+
+        // Initialize theme icon
+        const themeIcon = document.getElementById("theme-icon");
+        if (themeIcon) {
+          themeIcon.textContent = document.documentElement.classList.contains(
+            "dark",
+          )
+            ? "light_mode"
+            : "dark_mode";
+        }
+
+        window.toggleChamadosDropdown = () => {
+          const menu = document.getElementById("chamados-dropdown-menu");
+          const isHidden = menu.classList.contains("hidden");
+
+          if (isHidden) {
+            menu.classList.remove("hidden");
+            menu.classList.add("animate-dropdown");
+          } else {
+            menu.classList.add("hidden");
+            menu.classList.remove("animate-dropdown");
+          }
+        };
+
+        const renderChamadosDropdown = () => {
+          const list = document.getElementById("chamados-dropdown-list");
+          const badge = document.getElementById("chamados-badge");
+          const openTickets = allTickets
+            .filter((t) => t.status !== "Concluído")
+            .slice(0, 5);
+
+          if (openTickets.length > 0) {
+            badge.textContent = openTickets.length;
+            badge.classList.remove("hidden");
+            list.innerHTML = openTickets
+              .map(
+                (t) => `
+                <div class="p-4 border-b border-gray-50 dark:border-darkborder/30 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-all cursor-pointer group">
+                  <div class="flex items-start gap-3">
+                    <div class="w-8 h-8 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center shrink-0">
+                      <span class="material-symbols-outlined text-sm text-slate-500">${t.prioridade === "Alta" ? "priority_high" : "confirmation_number"}</span>
+                    </div>
+                    <div class="flex-grow min-w-0">
+                      <p class="text-[11px] font-black text-slate-900 dark:text-white truncate">${t.titulo}</p>
+                      <p class="text-[9px] font-bold text-slate-400 uppercase mt-0.5">${t.local} • ${getTimeAgo(t.criadoEm)}</p>
+                    </div>
+                  </div>
+                </div>
+            `,
+              )
+              .join("");
+          } else {
+            badge.classList.add("hidden");
+            list.innerHTML = `
+              <div class="p-8 text-center">
+                <p class="text-[10px] font-bold text-slate-400 uppercase">Nenhum chamado aberto</p>
+              </div>
+            `;
+          }
+        };
+
+        const getTimeAgo = (dateStr) => {
+          const diff = Math.floor(
+            (new Date() - new Date(dateStr)) / (1000 * 60),
+          );
+          if (diff < 60) return `${diff}m`;
+          const hours = Math.floor(diff / 60);
+          if (hours < 24) return `${hours}h`;
+          return `${Math.floor(hours / 24)}d`;
+        };
+
+        // Close dropdown when clicking outside
+        document.addEventListener("click", (e) => {
+          const container = document.getElementById(
+            "chamados-dropdown-container",
+          );
+          const menu = document.getElementById("chamados-dropdown-menu");
+          if (container && !container.contains(e.target)) {
+            menu.classList.add("hidden");
+            menu.classList.remove("animate-dropdown");
+          }
+        });
+
+        const showToast = (message, type = "success") => {
+          const toast = document.createElement("div");
+          toast.className =
+            "toast-animate px-5 py-3 rounded-xl shadow-lg border border-slate-100 dark:border-darkborder bg-white dark:bg-darkcard text-xs font-bold flex items-center gap-3";
+          const iconColor = type === "success" ? "text-success" : "text-danger";
+          toast.innerHTML = `<span class="material-symbols-outlined ${iconColor}">${type === "success" ? "check_circle" : "error"}</span><span class="text-slate-700 dark:text-gray-200">${message}</span>`;
+          toastContainer.appendChild(toast);
+          setTimeout(() => {
+            toast.classList.add(
+              "opacity-0",
+              "translate-x-full",
+              "transition-all",
+              "duration-500",
+            );
+            setTimeout(() => toast.remove(), 500);
+          }, 3000);
+        };
+
+        const fetchData = async () => {
+          document
+            .getElementById("refresh-indicator")
+            .classList.remove("hidden");
+          document
+            .querySelectorAll("main")
+            .forEach((el) => el.classList.add("syncing"));
+
+          try {
+            await loadTickets();
+            // Dropdown is updated inside loadTickets via renderChamadosDropdown
+          } catch (e) {
+            console.error(e);
+            showToast("Falha na conexão com o servidor.", "error");
+          } finally {
+            document
+              .getElementById("refresh-indicator")
+              .classList.add("hidden");
+            document
+              .querySelectorAll("main")
+              .forEach((el) => el.classList.remove("syncing"));
+          }
+        };
+
+        const loadTickets = async () => {
+          try {
+            const res = await fetch("http://localhost:3333/api/chamados");
+            allTickets = await res.json();
+            renderTickets();
+            renderChamadosDropdown();
+          } catch (e) {
+            console.error(e);
+          }
+        };
+
+        const renderTickets = () => {
+          const search = document
+            .getElementById("search-input")
+            .value.toLowerCase();
+          tbody.innerHTML = allTickets
+            .filter((t) => t.local.toLowerCase().includes(search))
+            .map((t) => {
+              let pClass = "badge-success";
+              if (t.prioridade === "Média") pClass = "badge-warning";
+              if (t.prioridade === "Alta") pClass = "badge-danger";
+
+              let sClass = "badge-neutral";
+              if (t.status === "Em progresso") sClass = "badge-accent";
+              if (t.status === "Concluído") sClass = "badge-success";
+
+              return `
+                    <tr class="table-row-hover transition-all group">
+                        <td class="px-6 py-5 text-xs font-bold text-slate-900 dark:text-white">${t.local}</td>
+                        <td class="px-6 py-5">
+                          <div class="flex flex-col">
+                            <span class="text-xs font-bold text-slate-900 dark:text-white">${t.titulo}</span>
+                            <span class="text-[10px] text-slate-500 dark:text-slate-400 mt-1 line-clamp-1 max-w-[200px]">${t.descricao || "Sem descrição"}</span>
+                          </div>
+                        </td>
+                        <td class="px-6 py-5 text-center">
+                            <select onchange="updatePriority('${t.id}', this.value)" class="status-badge ${pClass} border-none outline-none cursor-pointer">
+                                <option value="Alta" ${t.prioridade === "Alta" ? "selected" : ""}>Alta</option>
+                                <option value="Média" ${t.prioridade === "Média" ? "selected" : ""}>Média</option>
+                                <option value="Baixa" ${t.prioridade === "Baixa" ? "selected" : ""}>Baixa</option>
+                            </select>
+                        </td>
+                        <td class="px-6 py-5 text-center">
+                            <select onchange="updateStatus('${t.id}', this.value)" class="status-badge ${sClass} border-none outline-none cursor-pointer">
+                                <option value="Aberto" ${t.status === "Aberto" ? "selected" : ""}>Aberto</option>
+                                <option value="Em progresso" ${t.status === "Em progresso" ? "selected" : ""}>Progresso</option>
+                                <option value="Concluído" ${t.status === "Concluído" ? "selected" : ""}>Concluído</option>
+                            </select>
+                        </td>
+                        <td class="px-6 py-5 text-right">
+                          <div class="flex items-center justify-end gap-1">
+                            <button onclick="viewDetails('${t.id}')" class="p-1.5 text-slate-400 hover:text-accent transition-all" title="Ver Detalhes"><span class="material-symbols-outlined text-[20px]">visibility</span></button>
+                            <button onclick="updateStatus('${t.id}', 'Concluído')" class="p-1.5 text-slate-400 hover:text-success transition-all" title="Concluir"><span class="material-symbols-outlined text-[20px]">check_circle</span></button>
+                          </div>
+                        </td>
+                    </tr>
+                `;
+            })
+            .join("");
+        };
+
+        window.updateStatus = async (id, status) => {
+          const res = await fetch(`http://localhost:3333/api/chamados/${id}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ status }),
+          });
+          if (res.ok) {
+            showToast(`Status atualizado`);
+            loadTickets();
+          }
+        };
+
+        window.quickTicket = async (titulo, local) => {
+          const res = await fetch("http://localhost:3333/api/chamados", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              titulo,
+              local,
+              descricao: "Checklist preventiva.",
+              prioridade: "Média",
+            }),
+          });
+          if (res.ok) {
+            showToast("Chamado gerado!");
+            loadTickets();
+          }
+        };
+
+        window.updatePriority = async (id, prioridade) => {
+          const res = await fetch(`http://localhost:3333/api/chamados/${id}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ prioridade }),
+          });
+          if (res.ok) {
+            showToast(`Prioridade atualizada`);
+            loadTickets();
+          }
+        };
+
+        document
+          .getElementById("search-input")
+          .addEventListener("input", renderTickets);
+        window.fetchData = fetchData;
+        fetchData();
+        // Profile Dropdown
+        window.toggleProfileDropdown = (e) => {
+          e.stopPropagation();
+          const dropdown = document.getElementById("profile-dropdown");
+          dropdown.classList.toggle("hidden");
+        };
+
+        window.logout = () => {
+          localStorage.removeItem("userRole");
+          window.location.href = "login.html";
+        };
+
+        // Close dropdown when clicking outside
+        document.addEventListener("click", (e) => {
+          const dropdown = document.getElementById("profile-dropdown");
+          const container = document.getElementById("profile-container");
+          if (
+            dropdown &&
+            !dropdown.classList.contains("hidden") &&
+            !container.contains(e.target)
+          ) {
+            dropdown.classList.add("hidden");
+          }
+        });
+        })();
+        </script>
+  </body>
+</html>

@@ -1,0 +1,1068 @@
+<!doctype html>
+<html class="light" lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script>
+      (() => {
+        const savedTheme = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const shouldUseDark = savedTheme ? savedTheme === "dark" : prefersDark;
+        document.documentElement.classList.toggle("dark", shouldUseDark);
+        document.documentElement.classList.toggle("light", !shouldUseDark);
+      })();
+    </script>
+    <title>Logística Alimentar | CampusConnect Admin</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='0' y='0' width='100' height='100' fill='%23ffffff'/><path d='M20 50V20H80V80H50' stroke='%23000000' stroke-width='10' stroke-linecap='square' fill='none'/><path d='M40 40L60 60' stroke='%23000000' stroke-width='10' stroke-linecap='square'/><rect x='20' y='40' width='15' height='20' fill='%23ffffff'/></svg>"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                50: "#f8fafc",
+                100: "#f1f5f9",
+                200: "#e2e8f0",
+                300: "#94a3b8",
+                400: "#64748b",
+                500: "#475569",
+                600: "#334155",
+                700: "#1e293b",
+                800: "#0f172a",
+                900: "#020617",
+              },
+              accent: {
+                DEFAULT: "#8b5cf6",
+                hover: "#7c3aed",
+                soft: "rgba(139, 92, 246, 0.12)",
+              },
+              success: { DEFAULT: "#10b981", soft: "rgba(16, 185, 129, 0.12)" },
+              warning: { DEFAULT: "#f59e0b", soft: "rgba(245, 158, 11, 0.12)" },
+              danger: { DEFAULT: "#ef4444", soft: "rgba(239, 68, 68, 0.12)" },
+              info: { DEFAULT: "#3b82f6", soft: "rgba(59, 130, 246, 0.12)" },
+              darkbg: "#0b1220",
+              darkcard: "#111827",
+              darkborder: "#1f2937",
+            },
+            fontFamily: { sans: ["'Inter'", "sans-serif"] },
+            boxShadow: {
+              premium:
+                "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+              "premium-hover":
+                "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+        vertical-align: middle;
+      }
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 4px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #e2e8f0;
+        border-radius: 10px;
+      }
+      .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #1e293b;
+      }
+
+      .premium-card {
+        @apply bg-white dark:bg-darkcard border border-gray-100 dark:border-darkborder shadow-none rounded-[32px] transition-all duration-200;
+      }
+      .premium-card:hover {
+        @apply border-gray-200 dark:border-slate-700 scale-[1.002];
+      }
+
+      .table-row-hover:hover {
+        background-color: #fcfcfc;
+      }
+      .dark .table-row-hover:hover {
+        background-color: rgba(255, 255, 255, 0.02);
+      }
+
+      .status-badge {
+        font-size: 10px;
+        font-weight: 700;
+        padding: 2px 8px;
+        border-radius: 6px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .glass-effect {
+        @apply backdrop-blur-md bg-white/80;
+      }
+      .dark .glass-effect {
+        @apply bg-darkcard/80;
+      }
+
+      /* Dropdown Animation */
+      @keyframes dropdown-in {
+        from {
+          opacity: 0;
+          transform: translateY(-8px) scale(0.98);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+      .animate-dropdown {
+        animation: dropdown-in 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+      .logo-mark {
+        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .logo-container:hover .logo-mark {
+        transform: rotate(90deg);
+      }
+      .syncing {
+        @apply opacity-50 pointer-events-none grayscale-[0.5] blur-[1px] transition-all duration-500;
+      }
+
+      @keyframes slideIn {
+        from {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+      .toast-animate {
+        animation: slideIn 0.3s ease forwards;
+      }
+    </style>
+  </head>
+  <body
+    class="font-sans text-[#0f172a] dark:text-slate-200 bg-[#f6f8ff] dark:bg-darkbg selection:bg-accent selection:text-white flex h-screen overflow-hidden antialiased transition-colors duration-300"
+  >
+    <aside
+      class="w-64 bg-white dark:bg-darkcard border-r border-gray-100 dark:border-darkborder flex flex-col shrink-0 z-50"
+    >
+      <div class="p-8 border-b border-gray-100 dark:border-darkborder">
+        <a href="index.html" class="flex items-center gap-3 logo-container group">
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 100 100"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="logo-mark"
+          >
+            <path
+              d="M20 50V20H80V80H50"
+              stroke="#000"
+              stroke-width="12"
+              stroke-linecap="square"
+              class="dark:stroke-white"
+            />
+            <path
+              d="M40 40L60 60"
+              stroke="#000"
+              stroke-width="12"
+              stroke-linecap="square"
+              class="dark:stroke-white"
+            />
+            <rect x="20" y="40" width="15" height="20" fill="white" />
+          </svg>
+          <h1 class="text-sm font-black tracking-widest uppercase dark:text-white">
+            Campus<span class="font-light">Connect</span>
+          </h1>
+        </a>
+      </div>
+
+      <nav class="flex-grow p-6 space-y-6 overflow-y-auto custom-scrollbar">
+        <div>
+          <p
+            class="text-[10px] font-black text-slate-400 dark:text-slate-600 uppercase tracking-[0.2em] px-4 mb-4"
+          >
+            Operação
+          </p>
+          <div class="space-y-1">
+            <a
+              href="geral-admin.html"
+              class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1"
+            >
+              <span class="material-symbols-outlined text-[20px]"
+                >dashboard</span
+              >
+              Painel Geral
+            </a>
+            <a
+              href="chamados-admin.html"
+              class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1"
+            >
+              <span class="material-symbols-outlined text-[20px]"
+                >confirmation_number</span
+              >
+              Chamados
+            </a>
+            <a
+              href="refeitorio-admin.html"
+              class="flex items-center gap-3 px-4 py-3 bg-accent text-white rounded-2xl text-xs font-bold shadow-lg shadow-accent/20 transition-all hover:translate-x-1"
+            >
+              <span
+                class="material-symbols-outlined text-[20px]"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >restaurant</span
+              >
+              Refeitório
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <p
+            class="text-[10px] font-black text-slate-400 dark:text-slate-600 uppercase tracking-[0.2em] px-4 mb-4"
+          >
+            Gestão
+          </p>
+          <div class="space-y-1">
+            <a
+              href="reservas-admin.html"
+              class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1"
+            >
+              <span class="material-symbols-outlined text-[20px]"
+                >event_seat</span
+              >
+              Reservas
+            </a>
+            <a
+              href="calendario-admin.html"
+              class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1"
+            >
+              <span class="material-symbols-outlined text-[20px]"
+                >calendar_today</span
+              >
+              Calendário
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="p-6 border-t border-slate-50 dark:border-darkborder/50 space-y-6 mt-auto">
+        <!-- Suporte -->
+        <div
+          class="bg-slate-50 dark:bg-slate-900/50 p-4 rounded-2xl border border-slate-100 dark:border-darkborder"
+        >
+          <p
+            class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2"
+          >
+            Suporte
+          </p>
+          <button
+            class="w-full flex items-center justify-center gap-2 py-2 bg-white dark:bg-darkcard border border-slate-200 dark:border-darkborder rounded-xl text-[10px] font-black uppercase hover:bg-slate-50 transition-colors"
+          >
+            <span class="material-symbols-outlined text-sm">help_outline</span>
+            Central de Ajuda
+          </button>
+        </div>
+
+        <!-- Perfil -->
+        <div class="relative" id="profile-container">
+          <button
+            onclick="toggleProfileDropdown(event)"
+            class="flex items-center gap-3 w-full p-2 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-all group"
+          >
+            <div
+              class="w-10 h-10 rounded-full overflow-hidden border-2 border-transparent group-hover:border-accent transition-all"
+            >
+              <img
+                src="https://ui-avatars.com/api/?name=Admin&background=000&color=fff"
+                alt="Avatar"
+              />
+            </div>
+            <div class="text-left">
+              <p class="text-xs font-bold text-slate-900 dark:text-white">
+                Admin
+              </p>
+              <p
+                class="text-[9px] font-black uppercase tracking-widest text-slate-400"
+              >
+                Administrador
+              </p>
+            </div>
+          </button>
+
+          <!-- Dropdown Menu -->
+          <div
+            id="profile-dropdown"
+            class="absolute bottom-full left-0 mb-2 w-full bg-white dark:bg-darkcard border border-slate-100 dark:border-darkborder rounded-2xl shadow-xl hidden z-50 overflow-hidden"
+          >
+            <button
+              onclick="logout()"
+              class="w-full flex items-center gap-3 px-5 py-4 text-xs font-bold text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+            >
+              <span class="material-symbols-outlined text-lg">logout</span>
+              Sair
+            </button>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="flex-grow flex flex-col overflow-hidden">
+      <!-- Top Bar -->
+      <header
+        class="h-20 bg-white/90 dark:bg-darkcard/90 backdrop-blur-md border-b border-gray-100 dark:border-darkborder flex items-center justify-between px-10 shrink-0 z-40"
+      >
+        <div>
+          <h2
+            class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]"
+          >
+            Ambiente Operacional
+          </h2>
+          <div class="flex items-center gap-2 mt-1">
+            <div
+              class="w-1.5 h-1.5 rounded-full bg-success animate-pulse"
+            ></div>
+            <p
+              id="welcome-msg"
+              class="text-xs text-slate-600 dark:text-slate-300 font-bold tracking-tight"
+            >
+              Status: Monitorando fluxos em tempo real
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center gap-4">
+          <!-- Chamados Dropdown -->
+          <div class="relative" id="chamados-dropdown-container">
+            <button
+              onclick="toggleChamadosDropdown()"
+              id="chamados-dropdown-btn"
+              class="w-10 h-10 flex items-center justify-center rounded-2xl bg-slate-100 dark:bg-darkborder text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all active:scale-90 shadow-sm relative"
+            >
+              <span class="material-symbols-outlined text-[20px]"
+                >confirmation_number</span
+              >
+              <span
+                id="chamados-badge"
+                class="absolute -top-1 -right-1 w-4 h-4 bg-danger text-white text-[9px] font-black rounded-full flex items-center justify-center hidden"
+                >0</span
+              >
+            </button>
+
+            <!-- Dropdown Menu -->
+            <div
+              id="chamados-dropdown-menu"
+              class="absolute right-0 mt-3 w-80 bg-white dark:bg-darkcard border border-gray-100 dark:border-darkborder rounded-[24px] shadow-premium hidden z-[100]"
+            >
+              <div
+                class="p-5 border-b border-gray-50 dark:border-darkborder/50 flex items-center justify-between"
+              >
+                <h4
+                  class="text-[10px] font-black text-slate-400 uppercase tracking-widest"
+                >
+                  Chamados Recentes
+                </h4>
+                <a
+                  href="chamados-admin.html"
+                  class="text-[9px] font-black text-brand-900 dark:text-accent uppercase hover:underline"
+                  >Ver todos</a
+                >
+              </div>
+              <div
+                id="chamados-dropdown-list"
+                class="max-h-[400px] overflow-y-auto custom-scrollbar"
+              >
+                <div class="p-8 text-center">
+                  <p class="text-[10px] font-bold text-slate-400 uppercase">
+                    Nenhum chamado aberto
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Theme Toggle -->
+          <button
+            onclick="toggleTheme()"
+            id="theme-toggle"
+            class="w-10 h-10 flex items-center justify-center rounded-2xl bg-slate-100 dark:bg-darkborder text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all active:scale-90 shadow-sm"
+          >
+            <span id="theme-icon" class="material-symbols-outlined text-[20px]"
+              >dark_mode</span
+            >
+          </button>
+
+          <div class="h-8 w-[2px] bg-slate-200 dark:bg-darkborder mx-2"></div>
+
+          <div
+            id="refresh-indicator"
+            class="hidden animate-spin w-5 h-5 border-2 border-accent border-t-transparent rounded-full"
+          ></div>
+          <button
+            onclick="fetchData()"
+            class="w-10 h-10 flex items-center justify-center rounded-2xl bg-accent text-white hover:opacity-90 transition-all active:scale-90 shadow-lg shadow-accent/20"
+          >
+            <span class="material-symbols-outlined text-[20px]">refresh</span>
+          </button>
+        </div>
+      </header>
+
+      <div class="flex-grow flex overflow-hidden">
+        <main class="flex-grow overflow-y-auto custom-scrollbar p-8 space-y-8">
+          <section class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div
+              class="bg-white dark:bg-darkcard border border-slate-200 dark:border-darkborder p-5 rounded-xl shadow-sm"
+            >
+              <p
+                class="text-[10px] font-bold text-slate-600 dark:text-slate-400 uppercase tracking-widest"
+              >
+                Total Registros
+              </p>
+              <h3
+                class="text-2xl font-bold text-slate-900 dark:text-white mt-1"
+                id="count-refeicoes"
+              >
+                0
+              </h3>
+            </div>
+            <div
+              class="bg-white dark:bg-darkcard border border-slate-200 dark:border-darkborder p-5 rounded-xl shadow-sm"
+            >
+              <p
+                class="text-[10px] font-bold text-slate-600 dark:text-slate-400 uppercase tracking-widest"
+              >
+                Fila Estimada
+              </p>
+              <h3 class="text-2xl font-bold text-success mt-1">Normal</h3>
+            </div>
+            <div
+              class="bg-white dark:bg-darkcard border border-slate-200 dark:border-darkborder p-5 rounded-xl shadow-sm"
+            >
+              <p
+                class="text-[10px] font-bold text-slate-600 dark:text-slate-400 uppercase tracking-widest"
+              >
+                Pessoas Presentes
+              </p>
+              <div class="mt-3 grid grid-cols-3 gap-3">
+                <div class="rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-darkborder p-2 text-center">
+                  <p class="text-[9px] font-bold uppercase tracking-widest text-slate-500">Almoço</p>
+                  <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-1" id="count-almoco">0</h3>
+                </div>
+                <div class="rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-darkborder p-2 text-center">
+                  <p class="text-[9px] font-bold uppercase tracking-widest text-slate-500">Jantar</p>
+                  <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-1" id="count-jantar">0</h3>
+                </div>
+                <div class="rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-darkborder p-2 text-center">
+                  <p class="text-[9px] font-bold uppercase tracking-widest text-slate-500">Lanche</p>
+                  <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-1" id="count-lanche">0</h3>
+                </div>
+              </div>
+            </div>
+            <div class="bg-accent text-white p-5 rounded-xl shadow-lg shadow-accent/20">
+              <p
+                class="text-[10px] font-bold text-white/50 uppercase tracking-widest"
+              >
+                Suprimentos
+              </p>
+              <h3 class="text-2xl font-bold mt-1">Estável</h3>
+            </div>
+          </section>
+
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <section
+              class="lg:col-span-2 bg-white dark:bg-darkcard border border-slate-200 dark:border-darkborder rounded-[32px] overflow-hidden shadow-sm flex flex-col h-[500px]"
+            >
+              <div
+                class="p-6 border-b border-slate-50 dark:border-darkborder/50 flex items-center justify-between bg-slate-50/50 dark:bg-slate-800/20"
+              >
+                <div class="flex items-center gap-4">
+                  <h3 class="font-bold text-sm text-slate-900 dark:text-white">
+                    Configuração de Cardápio
+                  </h3>
+                  <div
+                    class="flex items-center bg-white dark:bg-darkbg border border-slate-200 dark:border-darkborder rounded-lg p-1"
+                  >
+                    <button
+                      onclick="changeDay(-1)"
+                      class="w-8 h-8 flex items-center justify-center hover:bg-slate-100 dark:hover:bg-slate-800 rounded-md transition-all text-slate-900 dark:text-white"
+                    >
+                      <span class="material-symbols-outlined text-[18px]"
+                        >chevron_left</span
+                      >
+                    </button>
+                    <span
+                      id="current-day-display"
+                      class="px-3 text-[10px] font-black uppercase tracking-widest min-w-[100px] text-center text-slate-900 dark:text-white"
+                      >Segunda-Feira</span
+                    >
+                    <button
+                      onclick="changeDay(1)"
+                      class="w-8 h-8 flex items-center justify-center hover:bg-slate-100 dark:hover:bg-slate-800 rounded-md transition-all text-slate-900 dark:text-white"
+                    >
+                      <span class="material-symbols-outlined text-[18px]"
+                        >chevron_right</span
+                      >
+                    </button>
+                  </div>
+                </div>
+                <button
+                  onclick="openMenuModal()"
+                  class="px-4 py-2 bg-accent text-white rounded-lg text-[10px] font-bold uppercase tracking-widest hover:scale-105 transition-all"
+                >
+                  Atualizar Menu
+                </button>
+              </div>
+              <div
+                class="p-8 space-y-6 overflow-y-auto custom-scrollbar"
+                id="cardapio-admin-list"
+              >
+                <!-- JS Inject -->
+              </div>
+            </section>
+            <section
+              class="bg-white dark:bg-darkcard border border-slate-200 dark:border-darkborder rounded-[32px] overflow-hidden shadow-sm flex flex-col h-[500px]"
+            >
+              <div
+                class="p-6 border-b border-slate-50 dark:border-darkborder/50 bg-slate-50/50 dark:bg-slate-800/20 flex items-center justify-between"
+              >
+                <h3 class="font-bold text-sm text-slate-900 dark:text-white">
+                  Registros de Acesso
+                </h3>
+                <button onclick="clearAccessRecords()" class="text-[9px] font-black text-danger uppercase hover:underline">Limpar</button>
+              </div>
+              <div
+                id="refeicoes-list"
+                class="flex-grow overflow-y-auto divide-y divide-slate-50 dark:divide-darkborder/30 px-6"
+              ></div>
+            </section>
+          </div>
+        </main>
+
+        <!-- Sidebar: Checklist -->
+        <aside
+          class="w-72 bg-white dark:bg-darkcard border-l border-slate-200 dark:border-darkborder flex flex-col shrink-0 z-40"
+        >
+          <div
+            class="p-6 border-b border-slate-50 dark:border-darkborder/50 flex items-center justify-between"
+          >
+            <h4
+              class="font-bold text-[10px] uppercase tracking-widest text-slate-600 dark:text-slate-400"
+            >
+              Inspeção Preventiva
+            </h4>
+          </div>
+          <div class="flex-grow overflow-y-auto custom-scrollbar p-5 space-y-4">
+            <div class="flex items-center justify-between gap-3 group py-1">
+              <div class="flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  class="w-3.5 h-3.5 rounded border-slate-600 dark:border-slate-500 text-brand-900 focus:ring-slate-200 cursor-pointer bg-transparent"
+                />
+                <span
+                  class="text-xs font-medium text-slate-600 dark:text-slate-400"
+                  >Ar condicionado A</span
+                >
+              </div>
+              <button
+                onclick="quickTicket('Revisão AC Bloco A', 'Bloco A')"
+                class="p-1 text-slate-600 dark:text-slate-500 hover:text-accent"
+                title="Gerar chamado"
+              >
+                <span class="material-symbols-outlined text-[18px]"
+                  >add_circle</span
+                >
+              </button>
+            </div>
+            <div class="flex items-center justify-between gap-3 group py-1">
+              <div class="flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  class="w-3.5 h-3.5 rounded border-slate-600 dark:border-slate-500 text-brand-900 focus:ring-slate-200 cursor-pointer bg-transparent"
+                />
+                <span
+                  class="text-xs font-medium text-slate-600 dark:text-slate-400"
+                  >Iluminação B</span
+                >
+              </div>
+              <button
+                onclick="quickTicket('Troca Lâmpadas B', 'Bloco B')"
+                class="p-1 text-slate-600 dark:text-slate-500 hover:text-accent"
+                title="Gerar chamado"
+              >
+                <span class="material-symbols-outlined text-[18px]"
+                  >add_circle</span
+                >
+              </button>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <!-- Admin Modal -->
+    <div
+      class="fixed inset-0 z-[100] hidden items-center justify-center bg-brand-900/40 dark:bg-black/80 p-4 backdrop-blur-sm"
+      id="admin-modal"
+    >
+      <div
+        class="bg-white dark:bg-darkcard rounded-2xl shadow-2xl w-full max-w-md overflow-hidden border border-slate-200 dark:border-darkborder"
+      >
+        <div
+          class="p-6 border-b border-slate-100 dark:border-darkborder flex items-center justify-between"
+        >
+          <h3
+            class="text-sm font-bold text-slate-900 dark:text-white"
+            id="modal-title"
+          >
+            Logística Refeitório
+          </h3>
+          <button
+            onclick="closeModal()"
+            class="material-symbols-outlined text-slate-600 dark:text-slate-400 hover:text-black dark:hover:text-white"
+          >
+            close
+          </button>
+        </div>
+        <div class="p-6 space-y-4" id="modal-content"></div>
+        <div class="p-6 bg-slate-50/50 dark:bg-slate-800/20 flex flex-col gap-2">
+          <button
+            id="save-btn"
+            class="w-full py-3 bg-accent text-white rounded-xl text-xs font-bold shadow-lg shadow-accent/20 hover:scale-[1.02] transition-all"
+          >
+            Salvar Operação
+          </button>
+          <button
+            onclick="closeModal()"
+            class="w-full py-2 text-xs font-bold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all"
+          >
+            Cancelar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Custom Confirmation Modal -->
+    <div
+      class="fixed inset-0 z-[200] hidden items-center justify-center bg-brand-900/40 dark:bg-black/80 p-4 backdrop-blur-sm"
+      id="confirm-modal"
+    >
+      <div
+        class="bg-white dark:bg-darkcard rounded-[32px] shadow-2xl w-full max-w-sm overflow-hidden border border-slate-200 dark:border-darkborder animate-dropdown"
+      >
+        <div class="p-8 text-center space-y-6">
+          <div class="w-16 h-16 bg-amber-50 dark:bg-amber-900/20 text-amber-500 rounded-2xl flex items-center justify-center mx-auto">
+            <span class="material-symbols-outlined text-3xl">warning</span>
+          </div>
+          <div class="space-y-2">
+            <h3 class="text-lg font-black text-slate-900 dark:text-white tracking-tight">Confirmar Ação</h3>
+            <p class="text-sm text-slate-600 dark:text-slate-400 font-medium leading-relaxed" id="confirm-modal-text"></p>
+          </div>
+          <div class="flex flex-col gap-3 pt-2">
+            <button id="confirm-modal-yes" class="w-full py-4 bg-accent text-white rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-accent-hover transition-all shadow-lg shadow-accent/20">Sim, Confirmar</button>
+            <button id="confirm-modal-no" class="w-full py-4 bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-slate-100 dark:hover:bg-slate-700 transition-all">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="toast-container"
+      class="fixed bottom-8 right-8 z-[9999] flex flex-col gap-3"
+    ></div>
+
+    <script>
+      (() => {
+        const list = document.getElementById("refeicoes-list");
+        const adminModal = document.getElementById("admin-modal");
+        const modalContent = document.getElementById("modal-content");
+        const saveBtn = document.getElementById("save-btn");
+        const toastContainer = document.getElementById("toast-container");
+
+        let allTickets = [];
+        let latestRefeicoes = {};
+
+        // Theme management
+        window.toggleTheme = () => {
+          const isDark = document.documentElement.classList.contains("dark");
+          if (isDark) {
+            document.documentElement.classList.remove("dark");
+            document.documentElement.classList.add("light");
+            localStorage.setItem("theme", "light");
+            document.getElementById("theme-icon").textContent = "dark_mode";
+          } else {
+            document.documentElement.classList.add("dark");
+            document.documentElement.classList.remove("light");
+            localStorage.setItem("theme", "dark");
+            document.getElementById("theme-icon").textContent = "light_mode";
+          }
+          renderCardapioAdmin();
+        };
+
+        const themeIcon = document.getElementById("theme-icon");
+        if (themeIcon) {
+          themeIcon.textContent = document.documentElement.classList.contains("dark")
+            ? "light_mode"
+            : "dark_mode";
+        }
+
+        window.toggleChamadosDropdown = () => {
+          const menu = document.getElementById("chamados-dropdown-menu");
+          menu.classList.toggle("hidden");
+          menu.classList.toggle("animate-dropdown");
+        };
+
+        const renderChamadosDropdown = () => {
+          const listDiv = document.getElementById("chamados-dropdown-list");
+          const badge = document.getElementById("chamados-badge");
+          const openTickets = allTickets.filter((t) => t.status !== "Concluído").slice(0, 5);
+
+          if (openTickets.length > 0) {
+            badge.textContent = openTickets.length;
+            badge.classList.remove("hidden");
+            listDiv.innerHTML = openTickets.map((t) => `
+                <div class="p-4 border-b border-gray-50 dark:border-darkborder/30 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-all cursor-pointer group">
+                  <div class="flex items-start gap-3">
+                    <div class="w-8 h-8 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center shrink-0">
+                      <span class="material-symbols-outlined text-sm text-slate-500">${t.prioridade === "Alta" ? "priority_high" : "confirmation_number"}</span>
+                    </div>
+                    <div class="flex-grow min-w-0">
+                      <p class="text-[11px] font-black text-slate-900 dark:text-white truncate">${t.titulo}</p>
+                      <p class="text-[9px] font-bold text-slate-400 uppercase mt-0.5">${t.local}</p>
+                    </div>
+                  </div>
+                </div>
+            `).join("");
+          } else {
+            badge.classList.add("hidden");
+            listDiv.innerHTML = `<div class="p-8 text-center text-[10px] font-bold text-slate-400 uppercase">Nenhum chamado aberto</div>`;
+          }
+        };
+
+        const days = ["Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira"];
+        const menuData = {
+          "Segunda-Feira": [
+            { tipo: "CAFÉ", icone: "coffee", itens: "Pão na chapa, café com leite, frutas da estação", dieta: "NORMAL" },
+            { tipo: "ALMOÇO", icone: "sunny", itens: "Frango grelhado, arroz integral, feijão preto e legumes", dieta: "SEM GLÚTEN" },
+            { tipo: "JANTAR", icone: "nights_stay", itens: "Sopa de legumes com torradas", dieta: "LEVE" }
+          ],
+          "Terça-Feira": [
+            { tipo: "CAFÉ", icone: "coffee", itens: "Cuscuz com ovo, café e suco", dieta: "NORMAL" },
+            { tipo: "ALMOÇO", icone: "sunny", itens: "Bife acebolado, arroz branco, feijão carioca e farofa", dieta: "NORMAL" },
+            { tipo: "JANTAR", icone: "nights_stay", itens: "Macarrão ao sugo com manjericão", dieta: "VEGETARIANO" }
+          ],
+          "Quarta-Feira": [
+            { tipo: "CAFÉ", icone: "coffee", itens: "Bolo de milho, café e iogurte", dieta: "NORMAL" },
+            { tipo: "ALMOÇO", icone: "sunny", itens: "Feijoada completa com couve e laranja", dieta: "NORMAL" },
+            { tipo: "JANTAR", icone: "nights_stay", itens: "Caldo verde com paio", dieta: "NORMAL" }
+          ],
+          "Quinta-Feira": [
+            { tipo: "CAFÉ", icone: "coffee", itens: "Tapioca com queijo, café e suco", dieta: "NORMAL" },
+            { tipo: "ALMOÇO", icone: "sunny", itens: "Peixe assado, pirão e arroz com brócolis", dieta: "NORMAL" },
+            { tipo: "JANTAR", icone: "nights_stay", itens: "Sanduíche natural de frango", dieta: "NORMAL" }
+          ],
+          "Sexta-Feira": [
+            { tipo: "CAFÉ", icone: "coffee", itens: "Ovos mexidos, torrada e café", dieta: "PROTEICO" },
+            { tipo: "ALMOÇO", icone: "sunny", itens: "Estrogonofe de frango, arroz e batata palha", dieta: "NORMAL" },
+            { tipo: "JANTAR", icone: "nights_stay", itens: "Pizza de mussarela e calabresa", dieta: "NORMAL" }
+          ]
+        };
+
+        let currentDayIndex = new Date().getDay() - 1;
+        if (currentDayIndex < 0 || currentDayIndex > 4) currentDayIndex = 0;
+
+        const showToast = (message, type = "success") => {
+          const toast = document.createElement("div");
+          toast.className = "toast-animate px-5 py-3 rounded-xl shadow-lg border border-slate-100 dark:border-darkborder bg-white dark:bg-darkcard text-xs font-bold flex items-center gap-3";
+          const iconColor = type === "success" ? "text-success" : "text-danger";
+          toast.innerHTML = `<span class="material-symbols-outlined ${iconColor}">${type === "success" ? "check_circle" : "error"}</span><span class="text-slate-700 dark:text-gray-200">${message}</span>`;
+          toastContainer.appendChild(toast);
+          setTimeout(() => {
+            toast.classList.add("opacity-0", "translate-x-full", "transition-all", "duration-500");
+            setTimeout(() => toast.remove(), 500);
+          }, 3000);
+        };
+
+        const getMealStatus = (tipo, isFriday) => {
+          const now = new Date();
+          const currentTime = now.getHours() * 60 + now.getMinutes();
+          let start, end;
+          if (tipo === "CAFÉ") { start = 6 * 60 + 30; end = 7 * 60; }
+          else if (tipo === "ALMOÇO") { start = 12 * 60; end = 13 * 60; }
+          else if (tipo === "JANTAR") {
+            if (isFriday) { start = 17 * 60 + 30; end = 18 * 60 + 30; }
+            else { start = 18 * 60; end = 19 * 60; }
+          }
+          if (currentTime >= start && currentTime <= end) return "SERVINDO AGORA";
+          if (currentTime < start) return "PROGRAMADO";
+          return "ENCERRADO";
+        };
+
+        const getMealTimeLabel = (tipo, isFriday) => {
+          if (tipo === "CAFÉ") return "06:30 - 07:00";
+          if (tipo === "ALMOÇO") return "12:00 - 13:00";
+          if (tipo === "JANTAR") return isFriday ? "17:30 - 18:30" : "18:00 - 19:00";
+          return "";
+        };
+
+        const renderCardapioAdmin = () => {
+          const dayName = days[currentDayIndex];
+          document.getElementById("current-day-display").textContent = dayName;
+          const container = document.getElementById("cardapio-admin-list");
+          const isFriday = dayName === "Sexta-Feira";
+
+          container.innerHTML = menuData[dayName].map((m, index) => {
+            const status = getMealStatus(m.tipo, isFriday);
+            const statusColor = status === "SERVINDO AGORA" ? "text-success bg-success/10" : "text-slate-400 bg-slate-100 dark:bg-slate-800";
+            
+            let displayItens = m.itens;
+            const mealKey = m.tipo.toLowerCase();
+            if (latestRefeicoes[mealKey]) {
+              displayItens = latestRefeicoes[mealKey].itens.join(", ");
+            }
+
+            return `
+              <div class="p-6 bg-slate-50 dark:bg-slate-800/20 rounded-xl border border-slate-100 dark:border-darkborder relative group min-h-[140px] flex flex-col transition-all hover:border-accent/20">
+                  <div class="flex items-center justify-between mb-2">
+                    <div class="flex items-center gap-2">
+                      <span class="material-symbols-outlined text-slate-400 text-[18px]">${m.icone}</span>
+                      <span class="text-[9px] font-bold text-slate-600 dark:text-slate-400 uppercase tracking-widest">${m.tipo} • ${getMealTimeLabel(m.tipo, isFriday)}</span>
+                    </div>
+                  </div>
+                  <h4 class="text-sm font-bold text-slate-900 dark:text-white mt-1 flex-grow">${displayItens}</h4>
+                  <div class="mt-4 flex justify-end">
+                    <span class="text-[8px] font-black px-2 py-0.5 rounded ${statusColor}">${status}</span>
+                  </div>
+                  <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <button onclick="editMenu('${dayName}', ${index})" class="p-1.5 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition-all shadow-sm bg-white dark:bg-darkcard border border-slate-100 dark:border-darkborder">
+                      <span class="material-symbols-outlined text-[16px] text-slate-500">edit</span>
+                    </button>
+                  </div>
+              </div>
+            `;
+          }).join("");
+        };
+
+        window.showConfirmModal = (text, onConfirm) => {
+          const modal = document.getElementById("confirm-modal");
+          const textEl = document.getElementById("confirm-modal-text");
+          const yesBtn = document.getElementById("confirm-modal-yes");
+          const noBtn = document.getElementById("confirm-modal-no");
+
+          textEl.textContent = text;
+          modal.classList.remove("hidden");
+          modal.classList.add("flex");
+
+          const close = () => {
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+          };
+
+          yesBtn.onclick = () => {
+            onConfirm();
+            close();
+          };
+          noBtn.onclick = close;
+        };
+
+        window.editMenu = (day, index) => {
+          const m = menuData[day][index];
+          document.getElementById("modal-title").textContent = `Editar ${m.tipo} - ${day}`;
+          modalContent.innerHTML = `
+                <div class="space-y-4">
+                    <div class="space-y-1.5">
+                        <label class="text-[10px] font-bold uppercase text-slate-600 dark:text-slate-400">Refeição</label>
+                        <input type="text" id="meal-type-modal" value="${m.tipo}" readonly class="w-full rounded-xl border-slate-200 dark:border-darkborder bg-slate-100 dark:bg-slate-800 p-3 font-bold text-xs outline-none text-slate-500" />
+                    </div>
+                    <div class="space-y-1.5">
+                        <label class="text-[10px] font-bold uppercase text-slate-600 dark:text-slate-400">Itens (separados por vírgula)</label>
+                        <textarea id="meal-items" class="w-full rounded-xl border-slate-200 dark:border-darkborder bg-slate-50 dark:bg-darkbg p-3 font-bold text-xs outline-none focus:ring-2 focus:ring-accent/10" rows="3">${m.itens}</textarea>
+                    </div>
+                </div>
+            `;
+
+          saveBtn.onclick = async () => {
+            const newItensStr = document.getElementById("meal-items").value;
+            if (!newItensStr.trim()) return;
+            const newItens = newItensStr.split(",").map(i => i.trim());
+            try {
+              const res = await fetch("http://localhost:3333/api/refeicoes", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ refeicao: m.tipo, itens: newItens }),
+              });
+              if (!res.ok) throw new Error();
+              showToast("Cardápio sincronizado com sucesso");
+              closeModal();
+              load();
+            } catch (e) {
+              showToast("Erro ao sincronizar", "error");
+            }
+          };
+
+          adminModal.classList.remove("hidden");
+          adminModal.classList.add("flex");
+        };
+
+        window.changeDay = (dir) => {
+          currentDayIndex = (currentDayIndex + dir + 5) % 5;
+          renderCardapioAdmin();
+        };
+
+        const fetchData = async () => {
+          document.getElementById("refresh-indicator").classList.remove("hidden");
+          document.querySelectorAll("main").forEach((el) => el.classList.add("syncing"));
+          try {
+            await Promise.all([
+              load(),
+              fetch("http://localhost:3333/api/chamados").then((r) => r.json()).then((data) => {
+                allTickets = data;
+                renderChamadosDropdown();
+              }),
+            ]);
+          } catch (e) {
+            showToast("Falha na conexão", "error");
+          } finally {
+            document.getElementById("refresh-indicator").classList.add("hidden");
+            document.querySelectorAll("main").forEach((el) => el.classList.remove("syncing"));
+          }
+        };
+
+        const load = async () => {
+          try {
+            const res = await fetch("http://localhost:3333/api/refeicoes");
+            const data = await res.json();
+            
+            latestRefeicoes = data.slice().sort((a, b) => new Date(b.criadoEm) - new Date(a.criadoEm)).reduce((acc, item) => {
+                const key = (item.refeicao || "").toLowerCase();
+                if (!acc[key]) acc[key] = item;
+                return acc;
+              }, {});
+
+            // Filtering based on persistent local clear timestamp
+            const lastClear = parseInt(localStorage.getItem("last_access_clear") || "0");
+            const filteredData = data.filter(r => new Date(r.criadoEm).getTime() > lastClear);
+
+            document.getElementById("count-refeicoes").textContent = filteredData.length;
+            document.getElementById("count-almoco").textContent = filteredData.filter(r => (r.refeicao || "").toLowerCase().includes("almo")).length;
+            document.getElementById("count-jantar").textContent = filteredData.filter(r => (r.refeicao || "").toLowerCase() === "jantar").length;
+            document.getElementById("count-lanche").textContent = filteredData.filter(r => (r.refeicao || "").toLowerCase() === "lanche").length;
+            
+            list.innerHTML = filteredData.sort((a, b) => new Date(b.criadoEm) - new Date(a.criadoEm)).slice(0, 10).map(r => `
+                <div class="py-4">
+                    <div class="flex items-center justify-between">
+                        <p class="font-bold text-xs text-slate-900 dark:text-white">${r.refeicao}</p>
+                        <span class="text-[9px] font-medium text-slate-600 dark:text-slate-400 uppercase">${new Date(r.criadoEm).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</span>
+                    </div>
+                    <p class="text-[10px] text-slate-600 dark:text-slate-400 mt-1 truncate italic">${(r.itens || []).join(", ")}</p>
+                </div>
+            `).join("");
+            
+            if (filteredData.length === 0) {
+              list.innerHTML = '<div class="p-8 text-center text-[10px] font-bold text-slate-400 uppercase italic">Nenhum novo registro</div>';
+            }
+
+            renderCardapioAdmin();
+          } catch (e) { console.error(e); }
+        };
+
+        window.openMenuModal = () => {
+          document.getElementById("modal-title").textContent = "Atualizar Cardápio";
+          modalContent.innerHTML = `
+                <div class="space-y-4">
+                    <div class="space-y-1.5"><label class="text-[10px] font-bold uppercase text-slate-600 dark:text-slate-400">Refeição</label><select id="meal-type-select" class="w-full rounded-xl border-slate-200 dark:border-darkborder bg-slate-50 dark:bg-darkbg p-3 font-bold text-xs outline-none text-slate-900 dark:text-white"><option>Almoço</option><option>Jantar</option><option>Café</option></select></div>
+                    <div class="space-y-1.5"><label class="text-[10px] font-bold uppercase text-slate-600 dark:text-slate-400">Itens (separados por vírgula)</label><textarea id="meal-items-new" class="w-full rounded-xl border-slate-200 dark:border-darkborder bg-slate-50 dark:bg-darkbg p-3 font-bold text-xs outline-none text-slate-900 dark:text-white" rows="3" placeholder="Ex: Arroz, Feijão, Frango"></textarea></div>
+                </div>
+            `;
+          saveBtn.onclick = async () => {
+            const refeicao = document.getElementById("meal-type-select").value;
+            const itens = document.getElementById("meal-items-new").value.split(",").map(i => i.trim());
+            if (!itens[0]) return;
+            try {
+              await fetch("http://localhost:3333/api/refeicoes", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ refeicao, itens }) });
+              showToast("Cardápio atualizado");
+              closeModal();
+              load();
+            } catch (e) { alert("Erro."); }
+          };
+          adminModal.classList.remove("hidden");
+          adminModal.classList.add("flex");
+        };
+
+        window.closeModal = () => {
+          adminModal.classList.add("hidden");
+          adminModal.classList.remove("flex");
+        };
+
+        window.clearAccessRecords = () => {
+          showConfirmModal("Deseja ocultar os registros atuais? (Eles continuarão salvos no banco de dados para auditoria)", () => {
+            // Save the current timestamp to local storage to hide old records
+            localStorage.setItem("last_access_clear", Date.now().toString());
+            load();
+            showToast("Registros ocultados");
+          });
+        };
+
+        window.quickTicket = async (titulo, local) => {
+          const res = await fetch("http://localhost:3333/api/chamados", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              titulo,
+              local,
+              descricao: "Checklist preventiva.",
+              prioridade: "Média",
+            }),
+          });
+          if (res.ok) {
+            showToast("Chamado gerado!");
+            fetchData();
+          }
+        };
+        
+        window.fetchData = fetchData;
+        fetchData();
+        // Profile Dropdown
+        window.toggleProfileDropdown = (e) => {
+          e.stopPropagation();
+          const dropdown = document.getElementById("profile-dropdown");
+          dropdown.classList.toggle("hidden");
+        };
+
+        window.logout = () => {
+          localStorage.removeItem("userRole");
+          window.location.href = "login.html";
+        };
+
+        // Close dropdown when clicking outside
+        document.addEventListener("click", (e) => {
+          const dropdown = document.getElementById("profile-dropdown");
+          const container = document.getElementById("profile-container");
+          if (
+            dropdown &&
+            !dropdown.classList.contains("hidden") &&
+            !container.contains(e.target)
+          ) {
+            dropdown.classList.add("hidden");
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
