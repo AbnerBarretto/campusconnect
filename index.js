@@ -28,8 +28,8 @@ app.use((req, res, next) => {
     return;
   }
 
-  // Se chegou aqui, é uma rota SPA (sem extensão) - servir index.html
-  res.sendFile(path.join(__dirname, "index.html"));
+  // Se chegou aqui, é uma rota SPA (sem extensão) - servir login.html por padrão
+  res.sendFile(path.join(__dirname, "login.html"));
 });
 
 // Iniciar o servidor
