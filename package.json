@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "CampusConnect - Plataforma integrada de gestão acadêmica",
   "private": true,
+  "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "dev": "node index.js",
