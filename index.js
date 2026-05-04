@@ -21,22 +21,22 @@ if (process.env.NODE_ENV !== "production") {
 // Servir arquivos estáticos (HTML, CSS, JS)
 app.use(express.static(path.join(__dirname)));
 
-// SPA Fallback - APENAS para rotas que não existem como arquivos
-// Não fazer fallback para requisições de /api/* ou arquivos estáticos
+// SPA Fallback - APENAS para rotas SPA (sem extensão de arquivo)
 app.use((req, res, next) => {
   // Se for /api/*, deixar passar (backend vai tratar)
   if (req.path.startsWith("/api/")) {
     return next();
   }
   
-  // Se for uma rota HTML válida no pages/ ou admin/, deixar passar
-  const fs = require("fs");
-  const filePath = path.join(__dirname, req.path);
-  if (fs.existsSync(filePath) && !fs.statSync(filePath).isDirectory()) {
-    return next();
+  // Se a URL tem uma extensão de arquivo (.html, .css, .js, etc.), NÃO fazer fallback
+  // O express.static já tentou servir e não achou, então não existe
+  const hasFileExtension = /\.\w+$/.test(req.path);
+  if (hasFileExtension) {
+    res.status(404).send("Arquivo não encontrado");
+    return;
   }
   
-  // Se chegou aqui, é uma rota SPA - redirecionar para index.html
+  // Se chegou aqui, é uma rota SPA (sem extensão) - servir index.html
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
