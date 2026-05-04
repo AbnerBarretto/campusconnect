@@ -11,25 +11,20 @@ app.use(cors());
 app.use(express.json({ limit: "1mb" }));
 app.use(express.urlencoded({ limit: "1mb", extended: true }));
 
-// Em desenvolvimento local, importar backend
+// Em desenvolvimento local, importar backend PRIMEIRO
 // Em produção (Vercel), o backend roda como serviço separado
 if (process.env.NODE_ENV !== "production") {
   const backendApp = require("./backend/app");
-  app.use("/", backendApp);
+  app.use(backendApp); // Sem prefixo, pega tudo antes do fallback
 }
 
 // Servir arquivos estáticos (HTML, CSS, JS)
 app.use(express.static(path.join(__dirname)));
 
 // SPA Fallback - APENAS para rotas SPA (sem extensão de arquivo)
+// Isso só é atingido se nenhum arquivo foi encontrado
 app.use((req, res, next) => {
-  // Se for /api/*, deixar passar (backend vai tratar)
-  if (req.path.startsWith("/api/")) {
-    return next();
-  }
-  
-  // Se a URL tem uma extensão de arquivo (.html, .css, .js, etc.), NÃO fazer fallback
-  // O express.static já tentou servir e não achou, então não existe
+  // Se a URL tem uma extensão de arquivo (.html, .css, .js, etc.), é 404
   const hasFileExtension = /\.\w+$/.test(req.path);
   if (hasFileExtension) {
     res.status(404).send("Arquivo não encontrado");
