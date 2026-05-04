@@ -1,22 +1,27 @@
-{
+Deployment failed with error.
+Build Logs
+3s
+6 lines
+CtrlF
+Running build in Washington, D.C., USA (East) – iad1
+Build machine configuration: 2 cores, 8 GB
+Cloning github.com/AbnerBarretto/campusconnect (Branch: main, Commit: 758896e)
+Previous build caches not available.
+Cloning completed: 239.000ms
+Running "vercel build"{
   "version": 2,
+  "buildCommand": "npm install",
+  "public": true,
   "builds": [
     {
-      "src": "backend/server.js",
+      "src": "index.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "backend/server.js"
-    },
-    {
       "src": "/(.*)",
-      "dest": "/$1"
+      "dest": "index.js"
     }
-  ],
-  "env": {
-    "PORT": "3333"
-  }
+  ]
 }

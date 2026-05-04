@@ -1,0 +1,19 @@
+{
+  "name": "campusconnect",
+  "version": "0.1.0",
+  "description": "CampusConnect - Plataforma integrada de gestão acadêmica",
+  "private": true,
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js",
+    "build": "npm install"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "dotenv": "^16.0.3"
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}
