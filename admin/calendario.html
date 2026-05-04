@@ -6,15 +6,13 @@
     <script>
       (() => {
         const savedTheme = localStorage.getItem("theme");
-        const prefersDark = window.matchMedia(
-          "(prefers-color-scheme: dark)",
-        ).matches;
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
         const shouldUseDark = savedTheme ? savedTheme === "dark" : prefersDark;
         document.documentElement.classList.toggle("dark", shouldUseDark);
         document.documentElement.classList.toggle("light", !shouldUseDark);
       })();
     </script>
-    <title>Manutenção Operacional | CampusConnect Admin</title>
+    <title>Calendário Institucional | CampusConnect Admin</title>
     <link
       rel="icon"
       type="image/svg+xml"
@@ -22,7 +20,7 @@
     />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
       rel="stylesheet"
     />
     <script id="tailwind-config">
@@ -90,132 +88,6 @@
         background: #1e293b;
       }
 
-      .table-row-hover:hover {
-        background-color: #fcfcfc;
-      }
-      .dark .table-row-hover:hover {
-        background-color: rgba(255, 255, 255, 0.02);
-      }
-
-      .status-badge {
-        font-size: 10px;
-        font-weight: 700;
-        padding: 6px 32px 6px 12px;
-        border-radius: 8px;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        min-width: 140px;
-        text-align: left;
-        appearance: none !important;
-        -webkit-appearance: none !important;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23475569' stroke-width='3'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7' /%3E%3C/svg%3E") !important;
-        background-repeat: no-repeat !important;
-        background-position: right 10px center !important;
-        background-size: 12px !important;
-        border: 1.5px solid transparent !important;
-        @apply outline-none;
-      }
-      .status-badge:hover {
-        filter: brightness(0.98);
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-      }
-      /* High Contrast Classes */
-      .badge-success {
-        background-color: #ecfdf5;
-        color: #065f46;
-        border-color: #10b98133 !important;
-      }
-      .badge-warning {
-        background-color: #fffbeb;
-        color: #92400e;
-        border-color: #f59e0b33 !important;
-      }
-      .badge-danger {
-        background-color: #fef2f2;
-        color: #991b1b;
-        border-color: #ef444433 !important;
-      }
-      .badge-accent {
-        background-color: #eff6ff;
-        color: #1e40af;
-        border-color: #3b82f633 !important;
-      }
-      .badge-info {
-        background-color: #eff6ff;
-        color: #1e40af;
-        border-color: #3b82f633 !important;
-      }
-      .badge-neutral {
-        background-color: #f8fafc;
-        color: #475569;
-        border-color: #e2e8f0 !important;
-      }
-      .filter-chip {
-        @apply px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard text-slate-600 dark:text-slate-300 transition-all;
-      }
-      .filter-chip:hover {
-        @apply bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white;
-      }
-      .filter-chip.active {
-        @apply bg-accent text-white border-transparent shadow-lg shadow-accent/30;
-      }
-      .dark .badge-success {
-        background-color: #14532d !important;
-        color: #dcfce7 !important;
-        border-color: #22c55e !important;
-      }
-      .dark .badge-warning {
-        background-color: #78350f !important;
-        color: #fffbeb !important;
-        border-color: #fbbf24 !important;
-      }
-      .dark .badge-danger {
-        background-color: #7f1d1d !important;
-        color: #fee2e2 !important;
-        border-color: #f87171 !important;
-      }
-      .dark .badge-accent,
-      .dark .badge-info {
-        background-color: #4c1d95 !important;
-        color: #ede9fe !important;
-        border-color: #a78bfa !important;
-      }
-      .dark .badge-neutral {
-        background-color: #1f2937 !important;
-        color: #e5e7eb !important;
-        border-color: #374151 !important;
-      }
-      .dark .bg-success-soft {
-        background-color: #14532d !important;
-        color: #dcfce7 !important;
-      }
-      .dark .bg-warning-soft {
-        background-color: #78350f !important;
-        color: #fffbeb !important;
-      }
-      .dark .bg-danger-soft {
-        background-color: #7f1d1d !important;
-        color: #fee2e2 !important;
-      }
-      .dark .bg-accent-soft {
-        background-color: #4c1d95 !important;
-        color: #ede9fe !important;
-      }
-      .dark .bg-success\/5 {
-        background-color: #14532d !important;
-      }
-      .dark .bg-warning\/5 {
-        background-color: #78350f !important;
-      }
-      .dark .bg-danger\/5 {
-        background-color: #7f1d1d !important;
-      }
-      .dark .bg-accent\/5 {
-        background-color: #4c1d95 !important;
-      }
-
       .glass-effect {
         @apply backdrop-blur-md bg-white/80;
       }
@@ -240,7 +112,6 @@
       .logo-container:hover .logo-mark {
         transform: rotate(90deg);
       }
-
       .syncing {
         @apply opacity-50 pointer-events-none grayscale-[0.5] blur-[1px] transition-all duration-500;
       }
@@ -267,7 +138,7 @@
       class="w-64 bg-white dark:bg-darkcard border-r border-gray-100 dark:border-darkborder flex flex-col shrink-0 z-50"
     >
       <div class="p-8 border-b border-gray-100 dark:border-darkborder">
-        <a href="index.html" class="flex items-center gap-3 logo-container group">
+        <a href="../index.html" class="flex items-center gap-3 logo-container group">
           <svg
             width="32"
             height="32"
@@ -292,9 +163,7 @@
             />
             <rect x="20" y="40" width="15" height="20" fill="white" />
           </svg>
-          <h1
-            class="text-sm font-black tracking-widest uppercase dark:text-white"
-          >
+          <h1 class="text-sm font-black tracking-widest uppercase dark:text-white">
             Campus<span class="font-light">Connect</span>
           </h1>
         </a>
@@ -309,7 +178,7 @@
           </p>
           <div class="space-y-1">
             <a
-              href="geral-admin.html"
+              href="geral.html"
               class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1"
             >
               <span class="material-symbols-outlined text-[20px]"
@@ -318,18 +187,16 @@
               Painel Geral
             </a>
             <a
-              href="chamados-admin.html"
-              class="flex items-center gap-3 px-4 py-3 bg-accent text-white rounded-2xl text-xs font-bold shadow-lg shadow-accent/20 transition-all hover:translate-x-1"
+              href="chamados.html"
+              class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1"
             >
-              <span
-                class="material-symbols-outlined text-[20px]"
-                style="font-variation-settings: &quot;FILL&quot; 1"
+              <span class="material-symbols-outlined text-[20px]"
                 >confirmation_number</span
               >
               Chamados
             </a>
             <a
-              href="refeitorio-admin.html"
+              href="refeitorio.html"
               class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1"
             >
               <span class="material-symbols-outlined text-[20px]"
@@ -348,7 +215,7 @@
           </p>
           <div class="space-y-1">
             <a
-              href="reservas-admin.html"
+              href="reservas.html"
               class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1"
             >
               <span class="material-symbols-outlined text-[20px]"
@@ -357,10 +224,12 @@
               Reservas
             </a>
             <a
-              href="calendario-admin.html"
-              class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1"
+              href="calendario.html"
+              class="flex items-center gap-3 px-4 py-3 bg-accent text-white rounded-2xl text-xs font-bold shadow-lg shadow-accent/20 transition-all hover:translate-x-1"
             >
-              <span class="material-symbols-outlined text-[20px]"
+              <span
+                class="material-symbols-outlined text-[20px]"
+                style="font-variation-settings: &quot;FILL&quot; 1"
                 >calendar_today</span
               >
               Calendário
@@ -485,7 +354,7 @@
                   Chamados Recentes
                 </h4>
                 <a
-                  href="chamados-admin.html"
+                  href="chamados.html"
                   class="text-[9px] font-black text-brand-900 dark:text-accent uppercase hover:underline"
                   >Ver todos</a
                 >
@@ -531,48 +400,93 @@
 
       <div class="flex-grow flex overflow-hidden">
         <main class="flex-grow overflow-y-auto custom-scrollbar p-8 space-y-8">
-          <section
-            class="bg-white dark:bg-darkcard border border-slate-200 dark:border-darkborder rounded-xl shadow-sm flex flex-col min-h-[600px]"
-          >
-            <div
-              class="p-6 border-b border-slate-50 dark:border-darkborder/50 flex items-center justify-between"
+          <div class="flex items-center justify-between">
+            <h2
+              class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white"
             >
-              <h3 class="font-bold text-sm text-slate-900 dark:text-white">
-                Gerenciar Operações
-              </h3>
-              <div
-                class="flex items-center bg-slate-50 dark:bg-slate-900/50 px-3 py-1.5 rounded-lg border border-slate-100 dark:border-darkborder"
-              >
+              Planejamento Institucional
+            </h2>
+            <p
+              class="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-widest"
+            >
+              Agenda exclusiva da diretoria
+            </p>
+          </div>
+
+          <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div
+              class="bg-white dark:bg-darkcard border border-slate-200 dark:border-darkborder p-8 rounded-2xl shadow-sm flex flex-col gap-6 group hover:border-black dark:hover:border-accent transition-all cursor-pointer"
+            >
+              <div class="flex items-center justify-between">
                 <span
-                  class="material-symbols-outlined text-slate-600 dark:text-slate-400 text-[16px]"
-                  >search</span
+                  class="px-3 py-1 bg-accent text-white text-[10px] font-bold rounded-lg"
+                  >MAIO 05</span
                 >
-                <input
-                  type="text"
-                  id="search-input"
-                  placeholder="Filtrar por local..."
-                  class="bg-transparent border-none p-0 text-xs font-medium focus:ring-0 w-48 text-slate-900 dark:text-white"
-                />
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+              </div>
+              <div>
+                <h4
+                  class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-accent dark:group-hover:text-accent transition-colors"
+                >
+                  Aniversário do Campus
+                </h4>
+                <p
+                  class="text-sm text-slate-600 dark:text-slate-400 font-medium mt-2 leading-relaxed"
+                >
+                  Suspensão total de atividades presenciais e remotas em virtude
+                  do feriado municipal oficial.
+                </p>
               </div>
             </div>
-            <div class="overflow-x-auto">
-              <table class="w-full text-left">
-                <thead
-                  class="bg-slate-50/50 dark:bg-slate-800/20 text-[10px] font-bold text-slate-600 dark:text-slate-400 uppercase tracking-widest border-b border-slate-100 dark:border-darkborder/50"
+
+            <div
+              class="bg-white dark:bg-darkcard border border-slate-200 dark:border-darkborder p-8 rounded-2xl shadow-sm flex flex-col gap-6 group hover:border-black dark:hover:border-accent transition-all cursor-pointer"
+            >
+              <div class="flex items-center justify-between">
+                <span
+                  class="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-accent text-[10px] font-bold rounded-lg"
+                  >MAIO 12</span
                 >
-                  <tr>
-                    <th class="px-6 py-3">Local</th>
-                    <th class="px-6 py-3">Assunto</th>
-                    <th class="px-6 py-3 text-center">Prioridade</th>
-                    <th class="px-6 py-3 text-center">Status</th>
-                    <th class="px-6 py-3 text-right">Ação</th>
-                  </tr>
-                </thead>
-                <tbody
-                  id="tickets-tbody"
-                  class="divide-y divide-slate-50 dark:divide-darkborder/50"
-                ></tbody>
-              </table>
+                <span class="w-2.5 h-2.5 rounded-full bg-accent"></span>
+              </div>
+              <div>
+                <h4
+                  class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-accent dark:group-hover:text-accent transition-colors"
+                >
+                  Conselho de Classe
+                </h4>
+                <p
+                  class="text-sm text-slate-600 dark:text-slate-400 font-medium mt-2 leading-relaxed"
+                >
+                  Análise de desempenho acadêmico do 1º Bimestre. Local:
+                  Auditório Principal às 14:00.
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="bg-white dark:bg-darkcard border border-slate-200 dark:border-darkborder p-8 rounded-2xl shadow-sm flex flex-col gap-6 group hover:border-black dark:hover:border-accent transition-all cursor-pointer"
+            >
+              <div class="flex items-center justify-between">
+                <span
+                  class="px-3 py-1 bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400 text-[10px] font-bold rounded-lg"
+                  >MAIO 20</span
+                >
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+              </div>
+              <div>
+                <h4
+                  class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-accent dark:group-hover:text-accent transition-colors"
+                >
+                  Prazos de RAD
+                </h4>
+                <p
+                  class="text-sm text-slate-600 dark:text-slate-400 font-medium mt-2 leading-relaxed"
+                >
+                  Data limite improrrogável para o registro de atividades
+                  docentes no sistema acadêmico.
+                </p>
+              </div>
             </div>
           </section>
         </main>
@@ -638,43 +552,6 @@
       </div>
     </div>
 
-    <!-- Details Modal -->
-    <div
-      id="details-modal"
-      class="fixed inset-0 z-[110] hidden items-center justify-center bg-slate-900/20 dark:bg-black/80 backdrop-blur-md p-6"
-    >
-      <div
-        class="bg-white dark:bg-darkcard rounded-[2.5rem] shadow-2xl w-full max-w-lg overflow-hidden border border-slate-100 dark:border-darkborder animate-in fade-in zoom-in duration-300"
-      >
-        <div
-          class="p-8 border-b border-slate-50 dark:border-darkborder/50 flex items-center justify-between bg-slate-50/50 dark:bg-slate-800/50"
-        >
-          <div>
-            <h3
-              class="text-lg font-black text-slate-900 dark:text-white tracking-tight"
-            >
-              Detalhes do Chamado
-            </h3>
-            <p
-              class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1"
-            >
-              Informações completas da solicitação
-            </p>
-          </div>
-          <button
-            onclick="closeDetails()"
-            class="w-10 h-10 flex items-center justify-center bg-white dark:bg-darkcard rounded-2xl text-slate-400 hover:text-danger hover:rotate-90 transition-all shadow-sm border border-slate-100 dark:border-darkborder"
-          >
-            <span class="material-symbols-outlined">close</span>
-          </button>
-        </div>
-        <div
-          class="p-10 space-y-8 text-slate-900 dark:text-slate-100"
-          id="details-content"
-        ></div>
-      </div>
-    </div>
-
     <div
       id="toast-container"
       class="fixed bottom-8 right-8 z-[9999] flex flex-col gap-3"
@@ -682,51 +559,9 @@
 
     <script>
       (() => {
-        const tbody = document.getElementById("tickets-tbody");
         const toastContainer = document.getElementById("toast-container");
-        const detailsModal = document.getElementById("details-modal");
-        const detailsContent = document.getElementById("details-content");
 
         let allTickets = [];
-
-        window.viewDetails = (id) => {
-          const t = allTickets.find((x) => x.id === id);
-          if (!t) return;
-
-          detailsContent.innerHTML = `
-            <div class="space-y-6">
-              <div>
-                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Assunto do Chamado</p>
-                <h4 class="text-xl font-black text-slate-900 dark:text-white">${t.titulo}</h4>
-              </div>
-              <div class="grid grid-cols-2 gap-6">
-                <div>
-                  <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Localização</p>
-                  <p class="text-sm font-bold text-slate-700 dark:text-slate-300">${t.local}</p>
-                </div>
-                <div>
-                  <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Prioridade</p>
-                  <p class="text-sm font-bold text-slate-700 dark:text-slate-300">${t.prioridade}</p>
-                </div>
-              </div>
-              <div class="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-3xl border border-slate-100 dark:border-darkborder/50">
-                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Descrição Técnica</p>
-                <p class="text-sm font-medium leading-relaxed text-slate-600 dark:text-slate-400 italic">"${t.descricao || "Nenhuma descrição detalhada fornecida."}"</p>
-              </div>
-              <div class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-darkborder/30">
-                <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Aberto em: ${new Date(t.criadoEm).toLocaleString()}</p>
-                <span class="text-[10px] font-black text-accent uppercase tracking-widest">${t.status}</span>
-              </div>
-            </div>
-          `;
-          detailsModal.classList.remove("hidden");
-          detailsModal.classList.add("flex");
-        };
-
-        window.closeDetails = () => {
-          detailsModal.classList.add("hidden");
-          detailsModal.classList.remove("flex");
-        };
 
         // Theme management
         window.toggleTheme = () => {
@@ -747,9 +582,7 @@
         // Initialize theme icon
         const themeIcon = document.getElementById("theme-icon");
         if (themeIcon) {
-          themeIcon.textContent = document.documentElement.classList.contains(
-            "dark",
-          )
+          themeIcon.textContent = document.documentElement.classList.contains("dark")
             ? "light_mode"
             : "dark_mode";
         }
@@ -826,12 +659,11 @@
           }
         });
 
-        const showToast = (message, type = "success") => {
+        const showToast = (message) => {
           const toast = document.createElement("div");
           toast.className =
             "toast-animate px-5 py-3 rounded-xl shadow-lg border border-slate-100 dark:border-darkborder bg-white dark:bg-darkcard text-xs font-bold flex items-center gap-3";
-          const iconColor = type === "success" ? "text-success" : "text-danger";
-          toast.innerHTML = `<span class="material-symbols-outlined ${iconColor}">${type === "success" ? "check_circle" : "error"}</span><span class="text-slate-700 dark:text-gray-200">${message}</span>`;
+          toast.innerHTML = `<span class="material-symbols-outlined text-success">check_circle</span><span class="text-slate-700 dark:text-gray-200">${message}</span>`;
           toastContainer.appendChild(toast);
           setTimeout(() => {
             toast.classList.add(
@@ -853,11 +685,15 @@
             .forEach((el) => el.classList.add("syncing"));
 
           try {
-            await loadTickets();
-            // Dropdown is updated inside loadTickets via renderChamadosDropdown
+            // No specific load function for calendario-admin, just the global one
+            await fetch("http://localhost:3333/api/chamados")
+              .then((r) => r.json())
+              .then((data) => {
+                allTickets = data;
+                renderChamadosDropdown();
+              });
           } catch (e) {
             console.error(e);
-            showToast("Falha na conexão com o servidor.", "error");
           } finally {
             document
               .getElementById("refresh-indicator")
@@ -865,79 +701,6 @@
             document
               .querySelectorAll("main")
               .forEach((el) => el.classList.remove("syncing"));
-          }
-        };
-
-        const loadTickets = async () => {
-          try {
-            const res = await fetch("http://localhost:3333/api/chamados");
-            allTickets = await res.json();
-            renderTickets();
-            renderChamadosDropdown();
-          } catch (e) {
-            console.error(e);
-          }
-        };
-
-        const renderTickets = () => {
-          const search = document
-            .getElementById("search-input")
-            .value.toLowerCase();
-          tbody.innerHTML = allTickets
-            .filter((t) => t.local.toLowerCase().includes(search))
-            .map((t) => {
-              let pClass = "badge-success";
-              if (t.prioridade === "Média") pClass = "badge-warning";
-              if (t.prioridade === "Alta") pClass = "badge-danger";
-
-              let sClass = "badge-neutral";
-              if (t.status === "Em progresso") sClass = "badge-accent";
-              if (t.status === "Concluído") sClass = "badge-success";
-
-              return `
-                    <tr class="table-row-hover transition-all group">
-                        <td class="px-6 py-5 text-xs font-bold text-slate-900 dark:text-white">${t.local}</td>
-                        <td class="px-6 py-5">
-                          <div class="flex flex-col">
-                            <span class="text-xs font-bold text-slate-900 dark:text-white">${t.titulo}</span>
-                            <span class="text-[10px] text-slate-500 dark:text-slate-400 mt-1 line-clamp-1 max-w-[200px]">${t.descricao || "Sem descrição"}</span>
-                          </div>
-                        </td>
-                        <td class="px-6 py-5 text-center">
-                            <select onchange="updatePriority('${t.id}', this.value)" class="status-badge ${pClass} border-none outline-none cursor-pointer">
-                                <option value="Alta" ${t.prioridade === "Alta" ? "selected" : ""}>Alta</option>
-                                <option value="Média" ${t.prioridade === "Média" ? "selected" : ""}>Média</option>
-                                <option value="Baixa" ${t.prioridade === "Baixa" ? "selected" : ""}>Baixa</option>
-                            </select>
-                        </td>
-                        <td class="px-6 py-5 text-center">
-                            <select onchange="updateStatus('${t.id}', this.value)" class="status-badge ${sClass} border-none outline-none cursor-pointer">
-                                <option value="Aberto" ${t.status === "Aberto" ? "selected" : ""}>Aberto</option>
-                                <option value="Em progresso" ${t.status === "Em progresso" ? "selected" : ""}>Progresso</option>
-                                <option value="Concluído" ${t.status === "Concluído" ? "selected" : ""}>Concluído</option>
-                            </select>
-                        </td>
-                        <td class="px-6 py-5 text-right">
-                          <div class="flex items-center justify-end gap-1">
-                            <button onclick="viewDetails('${t.id}')" class="p-1.5 text-slate-400 hover:text-accent transition-all" title="Ver Detalhes"><span class="material-symbols-outlined text-[20px]">visibility</span></button>
-                            <button onclick="updateStatus('${t.id}', 'Concluído')" class="p-1.5 text-slate-400 hover:text-success transition-all" title="Concluir"><span class="material-symbols-outlined text-[20px]">check_circle</span></button>
-                          </div>
-                        </td>
-                    </tr>
-                `;
-            })
-            .join("");
-        };
-
-        window.updateStatus = async (id, status) => {
-          const res = await fetch(`http://localhost:3333/api/chamados/${id}`, {
-            method: "PATCH",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ status }),
-          });
-          if (res.ok) {
-            showToast(`Status atualizado`);
-            loadTickets();
           }
         };
 
@@ -954,27 +717,34 @@
           });
           if (res.ok) {
             showToast("Chamado gerado!");
-            loadTickets();
+            fetchData();
           }
         };
 
-        window.updatePriority = async (id, prioridade) => {
-          const res = await fetch(`http://localhost:3333/api/chamados/${id}`, {
-            method: "PATCH",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ prioridade }),
-          });
-          if (res.ok) {
-            showToast(`Prioridade atualizada`);
-            loadTickets();
-          }
-        };
-
-        document
-          .getElementById("search-input")
-          .addEventListener("input", renderTickets);
         window.fetchData = fetchData;
         fetchData();
+      })();
+    </script>
+
+    <script>
+      (() => {
+        // Theme toggle logic
+        window.toggleTheme = () => {
+          const isDark = document.documentElement.classList.toggle("dark");
+          localStorage.setItem("theme", isDark ? "dark" : "light");
+          const themeIcon = document.getElementById("theme-icon");
+          if (themeIcon) {
+            themeIcon.innerText = isDark ? "light_mode" : "dark_mode";
+          }
+        };
+
+        // Initialize theme
+        if (localStorage.getItem("theme") === "dark") {
+          document.documentElement.classList.add("dark");
+          const themeIcon = document.getElementById("theme-icon");
+          if (themeIcon) themeIcon.innerText = "light_mode";
+        }
+
         // Profile Dropdown
         window.toggleProfileDropdown = (e) => {
           e.stopPropagation();
@@ -999,7 +769,7 @@
             dropdown.classList.add("hidden");
           }
         });
-        })();
-        </script>
+      })();
+    </script>
   </body>
 </html>

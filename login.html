@@ -297,7 +297,7 @@
         if (email.toLowerCase().includes("admin")) {
           localStorage.setItem("userRole", "admin");
           localStorage.setItem("userEmail", email);
-          window.location.href = "geral-admin.html";
+          window.location.href = "admin/geral.html";
         } else {
           // Caso contrário, redireciona para painel de aluno
           localStorage.setItem("userRole", "aluno");

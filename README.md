@@ -78,7 +78,7 @@ A autenticação é mockada e redireciona baseado no email:
 | Email | Senha | Tipo | Acesso |
 |-------|-------|------|--------|
 | `aluno@campus.com` | qualquer | Aluno | Dashboard Aluno / `index.html` |
-| `admin@campus.com` | qualquer | Admin | Painel Admin / `geral-admin.html` |
+| `admin@campus.com` | qualquer | Admin | Painel Admin / `admin/geral.html` |
 | `suporte@campus.com` | qualquer | Aluno | Dashboard Aluno |
 
 **Nota:** Qualquer senha funciona para fins de demonstração. A senha mínima é 3 caracteres.
@@ -89,28 +89,32 @@ A autenticação é mockada e redireciona baseado no email:
 
 ```
 campusconnect/
-├── index.html                 # Dashboard aluno
+├── index.html                 # Dashboard aluno (página raiz)
 ├── login.html                 # Página de autenticação
-├── geral-admin.html          # Painel geral admin
-├── calendario.html           # Calendário acadêmico
-├── cardapio.html             # Menu do refeitório
-├── mapa-campus.html          # Mapa interativo
-├── historico.html            # Histórico acadêmico
-├── chamados.html             # Sistema de chamados
-├── reservas.html             # Sistema de reservas
-├── chamados-admin.html       # Gestão de chamados (admin)
-├── refeitorio-admin.html     # Gestão de cardápio (admin)
-├── reservas-admin.html       # Gestão de reservas (admin)
-├── calendario-admin.html     # Gestão de calendário (admin)
-├── DESIGN.md                 # Documentação de design
-├── backend/
-│   ├── app.js               # Configuração Express
-│   ├── server.js            # Inicialização do servidor
-│   ├── store.js             # Simulação de banco de dados
-│   ├── package.json         # Dependências
-│   └── README.md            # Docs backend
-└── README.md                # Este arquivo
-```
+├── pages/                     # 📄 Funcionalidades para alunos
+│   ├── calendario.html        # Calendário acadêmico
+│   ├── cardapio.html          # Menu do refeitório
+│   ├── mapa-campus.html       # Mapa interativo do campus
+│   ├── historico.html         # Histórico acadêmico
+│   ├── chamados.html          # Sistema de chamados
+│   ├── reservas.html          # Sistema de reservas
+│   └── campus.html            # Informações do campus
+├── admin/                     # 🛠️ Páginas administrativas
+│   ├── geral.html             # Dashboard principal do admin
+│   ├── calendario.html        # Gestão de calendário
+│   ├── chamados.html          # Gestão de chamados
+│   ├── refeitorio.html        # Gestão de cardápio
+│   └── reservas.html          # Gestão de reservas
+├── backend/                   # 🔧 Backend Node.js
+│   ├── app.js                 # Configuração Express
+│   ├── server.js              # Inicialização do servidor
+│   ├── store.js               # Simulação de banco de dados
+│   ├── package.json           # Dependências
+│   ├── package-lock.json
+│   └── README.md
+├── DESIGN.md                  # Documentação de design
+├── README.md                  # Este arquivo
+└── .gitignore
 
 ---
 
