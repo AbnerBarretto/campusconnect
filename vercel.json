@@ -1,17 +1,19 @@
 {
   "version": 2,
-  "buildCommand": "npm install",
-  "public": true,
   "builds": [
     {
-      "src": "index.js",
+      "src": "package.json",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
+      "src": "/api/(.*)",
+      "dest": "/index.js"
+    },
+    {
       "src": "/(.*)",
-      "dest": "index.js"
+      "dest": "/index.js"
     }
   ]
 }
