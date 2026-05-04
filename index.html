@@ -111,7 +111,7 @@
     <!-- Sidebar -->
     <aside
       class="hidden md:flex flex-col w-[260px] h-screen border-r fixed left-0 top-0 z-50"
-      style="border-color: var(--border-soft); background: var(--card);"
+      style="border-color: var(--border-soft); background: var(--card)"
     >
       <div class="p-8">
         <a
@@ -245,7 +245,7 @@
 
     <nav
       class="md:hidden fixed bottom-0 left-0 w-full border-t flex justify-around items-center h-16 z-50 px-4"
-      style="background: var(--card); border-color: var(--border-soft);"
+      style="background: var(--card); border-color: var(--border-soft)"
     >
       <a
         href="index.html"
@@ -291,7 +291,10 @@
     <div class="flex-grow md:ml-[260px] flex flex-col min-h-screen">
       <header
         class="md:hidden sticky top-0 backdrop-blur-md border-b h-16 flex items-center px-6 z-40"
-        style="background: color-mix(in srgb, var(--card) 82%, transparent); border-color: var(--border-soft);"
+        style="
+          background: color-mix(in srgb, var(--card) 82%, transparent);
+          border-color: var(--border-soft);
+        "
       >
         <h1 class="text-sm font-black tracking-widest uppercase">
           Campus<span class="font-light">Connect</span>
@@ -320,7 +323,7 @@
             data-action-title="Novo Chamado"
             data-action-body="Solicite manutenção agora."
             class="text-white px-8 py-4 rounded-2xl font-bold text-sm tracking-tight transition-all active:scale-95 flex items-center justify-center gap-3"
-            style="background: var(--accent);"
+            style="background: var(--accent)"
           >
             <span class="material-symbols-outlined">add_circle</span>
             Novo Chamado
@@ -329,7 +332,10 @@
 
         <!-- Stats Grid -->
         <section class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          <div class="p-8 text-white rounded-[32px] space-y-4" style="background: var(--accent);">
+          <div
+            class="p-8 text-white rounded-[32px] space-y-4"
+            style="background: var(--accent)"
+          >
             <div class="flex items-center justify-between">
               <span class="material-symbols-outlined opacity-50"
                 >confirmation_number</span
@@ -342,9 +348,7 @@
             <p class="text-4xl font-black" id="stats-chamados">0</p>
             <p class="text-xs font-bold opacity-50">Total ativos no semestre</p>
           </div>
-          <div
-            class="p-8 rounded-[32px] space-y-4 surface-card"
-          >
+          <div class="p-8 rounded-[32px] space-y-4 surface-card">
             <div class="flex items-center justify-between text-black">
               <span class="material-symbols-outlined opacity-30"
                 >event_available</span
@@ -357,9 +361,7 @@
             <p class="text-4xl font-black text-black" id="stats-reservas">0</p>
             <p class="text-xs font-bold text-[#475569]">Espaços agendados</p>
           </div>
-          <div
-            class="p-8 rounded-[32px] space-y-4 surface-card"
-          >
+          <div class="p-8 rounded-[32px] space-y-4 surface-card">
             <div class="flex items-center justify-between text-black">
               <span class="material-symbols-outlined opacity-30"
                 >restaurant</span
@@ -389,8 +391,11 @@
             </div>
             <div class="space-y-4" id="dashboard-activities">
               <div
-              class="p-8 text-center rounded-[32px] border-2 border-dashed"
-              style="background: var(--card-hover); border-color: var(--border-soft);"
+                class="p-8 text-center rounded-[32px] border-2 border-dashed"
+                style="
+                  background: var(--card-hover);
+                  border-color: var(--border-soft);
+                "
               >
                 <div
                   class="animate-spin inline-block w-6 h-6 border-4 border-black border-t-transparent rounded-full mb-4"
@@ -420,7 +425,7 @@
     <!-- Modal Component -->
     <div
       class="fixed inset-0 z-[100] hidden items-center justify-center p-4 backdrop-blur-sm"
-      style="background: color-mix(in srgb, var(--accent) 22%, black 28%);"
+      style="background: color-mix(in srgb, var(--accent) 22%, black 28%)"
       data-action-modal
       aria-hidden="true"
     >
@@ -442,7 +447,9 @@
               type="button"
               data-action-modal-close
             >
-              <span class="material-symbols-outlined text-[#475569]">close</span>
+              <span class="material-symbols-outlined text-[#475569]"
+                >close</span
+              >
             </button>
           </div>
           <p
@@ -599,7 +606,7 @@
               name: "Café da Manhã",
               time: "07:00",
               limit: 9 * 60,
-              icon: "coffee", 
+              icon: "coffee",
               menu: "Pães, frutas, café e leite.",
             },
             {
@@ -635,8 +642,8 @@
             }, {});
 
           const dynamicMenus = {
-            "almoço": latestMealByType["almoço"] || latestMealByType["almoco"],
-            "jantar": latestMealByType["jantar"],
+            almoço: latestMealByType["almoço"] || latestMealByType["almoco"],
+            jantar: latestMealByType["jantar"],
             "lanche noturno": latestMealByType["lanche"],
           };
 

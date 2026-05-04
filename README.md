@@ -7,6 +7,7 @@
 ## Funcionalidades
 
 ### Para Alunos
+
 - 📅 **Calendário Acadêmico** - Visualize datas importantes e eventos
 - 🍽️ **Cardápio** - Consulte o menu do refeitório da semana
 - 🗺️ **Mapa do Campus** - Navegação interativa pelos espaços
@@ -15,6 +16,7 @@
 - 📦 **Reservas** - Reserve espaços e recursos disponíveis
 
 ### Para Administradores
+
 - 🛠️ **Painel Administrativo** - Gerenciamento centralizado
 - 👥 **Gestão de Chamados** - Atende e acompanha solicitações
 - 📦 **Gestão de Reservas** - Aprova e gerencia reservas
@@ -26,12 +28,14 @@
 ## 🛠️ Stack Tecnológico
 
 ### Frontend
+
 - **HTML5** - Estrutura semântica
 - **CSS3 + Tailwind CSS** - Estilização responsiva
 - **JavaScript (ES6+)** - Interatividade e lógica
 - **Figma Design** - Design system profissional
 
 ### Backend
+
 - **Node.js** - Runtime JavaScript
 - **Express.js** - Framework web
 - **CORS** - Compartilhamento de recursos entre origens
@@ -42,24 +46,28 @@
 ## 🚀 Como Começar
 
 ### Pré-requisitos
+
 - Node.js (v18+)
 - npm ou yarn
 
 ### Instalação
 
 1. **Clone o repositório**
+
 ```bash
 git clone https://github.com/mouratech/campusconnect.git
 cd campusconnect
 ```
 
 2. **Instale as dependências do backend**
+
 ```bash
 cd backend
 npm install
 ```
 
 3. **Inicie o servidor de desenvolvimento**
+
 ```bash
 npm run dev
 ```
@@ -67,7 +75,7 @@ npm run dev
 O servidor estará disponível em: `http://localhost:3333`
 
 4. **Acesse a aplicação**
-Abra o arquivo `index.html` ou `login.html` no navegador.
+   Abra o arquivo `index.html` ou `login.html` no navegador.
 
 ---
 
@@ -75,11 +83,11 @@ Abra o arquivo `index.html` ou `login.html` no navegador.
 
 A autenticação é mockada e redireciona baseado no email:
 
-| Email | Senha | Tipo | Acesso |
-|-------|-------|------|--------|
-| `aluno@campus.com` | qualquer | Aluno | Dashboard Aluno / `index.html` |
-| `admin@campus.com` | qualquer | Admin | Painel Admin / `admin/geral.html` |
-| `suporte@campus.com` | qualquer | Aluno | Dashboard Aluno |
+| Email                | Senha    | Tipo  | Acesso                            |
+| -------------------- | -------- | ----- | --------------------------------- |
+| `aluno@campus.com`   | qualquer | Aluno | Dashboard Aluno / `index.html`    |
+| `admin@campus.com`   | qualquer | Admin | Painel Admin / `admin/geral.html` |
+| `suporte@campus.com` | qualquer | Aluno | Dashboard Aluno                   |
 
 **Nota:** Qualquer senha funciona para fins de demonstração. A senha mínima é 3 caracteres.
 
@@ -87,7 +95,7 @@ A autenticação é mockada e redireciona baseado no email:
 
 ## 📁 Estrutura do Projeto
 
-```
+````
 campusconnect/
 ├── index.html                 # Dashboard aluno (página raiz)
 ├── login.html                 # Página de autenticação
@@ -188,7 +196,7 @@ npm start
 
 # Executar testes (smoke test)
 npm run smoke-test
-```
+````
 
 ---
 
@@ -218,6 +226,7 @@ Este projeto está sob licença MIT. Veja o arquivo LICENSE para mais detalhes.
 ## 📧 Contato
 
 Para dúvidas ou sugestões:
+
 - Email: suporte@campusconnect.edu
 - GitHub Issues: [Abra uma issue](https://github.com/mouratech/campusconnect/issues)
 
