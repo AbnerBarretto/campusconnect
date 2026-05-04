@@ -1,9 +1,9 @@
 <!doctype html>
-
 <html class="light" lang="pt-BR">
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>CampusConnect</title>
     <link
       rel="icon"
       type="image/svg+xml"
@@ -14,134 +14,48 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
       rel="stylesheet"
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-      rel="stylesheet"
-    />
     <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
         theme: {
           extend: {
             colors: {
-              "on-secondary-fixed-variant": "#464747",
-              "surface-container-lowest": "#ffffff",
-              "primary-fixed-dim": "#c6c6c6",
-              "on-tertiary-fixed": "#1b1b1b",
-              "surface-container-high": "#e8e8e8",
               primary: "#000000",
-              "inverse-surface": "#2f3131",
-              "surface-container-low": "#f3f3f3",
-              "tertiary-fixed": "#e2e2e2",
-              "inverse-on-surface": "#f1f1f1",
-              outline: "#7e7576",
-              "error-container": "#ffdad6",
-              "outline-variant": "#cfc4c5",
-              "on-error-container": "#93000a",
-              "tertiary-fixed-dim": "#c6c6c6",
-              "surface-bright": "#f9f9f9",
-              "on-primary-container": "#848484",
-              "primary-fixed": "#e2e2e2",
-              "secondary-container": "#e1dfdf",
-              "surface-dim": "#dadada",
-              "on-error": "#ffffff",
-              error: "#ba1a1a",
-              "primary-container": "#1b1b1b",
-              "on-background": "#1a1c1c",
-              tertiary: "#000000",
-              "on-tertiary-fixed-variant": "#474747",
-              "secondary-fixed-dim": "#c7c6c6",
-              "on-surface-variant": "#4c4546",
-              background: "#f9f9f9",
-              "tertiary-container": "#1b1b1b",
-              "on-primary-fixed": "#1b1b1b",
-              "surface-container": "#eeeeee",
-              "inverse-primary": "#c6c6c6",
-              "surface-tint": "#5e5e5e",
-              "secondary-fixed": "#e4e2e2",
-              "surface-container-highest": "#e2e2e2",
-              surface: "#f9f9f9",
-              "surface-variant": "#e2e2e2",
-              secondary: "#5e5e5e",
-              "on-tertiary-container": "#848484",
-              "on-primary-fixed-variant": "#474747",
-              "on-surface": "#1a1c1c",
-              "on-secondary-fixed": "#1b1c1c",
-              "on-secondary-container": "#626262",
-              "on-secondary": "#ffffff",
-              "on-tertiary": "#ffffff",
-              "on-primary": "#ffffff",
+              surface: "#ffffff",
             },
             borderRadius: {
-              DEFAULT: "0.25rem",
-              lg: "0.5rem",
               xl: "0.75rem",
-              full: "9999px",
-            },
-            spacing: {
-              md: "1rem",
-              sm: "0.5rem",
-              lg: "1.5rem",
-              xl: "2rem",
-              xxl: "4rem",
-              xs: "0.25rem",
+              "2xl": "1rem",
             },
             fontFamily: {
-              "label-md": ["Inter"],
-              "body-md": ["Inter"],
-              "body-lg": ["Inter"],
-              h3: ["Inter"],
-              h1: ["Inter"],
-              h2: ["Inter"],
-              caption: ["Inter"],
-            },
-            fontSize: {
-              "label-md": [
-                "14px",
-                {
-                  lineHeight: "1.4",
-                  letterSpacing: "0.01em",
-                  fontWeight: "500",
-                },
-              ],
-              "body-md": [
-                "16px",
-                { lineHeight: "1.6", letterSpacing: "0", fontWeight: "400" },
-              ],
-              "body-lg": [
-                "18px",
-                { lineHeight: "1.6", letterSpacing: "0", fontWeight: "400" },
-              ],
-              h3: [
-                "24px",
-                { lineHeight: "1.4", letterSpacing: "0", fontWeight: "600" },
-              ],
-              h1: [
-                "40px",
-                {
-                  lineHeight: "1.2",
-                  letterSpacing: "-0.02em",
-                  fontWeight: "700",
-                },
-              ],
-              h2: [
-                "32px",
-                {
-                  lineHeight: "1.3",
-                  letterSpacing: "-0.01em",
-                  fontWeight: "600",
-                },
-              ],
-              caption: [
-                "12px",
-                { lineHeight: "1.4", letterSpacing: "0", fontWeight: "400" },
-              ],
+              sans: ["Inter", "sans-serif"],
             },
           },
         },
       };
     </script>
     <style>
+      :root {
+        --bg: #f6f8ff;
+        --card: #ffffff;
+        --card-hover: #fafafa;
+        --border: #e5e7eb;
+        --border-soft: #f1f5f9;
+        --text-primary: #0f172a;
+        --text-secondary: #64748b;
+        --text-muted: #94a3b8;
+        --accent: #8b5cf6;
+        --accent-hover: #7c3aed;
+        --accent-soft: rgba(139, 92, 246, 0.12);
+        --success: #10b981;
+        --success-soft: rgba(16, 185, 129, 0.12);
+        --warning: #f59e0b;
+        --warning-soft: rgba(245, 158, 11, 0.12);
+        --danger: #ef4444;
+        --danger-soft: rgba(239, 68, 68, 0.12);
+        --info: #3b82f6;
+        --info-soft: rgba(59, 130, 246, 0.12);
+      }
       .material-symbols-outlined {
         font-variation-settings:
           "FILL" 0,
@@ -155,631 +69,429 @@
       .logo-container:hover .logo-mark {
         transform: rotate(90deg);
       }
-      .logo-container:hover .logo-text {
-        letter-spacing: 0.12em;
+      .nav-item {
+        transition: all 0.2s ease;
       }
-      .logo-text {
-        transition: all 0.6s ease;
+      .nav-item:hover {
+        background-color: var(--card-hover);
       }
-      body {
-        background-color: #f9f9f9;
+      .nav-item.active {
+        background-color: var(--accent);
+        color: #ffffff;
+      }
+      .surface-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+      }
+      .surface-card:hover {
+        background: var(--card-hover);
+      }
+      .nav-item.active .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 1,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .sidebar-scroll::-webkit-scrollbar {
+        width: 4px;
+      }
+      .sidebar-scroll::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .sidebar-scroll::-webkit-scrollbar-thumb {
+        background: var(--border);
+        border-radius: 10px;
       }
     </style>
   </head>
-  <body class="font-body-md text-on-surface">
-    <!-- Desktop Navigation Drawer -->
+  <body
+    class="font-sans text-[var(--text-primary)] bg-[var(--bg)] selection:bg-[var(--accent)] selection:text-white min-h-screen flex"
+  >
+    <!-- Sidebar -->
     <aside
-      class="hidden md:flex flex-col fixed left-0 top-0 h-screen z-40 bg-white border-r border-gray-200 w-64"
+      class="hidden md:flex flex-col w-[260px] h-screen border-r fixed left-0 top-0 z-50"
+      style="border-color: var(--border-soft); background: var(--card);"
     >
-      <div class="p-lg flex flex-col gap-sm">
-        <div class="flex items-center gap-md mb-lg logo-container">
-          <div class="flex items-center justify-center" aria-hidden="true">
-            <svg
-              width="42"
-              height="42"
-              viewBox="0 0 100 100"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              class="logo-mark"
-            >
-              <path
-                d="M20 20H80V80H20V20Z"
-                stroke="#1b1b1b"
-                stroke-width="4"
-                stroke-opacity="0.12"
-              />
-              <path
-                d="M20 50V20H80V80H50"
-                stroke="#1b1b1b"
-                stroke-width="10"
-                stroke-linecap="square"
-              />
-              <path
-                d="M40 40L60 60"
-                stroke="#1b1b1b"
-                stroke-width="10"
-                stroke-linecap="square"
-              />
-              <rect x="20" y="40" width="15" height="20" fill="white" />
-            </svg>
-          </div>
-          <div class="flex flex-col">
-            <h1 class="text-lg font-light tracking-tight text-black logo-text">
-              CAMPUS<span class="font-black tracking-tighter">CONNECT</span>
-            </h1>
-            <span class="text-[11px] uppercase tracking-[0.28em] text-gray-400"
-              >Área Administrativa</span
-            >
-          </div>
-        </div>
-        <nav class="flex flex-col gap-xs">
-          <!-- Geral - Active State -->
-          <a
-            class="flex items-center gap-3 bg-gray-100 text-black font-bold rounded-lg px-4 py-3 transition-colors duration-200"
-            href="index.html"
+      <div class="p-8">
+        <a
+          href="index.html"
+          class="flex items-center gap-3 logo-container group"
+        >
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 100 100"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="logo-mark"
           >
-            <span class="material-symbols-outlined" data-icon="dashboard"
-              >dashboard</span
-            >
-            <span class="font-label-md text-label-md">Geral</span>
-          </a>
-          <a
-            class="flex items-center gap-3 text-gray-600 px-4 py-3 hover:bg-gray-50 transition-colors duration-200"
-            href="manutencao.html"
-          >
-            <span class="material-symbols-outlined" data-icon="build"
-              >build</span
-            >
-            <span class="font-label-md text-label-md">Manutenção</span>
-          </a>
-          <a
-            class="flex items-center gap-3 text-gray-600 px-4 py-3 hover:bg-gray-50 transition-colors duration-200"
-            href="refeitorio.html"
-          >
-            <span class="material-symbols-outlined" data-icon="restaurant"
-              >restaurant</span
-            >
-            <span class="font-label-md text-label-md">Refeitório</span>
-          </a>
-          <a
-            class="flex items-center gap-3 text-gray-600 px-4 py-3 hover:bg-gray-50 transition-colors duration-200"
-            href="esportes.html"
-          >
-            <span class="material-symbols-outlined" data-icon="sports_soccer"
-              >sports_soccer</span
-            >
-            <span class="font-label-md text-label-md">Esportes</span>
-          </a>
-        </nav>
+            <path
+              d="M20 50V20H80V80H50"
+              stroke="#000"
+              stroke-width="12"
+              stroke-linecap="square"
+            />
+            <path
+              d="M40 40L60 60"
+              stroke="#000"
+              stroke-width="12"
+              stroke-linecap="square"
+            />
+            <rect x="20" y="40" width="15" height="20" fill="white" />
+          </svg>
+          <h1 class="text-sm font-black tracking-widest uppercase">
+            Campus<span class="font-light">Connect</span>
+          </h1>
+        </a>
       </div>
-      <div class="mt-auto p-lg border-t border-gray-200">
-        <div class="relative">
-          <button
-            class="w-full flex items-center gap-md rounded-lg p-2 hover:bg-gray-50 transition"
-            type="button"
-            data-user-toggle
-            aria-haspopup="true"
-            aria-expanded="false"
+
+      <nav class="flex-grow px-4 space-y-1 sidebar-scroll overflow-y-auto">
+        <a
+          href="index.html"
+          class="nav-item active flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight"
+        >
+          <span class="material-symbols-outlined">home</span>
+          Início
+        </a>
+        <a
+          href="chamados.html"
+          class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black"
+        >
+          <span class="material-symbols-outlined">confirmation_number</span>
+          Chamados
+        </a>
+        <a
+          href="reservas.html"
+          class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black"
+        >
+          <span class="material-symbols-outlined">event_available</span>
+          Espaços e Reservas
+        </a>
+        <a
+          href="cardapio.html"
+          class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black"
+        >
+          <span class="material-symbols-outlined">restaurant_menu</span>
+          Cardápio
+        </a>
+        <a
+          href="historico.html"
+          class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black"
+        >
+          <span class="material-symbols-outlined">history</span>
+          Histórico
+        </a>
+        <div class="pt-6 pb-2 px-4">
+          <span
+            class="text-[10px] font-black uppercase tracking-[0.3em] text-[#475569]"
+            >Explorar</span
           >
-            <div
-              class="w-10 h-10 bg-surface-container rounded-full overflow-hidden border border-gray-200"
-            >
-              <img
-                alt="Profile"
-                class="w-full h-full object-cover"
-                data-alt="minimalist user avatar illustration in grayscale with simple geometric features and a neutral background"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxjHx8uV59E9L2f-Qts_Y2jhQV6ACXcL6KjJHozNpqElWQ8ZunykqYhv2p_5qt6sRxq-I_StaBVClYVRMxOs4PX5khu5ACUMc2QLe5y4pbXVGsEJ4plrrjVA0iBmO5W3neCypX3vDvOP2wlXcr7-nt7mjjswzyreLS8Z_JTZh29oWqbawkQdGUXI0BwF6Q5-X94utZw5c2ib0Wcw5bU0yAZ2SCnXiRAwR2ZROFzlCWAqzESPIV4h4xbI44VqIWOPcfEkGTYVNLFBo"
-              />
-            </div>
-            <div class="flex flex-col overflow-hidden text-left">
-              <span class="text-label-md font-bold truncate">Admin User</span>
-              <span class="text-caption text-on-surface-variant truncate"
-                >cgae@campus.edu.br</span
-              >
-            </div>
-          </button>
+        </div>
+        <a
+          href="mapa-campus.html"
+          class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black"
+        >
+          <span class="material-symbols-outlined">map</span>
+          Mapa do Campus
+        </a>
+        <a
+          href="calendario.html"
+          class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black"
+        >
+          <span class="material-symbols-outlined">calendar_today</span>
+          Calendário
+        </a>
+      </nav>
+
+      <div class="p-4 mt-auto relative" id="profile-container">
+        <button
+          onclick="toggleProfileDropdown(event)"
+          class="flex items-center gap-4 w-full p-4 rounded-2xl hover:bg-gray-50 transition-all group"
+        >
           <div
-            class="absolute bottom-full right-0 mb-3 w-64 bg-white border border-gray-200 rounded-lg shadow-lg hidden"
-            data-user-menu
+            class="w-10 h-10 rounded-full overflow-hidden border-2 border-transparent group-hover:border-black transition-all"
           >
-            <div class="px-4 py-3 border-b border-gray-200">
-              <p class="text-label-md font-bold">Admin User</p>
-              <p class="text-caption text-on-surface-variant">
-                cgae@campus.edu.br
-              </p>
-            </div>
-            <a
-              class="flex items-center gap-2 px-4 py-3 text-sm hover:bg-gray-50"
-              href="index.html"
-            >
-              <span class="material-symbols-outlined text-[18px]">person</span>
-              Perfil
-            </a>
-            <button
-              class="w-full flex items-center gap-2 px-4 py-3 text-sm text-left hover:bg-gray-50"
-              type="button"
-              data-sign-out
-            >
-              <span class="material-symbols-outlined text-[18px]">logout</span>
-              Sair
-            </button>
+            <img
+              src="https://ui-avatars.com/api/?name=Aluno&background=000&color=fff"
+              alt="Avatar"
+            />
           </div>
+          <div class="text-left">
+            <p class="text-sm font-bold">Aluno</p>
+            <p
+              class="text-[10px] font-black uppercase tracking-widest text-[#475569]"
+            >
+              Ver Perfil
+            </p>
+          </div>
+        </button>
+
+        <!-- Dropdown Menu -->
+        <div
+          id="profile-dropdown"
+          class="absolute bottom-full left-4 mb-2 w-48 bg-white border border-gray-100 rounded-2xl shadow-xl hidden z-50 overflow-hidden"
+        >
+          <button
+            onclick="logout()"
+            class="w-full flex items-center gap-3 px-5 py-4 text-sm font-bold text-red-600 hover:bg-red-50 transition-colors"
+          >
+            <span class="material-symbols-outlined text-lg">logout</span>
+            Sair
+          </button>
         </div>
       </div>
     </aside>
-    <!-- Top Bar for Mobile/Tablet context -->
-    <header
-      class="flex justify-between items-center w-full px-4 h-16 sticky top-0 z-50 bg-white border-b border-gray-200 md:ml-64 md:w-[calc(100%-16rem)]"
+
+    <nav
+      class="md:hidden fixed bottom-0 left-0 w-full border-t flex justify-around items-center h-16 z-50 px-4"
+      style="background: var(--card); border-color: var(--border-soft);"
     >
-      <div class="flex items-center gap-md">
-        <button
-          class="md:hidden p-2 rounded-full hover:bg-gray-100"
-          type="button"
-          aria-label="Abrir menu"
+      <a
+        href="index.html"
+        class="flex flex-col items-center justify-center gap-1 text-black"
+      >
+        <span class="material-symbols-outlined text-[28px]">home</span>
+      </a>
+      <a
+        href="chamados.html"
+        class="flex flex-col items-center justify-center gap-1 text-[#475569]"
+      >
+        <span class="material-symbols-outlined text-[28px]"
+          >confirmation_number</span
         >
-          <span class="material-symbols-outlined" data-icon="menu">menu</span>
-        </button>
-        <h2 class="font-h3 text-h3 text-black">Dashboard Administrativo</h2>
-      </div>
-      <div class="flex items-center gap-md">
-        <button
-          class="p-2 rounded-full hover:bg-gray-100"
-          type="button"
-          aria-label="Notificações"
+      </a>
+      <a
+        href="reservas.html"
+        class="flex flex-col items-center justify-center gap-1 text-[#475569]"
+      >
+        <span class="material-symbols-outlined text-[28px]"
+          >event_available</span
         >
-          <span class="material-symbols-outlined" data-icon="notifications"
-            >notifications</span
-          >
-        </button>
-        <button
-          class="p-2 rounded-full hover:bg-gray-100"
-          type="button"
-          aria-label="Buscar"
+      </a>
+      <a
+        href="cardapio.html"
+        class="flex flex-col items-center justify-center gap-1 text-[#475569]"
+      >
+        <span class="material-symbols-outlined text-[28px]"
+          >restaurant_menu</span
         >
-          <span class="material-symbols-outlined" data-icon="search"
-            >search</span
-          >
-        </button>
-      </div>
-    </header>
-    <!-- Main Content Canvas -->
-    <main class="md:ml-64 p-md md:p-lg lg:p-xl space-y-lg">
-      <!-- Bento Grid Stats -->
-      <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md">
-        <div
-          class="bg-white border border-gray-200 p-md rounded-lg flex flex-col gap-sm"
+      </a>
+      <a
+        href="calendario.html"
+        class="flex flex-col items-center justify-center gap-1 text-[#475569]"
+      >
+        <span class="material-symbols-outlined text-[28px]"
+          >calendar_today</span
         >
-          <span
-            class="text-caption text-on-surface-variant uppercase tracking-wider"
-            >Total de Chamados</span
-          >
-          <div class="flex items-end justify-between">
-            <span class="text-h2 font-h2">42</span>
-            <span class="text-xs px-2 py-0.5 bg-gray-100 rounded text-gray-600"
-              >+12%</span
+      </a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="flex-grow md:ml-[260px] flex flex-col min-h-screen">
+      <header
+        class="md:hidden sticky top-0 backdrop-blur-md border-b h-16 flex items-center px-6 z-40"
+        style="background: color-mix(in srgb, var(--card) 82%, transparent); border-color: var(--border-soft);"
+      >
+        <h1 class="text-sm font-black tracking-widest uppercase">
+          Campus<span class="font-light">Connect</span>
+        </h1>
+      </header>
+
+      <main
+        class="max-w-4xl mx-auto w-full px-6 py-10 md:py-20 space-y-12 flex-grow"
+      >
+        <header
+          class="flex flex-col md:flex-row md:items-center justify-between gap-8"
+        >
+          <div class="space-y-2">
+            <h2
+              class="text-3xl md:text-5xl font-black tracking-tighter text-black"
             >
-          </div>
-          <div
-            class="w-full h-1 bg-surface-container rounded-full overflow-hidden"
-          >
-            <div class="w-2/3 h-full bg-black"></div>
-          </div>
-        </div>
-        <div
-          class="bg-white border border-gray-200 p-md rounded-lg flex flex-col gap-sm"
-        >
-          <span
-            class="text-caption text-on-surface-variant uppercase tracking-wider"
-            >Refeições Hoje</span
-          >
-          <div class="flex items-end justify-between">
-            <span class="text-h2 font-h2">856</span>
-            <span class="text-xs px-2 py-0.5 bg-gray-100 rounded text-gray-600"
-              >Média</span
-            >
-          </div>
-          <div
-            class="w-full h-1 bg-surface-container rounded-full overflow-hidden"
-          >
-            <div class="w-4/5 h-full bg-black"></div>
-          </div>
-        </div>
-        <div
-          class="bg-white border border-gray-200 p-md rounded-lg flex flex-col gap-sm"
-        >
-          <span
-            class="text-caption text-on-surface-variant uppercase tracking-wider"
-            >Ocupação Academia</span
-          >
-          <div class="flex items-end justify-between">
-            <span class="text-h2 font-h2">78%</span>
-            <span class="text-xs px-2 py-0.5 bg-gray-100 rounded text-gray-600"
-              >Pico</span
-            >
-          </div>
-          <div
-            class="w-full h-1 bg-surface-container rounded-full overflow-hidden"
-          >
-            <div class="w-3/4 h-full bg-black"></div>
-          </div>
-        </div>
-        <div
-          class="bg-white border border-gray-200 p-md rounded-lg flex flex-col gap-sm"
-        >
-          <span
-            class="text-caption text-on-surface-variant uppercase tracking-wider"
-            >Salas Manutenção</span
-          >
-          <div class="flex items-end justify-between">
-            <span class="text-h2 font-h2">05</span>
-            <span class="text-xs px-2 py-0.5 bg-gray-100 rounded text-gray-600"
-              >Crítico</span
-            >
-          </div>
-          <div
-            class="w-full h-1 bg-surface-container rounded-full overflow-hidden"
-          >
-            <div class="w-1/4 h-full bg-black"></div>
-          </div>
-        </div>
-      </section>
-      <!-- Main Dashboard Layout: 2/3 Content, 1/3 Chart -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
-        <!-- Table Section -->
-        <section
-          class="lg:col-span-2 bg-white border border-gray-200 rounded-lg overflow-hidden flex flex-col"
-        >
-          <div
-            class="p-md border-b border-gray-200 flex justify-between items-center"
-          >
-            <h3 class="text-label-md font-bold">Tabela de chamados recentes</h3>
-            <a
-              class="text-caption font-medium px-3 py-1 border border-black rounded hover:bg-black hover:text-white transition-colors"
-              href="manutencao.html#chamados"
-            >
-              Ver todos
-            </a>
-          </div>
-          <div class="overflow-x-auto">
-            <table class="w-full text-left">
-              <thead
-                class="bg-surface-container text-caption text-on-surface-variant uppercase"
-              >
-                <tr>
-                  <th class="px-md py-sm">Quarto</th>
-                  <th class="px-md py-sm">Assunto</th>
-                  <th class="px-md py-sm">Status</th>
-                  <th class="px-md py-sm">Ações</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-gray-100">
-                <tr class="hover:bg-gray-50 transition-colors">
-                  <td class="px-md py-md font-label-md">Bloco A - 204</td>
-                  <td class="px-md py-md">Vazamento pia banheiro</td>
-                  <td class="px-md py-md">
-                    <span
-                      class="text-[10px] px-2 py-1 bg-gray-200 rounded font-bold"
-                      >ABERTO</span
-                    >
-                  </td>
-                  <td class="px-md py-md">
-                    <button
-                      class="material-symbols-outlined text-gray-400 hover:text-black"
-                      data-icon="more_vert"
-                      type="button"
-                      aria-label="Mais ações"
-                    >
-                      more_vert
-                    </button>
-                  </td>
-                </tr>
-                <tr class="hover:bg-gray-50 transition-colors">
-                  <td class="px-md py-md font-label-md">Bloco B - 110</td>
-                  <td class="px-md py-md">Lâmpada queimada</td>
-                  <td class="px-md py-md">
-                    <span
-                      class="text-[10px] px-2 py-1 bg-gray-100 text-gray-400 rounded font-bold"
-                      >EM PROGRESSO</span
-                    >
-                  </td>
-                  <td class="px-md py-md">
-                    <button
-                      class="material-symbols-outlined text-gray-400 hover:text-black"
-                      data-icon="more_vert"
-                      type="button"
-                      aria-label="Mais ações"
-                    >
-                      more_vert
-                    </button>
-                  </td>
-                </tr>
-                <tr class="hover:bg-gray-50 transition-colors">
-                  <td class="px-md py-md font-label-md">Bloco C - 302</td>
-                  <td class="px-md py-md">Ar condicionado barulhento</td>
-                  <td class="px-md py-md">
-                    <span
-                      class="text-[10px] px-2 py-1 bg-gray-200 rounded font-bold"
-                      >ABERTO</span
-                    >
-                  </td>
-                  <td class="px-md py-md">
-                    <button
-                      class="material-symbols-outlined text-gray-400 hover:text-black"
-                      data-icon="more_vert"
-                      type="button"
-                      aria-label="Mais ações"
-                    >
-                      more_vert
-                    </button>
-                  </td>
-                </tr>
-                <tr class="hover:bg-gray-50 transition-colors">
-                  <td class="px-md py-md font-label-md">Refeitório</td>
-                  <td class="px-md py-md">Troca de filtro de água</td>
-                  <td class="px-md py-md">
-                    <span
-                      class="text-[10px] px-2 py-1 bg-gray-800 text-white rounded font-bold"
-                      >FINALIZADO</span
-                    >
-                  </td>
-                  <td class="px-md py-md">
-                    <button
-                      class="material-symbols-outlined text-gray-400 hover:text-black"
-                      data-icon="more_vert"
-                      type="button"
-                      aria-label="Mais ações"
-                    >
-                      more_vert
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-        <!-- Chart Section -->
-        <section
-          class="bg-white border border-gray-200 rounded-lg p-md flex flex-col gap-md"
-        >
-          <div class="flex flex-col gap-xs">
-            <h3 class="text-label-md font-bold">
-              Ocupação da academia por horário
-            </h3>
-            <p class="text-caption text-on-surface-variant">
-              Dados em tempo real (Hoje)
+              Dashboard
+            </h2>
+            <p class="text-[#475569] font-medium text-lg">
+              Visão geral do seu dia no campus.
             </p>
           </div>
-          <!-- Skeleton Bar Chart Placeholder -->
-          <div
-            class="flex-grow flex items-end justify-between gap-2 h-48 px-2 pb-6 border-b border-gray-100"
+          <button
+            data-action
+            data-action-type="novo-chamado"
+            data-action-title="Novo Chamado"
+            data-action-body="Solicite manutenção agora."
+            class="text-white px-8 py-4 rounded-2xl font-bold text-sm tracking-tight transition-all active:scale-95 flex items-center justify-center gap-3"
+            style="background: var(--accent);"
           >
-            <div class="w-full bg-gray-100 rounded-t h-[20%]"></div>
-            <div class="w-full bg-gray-200 rounded-t h-[40%]"></div>
-            <div class="w-full bg-gray-300 rounded-t h-[75%]"></div>
-            <div class="w-full bg-black rounded-t h-[95%]"></div>
-            <div class="w-full bg-gray-300 rounded-t h-[60%]"></div>
-            <div class="w-full bg-gray-200 rounded-t h-[30%]"></div>
-            <div class="w-full bg-gray-100 rounded-t h-[15%]"></div>
-          </div>
-          <div class="flex justify-between text-[10px] text-gray-400 px-1">
-            <span>06h</span>
-            <span>09h</span>
-            <span>12h</span>
-            <span>15h</span>
-            <span>18h</span>
-            <span>21h</span>
-            <span>00h</span>
+            <span class="material-symbols-outlined">add_circle</span>
+            Novo Chamado
+          </button>
+        </header>
+
+        <!-- Stats Grid -->
+        <section class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div class="p-8 text-white rounded-[32px] space-y-4" style="background: var(--accent);">
+            <div class="flex items-center justify-between">
+              <span class="material-symbols-outlined opacity-50"
+                >confirmation_number</span
+              >
+              <span
+                class="text-[10px] font-black uppercase tracking-widest opacity-50"
+                >Chamados</span
+              >
+            </div>
+            <p class="text-4xl font-black" id="stats-chamados">0</p>
+            <p class="text-xs font-bold opacity-50">Total ativos no semestre</p>
           </div>
           <div
-            class="mt-md p-sm bg-surface-container-low rounded border border-gray-100 flex items-center gap-md"
+            class="p-8 rounded-[32px] space-y-4 surface-card"
           >
-            <span
-              class="material-symbols-outlined text-gray-400"
-              data-icon="info"
-              >info</span
-            >
-            <span class="text-caption"
-              >Pico esperado às 18:30. Sugerimos monitoramento extra.</span
-            >
+            <div class="flex items-center justify-between text-black">
+              <span class="material-symbols-outlined opacity-30"
+                >event_available</span
+              >
+              <span
+                class="text-[10px] font-black uppercase tracking-widest text-[#475569]"
+                >Reservas</span
+              >
+            </div>
+            <p class="text-4xl font-black text-black" id="stats-reservas">0</p>
+            <p class="text-xs font-bold text-[#475569]">Espaços agendados</p>
+          </div>
+          <div
+            class="p-8 rounded-[32px] space-y-4 surface-card"
+          >
+            <div class="flex items-center justify-between text-black">
+              <span class="material-symbols-outlined opacity-30"
+                >restaurant</span
+              >
+              <span
+                class="text-[10px] font-black uppercase tracking-widest text-[#475569]"
+                >Refeições</span
+              >
+            </div>
+            <p class="text-4xl font-black text-black" id="stats-refeicoes">0</p>
+            <p class="text-xs font-bold text-[#475569]">Registros de hoje</p>
           </div>
         </section>
-      </div>
-      <!-- Secondary Section: Maintenance Schedule & Quick Actions -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
-        <div class="bg-white border border-gray-200 p-md rounded-lg">
-          <h3 class="text-label-md font-bold mb-md">Próximas Manutenções</h3>
-          <div class="space-y-sm">
-            <div
-              class="flex items-center gap-md p-sm border border-gray-100 rounded"
-            >
-              <div
-                class="w-10 h-10 bg-surface-container rounded flex flex-col items-center justify-center"
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          <!-- Left Column: Activities -->
+          <div class="lg:col-span-2 space-y-8">
+            <div class="flex items-center justify-between">
+              <h3 class="font-black text-xl tracking-tight">
+                Atividades Recentes
+              </h3>
+              <a
+                href="historico.html"
+                class="text-xs font-black uppercase tracking-widest text-[#475569] hover:text-black transition-colors"
+                >Ver tudo</a
               >
-                <span class="text-[10px] font-bold">OUT</span>
-                <span class="text-sm font-black">24</span>
-              </div>
-              <div class="flex flex-col">
-                <span class="text-label-md font-bold">Limpeza da Piscina</span>
-                <span class="text-caption text-on-surface-variant"
-                  >Área de Esportes • 08:00</span
-                >
-              </div>
             </div>
-            <div
-              class="flex items-center gap-md p-sm border border-gray-100 rounded"
-            >
+            <div class="space-y-4" id="dashboard-activities">
               <div
-                class="w-10 h-10 bg-surface-container rounded flex flex-col items-center justify-center"
+              class="p-8 text-center rounded-[32px] border-2 border-dashed"
+              style="background: var(--card-hover); border-color: var(--border-soft);"
               >
-                <span class="text-[10px] font-bold">OUT</span>
-                <span class="text-sm font-black">25</span>
-              </div>
-              <div class="flex flex-col">
-                <span class="text-label-md font-bold">Revisão Elevadores</span>
-                <span class="text-caption text-on-surface-variant"
-                  >Blocos A/B • 14:00</span
-                >
+                <div
+                  class="animate-spin inline-block w-6 h-6 border-4 border-black border-t-transparent rounded-full mb-4"
+                ></div>
+                <p class="text-[#475569] font-bold">
+                  Sincronizando atividades...
+                </p>
               </div>
             </div>
           </div>
-        </div>
-        <div class="grid grid-cols-2 gap-md">
-          <button
-            class="bg-white border border-black p-md rounded-lg flex flex-col items-center justify-center gap-sm active:scale-95 transition-transform"
-            type="button"
-            data-action
-            data-action-type="relatorio"
-            data-action-title="Gerar relatório"
-            data-action-body="Vamos gerar o relatório do dia e registrar o envio."
-            data-action-confirm-text="Relatório gerado"
-            data-action-confirm-label="Gerar relatório"
-          >
-            <span
-              class="material-symbols-outlined text-3xl"
-              data-icon="assessment"
-              >assessment</span
+
+          <!-- Right Column: Contextual Card -->
+          <div class="space-y-8">
+            <h3 class="font-black text-xl tracking-tight">Próxima Refeição</h3>
+            <div
+              id="next-meal-card"
+              class="p-8 rounded-[32px] shadow-sm space-y-6 surface-card"
             >
-            <span class="text-label-md">Gerar Relatório</span>
-          </button>
-          <button
-            class="bg-white border border-gray-200 p-md rounded-lg flex flex-col items-center justify-center gap-sm active:scale-95 transition-transform text-gray-500"
-            type="button"
-            data-action
-            data-action-type="config"
-            data-action-title="Configurações"
-            data-action-body="Configurações avançadas estarão disponíveis em breve."
-            data-action-confirm-text="Configurações salvas"
-            data-action-confirm-label="Salvar"
-          >
-            <span
-              class="material-symbols-outlined text-3xl"
-              data-icon="settings"
-              >settings</span
-            >
-            <span class="text-label-md">Configurações</span>
-          </button>
+              <!-- Dynamically populated -->
+              <p class="text-[#475569] font-bold">Calculando horário...</p>
+            </div>
+          </div>
         </div>
-      </div>
+      </main>
+    </div>
+
+    <!-- Modal Component -->
+    <div
+      class="fixed inset-0 z-[100] hidden items-center justify-center p-4 backdrop-blur-sm"
+      style="background: color-mix(in srgb, var(--accent) 22%, black 28%);"
+      data-action-modal
+      aria-hidden="true"
+    >
       <div
-        class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 p-4"
-        data-action-modal
-        aria-hidden="true"
+        class="bg-white rounded-[40px] shadow-2xl w-full max-w-lg overflow-hidden animate-in fade-in zoom-in duration-300"
+        role="dialog"
+        aria-modal="true"
       >
-        <div
-          class="bg-white rounded-lg shadow-xl w-full max-w-lg"
-          role="dialog"
-          aria-modal="true"
-        >
-          <div
-            class="flex items-center justify-between p-4 border-b border-gray-200"
-          >
-            <h3 class="text-lg font-bold" data-action-modal-title>Detalhes</h3>
+        <div class="pt-8 px-8 pb-4 border-b border-gray-50">
+          <div class="flex items-center justify-between mb-1">
+            <h3
+              class="text-2xl font-black tracking-tight"
+              data-action-modal-title
+            >
+              Detalhes
+            </h3>
             <button
-              class="text-xs font-semibold px-3 py-2 border border-black rounded hover:bg-black hover:text-white transition-colors"
+              class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-50 transition-colors"
               type="button"
               data-action-modal-close
             >
-              Fechar
+              <span class="material-symbols-outlined text-[#475569]">close</span>
             </button>
           </div>
-          <div class="p-5 space-y-4">
-            <div class="text-body-md space-y-3" data-action-modal-content></div>
-            <p class="text-caption text-red-600 hidden" data-action-modal-alert>
-              Não foi possível concluir a ação. Tente novamente.
-            </p>
-            <div class="flex items-center justify-end gap-2">
-              <button
-                class="px-4 py-2 text-sm font-semibold border border-gray-200 rounded hover:bg-gray-100"
-                type="button"
-                data-action-modal-cancel
-              >
-                Cancelar
-              </button>
-              <button
-                class="px-4 py-2 text-sm font-semibold border border-black rounded hover:bg-black hover:text-white transition-colors"
-                type="button"
-                data-action-modal-confirm
-              >
-                Confirmar
-              </button>
-            </div>
+          <p
+            class="text-sm font-medium text-[#475569]"
+            data-action-modal-subtitle
+          ></p>
+        </div>
+        <div class="pt-6 px-8 pb-8 space-y-6">
+          <div
+            class="text-sm font-medium text-[#475569]"
+            data-action-modal-content
+          ></div>
+          <p
+            class="text-xs font-bold text-red-500 hidden bg-red-50 p-4 rounded-2xl"
+            data-action-modal-alert
+          ></p>
+          <div class="flex items-center justify-end gap-3 pt-4">
+            <button
+              class="px-6 py-3 text-sm font-bold text-[#475569] hover:text-black transition-colors"
+              type="button"
+              data-action-modal-cancel
+            >
+              Cancelar
+            </button>
+            <button
+              class="px-8 py-3 bg-black text-white rounded-2xl text-sm font-bold hover:shadow-xl hover:shadow-black/20 transition-all"
+              type="button"
+              data-action-modal-confirm
+            >
+              Confirmar
+            </button>
           </div>
         </div>
       </div>
-    </main>
-    <!-- Mobile Bottom Nav -->
-    <nav
-      class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-white border-t border-gray-200"
-    >
-      <a
-        class="flex flex-col items-center justify-center bg-gray-200 text-black rounded-lg p-1 transition-transform active:scale-95"
-        href="index.html"
-      >
-        <span class="material-symbols-outlined" data-icon="home">home</span>
-        <span class="font-['Inter'] text-[10px] font-medium">Início</span>
-      </a>
-      <a
-        class="flex flex-col items-center justify-center text-gray-500 p-1 transition-transform active:scale-95"
-        href="esportes.html#agenda"
-      >
-        <span class="material-symbols-outlined" data-icon="calendar_today"
-          >calendar_today</span
-        >
-        <span class="font-['Inter'] text-[10px] font-medium">Agenda</span>
-      </a>
-      <a
-        class="flex flex-col items-center justify-center text-gray-500 p-1 transition-transform active:scale-95"
-        href="refeitorio.html"
-      >
-        <span class="material-symbols-outlined" data-icon="restaurant"
-          >restaurant</span
-        >
-        <span class="font-['Inter'] text-[10px] font-medium">Refeitório</span>
-      </a>
-      <a
-        class="flex flex-col items-center justify-center text-gray-500 p-1 transition-transform active:scale-95"
-        href="manutencao.html#chamados"
-      >
-        <span class="material-symbols-outlined" data-icon="report_problem"
-          >report_problem</span
-        >
-        <span class="font-['Inter'] text-[10px] font-medium">Chamados</span>
-      </a>
-    </nav>
+    </div>
+
     <script>
       (() => {
-        const toggles = document.querySelectorAll("[data-user-toggle]");
-        const menus = document.querySelectorAll("[data-user-menu]");
-        const closeAll = () => {
-          menus.forEach((menu) => menu.classList.add("hidden"));
-          toggles.forEach((toggle) =>
-            toggle.setAttribute("aria-expanded", "false"),
-          );
-        };
-
-        toggles.forEach((toggle) => {
-          const menu = toggle.parentElement.querySelector("[data-user-menu]");
-          toggle.addEventListener("click", (event) => {
-            event.stopPropagation();
-            const isOpen = !menu.classList.contains("hidden");
-            closeAll();
-            if (!isOpen) {
-              menu.classList.remove("hidden");
-              toggle.setAttribute("aria-expanded", "true");
-            }
-          });
-
-          const signOut = menu.querySelector("[data-sign-out]");
-          if (signOut) {
-            signOut.addEventListener("click", () => {
-              closeAll();
-              window.location.href = "index.html";
-            });
-          }
-        });
+        const statsChamados = document.getElementById("stats-chamados");
+        const statsReservas = document.getElementById("stats-reservas");
+        const statsRefeicoes = document.getElementById("stats-refeicoes");
+        const activitiesList = document.getElementById("dashboard-activities");
+        const nextMealCard = document.getElementById("next-meal-card");
 
         const actionModal = document.querySelector("[data-action-modal]");
         const actionTitle = document.querySelector("[data-action-modal-title]");
+        const actionSubtitle = document.querySelector(
+          "[data-action-modal-subtitle]",
+        );
         const actionContent = document.querySelector(
           "[data-action-modal-content]",
         );
@@ -787,8 +499,173 @@
         const actionConfirm = document.querySelector(
           "[data-action-modal-confirm]",
         );
-        const defaultConfirmLabel = actionConfirm?.textContent || "Confirmar";
         let activeActionButton = null;
+
+        const fetchData = async () => {
+          try {
+            const [cRes, rRes, fRes] = await Promise.all([
+              fetch("http://localhost:3333/api/chamados"),
+              fetch("http://localhost:3333/api/reservas"),
+              fetch("http://localhost:3333/api/refeicoes"),
+            ]);
+
+            const chamados = await cRes.json();
+            const reservas = await rRes.json();
+            const refeicoes = await fRes.json();
+
+            updateStats(chamados, reservas, refeicoes);
+            renderUnifiedActivities(chamados, reservas);
+            renderNextMeal(refeicoes);
+          } catch (error) {
+            console.error("Erro ao carregar dados do dashboard", error);
+          }
+        };
+
+        const updateStats = (c, r, f) => {
+          if (statsChamados) statsChamados.textContent = c.length;
+          if (statsReservas) statsReservas.textContent = r.length;
+          if (statsRefeicoes) statsRefeicoes.textContent = f.length;
+        };
+
+        const renderUnifiedActivities = (chamados, reservas) => {
+          const activities = [
+            ...chamados.map((i) => ({ ...i, type: "chamado" })),
+            ...reservas.map((i) => ({ ...i, type: "reserva" })),
+          ]
+            .sort((a, b) => new Date(b.criadoEm) - new Date(a.criadoEm))
+            .slice(0, 5);
+
+          if (activities.length === 0) {
+            activitiesList.innerHTML = `<p class="text-[#475569] font-bold p-8 text-center">Nenhuma atividade recente.</p>`;
+            return;
+          }
+
+          activitiesList.innerHTML = activities
+            .map((act) => {
+              const isChamado = act.type === "chamado";
+              let icon = isChamado ? "build" : "event_available";
+              if (isChamado) {
+                if (
+                  act.titulo.toLowerCase().includes("luz") ||
+                  act.titulo.toLowerCase().includes("lâmpada")
+                )
+                  icon = "lightbulb";
+                if (
+                  act.titulo.toLowerCase().includes("vazamento") ||
+                  act.titulo.toLowerCase().includes("pia")
+                )
+                  icon = "plumbing";
+              } else {
+                if (act.local.toLowerCase().includes("quadra"))
+                  icon = "sports_soccer";
+                if (act.local.toLowerCase().includes("estudo"))
+                  icon = "menu_book";
+              }
+
+              const link = isChamado
+                ? `chamados.html?id=${act.id}`
+                : `reservas.html?id=${act.id}`;
+              const subtitle = isChamado
+                ? `${act.local || "Campus"} • Em análise`
+                : `${act.data} às ${act.horario}`;
+              const label = isChamado ? act.titulo : `Reserva: ${act.local}`;
+
+              return `
+              <div onclick="window.location.href='${link}'" class="p-6 bg-white border border-gray-100 rounded-[28px] flex items-center justify-between hover:bg-gray-50 transition-all cursor-pointer group">
+                <div class="flex items-center gap-6">
+                  <div class="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center text-black">
+                    <span class="material-symbols-outlined text-2xl">${icon}</span>
+                  </div>
+                  <div>
+                    <h4 class="font-black text-base">${label}</h4>
+                    <p class="text-[11px] text-[#475569] font-black uppercase tracking-wider mt-1">${subtitle}</p>
+                  </div>
+                </div>
+                <span class="material-symbols-outlined text-gray-200 group-hover:text-black transition-colors">chevron_right</span>
+              </div>
+            `;
+            })
+            .join("");
+        };
+
+        const renderNextMeal = (refeicoes = []) => {
+          const now = new Date();
+          const hour = now.getHours();
+          const minute = now.getMinutes();
+          const currentTime = hour * 60 + minute;
+
+          const schedule = [
+            {
+              name: "Café da Manhã",
+              time: "07:00",
+              limit: 9 * 60,
+              icon: "coffee", 
+              menu: "Pães, frutas, café e leite.",
+            },
+            {
+              name: "Almoço",
+              time: "11:30",
+              limit: 14 * 60,
+              icon: "sunny",
+              menu: "Frango grelhado, arroz integral e feijão.",
+            },
+            {
+              name: "Jantar",
+              time: "18:00",
+              limit: 20 * 60 + 30,
+              icon: "nights_stay",
+              menu: "Sopa de legumes ou Risoto.",
+            },
+            {
+              name: "Lanche Noturno",
+              time: "21:00",
+              limit: 22 * 60,
+              icon: "bakery_dining",
+              menu: "Sanduíche natural e suco.",
+            },
+          ];
+
+          const latestMealByType = refeicoes
+            .slice()
+            .sort((a, b) => new Date(b.criadoEm) - new Date(a.criadoEm))
+            .reduce((acc, item) => {
+              const key = (item.refeicao || "").toLowerCase();
+              if (!acc[key]) acc[key] = item;
+              return acc;
+            }, {});
+
+          const dynamicMenus = {
+            "almoço": latestMealByType["almoço"] || latestMealByType["almoco"],
+            "jantar": latestMealByType["jantar"],
+            "lanche noturno": latestMealByType["lanche"],
+          };
+
+          schedule.forEach((meal) => {
+            const match = dynamicMenus[meal.name.toLowerCase()];
+            if (match && Array.isArray(match.itens) && match.itens.length > 0) {
+              meal.menu = match.itens.join(", ");
+            }
+          });
+
+          let next = schedule.find((s) => currentTime < s.limit);
+          if (!next) next = schedule[0];
+
+          nextMealCard.innerHTML = `
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-black flex items-center justify-center text-white">
+                <span class="material-symbols-outlined">${next.icon}</span>
+              </div>
+              <div>
+                <p class="text-[10px] font-black uppercase tracking-widest text-[#475569]">Servindo às ${next.time}</p>
+                <h4 class="font-black text-xl">${next.name}</h4>
+              </div>
+            </div>
+            <div class="p-4 bg-gray-50 rounded-2xl">
+              <p class="text-sm font-bold text-gray-600">${next.menu}</p>
+            </div>
+            <button onclick="window.location.href='cardapio.html'" class="w-full py-4 bg-black text-white rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-gray-900 transition-all">Ver Cardápio Completo</button>
+          `;
+        };
 
         const closeActionModal = () => {
           if (!actionModal) return;
@@ -796,10 +673,7 @@
           actionModal.classList.remove("flex");
           actionModal.setAttribute("aria-hidden", "true");
           document.body.classList.remove("overflow-hidden");
-          activeActionButton = null;
-          if (actionAlert) {
-            actionAlert.classList.add("hidden");
-          }
+          if (actionAlert) actionAlert.classList.add("hidden");
         };
 
         const openActionModal = (button) => {
@@ -808,212 +682,152 @@
           const actionType = button.getAttribute("data-action-type") || "info";
           const actionTitleText =
             button.getAttribute("data-action-title") || "Ação";
-          const actionBodyText =
-            button.getAttribute("data-action-body") || "Confirme a ação.";
-          const confirmLabel =
-            button.getAttribute("data-action-confirm-label") ||
-            defaultConfirmLabel;
+          const actionBodyText = button.getAttribute("data-action-body") || "";
+
           actionTitle.textContent = actionTitleText;
-          if (actionAlert) {
-            actionAlert.classList.add("hidden");
-          }
+          if (actionSubtitle) actionSubtitle.textContent = actionBodyText;
+          if (actionAlert) actionAlert.classList.add("hidden");
 
           if (actionType === "novo-chamado") {
             actionContent.innerHTML = `
-              <p>${actionBodyText}</p>
-              <form class="space-y-3" data-action-form>
-                <label class="flex flex-col gap-1 text-caption">
-                  Título
-                  <input
-                    class="rounded border border-gray-300 px-3 py-2 text-body-md"
-                    name="titulo"
-                    placeholder="Ex: Vazamento no banheiro"
-                    required
-                  />
-                </label>
-                <label class="flex flex-col gap-1 text-caption">
-                  Descrição
-                  <textarea
-                    class="rounded border border-gray-300 px-3 py-2 text-body-md"
-                    name="descricao"
-                    rows="3"
-                    placeholder="Descreva o problema"
-                    required
-                  ></textarea>
-                </label>
-                <label class="flex flex-col gap-1 text-caption">
-                  Prioridade
-                  <select
-                    class="rounded border border-gray-300 px-3 py-2 text-body-md"
-                    name="prioridade"
-                  >
-                    <option value="normal">Normal</option>
-                    <option value="alta">Alta</option>
-                  </select>
-                </label>
+              <form class="space-y-5" data-action-form>
+                <div class="space-y-2">
+                  <label class="text-[10px] font-black uppercase tracking-widest text-[#475569] ml-1">Assunto do Reparo</label>
+                  <div class="relative flex items-center group">
+                    <select class="w-full rounded-2xl border-none bg-gray-50 pl-5 pr-12 py-4 text-sm font-bold focus:ring-2 focus:ring-black appearance-none bg-none cursor-pointer transition-all hover:bg-gray-100" name="assunto_select" id="assunto_select" required>
+                      <option value="" disabled selected>Selecione um assunto...</option>
+                      <option value="Lâmpada queimada">Lâmpada queimada</option>
+                      <option value="Vazamento de água">Vazamento de água</option>
+                      <option value="Ar condicionado">Problema no Ar condicionado</option>
+                      <option value="Limpeza">Solicitação de Limpeza</option>
+                      <option value="Mobiliário">Reparo em Mobiliário (Mesa/Cadeira)</option>
+                      <option value="Tomada/Elétrica">Problema em Tomada/Elétrica</option>
+                      <option value="OUTROS">OUTROS (Especificar...)</option>
+                    </select>
+                    <div class="absolute right-5 pointer-events-none text-[#475569] group-hover:text-black transition-colors flex items-center">
+                      <span class="material-symbols-outlined text-[20px]">expand_more</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="space-y-2 hidden" id="outros_container">
+                  <label class="text-[10px] font-black uppercase tracking-widest text-[#475569] ml-1">Especifique o Assunto</label>
+                  <input class="w-full rounded-2xl border-none bg-gray-50 px-5 py-4 text-sm font-bold focus:ring-2 focus:ring-black" name="titulo_custom" placeholder="Descreva brevemente o assunto" />
+                </div>
+                <div class="space-y-2">
+                  <label class="text-[10px] font-black uppercase tracking-widest text-[#475569] ml-1">Localização</label>
+                  <input class="w-full rounded-2xl border-none bg-gray-50 px-5 py-4 text-sm font-bold focus:ring-2 focus:ring-black" name="local" placeholder="Ex: Bloco A - Sala 204" required />
+                </div>
+                <div class="space-y-2">
+                  <label class="text-[10px] font-black uppercase tracking-widest text-[#475569] ml-1">Descrição Detalhada</label>
+                  <textarea class="w-full rounded-2xl border-none bg-gray-50 px-5 py-4 text-sm font-bold focus:ring-2 focus:ring-black" name="descricao" rows="3" placeholder="Descreva o que está acontecendo..." required></textarea>
+                </div>
               </form>
             `;
-          } else if (actionType === "config") {
-            actionContent.innerHTML = `
-              <p>${actionBodyText}</p>
-              <form class="space-y-3" data-config-form>
-                <label class="flex items-center gap-2 text-body-md">
-                  <input
-                    class="rounded border-gray-300"
-                    type="checkbox"
-                    name="notificacoes"
-                    checked
-                  />
-                  Notificações por e-mail
-                </label>
-                <label class="flex items-center gap-2 text-body-md">
-                  <input
-                    class="rounded border-gray-300"
-                    type="checkbox"
-                    name="alertas"
-                    checked
-                  />
-                  Alertas críticos em tempo real
-                </label>
-                <label class="flex flex-col gap-1 text-caption">
-                  Frequência de relatórios
-                  <select
-                    class="rounded border border-gray-300 px-3 py-2 text-body-md"
-                    name="frequencia"
-                  >
-                    <option value="diario">Diário</option>
-                    <option value="semanal">Semanal</option>
-                    <option value="mensal">Mensal</option>
-                  </select>
-                </label>
-              </form>
-            `;
-          } else {
-            actionContent.innerHTML = `<p>${actionBodyText}</p>`;
+
+            const select = actionContent.querySelector("#assunto_select");
+            const outrosContainer =
+              actionContent.querySelector("#outros_container");
+            select.addEventListener("change", (e) => {
+              if (e.target.value === "OUTROS") {
+                outrosContainer.classList.remove("hidden");
+                outrosContainer.querySelector("input").required = true;
+              } else {
+                outrosContainer.classList.add("hidden");
+                outrosContainer.querySelector("input").required = false;
+              }
+            });
           }
 
-          if (actionConfirm) {
-            actionConfirm.textContent = confirmLabel;
-          }
           actionModal.classList.remove("hidden");
           actionModal.classList.add("flex");
           actionModal.setAttribute("aria-hidden", "false");
           document.body.classList.add("overflow-hidden");
         };
 
-        document.querySelectorAll("[data-action]").forEach((button) => {
-          button.addEventListener("click", () => openActionModal(button));
-        });
+        document
+          .querySelectorAll("[data-action]")
+          .forEach((btn) =>
+            btn.addEventListener("click", () => openActionModal(btn)),
+          );
 
         actionConfirm?.addEventListener("click", async () => {
-          if (!activeActionButton) {
+          const form = actionContent.querySelector("form");
+          if (!form) {
             closeActionModal();
             return;
           }
+          const formData = new FormData(form);
+          const payload = Object.fromEntries(formData.entries());
+          if (payload.assunto_select === "OUTROS")
+            payload.titulo = payload.titulo_custom;
+          else payload.titulo = payload.assunto_select;
 
-          const actionType =
-            activeActionButton.getAttribute("data-action-type") || "info";
-          const confirmText = activeActionButton.getAttribute(
-            "data-action-confirm-text",
-          );
-
-          if (actionType === "novo-chamado") {
-            const form = actionContent?.querySelector("[data-action-form]");
-            if (!form) return;
-            const formData = new FormData(form);
-            const payload = {
-              titulo: formData.get("titulo"),
-              descricao: formData.get("descricao"),
-              prioridade: formData.get("prioridade"),
-            };
-
-            if (!payload.titulo || !payload.descricao) {
-              if (actionAlert) {
-                actionAlert.textContent =
-                  "Preencha título e descrição para continuar.";
-                actionAlert.classList.remove("hidden");
-              }
-              return;
-            }
-
-            try {
-              const response = await fetch(
-                "http://localhost:3333/api/chamados",
-                {
-                  method: "POST",
-                  headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify(payload),
-                },
-              );
-
-              if (!response.ok) {
-                throw new Error("Falha ao registrar chamado");
-              }
-            } catch (error) {
-              if (actionAlert) {
-                actionAlert.textContent =
-                  "Não foi possível registrar o chamado. Verifique o backend.";
-                actionAlert.classList.remove("hidden");
-              }
-              return;
-            }
+          if (!payload.titulo || !payload.descricao || !payload.local) {
+            actionAlert.textContent =
+              "Por favor, preencha todos os campos obrigatórios.";
+            actionAlert.classList.remove("hidden");
+            return;
           }
 
-          if (actionType === "relatorio") {
-            const now = new Date();
-            const report = [
-              "Relatório diário - CampusConnect",
-              `Data: ${now.toLocaleDateString("pt-BR")}`,
-              "Resumo:",
-              "- Chamados recentes: 4",
-              "- Refeições hoje: 856",
-              "- Ocupação academia: 78%",
-            ].join("\n");
-            const blob = new Blob([report], { type: "text/plain" });
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement("a");
-            link.href = url;
-            link.download = `relatorio-${now.toISOString().slice(0, 10)}.txt`;
-            link.click();
-            URL.revokeObjectURL(url);
-          }
+          actionConfirm.disabled = true;
+          actionConfirm.textContent = "Enviando...";
 
-          if (actionType === "config") {
-            const form = actionContent?.querySelector("[data-config-form]");
-            if (!form) return;
-          }
-
-          if (confirmText) {
-            const label = activeActionButton.querySelector(".text-label-md");
-            if (label) {
-              label.textContent = confirmText;
-            }
-            activeActionButton.classList.add("bg-black", "text-white");
-            activeActionButton.disabled = true;
-          }
-
-          closeActionModal();
-        });
-
-        actionModal
-          ?.querySelector("[data-action-modal-close]")
-          ?.addEventListener("click", closeActionModal);
-        actionModal
-          ?.querySelector("[data-action-modal-cancel]")
-          ?.addEventListener("click", closeActionModal);
-        actionModal?.addEventListener("click", (event) => {
-          if (event.target === actionModal) {
-            closeActionModal();
+          try {
+            const response = await fetch("http://localhost:3333/api/chamados", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(payload),
+            });
+            if (!response.ok) throw new Error();
+            actionConfirm.textContent = "Enviado!";
+            setTimeout(() => {
+              closeActionModal();
+              actionConfirm.disabled = false;
+              actionConfirm.textContent = "Confirmar";
+              fetchData();
+            }, 1000);
+          } catch (error) {
+            actionAlert.textContent = "Erro ao enviar.";
+            actionAlert.classList.remove("hidden");
+            actionConfirm.disabled = false;
           }
         });
 
-        document.addEventListener("keydown", (event) => {
-          if (event.key === "Escape") {
-            closeActionModal();
+        [
+          actionModal?.querySelector("[data-action-modal-close]"),
+          actionModal?.querySelector("[data-action-modal-cancel]"),
+        ].forEach((el) => el?.addEventListener("click", closeActionModal));
+        actionModal?.addEventListener(
+          "click",
+          (e) => e.target === actionModal && closeActionModal(),
+        );
+
+        // Profile Dropdown
+        window.toggleProfileDropdown = (e) => {
+          e.stopPropagation();
+          const dropdown = document.getElementById("profile-dropdown");
+          dropdown.classList.toggle("hidden");
+        };
+
+        window.logout = () => {
+          localStorage.removeItem("userRole");
+          window.location.href = "login.html";
+        };
+
+        // Close dropdown when clicking outside
+        document.addEventListener("click", (e) => {
+          const dropdown = document.getElementById("profile-dropdown");
+          const container = document.getElementById("profile-container");
+          if (
+            dropdown &&
+            !dropdown.classList.contains("hidden") &&
+            !container.contains(e.target)
+          ) {
+            dropdown.classList.add("hidden");
           }
         });
 
-        document.addEventListener("click", closeAll);
+        fetchData();
       })();
     </script>
   </body>
