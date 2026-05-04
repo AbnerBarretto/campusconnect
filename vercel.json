@@ -2,10 +2,11 @@
   "version": 2,
   "experimentalServices": {
     "frontend": {
+      "entrypoint": "index.js",
       "routePrefix": "/"
     },
     "backend": {
-      "entrypoint": "backend",
+      "entrypoint": "backend/index.js",
       "routePrefix": "/api"
     }
   }
