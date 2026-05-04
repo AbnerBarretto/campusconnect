@@ -75,7 +75,7 @@ npm run dev
 O servidor estará disponível em: `http://localhost:3333`
 
 4. **Acesse a aplicação**
-   Abra o arquivo `index.html` ou `login.html` no navegador.
+   Abra o arquivo `dashboard.html` ou `login.html` no navegador.
 
 ---
 
@@ -85,7 +85,7 @@ A autenticação é mockada e redireciona baseado no email:
 
 | Email                | Senha    | Tipo  | Acesso                            |
 | -------------------- | -------- | ----- | --------------------------------- |
-| `aluno@campus.com`   | qualquer | Aluno | Dashboard Aluno / `index.html`    |
+| `aluno@campus.com`   | qualquer | Aluno | Dashboard Aluno / `dashboard.html`    |
 | `admin@campus.com`   | qualquer | Admin | Painel Admin / `admin/geral.html` |
 | `suporte@campus.com` | qualquer | Aluno | Dashboard Aluno                   |
 
@@ -97,7 +97,7 @@ A autenticação é mockada e redireciona baseado no email:
 
 ````
 campusconnect/
-├── index.html                 # Dashboard aluno (página raiz)
+├── dashboard.html                 # Dashboard aluno (página raiz)
 ├── login.html                 # Página de autenticação
 ├── pages/                     # 📄 Funcionalidades para alunos
 │   ├── calendario.html        # Calendário acadêmico
