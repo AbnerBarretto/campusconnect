@@ -130,6 +130,8 @@
         animation: slideIn 0.3s ease forwards;
       }
     </style>
+    <script src="../js/api.js"></script>
+  <script src="../js/api.js"></script>
   </head>
   <body
     class="font-sans text-[#0f172a] dark:text-slate-200 bg-[#f6f8ff] dark:bg-darkbg selection:bg-accent selection:text-white flex h-screen overflow-hidden antialiased transition-colors duration-300"
@@ -686,7 +688,7 @@
 
           try {
             // No specific load function for calendario-admin, just the global one
-            await fetch("http://localhost:3333/api/chamados")
+            await fetch(`${1}/api/chamados")
               .then((r) => r.json())
               .then((data) => {
                 allTickets = data;
@@ -705,7 +707,7 @@
         };
 
         window.quickTicket = async (titulo, local) => {
-          const res = await fetch("http://localhost:3333/api/chamados", {
+          const res = await fetch(`${1}/api/chamados", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({

@@ -89,6 +89,7 @@
         border-radius: 10px;
       }
     </style>
+    <script src="../js/api.js"></script>
   </head>
   <body class="font-sans text-[var(--text-primary)] bg-[var(--bg)] selection:bg-[var(--accent)] selection:text-white min-h-screen flex">
     <!-- Sidebar -->
@@ -295,7 +296,7 @@
 
         const loadChamados = async () => {
           try {
-            const response = await fetch("http://localhost:3333/api/chamados");
+            const response = await fetch(`${1}/api/chamados");
             if (!response.ok) throw new Error();
             currentChamados = await response.json();
             renderChamados(currentChamados);
@@ -374,7 +375,7 @@
           confirmYes.onclick = async () => {
             confirmYes.disabled = true;
             try {
-              const res = await fetch(`http://localhost:3333/api/chamados/${id}`, { method: "DELETE" });
+              const res = await fetch(`${API_BASE_URL}/api/chamados/${id}`, { method: `DELETE" });
               if (!res.ok) throw new Error();
               confirmModal.classList.add("hidden");
               confirmYes.disabled = false;
@@ -496,7 +497,7 @@
           }
 
           try {
-            const res = await fetch("http://localhost:3333/api/chamados", {
+            const res = await fetch(`${1}/api/chamados", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({

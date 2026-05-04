@@ -243,6 +243,7 @@
         transform: rotate(90deg);
       }
       </style>
+      <script src="../js/api.js"></script>
       </head>
       <body
         class="font-sans text-[#0f172a] dark:text-slate-200 bg-[#f6f8ff] dark:bg-darkbg selection:bg-accent selection:text-white flex h-screen overflow-hidden antialiased transition-colors duration-300"
@@ -1139,8 +1140,8 @@
 
           try {
             const [ticketsRes, reservasRes] = await Promise.all([
-              fetch("http://localhost:3333/api/chamados"),
-              fetch("http://localhost:3333/api/reservas"),
+              fetch(`${1}/api/chamados"),
+              fetch(`${1}/api/reservas"),
             ]);
             allTickets = await ticketsRes.json();
             allReservas = await reservasRes.json();
@@ -1449,7 +1450,7 @@
         };
 
         window.updateReservaStatus = async (id, status) => {
-          const res = await fetch(`http://localhost:3333/api/reservas/${id}`, {
+          const res = await fetch(`${API_BASE_URL}/api/reservas/${id}`, {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ status }),
@@ -1462,7 +1463,7 @@
 
         window.deleteReserva = async (id) => {
           if (!confirm("Excluir reserva definitivamente?")) return;
-          const res = await fetch(`http://localhost:3333/api/reservas/${id}`, {
+          const res = await fetch(`${API_BASE_URL}/api/reservas/${id}`, {
             method: "DELETE",
           });
           if (res.ok) {
@@ -1473,7 +1474,7 @@
 
         window.updateTicketStatus = async (id, status) => {
           setRowSyncing(id);
-          const res = await fetch(`http://localhost:3333/api/chamados/${id}`, {
+          const res = await fetch(`${API_BASE_URL}/api/chamados/${id}`, {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ status }),
@@ -1486,7 +1487,7 @@
 
         window.updateTicketPriority = async (id, prioridade) => {
           setRowSyncing(id);
-          const res = await fetch(`http://localhost:3333/api/chamados/${id}`, {
+          const res = await fetch(`${API_BASE_URL}/api/chamados/${id}`, {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ prioridade }),
@@ -1498,7 +1499,7 @@
         };
 
         window.quickTicket = async (titulo, local) => {
-          const res = await fetch("http://localhost:3333/api/chamados", {
+          const res = await fetch(`${1}/api/chamados", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({

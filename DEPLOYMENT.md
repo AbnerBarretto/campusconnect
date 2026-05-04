@@ -15,6 +15,7 @@ Este documento explica como fazer deploy do CampusConnect no Vercel.
 ## 🎯 Opção 1: Deploy via Interface Vercel (Recomendado - Mais Fácil)
 
 ### **Passo 1: Vá para Vercel**
+
 ```
 https://vercel.com/dashboard
 ```
@@ -22,16 +23,19 @@ https://vercel.com/dashboard
 ### **Passo 2: Clique em "Add New" → "Project"**
 
 ### **Passo 3: Selecione seu repositório GitHub**
+
 - Procure por `campusconnect`
 - Clique em "Import"
 
 ### **Passo 4: Configure**
+
 - **Framework Preset:** Deixe em branco (vamos usar Node.js)
 - **Root Directory:** Deixe vazio (padrão)
 - **Build Command:** Deixe vazio
 - **Install Command:** Deixe vazio
 
 ### **Passo 5: Deploy 🎉**
+
 Clique em "Deploy" e aguarde (~2-3 minutos)
 
 ---
@@ -39,16 +43,19 @@ Clique em "Deploy" e aguarde (~2-3 minutos)
 ## 🎯 Opção 2: Deploy via CLI (Para Controle Total)
 
 ### **Passo 1: Instale Vercel CLI**
+
 ```bash
 npm install -g vercel
 ```
 
 ### **Passo 2: Na raiz do projeto, execute**
+
 ```bash
 vercel --prod
 ```
 
 ### **Passo 3: Responda as perguntas**
+
 ```
 ? Set up and deploy? Yes
 ? Which scope? [seu-usuario]
@@ -61,6 +68,7 @@ vercel --prod
 ```
 
 ### **Passo 4: Pronto! 🎉**
+
 ```
 ✓ Production: https://campusconnect.vercel.app
 ```
@@ -132,11 +140,13 @@ git push origin main
 ## 🛠️ Monitorar Deployments
 
 ### **Via Interface Vercel**
+
 1. Acesse https://vercel.com/dashboard
 2. Clique no projeto `campusconnect`
 3. Veja histórico de deployments em "Deployments"
 
 ### **Via CLI**
+
 ```bash
 vercel deployments
 ```
@@ -146,6 +156,7 @@ vercel deployments
 ## 🐛 Troubleshooting
 
 ### **Erro: "Cannot find module 'express'"**
+
 ```bash
 cd backend
 npm install
@@ -156,10 +167,12 @@ git push
 ```
 
 ### **API retorna 404**
+
 - Verifique se os arquivos estão em `backend/`
 - Certifique-se que `vercel.json` está na raiz
 
 ### **Frontend não carrega**
+
 - Verifique caminhos relativos (../index.html, etc)
 - Limpe cache do navegador
 
@@ -174,6 +187,7 @@ Para usar seu próprio domínio:
 3. Aponte os nameservers
 
 Exemplo:
+
 ```
 https://campusconnect.mouratech.com
 ```

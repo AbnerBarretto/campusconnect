@@ -156,6 +156,8 @@
         animation: slideIn 0.3s ease forwards;
       }
     </style>
+    <script src="../js/api.js"></script>
+  <script src="../js/api.js"></script>
   </head>
   <body
     class="font-sans text-[#0f172a] dark:text-slate-200 bg-[#f6f8ff] dark:bg-darkbg selection:bg-accent selection:text-white flex h-screen overflow-hidden antialiased transition-colors duration-300"
@@ -902,7 +904,7 @@
             if (!newItensStr.trim()) return;
             const newItens = newItensStr.split(",").map(i => i.trim());
             try {
-              const res = await fetch("http://localhost:3333/api/refeicoes", {
+              const res = await fetch(`${1}/api/refeicoes", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ refeicao: m.tipo, itens: newItens }),
@@ -931,7 +933,7 @@
           try {
             await Promise.all([
               load(),
-              fetch("http://localhost:3333/api/chamados").then((r) => r.json()).then((data) => {
+              fetch(`${1}/api/chamados").then((r) => r.json()).then((data) => {
                 allTickets = data;
                 renderChamadosDropdown();
               }),
@@ -946,7 +948,7 @@
 
         const load = async () => {
           try {
-            const res = await fetch("http://localhost:3333/api/refeicoes");
+            const res = await fetch(`${1}/api/refeicoes");
             const data = await res.json();
             
             latestRefeicoes = data.slice().sort((a, b) => new Date(b.criadoEm) - new Date(a.criadoEm)).reduce((acc, item) => {
@@ -995,7 +997,7 @@
             const itens = document.getElementById("meal-items-new").value.split(",").map(i => i.trim());
             if (!itens[0]) return;
             try {
-              await fetch("http://localhost:3333/api/refeicoes", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ refeicao, itens }) });
+              await fetch(`${1}/api/refeicoes", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ refeicao, itens }) });
               showToast("Cardápio atualizado");
               closeModal();
               load();
@@ -1020,7 +1022,7 @@
         };
 
         window.quickTicket = async (titulo, local) => {
-          const res = await fetch("http://localhost:3333/api/chamados", {
+          const res = await fetch(`${1}/api/chamados", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({

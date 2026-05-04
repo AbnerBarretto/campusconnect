@@ -511,9 +511,9 @@
         const fetchData = async () => {
           try {
             const [cRes, rRes, fRes] = await Promise.all([
-              fetch("http://localhost:3333/api/chamados"),
-              fetch("http://localhost:3333/api/reservas"),
-              fetch("http://localhost:3333/api/refeicoes"),
+              fetch(`${API_BASE_URL}/api/chamados`),
+              fetch(`${API_BASE_URL}/api/reservas`),
+              fetch(`${API_BASE_URL}/api/refeicoes`),
             ]);
 
             const chamados = await cRes.json();
@@ -780,7 +780,7 @@
           actionConfirm.textContent = "Enviando...";
 
           try {
-            const response = await fetch("http://localhost:3333/api/chamados", {
+            const response = await fetch(`${API_BASE_URL}/api/chamados`, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify(payload),

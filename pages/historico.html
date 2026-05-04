@@ -79,6 +79,7 @@
         font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
       }
     </style>
+    <script src="../js/api.js"></script>
   </head>
   <body class="font-sans text-[var(--text-primary)] bg-[var(--bg)] min-h-screen flex">
     <!-- Sidebar -->
@@ -269,9 +270,9 @@
         const fetchData = async () => {
           try {
             const [cRes, rRes, fRes] = await Promise.all([
-              fetch("http://localhost:3333/api/chamados"),
-              fetch("http://localhost:3333/api/reservas"),
-              fetch("http://localhost:3333/api/refeicoes")
+              fetch(`${1}/api/chamados"),
+              fetch(`${1}/api/reservas"),
+              fetch(`${1}/api/refeicoes")
             ]);
 
             const chamados = (await cRes.json()).map(i => ({ ...i, type: 'chamado' }));
