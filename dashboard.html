@@ -36,7 +36,7 @@
     </script>
     <style>
       :root {
-        --bg: #f6f8ff;
+        --bg: #d4caca8c;
         --card: #ffffff;
         --card-hover: #fafafa;
         --border: #e5e7eb;
@@ -101,6 +101,21 @@
       }
       .sidebar-scroll::-webkit-scrollbar-thumb {
         background: var(--border);
+        border-radius: 10px;
+      }
+      .activities-scroll {
+        max-height: 360px;
+        overflow-y: auto;
+        padding-right: 4px;
+      }
+      .activities-scroll::-webkit-scrollbar {
+        width: 4px;
+      }
+      .activities-scroll::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .activities-scroll::-webkit-scrollbar-thumb {
+        background: var(--border-soft);
         border-radius: 10px;
       }
     </style>
@@ -303,7 +318,7 @@
       </header>
 
       <main
-        class="max-w-4xl mx-auto w-full px-6 py-10 md:py-20 space-y-12 flex-grow"
+        class="max-w-7xl mx-auto w-full px-6 lg:px-10 xl:px-12 py-10 md:py-14 space-y-10 flex-grow"
       >
         <header
           class="flex flex-col md:flex-row md:items-center justify-between gap-8"
@@ -332,7 +347,7 @@
         </header>
 
         <!-- Stats Grid -->
-        <section class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div
             class="p-8 text-white rounded-[32px] space-y-4"
             style="background: var(--accent)"
@@ -362,24 +377,10 @@
             <p class="text-4xl font-black text-black" id="stats-reservas">0</p>
             <p class="text-xs font-bold text-[#475569]">Espaços agendados</p>
           </div>
-          <div class="p-8 rounded-[32px] space-y-4 surface-card">
-            <div class="flex items-center justify-between text-black">
-              <span class="material-symbols-outlined opacity-30"
-                >restaurant</span
-              >
-              <span
-                class="text-[10px] font-black uppercase tracking-widest text-[#475569]"
-                >Refeições</span
-              >
-            </div>
-            <p class="text-4xl font-black text-black" id="stats-refeicoes">0</p>
-            <p class="text-xs font-bold text-[#475569]">Registros de hoje</p>
-          </div>
         </section>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          <!-- Left Column: Activities -->
-          <div class="lg:col-span-2 space-y-8">
+	        <div class="grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_360px] gap-10 items-start">
+	          <section class="space-y-8">
             <div class="flex items-center justify-between">
               <h3 class="font-black text-xl tracking-tight">
                 Atividades Recentes
@@ -390,7 +391,7 @@
                 >Ver tudo</a
               >
             </div>
-            <div class="space-y-4" id="dashboard-activities">
+            <div class="space-y-4 activities-scroll" id="dashboard-activities">
               <div
                 class="p-8 text-center rounded-[32px] border-2 border-dashed"
                 style="
@@ -406,20 +407,58 @@
                 </p>
               </div>
             </div>
-          </div>
+          </section>
 
-          <!-- Right Column: Contextual Card -->
-          <div class="space-y-8">
+          <aside class="space-y-8">
             <h3 class="font-black text-xl tracking-tight">Próxima Refeição</h3>
             <div
               id="next-meal-card"
               class="p-8 rounded-[32px] shadow-sm space-y-6 surface-card"
             >
-              <!-- Dynamically populated -->
               <p class="text-[#475569] font-bold">Calculando horário...</p>
             </div>
-          </div>
+          </aside>
         </div>
+
+        <section class="space-y-6">
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-3">
+            <div>
+              <h3 class="font-black text-xl tracking-tight">
+                Alertas de Infraestrutura
+              </h3>
+              <p class="text-sm font-medium text-[#475569] mt-1">
+                Informações críticas do campus que podem afetar seu trajeto.
+              </p>
+            </div>
+            <span id="infra-alerts-updated" class="text-[10px] font-black uppercase tracking-widest text-[#475569]">
+              Atualizado agora
+            </span>
+          </div>
+
+          <div class="bg-white border border-gray-200 rounded-[28px] overflow-hidden shadow-sm">
+            <div class="px-6 py-5 border-b border-gray-100">
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-[22px]">warning</span>
+                </div>
+                <div class="min-w-0">
+                  <p class="text-[10px] font-black uppercase tracking-[0.22em] text-red-600">
+                    Avisos ativos
+                  </p>
+                  <h4 class="font-black text-lg text-black mt-1">
+                    Fique atento antes de circular pelo campus.
+                  </h4>
+                </div>
+              </div>
+            </div>
+
+            <div class="divide-y divide-gray-100" id="infra-alerts-list">
+              <div class="px-6 py-5">
+                <p class="text-sm font-bold text-slate-700">Carregando avisos...</p>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
     </div>
 
@@ -491,9 +530,10 @@
       (() => {
         const statsChamados = document.getElementById("stats-chamados");
         const statsReservas = document.getElementById("stats-reservas");
-        const statsRefeicoes = document.getElementById("stats-refeicoes");
         const activitiesList = document.getElementById("dashboard-activities");
         const nextMealCard = document.getElementById("next-meal-card");
+        const infraAlertsList = document.getElementById("infra-alerts-list");
+        const infraAlertsUpdated = document.getElementById("infra-alerts-updated");
 
         const actionModal = document.querySelector("[data-action-modal]");
         const actionTitle = document.querySelector("[data-action-modal-title]");
@@ -521,18 +561,112 @@
             const reservas = await rRes.json();
             const refeicoes = await fRes.json();
 
-            updateStats(chamados, reservas, refeicoes);
+            updateStats(chamados, reservas);
             renderUnifiedActivities(chamados, reservas);
             renderNextMeal(refeicoes);
+            loadInfrastructureAlerts();
           } catch (error) {
             console.error("Erro ao carregar dados do dashboard", error);
+            loadInfrastructureAlerts();
           }
         };
 
-        const updateStats = (c, r, f) => {
+        const updateStats = (c, r) => {
           if (statsChamados) statsChamados.textContent = c.length;
           if (statsReservas) statsReservas.textContent = r.length;
-          if (statsRefeicoes) statsRefeicoes.textContent = f.length;
+        };
+
+        const getAlertTone = (tipo = "warning") => {
+          const tones = {
+            danger: { bar: "bg-red-600", text: "text-red-600" },
+            warning: { bar: "bg-yellow-500", text: "text-yellow-700" },
+            info: { bar: "bg-blue-600", text: "text-blue-700" },
+          };
+          return tones[tipo] || tones.warning;
+        };
+
+        const defaultInfrastructureAlerts = [
+          {
+            tipo: "warning",
+            categoria: "Manutenção",
+            titulo: "Bloco B: energia em manutenção",
+            descricao: "Evite os corredores próximos aos laboratórios até 15h.",
+            link: "",
+            linkLabel: "",
+            ativo: true,
+          },
+          {
+            tipo: "danger",
+            categoria: "Acesso fechado",
+            titulo: "Quadra Poliesportiva: fechada para evento",
+            descricao: "Atividades esportivas suspensas no período da tarde.",
+            link: "",
+            linkLabel: "",
+            ativo: true,
+          },
+          {
+            tipo: "info",
+            categoria: "Rota alternativa",
+            titulo: "Refeitório: acesso lateral recomendado",
+            descricao: "Use a passagem pela biblioteca durante a obra no pátio.",
+            link: "pages/mapa-campus.html",
+            linkLabel: "Ver no Mapa",
+            ativo: true,
+          },
+        ];
+
+        const getFallbackInfrastructureAlerts = () => {
+          const saved = localStorage.getItem("infra-alerts");
+          return saved ? JSON.parse(saved) : defaultInfrastructureAlerts;
+        };
+
+        const loadInfrastructureAlerts = async () => {
+          try {
+            const res = await fetch(`${API_BASE_URL}/api/avisos`);
+            if (!res.ok) throw new Error("API indisponível");
+            renderInfrastructureAlerts(await res.json());
+          } catch (_) {
+            renderInfrastructureAlerts(getFallbackInfrastructureAlerts());
+          }
+        };
+
+        const renderInfrastructureAlerts = (avisos = []) => {
+          const activeAlerts = avisos.filter((a) => a.ativo !== false);
+          if (!infraAlertsList) return;
+
+          if (activeAlerts.length === 0) {
+            infraAlertsList.innerHTML = `
+              <div class="px-6 py-5">
+                <p class="text-sm font-bold text-slate-700">Nenhum aviso ativo no momento.</p>
+              </div>
+            `;
+            return;
+          }
+
+          infraAlertsList.innerHTML = activeAlerts
+            .map((aviso) => {
+              const tone = getAlertTone(aviso.tipo);
+              const link = aviso.link
+                ? `<a href="${aviso.link}" class="text-[10px] font-black uppercase tracking-widest ${tone.text} hover:opacity-80 whitespace-nowrap">${aviso.linkLabel || "Ver detalhes"}</a>`
+                : "";
+
+              return `
+                <div class="grid grid-cols-[4px_minmax(0,1fr)] gap-4 px-6 py-5">
+                  <div class="rounded-full ${tone.bar}"></div>
+                  <div class="min-w-0">
+                    <p class="text-[10px] font-black uppercase tracking-widest ${tone.text}">${aviso.categoria}</p>
+                    <p class="text-sm font-black text-black mt-1">${aviso.titulo}</p>
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-3 mt-1">
+                      <p class="text-sm font-bold text-slate-700 leading-relaxed">${aviso.descricao}</p>
+                      ${link}
+                    </div>
+                  </div>
+                </div>
+              `;
+            })
+            .join("");
+
+          if (infraAlertsUpdated) infraAlertsUpdated.textContent = "Atualizado agora";
         };
 
         const renderUnifiedActivities = (chamados, reservas) => {
@@ -571,8 +705,8 @@
               }
 
               const link = isChamado
-                ? `chamados.html?id=${act.id}`
-                : `reservas.html?id=${act.id}`;
+                ? `pages/chamados.html?id=${act.id}`
+                : `pages/reservas.html?id=${act.id}`;
               const subtitle = isChamado
                 ? `${act.local || "Campus"} • Em análise`
                 : `${act.data} às ${act.horario}`;

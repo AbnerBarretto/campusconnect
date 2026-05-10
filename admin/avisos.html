@@ -12,18 +12,16 @@
         document.documentElement.classList.toggle("light", !shouldUseDark);
       })();
     </script>
-    <title>Manutenção Operacional | CampusConnect Admin</title>
+    <title>Avisos de Infraestrutura | CampusConnect Admin</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='0' y='0' width='100' height='100' fill='%23ffffff'/><path d='M20 50V20H80V80H50' stroke='%23000000' stroke-width='10' stroke-linecap='square' fill='none'/><path d='M40 40L60 60' stroke='%23000000' stroke-width='10' stroke-linecap='square'/><rect x='20' y='40' width='15' height='20' fill='%23ffffff'/></svg>"/>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
         theme: {
           extend: {
             colors: {
-              brand: { 50: "#f8fafc", 100: "#f1f5f9", 200: "#e2e8f0", 300: "#94a3b8", 400: "#64748b", 500: "#475569", 600: "#334155", 700: "#1e293b", 800: "#0f172a", 900: "#020617" },
               accent: { DEFAULT: "#8b5cf6", hover: "#7c3aed", soft: "rgba(139, 92, 246, 0.12)" },
               success: { DEFAULT: "#10b981", soft: "rgba(16, 185, 129, 0.12)" },
               warning: { DEFAULT: "#f59e0b", soft: "rgba(245, 158, 11, 0.12)" },
@@ -32,7 +30,6 @@
               darkbg: "#0b1220", darkcard: "#111827", darkborder: "#1f2937",
             },
             fontFamily: { sans: ["'Inter'", "sans-serif"] },
-            boxShadow: { premium: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)" },
           },
         },
       };
@@ -43,26 +40,6 @@
       .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
       .custom-scrollbar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
       .dark .custom-scrollbar::-webkit-scrollbar-thumb { background: #1e293b; }
-      
-      .status-badge {
-        font-size: 10px; font-weight: 700; padding: 6px 12px; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.05em; min-width: 110px; text-align: left; appearance: none !important; cursor: pointer; transition: all 0.2s ease;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23475569' stroke-width='3'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7' /%3E%3C/svg%3E") !important;
-        background-repeat: no-repeat !important; background-position: right 10px center !important; background-size: 10px !important; border: 1px solid transparent !important; outline: none;
-      }
-      .dark .status-badge { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8' stroke-width='3'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7' /%3E%3C/svg%3E") !important; }
-
-      .badge-success { background-color: #ecfdf5; color: #065f46; }
-      .badge-warning { background-color: #fffbeb; color: #92400e; }
-      .badge-danger { background-color: #fef2f2; color: #991b1b; }
-      .badge-info { background-color: #eff6ff; color: #1e40af; }
-      .badge-neutral { background-color: #f8fafc; color: #475569; }
-
-      .dark .badge-success { background-color: rgba(16, 185, 129, 0.1); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.2) !important; }
-      .dark .badge-warning { background-color: rgba(245, 158, 11, 0.1); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.2) !important; }
-      .dark .badge-danger { background-color: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.2) !important; }
-      .dark .badge-info { background-color: rgba(59, 130, 246, 0.1); color: #3b82f6; border: 1px solid rgba(59, 130, 246, 0.2) !important; }
-      .dark .badge-neutral { background-color: rgba(148, 163, 184, 0.1); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.2) !important; }
-
       #sidebar { transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
       .collapsed #sidebar { width: 80px; }
       .collapsed #sidebar .nav-text, .collapsed #sidebar .nav-section-title, .collapsed #sidebar .sidebar-header-text, .collapsed #sidebar .profile-text { display: none; }
@@ -83,12 +60,13 @@
           <h1 class="text-sm font-black tracking-widest uppercase dark:text-white sidebar-header-text">Campus<span class="font-light">Connect</span></h1>
         </a>
       </div>
+
       <nav class="flex-grow p-6 space-y-6 overflow-y-auto custom-scrollbar">
         <div>
           <p class="text-[10px] font-black text-slate-400 dark:text-slate-600 uppercase tracking-[0.2em] px-4 mb-4 nav-section-title">Operação</p>
           <div class="space-y-1">
             <a href="geral.html" class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"><span class="material-symbols-outlined text-[20px] shrink-0">dashboard</span><span class="nav-text">Painel Geral</span></a>
-            <a href="chamados.html" class="flex items-center gap-3 px-4 py-3 bg-accent text-white rounded-2xl text-xs font-bold shadow-lg shadow-accent/20 transition-all hover:translate-x-1 nav-item"><span class="material-symbols-outlined text-[20px] shrink-0" style="font-variation-settings: 'FILL' 1">confirmation_number</span><span class="nav-text">Chamados</span></a>
+            <a href="chamados.html" class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"><span class="material-symbols-outlined text-[20px] shrink-0">confirmation_number</span><span class="nav-text">Chamados</span></a>
             <a href="historico.html" class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"><span class="material-symbols-outlined text-[20px] shrink-0">history</span><span class="nav-text">Histórico</span></a>
             <a href="refeitorio.html" class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"><span class="material-symbols-outlined text-[20px] shrink-0">restaurant</span><span class="nav-text">Refeitório</span></a>
             <a href="volume.html" class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"><span class="material-symbols-outlined text-[20px] shrink-0">bar_chart</span><span class="nav-text">Volume de Demandas</span></a>
@@ -99,7 +77,7 @@
           <div class="space-y-1">
             <a href="reservas.html" class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"><span class="material-symbols-outlined text-[20px] shrink-0">event_seat</span><span class="nav-text">Reservas</span></a>
             <a href="calendario.html" class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"><span class="material-symbols-outlined text-[20px] shrink-0">calendar_today</span><span class="nav-text">Calendário</span></a>
-            <a href="avisos.html" class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"><span class="material-symbols-outlined text-[20px] shrink-0">campaign</span><span class="nav-text">Avisos</span></a>
+            <a href="avisos.html" class="flex items-center gap-3 px-4 py-3 bg-accent text-white rounded-2xl text-xs font-bold shadow-lg shadow-accent/20 transition-all hover:translate-x-1 nav-item"><span class="material-symbols-outlined text-[20px] shrink-0" style="font-variation-settings: 'FILL' 1">campaign</span><span class="nav-text">Avisos</span></a>
           </div>
         </div>
       </nav>
@@ -114,7 +92,7 @@
       </div>
     </aside>
 
-    <div id="main-content" class="flex-grow flex flex-col overflow-hidden">
+    <div class="flex-grow flex flex-col overflow-hidden">
       <header class="h-20 bg-white/90 dark:bg-darkcard/90 backdrop-blur-md border-b border-gray-100 dark:border-darkborder flex items-center justify-between px-10 shrink-0 z-[100]">
         <div class="flex items-center gap-8">
             <button onclick="toggleSidebar()" class="w-10 h-10 flex items-center justify-center rounded-2xl bg-white dark:bg-slate-800 text-slate-500 hover:text-accent transition-all group"><span class="material-symbols-outlined text-[20px] group-active:scale-90" id="sidebar-toggle-icon">menu_open</span></button>
@@ -141,83 +119,123 @@
         </div>
       </header>
 
-      <main class="flex-grow overflow-y-auto custom-scrollbar p-8 space-y-8">
-        <section class="bg-white dark:bg-darkcard border border-transparent dark:border-darkborder p-6 rounded-[24px] shadow-sm flex flex-wrap items-center justify-between gap-4">
-            <h3 class="font-bold text-sm text-slate-900 dark:text-white">Gerenciar Operações</h3>
-            <div class="flex items-center gap-3">
-                <div class="flex items-center bg-white dark:bg-slate-900/50 px-3 py-1.5 rounded-lg border border-transparent dark:border-darkborder">
-                    <span class="material-symbols-outlined text-slate-400 text-[16px]">search</span>
-                    <input type="text" id="search-input" placeholder="Filtrar local..." class="bg-transparent border-none p-0 text-xs font-medium focus:ring-0 w-48 text-slate-900 dark:text-white ml-2"/>
-                </div>
-                <select id="priority-filter" class="w-48 bg-white dark:bg-slate-900 border border-transparent dark:border-darkborder rounded-lg px-4 py-2 text-[10px] font-black uppercase tracking-widest outline-none cursor-pointer text-slate-900 dark:text-slate-200">
-                    <option value="all">Todas as Prioridades</option>
-                    <option value="Alta">Prioridade Alta</option>
-                    <option value="Média">Prioridade Média</option>
-                    <option value="Baixa">Prioridade Baixa</option>
-                </select>
-                <select id="sort-filter" class="bg-white dark:bg-slate-900 border border-transparent dark:border-darkborder rounded-lg px-4 py-2 text-[10px] font-black uppercase tracking-widest outline-none cursor-pointer text-slate-900 dark:text-slate-200">
-                    <option value="recent">Mais Recentes</option>
-                    <option value="oldest">Menos Recentes</option>
-                    <option value="priority-desc">Prioridade: Alta → Baixa</option>
-                    <option value="priority-asc">Prioridade: Baixa → Alta</option>
-                </select>
+      <main class="flex-grow overflow-y-auto custom-scrollbar p-10 space-y-10">
+        <section class="grid grid-cols-1 xl:grid-cols-[420px_minmax(0,1fr)] gap-8">
+          <form id="alert-form" class="bg-white dark:bg-darkcard border border-transparent dark:border-darkborder rounded-[28px] p-8 space-y-6 shadow-sm">
+            <div>
+              <h3 id="form-title" class="font-black text-xl text-slate-900 dark:text-white tracking-tight">Novo Aviso</h3>
+              <p id="form-subtitle" class="text-xs font-bold text-slate-400 mt-1">Publique alertas que aparecem no Início do aluno.</p>
             </div>
-        </section>
+            <div class="space-y-2">
+              <label class="text-[10px] font-black uppercase tracking-widest text-slate-400">Tipo</label>
+              <select name="tipo" class="w-full rounded-xl border-white dark:border-darkborder bg-white dark:bg-slate-900 px-4 py-3 text-xs font-bold outline-none focus:ring-2 focus:ring-accent">
+                <option value="warning">Manutenção / Cuidado</option>
+                <option value="danger">Bloqueio / Acesso fechado</option>
+                <option value="info">Informação / Rota</option>
+              </select>
+            </div>
+            <div class="space-y-2">
+              <label class="text-[10px] font-black uppercase tracking-widest text-slate-400">Categoria</label>
+              <input name="categoria" class="w-full rounded-xl border-white dark:border-darkborder bg-white dark:bg-slate-900 px-4 py-3 text-xs font-bold outline-none focus:ring-2 focus:ring-accent" placeholder="Ex: Acesso fechado" required />
+            </div>
+            <div class="space-y-2">
+              <label class="text-[10px] font-black uppercase tracking-widest text-slate-400">Título</label>
+              <input name="titulo" class="w-full rounded-xl border-white dark:border-darkborder bg-white dark:bg-slate-900 px-4 py-3 text-xs font-bold outline-none focus:ring-2 focus:ring-accent" placeholder="Ex: Bloco B: energia em manutenção" required />
+            </div>
+            <div class="space-y-2">
+              <label class="text-[10px] font-black uppercase tracking-widest text-slate-400">Descrição</label>
+              <textarea name="descricao" rows="4" class="w-full rounded-xl border-white dark:border-darkborder bg-white dark:bg-slate-900 px-4 py-3 text-xs font-bold outline-none focus:ring-2 focus:ring-accent" placeholder="Ex: Evite os corredores próximos aos laboratórios até 15h." required></textarea>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="space-y-2">
+                <label class="text-[10px] font-black uppercase tracking-widest text-slate-400">Link opcional</label>
+                <input name="link" class="w-full rounded-xl border-white dark:border-darkborder bg-white dark:bg-slate-900 px-4 py-3 text-xs font-bold outline-none focus:ring-2 focus:ring-accent" placeholder="pages/mapa-campus.html" />
+              </div>
+              <div class="space-y-2">
+                <label class="text-[10px] font-black uppercase tracking-widest text-slate-400">Texto do link</label>
+                <input name="linkLabel" class="w-full rounded-xl border-white dark:border-darkborder bg-white dark:bg-slate-900 px-4 py-3 text-xs font-bold outline-none focus:ring-2 focus:ring-accent" placeholder="Ver no Mapa" />
+              </div>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-3">
+              <button id="submit-button" class="flex-1 bg-accent text-white rounded-xl px-5 py-4 text-[10px] font-black uppercase tracking-widest hover:opacity-90 transition-all" type="submit">Publicar Aviso</button>
+              <button id="cancel-edit-button" class="hidden px-5 py-4 rounded-xl bg-white text-slate-500 hover:bg-slate-100 text-[10px] font-black uppercase tracking-widest transition-all" type="button">Cancelar</button>
+            </div>
+          </form>
 
-        <section class="bg-white dark:bg-darkcard border border-transparent dark:border-darkborder overflow-hidden rounded-[24px] shadow-sm">
-          <div class="overflow-x-auto">
-            <table class="w-full text-left">
-              <thead>
-                <tr class="bg-slate-50/50 dark:bg-slate-800/30 text-[10px] font-bold text-slate-500 uppercase tracking-widest border-b border-slate-100 dark:border-darkborder">
-                  <th class="px-8 py-4">Local</th><th class="px-8 py-4">Assunto</th><th class="px-8 py-4 text-center">Aberto em</th><th class="px-8 py-4 text-center">Profissional</th><th class="px-8 py-4 text-center">Prioridade</th><th class="px-8 py-4 text-center">Status</th><th class="px-8 py-4 text-right">Ação</th>
-                </tr>
-              </thead>
-              <tbody id="tickets-tbody" class="divide-y divide-slate-50 dark:divide-darkborder/50"></tbody>
-            </table>
-          </div>
+          <section class="bg-white dark:bg-darkcard border border-transparent dark:border-darkborder rounded-[28px] overflow-hidden shadow-sm">
+            <div class="p-8 border-b border-slate-100 dark:border-darkborder flex items-center justify-between">
+              <div>
+                <h3 class="font-black text-xl text-slate-900 dark:text-white tracking-tight">Avisos Publicados</h3>
+                <p class="text-xs font-bold text-slate-400 mt-1">Controle o que aparece para os alunos.</p>
+              </div>
+              <span id="alerts-count" class="text-[10px] font-black uppercase tracking-widest text-slate-400">0 avisos</span>
+            </div>
+            <div id="alerts-list" class="divide-y divide-slate-100 dark:divide-darkborder"></div>
+          </section>
         </section>
       </main>
     </div>
 
-    <!-- Modal de Confirmação -->
-    <div id="confirm-modal" class="fixed inset-0 z-[200] hidden items-center justify-center bg-black/60 p-4 backdrop-blur-md">
-      <div class="bg-white dark:bg-darkcard rounded-[24px] shadow-2xl w-full max-w-sm overflow-hidden border border-slate-200 dark:border-darkborder p-8">
-          <div class="w-12 h-12 rounded-full bg-success/10 text-success flex items-center justify-center mx-auto mb-4">
-              <span class="material-symbols-outlined text-2xl">check_circle</span>
-          </div>
-          <h3 class="font-black text-slate-900 dark:text-white text-center text-lg uppercase tracking-tight mb-2">Concluir Chamado?</h3>
-          <p class="text-[11px] font-bold text-slate-500 dark:text-slate-400 text-center mb-8">Essa ação marcará o chamado como resolvido e o removerá da fila de pendências.</p>
-          <div class="flex items-center gap-3">
-              <button onclick="closeConfirmModal()" class="flex-1 py-3 bg-slate-50 dark:bg-slate-800 text-slate-500 dark:text-slate-300 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">Cancelar</button>
-              <button onclick="executeConclusion()" class="flex-1 py-3 bg-success text-white rounded-xl text-[10px] font-black uppercase tracking-widest shadow-lg shadow-success/20 hover:opacity-90 active:scale-95 transition-all">Confirmar</button>
-          </div>
-      </div>
-    </div>
-
     <script>
       (() => {
-        let allTickets = []; let alerts = [];
-        let pendingConclusionId = null;
-        const tbody = document.getElementById("tickets-tbody");
-        const searchInput = document.getElementById("search-input");
-        const confirmModal = document.getElementById("confirm-modal");
+        let alerts = [];
+        let allTickets = [];
+        let editingAlertId = null;
+        let apiAvailable = true;
+        const form = document.getElementById("alert-form");
+        const list = document.getElementById("alerts-list");
+        const count = document.getElementById("alerts-count");
+        const formTitle = document.getElementById("form-title");
+        const formSubtitle = document.getElementById("form-subtitle");
+        const submitButton = document.getElementById("submit-button");
+        const cancelEditButton = document.getElementById("cancel-edit-button");
 
-        window.confirmConclusion = (id) => {
-            pendingConclusionId = id;
-            confirmModal.classList.remove("hidden");
-            confirmModal.classList.add("flex");
+        const tones = {
+          danger: "text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-900/30",
+          warning: "text-yellow-700 dark:text-yellow-400 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-100 dark:border-yellow-900/30",
+          info: "text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-900/30",
         };
 
-        window.closeConfirmModal = () => {
-            pendingConclusionId = null;
-            confirmModal.classList.add("hidden");
-            confirmModal.classList.remove("flex");
+        const defaultAlerts = [
+          {
+            id: "default-warning",
+            tipo: "warning",
+            categoria: "Manutenção",
+            titulo: "Bloco B: energia em manutenção",
+            descricao: "Evite os corredores próximos aos laboratórios até 15h.",
+            link: "",
+            linkLabel: "",
+            ativo: true,
+          },
+          {
+            id: "default-danger",
+            tipo: "danger",
+            categoria: "Acesso fechado",
+            titulo: "Quadra Poliesportiva: fechada para evento",
+            descricao: "Atividades esportivas suspensas no período da tarde.",
+            link: "",
+            linkLabel: "",
+            ativo: true,
+          },
+          {
+            id: "default-info",
+            tipo: "info",
+            categoria: "Rota alternativa",
+            titulo: "Refeitório: acesso lateral recomendado",
+            descricao: "Use a passagem pela biblioteca durante a obra no pátio.",
+            link: "pages/mapa-campus.html",
+            linkLabel: "Ver no Mapa",
+            ativo: true,
+          },
+        ];
+
+        const getLocalAlerts = () => {
+          const saved = localStorage.getItem("infra-alerts");
+          return saved ? JSON.parse(saved) : defaultAlerts;
         };
 
-        window.executeConclusion = async () => {
-            if (!pendingConclusionId) return;
-            await updateStatus(pendingConclusionId, 'Concluído');
-            closeConfirmModal();
+        const saveLocalAlerts = () => {
+          localStorage.setItem("infra-alerts", JSON.stringify(alerts));
         };
 
         window.toggleSidebar = () => {
@@ -239,112 +257,149 @@
         window.toggleTheme = () => applyTheme(!document.documentElement.classList.contains("dark"));
         applyTheme(document.documentElement.classList.contains("dark"));
 
-        window.fetchData = async () => {
-          try {
-            const fetchSafe = async (url) => {
-              try {
-                const res = await fetch(url);
-                return res.ok ? await res.json() : [];
-              } catch (e) {
-                console.error(`Fetch failed for ${url}:`, e);
-                return [];
+	        window.fetchData = async () => {
+	          try {
+              const fetchSafe = async (url) => {
+                try {
+                  const res = await fetch(url);
+                  return res.ok ? await res.json() : null;
+                } catch (e) {
+                  console.error(`Fetch failed for ${url}:`, e);
+                  return null;
+                }
+              };
+
+	            const [aData, tData] = await Promise.all([
+                fetchSafe(`${API_BASE_URL}/api/avisos`),
+                fetchSafe(`${API_BASE_URL}/api/chamados`)
+              ]);
+
+              if (aData === null) {
+                apiAvailable = false;
+                alerts = getLocalAlerts();
+              } else {
+                alerts = aData;
+                apiAvailable = true;
               }
-            };
-
-            const [tData, aData] = await Promise.all([
-                fetchSafe(`${API_BASE_URL}/api/chamados`),
-                fetchSafe(`${API_BASE_URL}/api/avisos`)
-            ]);
-            allTickets = tData;
-            alerts = aData;
-          } catch (e) {
-            console.error("Erro ao carregar dados:", e);
-          } finally {
-            renderTable();
-            renderChamadosDropdown();
-          }
-        };
-
-        const renderTable = () => {
-          const search = searchInput.value.toLowerCase();
-          const sortVal = document.getElementById("sort-filter").value;
-          const priorityVal = document.getElementById("priority-filter").value;
-          
-          let filtered = allTickets.filter(t => {
-              const matchSearch = t.local.toLowerCase().includes(search) || t.titulo.toLowerCase().includes(search);
-              const matchPriority = priorityVal === "all" || t.prioridade === priorityVal;
-              return t.status !== "Concluído" && matchSearch && matchPriority;
-          });
-          
-          // Apply Sorting
-          filtered.sort((a, b) => {
-              if (sortVal === "recent") return new Date(b.criadoEm) - new Date(a.criadoEm);
-              if (sortVal === "oldest") return new Date(a.criadoEm) - new Date(b.criadoEm);
               
-              const pWeight = { "Alta": 3, "Média": 2, "Baixa": 1 };
-              if (sortVal === "priority-desc") return pWeight[b.prioridade] - pWeight[a.prioridade];
-              if (sortVal === "priority-asc") return pWeight[a.prioridade] - pWeight[b.prioridade];
-              return 0;
-          });
-
-          tbody.innerHTML = filtered.map(t => {
-            const pClass = t.prioridade === 'Alta' ? 'badge-danger' : t.prioridade === 'Média' ? 'badge-warning' : 'badge-success';
-            const sClass = getStatusBadgeClass(t.status);
-            return `
-              <tr class="table-row-hover transition-all group">
-                <td class="px-8 py-5 text-xs font-bold text-slate-900 dark:text-white uppercase">${t.local}</td>
-                <td class="px-8 py-5"><p class="text-xs font-medium text-slate-700 dark:text-slate-300">${t.titulo}</p></td>
-                <td class="px-8 py-5 text-center"><p class="text-[10px] font-bold text-slate-500 tabular-nums">${new Date(t.criadoEm).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}</p></td>
-                <td class="px-8 py-5 text-center">
-                    <select onchange="updateResponsavel('${t.id}', this.value)" class="status-badge badge-neutral min-w-[140px] border-none outline-none cursor-pointer">
-                        <option value="">Não atribuído</option>
-                        <option value="Carlos Silva" ${t.responsavel === "Carlos Silva" ? "selected" : ""}>Carlos Silva</option>
-                        <option value="José Santos" ${t.responsavel === "José Santos" ? "selected" : ""}>José Santos</option>
-                    </select>
-                </td>
-                <td class="px-8 py-5 text-center">
-                    <select onchange="updatePriority('${t.id}', this.value)" class="status-badge ${pClass} border-none outline-none cursor-pointer">
-                        <option value="Alta" ${t.prioridade === "Alta" ? "selected" : ""}>Alta</option>
-                        <option value="Média" ${t.prioridade === "Média" ? "selected" : ""}>Média</option>
-                        <option value="Baixa" ${t.prioridade === "Baixa" ? "selected" : ""}>Baixa</option>
-                    </select>
-                </td>
-                <td class="px-8 py-5 text-center">
-                    <select onchange="updateStatus('${t.id}', this.value)" class="status-badge ${sClass} border-none outline-none cursor-pointer">
-                        <option value="Aberto" ${t.status === "Aberto" ? "selected" : ""}>Aberto</option>
-                        <option value="Em progresso" ${t.status === "Em progresso" ? "selected" : ""}>Em progresso</option>
-                        <option value="Em análise" ${t.status === "Em análise" ? "selected" : ""}>Em análise</option>
-                        <option value="Concluído" ${t.status === "Concluído" ? "selected" : ""}>Concluído</option>
-                    </select>
-                </td>
-                <td class="px-8 py-5 text-right">
-                    <button onclick="confirmConclusion('${t.id}')" class="p-2 text-slate-400 hover:text-success transition-all" title="Marcar como concluído"><span class="material-symbols-outlined">check_circle</span></button>
-                </td>
-              </tr>`;
-	          }).join("");
+              allTickets = tData || [];
+	          } catch (e) {
+              console.error("Erro ao carregar dados:", e);
+              apiAvailable = false;
+              alerts = getLocalAlerts();
+	          } finally {
+              renderAlerts();
+              renderChamadosDropdown();
+            }
 	        };
 
-        const getStatusBadgeClass = (status = "Em análise") => {
-          if (status === "Aberto") return "badge-info";
-          if (status === "Concluído" || status === "Concluido") return "badge-success";
-          if (status === "Em progresso" || status === "Em análise" || status === "Em analise") return "badge-warning";
-          return "badge-neutral";
+        const renderAlerts = () => {
+          count.textContent = `${alerts.length} aviso${alerts.length === 1 ? "" : "s"}`;
+          if (alerts.length === 0) {
+            list.innerHTML = '<div class="p-10 text-center text-xs font-bold text-slate-400 dark:text-slate-600 uppercase">Nenhum aviso publicado.</div>';
+            return;
+          }
+
+          list.innerHTML = alerts.map((alert) => `
+            <article class="p-6 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto] gap-5 items-center">
+              <div class="min-w-0">
+                <div class="flex flex-wrap items-center gap-3 mb-2">
+                  <span class="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${tones[alert.tipo] || tones.warning}">${alert.categoria}</span>
+                  <span class="text-[10px] font-black uppercase tracking-widest ${alert.ativo === false ? "text-slate-300 dark:text-slate-600" : "text-success"}">${alert.ativo === false ? "Inativo" : "Ativo"}</span>
+                </div>
+                <h4 class="font-black text-slate-900 dark:text-white">${alert.titulo}</h4>
+                <p class="text-sm font-bold text-slate-500 dark:text-slate-300 mt-1">${alert.descricao}</p>
+                ${alert.link ? `<p class="text-[10px] font-black uppercase tracking-widest text-blue-700 dark:text-blue-400 mt-3">${alert.linkLabel || "Ver detalhes"} -> ${alert.link}</p>` : ""}
+              </div>
+	              <div class="flex flex-wrap gap-2 justify-start lg:justify-end">
+                <button onclick="editAlert('${alert.id}')" class="px-4 py-2 rounded-lg bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/30 text-[10px] font-black uppercase tracking-widest transition-all">Editar</button>
+	                <button onclick="toggleAlert('${alert.id}', ${alert.ativo === false})" class="px-4 py-2 rounded-lg bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 text-[10px] font-black uppercase tracking-widest transition-all">${alert.ativo === false ? "Ativar" : "Desativar"}</button>
+	                <button onclick="deleteAlert('${alert.id}')" class="px-4 py-2 rounded-lg bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900/30 text-[10px] font-black uppercase tracking-widest transition-all">Remover</button>
+	              </div>
+            </article>
+          `).join("");
         };
 
-        window.updateStatus = async (id, status) => {
-          await fetch(`${API_BASE_URL}/api/chamados/${id}`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ status }) });
-          fetchData();
+	        form.addEventListener("submit", async (event) => {
+	          event.preventDefault();
+	          const payload = Object.fromEntries(new FormData(form).entries());
+          if (apiAvailable) {
+	            const url = editingAlertId
+	              ? `${API_BASE_URL}/api/avisos/${editingAlertId}`
+	              : `${API_BASE_URL}/api/avisos`;
+	            await fetch(url, {
+	              method: editingAlertId ? "PATCH" : "POST",
+	              headers: { "Content-Type": "application/json" },
+	              body: JSON.stringify(payload),
+	            });
+          } else if (editingAlertId) {
+            alerts = alerts.map((alert) =>
+              alert.id === editingAlertId ? { ...alert, ...payload } : alert,
+            );
+            saveLocalAlerts();
+          } else {
+            alerts.push({ id: crypto.randomUUID(), ativo: true, ...payload });
+            saveLocalAlerts();
+          }
+	          resetFormMode();
+	          fetchData();
+	        });
+
+        const resetFormMode = () => {
+          editingAlertId = null;
+          form.reset();
+          formTitle.textContent = "Novo Aviso";
+          formSubtitle.textContent = "Publique alertas que aparecem no Início do aluno.";
+          submitButton.textContent = "Publicar Aviso";
+          cancelEditButton.classList.add("hidden");
         };
 
-        window.updatePriority = async (id, prioridade) => {
-          await fetch(`${API_BASE_URL}/api/chamados/${id}`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ prioridade }) });
-          fetchData();
+        window.editAlert = (id) => {
+          const alert = alerts.find((item) => item.id === id);
+          if (!alert) return;
+
+          editingAlertId = id;
+          form.elements.tipo.value = alert.tipo || "warning";
+          form.elements.categoria.value = alert.categoria || "";
+          form.elements.titulo.value = alert.titulo || "";
+          form.elements.descricao.value = alert.descricao || "";
+          form.elements.link.value = alert.link || "";
+          form.elements.linkLabel.value = alert.linkLabel || "";
+          formTitle.textContent = "Editar Aviso";
+          formSubtitle.textContent = "Atualize um aviso que já aparece para os alunos.";
+          submitButton.textContent = "Salvar Alterações";
+          cancelEditButton.classList.remove("hidden");
+          form.scrollIntoView({ behavior: "smooth", block: "start" });
         };
 
-        window.updateResponsavel = async (id, responsavel) => {
-          await fetch(`${API_BASE_URL}/api/chamados/${id}`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ responsavel }) });
-          fetchData();
-        };
+        cancelEditButton.addEventListener("click", resetFormMode);
+
+	        window.toggleAlert = async (id, shouldActivate) => {
+          if (apiAvailable) {
+	            await fetch(`${API_BASE_URL}/api/avisos/${id}`, {
+	              method: "PATCH",
+	              headers: { "Content-Type": "application/json" },
+	              body: JSON.stringify({ ativo: shouldActivate }),
+	            });
+          } else {
+            alerts = alerts.map((alert) =>
+              alert.id === id ? { ...alert, ativo: shouldActivate } : alert,
+            );
+            saveLocalAlerts();
+          }
+	          fetchData();
+	        };
+
+	        window.deleteAlert = async (id) => {
+          if (apiAvailable) {
+	            await fetch(`${API_BASE_URL}/api/avisos/${id}`, { method: "DELETE" });
+          } else {
+            alerts = alerts.filter((alert) => alert.id !== id);
+            saveLocalAlerts();
+          }
+          if (editingAlertId === id) resetFormMode();
+	          fetchData();
+	        };
 
         window.toggleChamadosDropdown = () => {
           const menu = document.getElementById("chamados-dropdown-menu");
@@ -364,7 +419,7 @@
               icon: 'confirmation_number'
           }));
 
-          const activeAlerts = (typeof alerts !== 'undefined' ? alerts : []).filter(a => a.ativo !== false).slice(0, 3).map(a => ({
+          const activeAlerts = alerts.filter(a => a.ativo !== false).slice(0, 3).map(a => ({
               title: a.titulo,
               subtitle: `${a.categoria} • Aviso`,
               time: new Date().toISOString(), 
@@ -394,9 +449,6 @@
           }
         };
 
-        searchInput.addEventListener("input", renderTable);
-        document.getElementById("priority-filter").addEventListener("change", renderTable);
-        document.getElementById("sort-filter").addEventListener("change", renderTable);
         window.logout = () => { localStorage.removeItem("userRole"); window.location.href = "../login.html"; };
         window.toggleProfileDropdown = (e) => { e.stopPropagation(); document.getElementById("profile-dropdown").classList.toggle("hidden"); };
         

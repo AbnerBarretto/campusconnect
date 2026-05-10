@@ -2,128 +2,109 @@ const express = require("express");
 const router = express.Router();
 const {
   createChamado,
-  createReserva,
-  createRefeicao,
-  removeChamado,
-  removeReserva,
-  updateChamado,
-  updateReserva,
-  listChamados,
-  listReservas,
-  listRefeicoes,
+	  createReserva,
+	  createRefeicao,
+	  createAviso,
+	  removeChamado,
+	  removeReserva,
+	  removeAviso,
+	  updateChamado,
+	  updateReserva,
+	  updateCardapio,
+	  updateAviso,
+	  listChamados,
+	  listReservas,
+	  listRefeicoes,
+	  listCardapio,
+	  listAvisos,
   clearRefeicoes,
   getStatus,
 } = require("./store");
 
-// Status
-router.get("/status", (req, res) => {
-  res.json(getStatus());
-});
+// ---------------------------------------------------------
+// REFEICOES (ULTRA-FLEXIBLE)
+// ---------------------------------------------------------
 
-// Chamados
-router.get("/chamados", (req, res) => {
-  res.json(listChamados());
-});
-
-router.post("/chamados", (req, res) => {
-  const { titulo, descricao, prioridade, local } = req.body || {};
-
-  if (!titulo || !descricao) {
-    return res.status(400).json({
-      erro: "Campos obrigatórios: titulo e descricao.",
-    });
-  }
-
-  const chamado = createChamado({
-    titulo,
-    descricao,
-    local: local || "Campus",
-    prioridade: prioridade || "normal",
-  });
-
-  return res.status(201).json(chamado);
-});
-
-router.patch("/chamados/:id", (req, res) => {
-  const { id } = req.params;
-  const atualizado = updateChamado(id, req.body);
-  if (atualizado) {
-    return res.json(atualizado);
-  }
-  return res.status(404).json({ erro: "Não encontrado." });
-});
-
-router.delete("/chamados/:id", (req, res) => {
-  const { id } = req.params;
-  const removido = removeChamado(id);
-  if (removido) {
-    return res.status(200).json({ mensagem: "Chamado removido." });
-  }
-  return res.status(404).json({ erro: "Não encontrado." });
-});
-
-// Reservas
-router.get("/reservas", (req, res) => {
-  res.json(listReservas());
-});
-
-router.post("/reservas", (req, res) => {
-  const { local, data, horario, obs } = req.body || {};
-
-  if (!local || !data || !horario) {
-    return res.status(400).json({
-      erro: "Campos obrigatórios: local, data e horario.",
-    });
-  }
-
-  const reserva = createReserva({ local, data, horario, obs });
-  return res.status(201).json(reserva);
-});
-
-router.patch("/reservas/:id", (req, res) => {
-  const { id } = req.params;
-  const atualizada = updateReserva(id, req.body);
-  if (atualizada) {
-    return res.json(atualizada);
-  }
-  return res.status(404).json({ erro: "Não encontrado." });
-});
-
-router.delete("/reservas/:id", (req, res) => {
-  const { id } = req.params;
-  const removido = removeReserva(id);
-  if (removido) {
-    return res.status(200).json({ mensagem: "Reserva removida." });
-  }
-  return res.status(404).json({ erro: "Não encontrado." });
-});
-
-// Refeições
 router.get("/refeicoes", (req, res) => {
-  res.json(listRefeicoes());
+  const { date } = req.query;
+  res.json(listRefeicoes(date));
 });
 
 router.post("/refeicoes", (req, res) => {
-  const { refeicao, itens } = req.body || {};
+  // Aceita QUALQUER coisa que tenha 'refeicao'
+  const { refeicao, aluno, quantidade, itens, data } = req.body || {};
 
-  if (!refeicao || !Array.isArray(itens)) {
-    return res.status(400).json({
-      erro: "Campos obrigatórios: refeicao e itens (array).",
-    });
+  if (!refeicao) {
+    return res.status(400).json({ erro: "O campo 'refeicao' é obrigatório." });
   }
 
-  const registro = createRefeicao({ refeicao, itens });
+  // Cria o registro no store (o store cuida dos fallbacks)
+  const registro = createRefeicao({ refeicao, aluno, quantidade, itens, data });
+
+  console.log(`[API] Sucesso: Registro de fluxo criado para ${refeicao}`);
   return res.status(201).json(registro);
 });
 
 router.delete("/refeicoes", (req, res) => {
-  clearRefeicoes();
-  res.status(200).json({ mensagem: "Registros limpos." });
+  const { date } = req.query;
+  clearRefeicoes(date);
+  res.json({ mensagem: "Registros foram limpos." });
 });
 
-// Fallback para rotas /api não encontradas
-router.use((req, res) => {
-  res.status(404).json({ erro: "Rota API não encontrada." });
+// ---------------------------------------------------------
+// OUTRAS ROTAS
+// ---------------------------------------------------------
+
+router.get("/status", (req, res) => res.json(getStatus()));
+router.get("/chamados", (req, res) => res.json(listChamados()));
+router.get("/reservas", (req, res) => res.json(listReservas()));
+router.get("/cardapio", (req, res) => res.json(listCardapio()));
+router.get("/avisos", (req, res) => res.json(listAvisos()));
+
+router.post("/chamados", (req, res) => {
+  const { titulo, descricao } = req.body || {};
+  if (!titulo || !descricao)
+    return res.status(400).json({ erro: "Faltam campos." });
+  res.status(201).json(createChamado(req.body));
+});
+
+router.post("/reservas", (req, res) => {
+  const { local, data, horario } = req.body || {};
+  if (!local || !data || !horario)
+    return res.status(400).json({ erro: "Faltam campos." });
+  res.status(201).json(createReserva(req.body));
+});
+
+router.post("/avisos", (req, res) => {
+  const { categoria, titulo, descricao } = req.body || {};
+  if (!categoria || !titulo || !descricao)
+    return res.status(400).json({ erro: "Faltam campos." });
+  res.status(201).json(createAviso(req.body));
+});
+
+router.patch("/chamados/:id", (req, res) => {
+  const item = updateChamado(req.params.id, req.body);
+  item ? res.json(item) : res.status(404).json({ erro: "Não encontrado" });
+});
+
+router.patch("/reservas/:id", (req, res) => {
+  const item = updateReserva(req.params.id, req.body);
+  item ? res.json(item) : res.status(404).json({ erro: "Não encontrado" });
+});
+
+router.patch("/cardapio/:id", (req, res) => {
+  const item = updateCardapio(req.params.id, req.body);
+  item ? res.json(item) : res.status(404).json({ erro: "Não encontrado" });
+});
+
+router.patch("/avisos/:id", (req, res) => {
+  const item = updateAviso(req.params.id, req.body);
+  item ? res.json(item) : res.status(404).json({ erro: "Não encontrado" });
+});
+
+router.delete("/avisos/:id", (req, res) => {
+  const item = removeAviso(req.params.id);
+  item ? res.json(item) : res.status(404).json({ erro: "Não encontrado" });
 });
 
 module.exports = router;

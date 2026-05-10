@@ -12,11 +12,10 @@
         document.documentElement.classList.toggle("light", !shouldUseDark);
       })();
     </script>
-    <title>Agenda Institucional | CampusConnect Admin</title>
+    <title>Histórico de Demandas | CampusConnect Admin</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='0' y='0' width='100' height='100' fill='%23ffffff'/><path d='M20 50V20H80V80H50' stroke='%23000000' stroke-width='10' stroke-linecap='square' fill='none'/><path d='M40 40L60 60' stroke='%23000000' stroke-width='10' stroke-linecap='square'/><rect x='20' y='40' width='15' height='20' fill='%23ffffff'/></svg>"/>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -32,7 +31,6 @@
               darkbg: "#0b1220", darkcard: "#111827", darkborder: "#1f2937",
             },
             fontFamily: { sans: ["'Inter'", "sans-serif"] },
-            boxShadow: { premium: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)" },
           },
         },
       };
@@ -43,6 +41,9 @@
       .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
       .custom-scrollbar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
       .dark .custom-scrollbar::-webkit-scrollbar-thumb { background: #1e293b; }
+      
+      .table-row-hover:hover { background-color: rgba(0,0,0,0.01); }
+      .dark .table-row-hover:hover { background-color: rgba(255,255,255,0.01); }
 
       #sidebar { transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
       .collapsed #sidebar { width: 80px; }
@@ -52,7 +53,7 @@
     </style>
     <script src="../js/api.js"></script>
   </head>
-  <body class="font-sans text-[#0f172a] dark:text-slate-200 bg-[#E5E7EB] dark:bg-darkbg flex h-screen overflow-hidden antialiased transition-colors duration-300">
+  <body class="font-sans text-[#0f172a] dark:text-slate-200 bg-[#E5E7EB] dark:bg-darkbg flex h-screen overflow-hidden antialiased">
     <aside id="sidebar" class="w-64 bg-white dark:bg-darkcard border-r border-gray-100 dark:border-darkborder flex flex-col shrink-0 z-50">
       <div class="p-8 border-b border-gray-100 dark:border-darkborder">
         <a href="../dashboard.html" class="flex items-center gap-3 logo-container group">
@@ -70,7 +71,7 @@
           <div class="space-y-1">
             <a href="geral.html" class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"><span class="material-symbols-outlined text-[20px] shrink-0">dashboard</span><span class="nav-text">Painel Geral</span></a>
             <a href="chamados.html" class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"><span class="material-symbols-outlined text-[20px] shrink-0">confirmation_number</span><span class="nav-text">Chamados</span></a>
-            <a href="historico.html" class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"><span class="material-symbols-outlined text-[20px] shrink-0">history</span><span class="nav-text">Histórico</span></a>
+            <a href="historico.html" class="flex items-center gap-3 px-4 py-3 bg-accent text-white rounded-2xl text-xs font-bold shadow-lg shadow-accent/20 transition-all hover:translate-x-1 nav-item"><span class="material-symbols-outlined text-[20px] shrink-0" style="font-variation-settings: 'FILL' 1">history</span><span class="nav-text">Histórico</span></a>
             <a href="refeitorio.html" class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"><span class="material-symbols-outlined text-[20px] shrink-0">restaurant</span><span class="nav-text">Refeitório</span></a>
             <a href="volume.html" class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"><span class="material-symbols-outlined text-[20px] shrink-0">bar_chart</span><span class="nav-text">Volume de Demandas</span></a>
           </div>
@@ -79,7 +80,7 @@
           <p class="text-[10px] font-black text-slate-400 dark:text-slate-600 uppercase tracking-[0.2em] px-4 mb-4 nav-section-title">Gestão</p>
           <div class="space-y-1">
             <a href="reservas.html" class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"><span class="material-symbols-outlined text-[20px] shrink-0">event_seat</span><span class="nav-text">Reservas</span></a>
-            <a href="calendario.html" class="flex items-center gap-3 px-4 py-3 bg-accent text-white rounded-2xl text-xs font-bold shadow-lg shadow-accent/20 transition-all hover:translate-x-1 nav-item"><span class="material-symbols-outlined text-[20px] shrink-0" style="font-variation-settings: 'FILL' 1">calendar_today</span><span class="nav-text">Calendário</span></a>
+            <a href="calendario.html" class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"><span class="material-symbols-outlined text-[20px] shrink-0">calendar_today</span><span class="nav-text">Calendário</span></a>
             <a href="avisos.html" class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"><span class="material-symbols-outlined text-[20px] shrink-0">campaign</span><span class="nav-text">Avisos</span></a>
           </div>
         </div>
@@ -123,32 +124,39 @@
       </header>
 
       <main class="flex-grow overflow-y-auto custom-scrollbar p-10 space-y-10">
-          <section class="bg-white dark:bg-darkcard border border-transparent dark:border-darkborder p-10 rounded-[40px] shadow-sm space-y-10">
-              <div class="flex flex-wrap items-center justify-between gap-6">
-                  <h2 class="text-2xl font-black tracking-tight text-slate-900 dark:text-white uppercase">Planejamento do Campus</h2>
-              </div>
+        <section class="bg-white dark:bg-darkcard border border-transparent dark:border-darkborder p-6 flex flex-wrap items-center justify-between gap-6 rounded-[24px] shadow-sm">
+            <div class="flex items-center gap-4">
+                <div class="w-10 h-10 rounded-2xl bg-white dark:bg-slate-900/50 border border-transparent dark:border-darkborder flex items-center justify-center text-slate-400"><span class="material-symbols-outlined">filter_list</span></div>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm uppercase">Filtros de Auditoria</h3>
+            </div>
+            <div class="flex flex-wrap items-center gap-3">
+                <input type="text" id="search-input" placeholder="Buscar por local ou problema..." class="bg-white dark:bg-darkcard border border-transparent dark:border-darkborder rounded-xl px-4 py-2 text-xs font-medium w-64 outline-none focus:border-accent transition-all text-slate-900 dark:text-slate-200"/>
+                <select id="priority-filter" class="bg-white dark:bg-darkcard border border-transparent dark:border-darkborder rounded-xl px-4 py-2 text-xs font-bold uppercase tracking-widest outline-none cursor-pointer text-slate-900 dark:text-slate-200"><option value="all">Prioridades</option><option value="Alta">Alta</option><option value="Média">Média</option><option value="Baixa">Baixa</option></select>
+                <button onclick="exportCSV()" class="bg-accent text-white rounded-xl px-6 py-2 text-[10px] font-bold uppercase tracking-widest hover:opacity-90 transition-all shadow-lg shadow-accent/20">Exportar CSV</button>
+            </div>
+        </section>
 
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white dark:bg-slate-800/50 border border-transparent dark:border-darkborder p-8 rounded-[32px] flex flex-col gap-6 group hover:translate-y-[-2px] transition-all">
-                  <div class="flex items-center justify-between"><span class="px-3 py-1 bg-accent text-white text-[10px] font-black rounded-lg uppercase tracking-widest">MAIO 05</span><div class="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]"></div></div>
-                  <div class="space-y-2"><h4 class="text-sm font-black text-slate-900 dark:text-white uppercase tracking-wider">Aniversário do Campus</h4><p class="text-[11px] text-slate-500 dark:text-slate-400 italic font-medium leading-relaxed">"Suspensão total de atividades presenciais e remotas."</p></div>
-                </div>
-                <div class="bg-white dark:bg-slate-800/50 border border-transparent dark:border-darkborder p-8 rounded-[32px] flex flex-col gap-6 group hover:translate-y-[-2px] transition-all">
-                  <div class="flex items-center justify-between"><span class="px-3 py-1 bg-white dark:bg-slate-700 text-accent text-[10px] font-black rounded-lg uppercase tracking-widest border border-slate-100 dark:border-darkborder">MAIO 12</span><div class="w-2 h-2 rounded-full bg-accent shadow-[0_0_10px_rgba(139,92,246,0.5)]"></div></div>
-                  <div class="space-y-2"><h4 class="text-sm font-black text-slate-900 dark:text-white uppercase tracking-wider">Conselho de Classe</h4><p class="text-[11px] text-slate-500 dark:text-slate-400 italic font-medium leading-relaxed">"Análise de desempenho do 1º Bimestre."</p></div>
-                </div>
-                <div class="bg-white dark:bg-slate-800/50 border border-transparent dark:border-darkborder p-8 rounded-[32px] flex flex-col gap-6 group hover:translate-y-[-2px] transition-all">
-                  <div class="flex items-center justify-between"><span class="px-3 py-1 bg-amber-50 dark:bg-amber-900/20 text-amber-600 text-[10px] font-black rounded-lg uppercase tracking-widest">MAIO 20</span><div class="w-2 h-2 rounded-full bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.5)]"></div></div>
-                  <div class="space-y-2"><h4 class="text-sm font-black text-slate-900 dark:text-white uppercase tracking-wider">Prazos de RAD</h4><p class="text-[11px] text-slate-500 dark:text-slate-400 italic font-medium leading-relaxed">"Data limite para o registro de atividades docentes."</p></div>
-                </div>
-              </div>
-          </section>
+        <section class="bg-white dark:bg-darkcard border border-transparent dark:border-darkborder overflow-hidden rounded-[24px] shadow-sm">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest border-b border-slate-100 dark:border-darkborder">
+                  <th class="px-8 py-5">Local</th><th class="px-8 py-5">Assunto</th><th class="px-8 py-5 text-center">Prioridade</th><th class="px-8 py-5 text-center">Conclusão</th><th class="px-8 py-5 text-center">Status</th>
+                </tr>
+              </thead>
+              <tbody id="history-tbody" class="divide-y divide-slate-50 dark:divide-darkborder/50"></tbody>
+            </table>
+          </div>
+        </section>
       </main>
     </div>
 
     <script>
       (() => {
         let allTickets = []; let alerts = [];
+        const tbody = document.getElementById("history-tbody");
+        const searchInput = document.getElementById("search-input");
+        const priorityFilter = document.getElementById("priority-filter");
 
         window.toggleSidebar = () => {
           document.body.classList.toggle("collapsed");
@@ -190,8 +198,26 @@
           } catch (e) {
             console.error("Erro ao carregar dados:", e);
           } finally {
+            renderTable();
             renderChamadosDropdown();
           }
+        };
+
+        const renderTable = () => {
+          const search = searchInput.value.toLowerCase();
+          const priority = priorityFilter.value;
+          const history = allTickets.filter(t => t.status === "Concluído" && (t.local.toLowerCase().includes(search) || t.titulo.toLowerCase().includes(search)) && (priority === "all" || t.prioridade === priority));
+          
+          tbody.innerHTML = history.map(t => `
+            <tr class="table-row-hover transition-all">
+              <td class="px-8 py-5 text-xs font-bold text-slate-900 dark:text-white uppercase tracking-tight">${t.local}</td>
+              <td class="px-8 py-5"><p class="text-xs font-medium text-slate-700 dark:text-slate-300">${t.titulo}</p><p class="text-[9px] text-slate-400 italic">ID: ${t.id.substring(0,8)}</p></td>
+              <td class="px-8 py-5 text-center"><span class="text-[9px] font-bold uppercase px-2 py-1 rounded bg-slate-50 dark:bg-slate-800 text-slate-500">${t.prioridade}</span></td>
+              <td class="px-8 py-5 text-center text-[10px] font-medium text-slate-400">${new Date(t.criadoEm).toLocaleDateString('pt-BR')}</td>
+              <td class="px-8 py-5 text-center"><span class="text-[9px] font-bold uppercase bg-success/10 text-success px-3 py-1 rounded-full border border-success/20">Finalizado</span></td>
+            </tr>`).join("");
+            
+            if (history.length === 0) tbody.innerHTML = '<tr><td colspan="5" class="p-20 text-center text-slate-400 text-xs font-medium italic uppercase">Nenhum histórico encontrado.</td></tr>';
         };
 
         window.toggleChamadosDropdown = () => {
@@ -208,16 +234,16 @@
               title: t.titulo,
               subtitle: `${t.local} • Chamado`,
               time: t.criadoEm,
-              link: "chamados.html",
-              icon: "confirmation_number"
+              link: 'chamados.html',
+              icon: 'confirmation_number'
           }));
 
-          const activeAlerts = alerts.filter(a => a.ativo !== false).slice(0, 3).map(a => ({
+          const activeAlerts = (typeof alerts !== 'undefined' ? alerts : []).filter(a => a.ativo !== false).slice(0, 3).map(a => ({
               title: a.titulo,
               subtitle: `${a.categoria} • Aviso`,
               time: new Date().toISOString(), 
-              link: "avisos.html",
-              icon: "campaign"
+              link: 'avisos.html',
+              icon: 'campaign'
           }));
 
           const allNotifications = [...openTickets, ...activeAlerts].sort((a, b) => new Date(b.time) - new Date(a.time)).slice(0, 5);
@@ -227,13 +253,11 @@
               badge.classList.remove("hidden");
               list.innerHTML = allNotifications.map(n => `
                   <div class="p-4 border-b border-slate-50 dark:border-darkborder/50 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all cursor-pointer group" onclick="window.location.href='${n.link}'">
-                      <div class="flex items-center gap-3">
-                          <div class="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center text-accent shrink-0">
-                              <span class="material-symbols-outlined text-lg">${n.icon}</span>
-                          </div>
-                          <div class="min-w-0 flex-grow">
-                              <p class="text-[11px] font-black text-slate-900 dark:text-white group-hover:text-accent transition-colors truncate">${n.title}</p>
-                              <p class="text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase mt-0.5">${n.subtitle} • ${new Date(n.time).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}</p>
+                      <div class="flex items-start gap-3">
+                          <span class="material-symbols-outlined text-slate-400 group-hover:text-accent text-sm mt-0.5">${n.icon}</span>
+                          <div>
+                              <p class="text-[11px] font-black text-slate-900 dark:text-white group-hover:text-accent transition-colors">${n.title}</p>
+                              <p class="text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase mt-1">${n.subtitle}</p>
                           </div>
                       </div>
                   </div>
@@ -244,6 +268,7 @@
           }
         };
 
+        window.exportCSV = () => { alert("Exportando dados do histórico..."); };
         window.logout = () => { localStorage.removeItem("userRole"); window.location.href = "../login.html"; };
         window.toggleProfileDropdown = (e) => { e.stopPropagation(); document.getElementById("profile-dropdown").classList.toggle("hidden"); };
         
@@ -255,6 +280,9 @@
             const cC = document.getElementById("chamados-dropdown-container");
             if (cM && !cM.classList.contains("hidden") && cC && !cC.contains(e.target)) cM.classList.add("hidden");
         });
+
+        searchInput.addEventListener("input", renderTable);
+        priorityFilter.addEventListener("change", renderTable);
 
         fetchData();
       })();

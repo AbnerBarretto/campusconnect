@@ -36,7 +36,7 @@
     </script>
     <style>
       :root {
-        --bg: #f6f8ff;
+        --bg: #d4caca8c;
         --card: #ffffff;
         --card-hover: #fafafa;
         --border: #e5e7eb;
@@ -226,7 +226,7 @@
 
     <div class="flex-grow md:ml-[260px] flex flex-col min-h-screen">
       <main
-        class="max-w-4xl mx-auto w-full px-6 py-10 md:py-20 space-y-12 flex-grow"
+        class="max-w-7xl mx-auto w-full px-6 lg:px-10 xl:px-12 py-10 md:py-14 space-y-10 flex-grow"
       >
         <header
           class="flex flex-col md:flex-row md:items-center justify-between gap-8"
@@ -452,8 +452,10 @@
               icon = "build";
               label = act.titulo;
               subtitle = `Manutenção • ${act.local}`;
-              status = "Em análise";
-              statusClass = "bg-yellow-50 text-yellow-700";
+              status = act.status || "Em análise";
+              if (status === "Aberto") statusClass = "bg-blue-50 text-blue-700";
+              else if (status === "Concluído") statusClass = "bg-green-50 text-green-700";
+              else statusClass = "bg-yellow-50 text-yellow-700";
             } else if (act.type === 'reserva') {
               icon = "event_available";
               label = `Reserva: ${act.local}`;
@@ -513,7 +515,7 @@
                   </div>
                   <div>
                     <label class="text-[10px] font-black uppercase tracking-widest text-[var(--text-secondary)]">Status</label>
-                    <p class="text-sm font-bold text-yellow-600">Em Análise</p>
+                    <p class="text-sm font-bold ${getChamadoStatusTextClass(act.status)}">${act.status || "Em análise"}</p>
                   </div>
                 </div>
                 <div>
@@ -573,6 +575,12 @@
           actionModal.classList.remove("hidden");
           actionModal.classList.add("flex");
           document.body.classList.add("overflow-hidden");
+	        };
+
+        const getChamadoStatusTextClass = (status = "Em análise") => {
+          if (status === "Aberto") return "text-blue-600";
+          if (status === "Concluído" || status === "Concluido") return "text-green-600";
+          return "text-yellow-600";
         };
 
         const closeActionModal = () => {
@@ -597,7 +605,14 @@
         actionModal.querySelector("[data-action-modal-close]").addEventListener("click", closeActionModal);
         actionModal.querySelector("[data-action-modal-close-btn]").addEventListener("click", closeActionModal);
 
-        fetchData();
+        fetchData().then(() => {
+          const params = new URLSearchParams(window.location.search);
+          const filterParam = params.get('filter');
+          if (filterParam) {
+            const btn = document.querySelector(`[data-filter="${filterParam}"]`);
+            if (btn) btn.click();
+          }
+        });
       })();
     </script>
   </body>

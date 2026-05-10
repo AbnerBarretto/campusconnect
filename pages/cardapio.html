@@ -68,7 +68,7 @@
     </style>
     <script src="../js/api.js"></script>
   </head>
-  <body class="font-sans text-[#1a1c1c] bg-[#f6f8ff] min-h-screen flex">
+  <body class="font-sans text-[#1a1c1c] bg-[#d4caca8c] min-h-screen flex">
     <!-- Sidebar -->
     <aside
       class="hidden md:flex flex-col w-[260px] h-screen border-r border-gray-100 fixed left-0 top-0 bg-white z-50"
@@ -203,7 +203,7 @@
 
     <div class="flex-grow md:ml-[260px] flex flex-col min-h-screen">
       <main
-        class="max-w-4xl mx-auto w-full px-6 py-10 md:py-20 space-y-12 flex-grow"
+        class="max-w-7xl mx-auto w-full px-6 lg:px-10 xl:px-12 py-10 md:py-14 space-y-10 flex-grow"
       >
         <header
           class="flex flex-col md:flex-row md:items-center justify-between gap-8"
@@ -335,44 +335,30 @@
 
     <script>
       (() => {
-        const days = ["Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira"];
-        const menuData = {
-          "Segunda-Feira": [
-            { tipo: "CAFÉ", icone: "coffee", itens: "Pão na chapa, café com leite, frutas da estação", dieta: "NORMAL", cor: "bg-amber-500" },
-            { tipo: "ALMOÇO", icone: "sunny", itens: "Frango grelhado, arroz integral, feijão preto e legumes", dieta: "SEM GLÚTEN", cor: "bg-emerald-600" },
-            { tipo: "JANTAR", icone: "nights_stay", itens: "Sopa de legumes com torradas", dieta: "LEVE", cor: "bg-indigo-600" }
-          ],
-          "Terça-Feira": [
-            { tipo: "CAFÉ", icone: "coffee", itens: "Cuscuz com ovo, café e suco", dieta: "NORMAL", cor: "bg-amber-500" },
-            { tipo: "ALMOÇO", icone: "sunny", itens: "Bife acebolado, arroz branco, feijão carioca e farofa", dieta: "NORMAL", cor: "bg-amber-500" },
-            { tipo: "JANTAR", icone: "nights_stay", itens: "Macarrão ao sugo com manjericão", dieta: "VEGETARIANO", cor: "bg-indigo-600" }
-          ],
-          "Quarta-Feira": [
-            { tipo: "CAFÉ", icone: "coffee", itens: "Bolo de milho, café e iogurte", dieta: "NORMAL", cor: "bg-amber-500" },
-            { tipo: "ALMOÇO", icone: "sunny", itens: "Feijoada completa com couve e laranja", dieta: "NORMAL", cor: "bg-amber-500" },
-            { tipo: "JANTAR", icone: "nights_stay", itens: "Caldo verde com paio", dieta: "NORMAL", cor: "bg-amber-500" }
-          ],
-          "Quinta-Feira": [
-            { tipo: "CAFÉ", icone: "coffee", itens: "Tapioca com queijo, café e suco", dieta: "NORMAL", cor: "bg-amber-500" },
-            { tipo: "ALMOÇO", icone: "sunny", itens: "Peixe assado, pirão e arroz com brócolis", dieta: "NORMAL", cor: "bg-amber-500" },
-            { tipo: "JANTAR", icone: "nights_stay", itens: "Sanduíche natural de frango", dieta: "NORMAL", cor: "bg-amber-500" }
-          ],
-          "Sexta-Feira": [
-            { tipo: "CAFÉ", icone: "coffee", itens: "Ovos mexidos, torrada e café", dieta: "PROTEICO", cor: "bg-red-500" },
-            { tipo: "ALMOÇO", icone: "sunny", itens: "Estrogonofe de frango, arroz e batata palha", dieta: "NORMAL", cor: "bg-amber-500" },
-            { tipo: "JANTAR", icone: "nights_stay", itens: "Pizza de mussarela e calabresa", dieta: "NORMAL", cor: "bg-amber-500" }
-          ]
-        };
-
+        const days = [
+          "Segunda-Feira",
+          "Terça-Feira",
+          "Quarta-Feira",
+          "Quinta-Feira",
+          "Sexta-Feira",
+        ];
         let currentDayIndex = new Date().getDay() - 1;
         let latestRefeicoes = {};
-        if (currentDayIndex < 0 || currentDayIndex > 4) currentDayIndex = 0; // Default to Monday if weekend
+        let cardapioData = [];
 
-        const loadLatestRefeicoes = async () => {
+        if (currentDayIndex < 0 || currentDayIndex > 4) currentDayIndex = 0;
+
+        const fetchData = async () => {
           try {
-            const response = await fetch(`${API_BASE_URL}/api/refeicoes`);
-            const data = await response.json();
-            latestRefeicoes = data
+            const [cRes, rRes] = await Promise.all([
+              fetch(`${API_BASE_URL}/api/cardapio`),
+              fetch(`${API_BASE_URL}/api/refeicoes`),
+            ]);
+
+            cardapioData = await cRes.json();
+            const refeicoes = await rRes.json();
+
+            latestRefeicoes = refeicoes
               .slice()
               .sort((a, b) => new Date(b.criadoEm) - new Date(a.criadoEm))
               .reduce((acc, item) => {
@@ -380,8 +366,10 @@
                 if (!acc[key]) acc[key] = item;
                 return acc;
               }, {});
+
+            render();
           } catch (_) {
-            latestRefeicoes = {};
+            console.error("Erro ao carregar cardápio real.");
           }
         };
 
@@ -390,13 +378,14 @@
           const currentTime = now.getHours() * 60 + now.getMinutes();
 
           let start, end;
-          if (tipo === "CAFÉ") {
+          const t = tipo.toUpperCase();
+          if (t === "CAFÉ" || t === "CAFE") {
             start = 6 * 60 + 30; // 6:30
             end = 7 * 60; // 7:00
-          } else if (tipo === "ALMOÇO") {
+          } else if (t === "ALMOÇO" || t === "ALMOCO") {
             start = 12 * 60; // 12:00
             end = 13 * 60; // 13:00
-          } else if (tipo === "JANTAR") {
+          } else if (t === "JANTAR") {
             if (isFriday) {
               start = 17 * 60 + 30; // 17:30
               end = 18 * 60 + 30; // 18:30
@@ -408,9 +397,12 @@
 
           if (currentTime >= start && currentTime <= end) {
             return `
-              <div class="flex items-center gap-2">
-                <span class="w-3 h-3 rounded-full bg-red-600 animate-pulse border border-black"></span>
-                <span class="text-sm font-black text-black uppercase">SERVINDO AGORA</span>
+              <div class="flex flex-col gap-3">
+                <div class="flex items-center gap-2">
+                  <span class="w-3 h-3 rounded-full bg-red-600 animate-pulse border border-black"></span>
+                  <span class="text-sm font-black text-black uppercase">SERVINDO AGORA</span>
+                </div>
+                <button onclick="registerAccess('${tipo}')" class="px-4 py-2 bg-black text-white text-[10px] font-black uppercase tracking-widest hover:bg-slate-800 transition-all active:scale-95 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.2)]">Registrar Acesso</button>
               </div>
             `;
           } else if (currentTime < start) {
@@ -421,10 +413,29 @@
         };
 
         const getMealTimeLabel = (tipo, isFriday) => {
-          if (tipo === "CAFÉ") return "06:30 - 07:00";
-          if (tipo === "ALMOÇO") return "12:00 - 13:00";
-          if (tipo === "JANTAR") return isFriday ? "17:30 - 18:30" : "18:00 - 19:00";
+          const t = tipo.toUpperCase();
+          if (t === "CAFÉ" || t === "CAFE") return "06:30 - 07:00";
+          if (t === "ALMOÇO" || t === "ALMOCO") return "12:00 - 13:00";
+          if (t === "JANTAR")
+            return isFriday ? "17:30 - 18:30" : "18:00 - 19:00";
           return "";
+        };
+
+        const getMealIcon = (tipo) => {
+          const t = tipo.toUpperCase();
+          if (t.includes("CAF")) return "coffee";
+          if (t.includes("ALMO")) return "sunny";
+          if (t.includes("JANT")) return "nights_stay";
+          return "restaurant";
+        };
+
+        const getMealColor = (dieta) => {
+          const d = dieta.toUpperCase();
+          if (d.includes("SEM GL")) return "bg-emerald-600";
+          if (d.includes("LEVE")) return "bg-indigo-600";
+          if (d.includes("VEGETA")) return "bg-green-500";
+          if (d.includes("PROT")) return "bg-red-500";
+          return "bg-amber-500";
         };
 
         const render = () => {
@@ -433,37 +444,59 @@
           const tbody = document.getElementById("cardapio-tbody");
           const isFriday = dayName === "Sexta-Feira";
 
-          tbody.innerHTML = menuData[dayName].map(m => {
-            let dynamicItens = m.itens;
-            const mealKey = m.tipo === "ALMOÇO" ? ["almoço", "almoco"] : [m.tipo.toLowerCase()];
-            const match = latestRefeicoes[mealKey[0]] || latestRefeicoes[mealKey[1]];
-            if (match && Array.isArray(match.itens) && match.itens.length > 0) {
-              dynamicItens = match.itens.join(", ");
-            }
+          const dayMeals = cardapioData.filter((m) => m.dia === dayName);
 
-            return `
+          if (dayMeals.length === 0) {
+            tbody.innerHTML =
+              '<tr><td colspan="4" class="py-20 text-center font-black text-slate-300 uppercase italic">Nenhuma informação para este dia</td></tr>';
+            return;
+          }
+
+          tbody.innerHTML = dayMeals
+            .map((m) => {
+              return `
             <tr class="hover:bg-yellow-50 transition-colors group">
               <td class="px-8 py-6 border-r-2 border-black/5">
                 <div class="flex items-center gap-3">
-                  <span class="material-symbols-outlined text-black font-bold">${m.icone}</span>
+                  <span class="material-symbols-outlined text-black font-bold">${getMealIcon(m.refeicao)}</span>
                   <div>
-                    <span class="font-black text-lg text-black block leading-none">${m.tipo}</span>
-                    <span class="text-[10px] font-black text-[#475569] uppercase tracking-widest">${getMealTimeLabel(m.tipo, isFriday)}</span>
+                    <span class="font-black text-lg text-black block leading-none uppercase">${m.refeicao}</span>
+                    <span class="text-[10px] font-black text-[#475569] uppercase tracking-widest">${getMealTimeLabel(m.refeicao, isFriday)}</span>
                   </div>
                 </div>
               </td>
               <td class="px-8 py-6 border-r-2 border-black/5">
-                <p class="font-bold text-black text-base">${dynamicItens}</p>
+                <p class="font-bold text-black text-base">${m.itens.join(", ")}</p>
               </td>
               <td class="px-8 py-6 border-r-2 border-black/5">
-                <span class="inline-block px-4 py-2 ${m.cor} text-white text-xs font-black uppercase tracking-widest border border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] whitespace-nowrap">${m.dieta}</span>
+                <span class="inline-block px-4 py-2 ${getMealColor(m.dieta)} text-white text-xs font-black uppercase tracking-widest border border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] whitespace-nowrap">${m.dieta}</span>
               </td>
               <td class="px-8 py-6">
-                ${getMealStatus(m.tipo, isFriday)}
+                ${getMealStatus(m.refeicao, isFriday)}
               </td>
             </tr>
           `;
-          }).join("");
+            })
+            .join("");
+        };
+
+        window.registerAccess = async (tipo) => {
+          const aluno = localStorage.getItem("userEmail") || "Aluno Anônimo";
+          try {
+            const res = await fetch(`${API_BASE_URL}/api/refeicoes`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ refeicao: tipo, aluno: aluno }),
+            });
+            if (res.ok) {
+              alert("Acesso registrado com sucesso!");
+            } else {
+              alert("Erro ao registrar acesso.");
+            }
+          } catch (e) {
+            console.error(e);
+            alert("Erro de conexão.");
+          }
         };
 
         window.changeDay = (dir) => {
@@ -471,11 +504,8 @@
           render();
         };
 
-        loadLatestRefeicoes().then(render);
-        // Update status every minute
-        setInterval(() => {
-          loadLatestRefeicoes().then(render);
-        }, 60000);
+        fetchData();
+        setInterval(fetchData, 60000);
 
         // Profile Dropdown
         window.toggleProfileDropdown = (e) => {
@@ -489,7 +519,6 @@
           window.location.href = "../login.html";
         };
 
-        // Close dropdown when clicking outside
         document.addEventListener("click", (e) => {
           const dropdown = document.getElementById("profile-dropdown");
           const container = document.getElementById("profile-container");

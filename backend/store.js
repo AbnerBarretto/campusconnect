@@ -1,6 +1,9 @@
 const { randomUUID } = require("crypto");
 
-// Mock Data for a professional system
+// ---------------------------------------------------------
+// DATABASE (MOCK)
+// ---------------------------------------------------------
+
 const chamados = [
   {
     id: randomUUID(),
@@ -10,7 +13,8 @@ const chamados = [
     prioridade: "Alta",
     status: "Aberto",
     responsavel: null,
-    criadoEm: new Date(Date.now() - 1000 * 60 * 120).toISOString(), // 2h ago
+    aluno: "Abner Silva",
+    criadoEm: new Date(Date.now() - 1000 * 60 * 120).toISOString(),
     sla_limite: new Date(Date.now() + 1000 * 60 * 60 * 2).toISOString(),
   },
   {
@@ -21,19 +25,9 @@ const chamados = [
     prioridade: "Média",
     status: "Em progresso",
     responsavel: "Carlos Silva",
-    criadoEm: new Date(Date.now() - 1000 * 60 * 60 * 5).toISOString(), // 5h ago
-    sla_limite: new Date(Date.now() - 1000 * 60 * 60 * 1).toISOString(), // Delayed
-  },
-  {
-    id: randomUUID(),
-    titulo: "Troca de lâmpada",
-    descricao: "Lâmpada piscando no corredor.",
-    local: "Bloco B - Corredor 1",
-    prioridade: "Baixa",
-    status: "Aguardando",
-    responsavel: "Ana Souza",
-    criadoEm: new Date(Date.now() - 1000 * 60 * 60 * 24).toISOString(), // 1 day ago
-    sla_limite: new Date(Date.now() + 1000 * 60 * 60 * 48).toISOString(),
+    aluno: "Mariana Costa",
+    criadoEm: new Date(Date.now() - 1000 * 60 * 60 * 5).toISOString(),
+    sla_limite: new Date(Date.now() - 1000 * 60 * 60 * 1).toISOString(),
   },
 ];
 
@@ -41,129 +35,275 @@ const reservas = [
   {
     id: randomUUID(),
     local: "Quadra Poliesportiva",
-    data: "2026-05-02",
+    data: "2026-05-11",
     horario: "09:00 - 10:00",
     obs: "Treino de Basquete",
     status: "Confirmada",
     criadoEm: new Date().toISOString(),
   },
+];
+
+const refeicoes = []; // Log de acessos detalhados
+
+const avisos = [
   {
     id: randomUUID(),
-    local: "Sala de Estudo A",
-    data: "2026-05-03",
-    horario: "14:00 - 16:00",
-    obs: "Grupo de Cálculo",
-    status: "Pendente",
+    tipo: "warning",
+    categoria: "Manutenção",
+    titulo: "Bloco B: energia em manutenção",
+    descricao: "Evite os corredores próximos aos laboratórios até 15h.",
+    link: "",
+    linkLabel: "",
+    ativo: true,
+    criadoEm: new Date().toISOString(),
+  },
+  {
+    id: randomUUID(),
+    tipo: "danger",
+    categoria: "Acesso fechado",
+    titulo: "Quadra Poliesportiva: fechada para evento",
+    descricao: "Atividades esportivas suspensas no período da tarde.",
+    link: "",
+    linkLabel: "",
+    ativo: true,
+    criadoEm: new Date().toISOString(),
+  },
+  {
+    id: randomUUID(),
+    tipo: "info",
+    categoria: "Rota alternativa",
+    titulo: "Refeitório: acesso lateral recomendado",
+    descricao: "Use a passagem pela biblioteca durante a obra no pátio.",
+    link: "pages/mapa-campus.html",
+    linkLabel: "Ver no Mapa",
+    ativo: true,
     criadoEm: new Date().toISOString(),
   },
 ];
 
-const refeicoes = [
+const cardapio = [
   {
-    id: randomUUID(),
+    id: "m1",
+    dia: "Segunda-Feira",
+    refeicao: "Café da Manhã",
+    itens: ["Pão na chapa", "Café"],
+    dieta: "Geral",
+  },
+  {
+    id: "m2",
+    dia: "Segunda-Feira",
     refeicao: "Almoço",
-    itens: ["Arroz", "Feijão", "Frango grelhado"],
-    criadoEm: new Date().toISOString(),
+    itens: ["Frango Grelhado", "Arroz", "Feijão"],
+    dieta: "Saudável",
+  },
+  {
+    id: "m3",
+    dia: "Segunda-Feira",
+    refeicao: "Jantar",
+    itens: ["Sopa de Legumes"],
+    dieta: "Leve",
+  },
+  {
+    id: "m4",
+    dia: "Terça-Feira",
+    refeicao: "Café da Manhã",
+    itens: ["Cuscuz", "Ovos"],
+    dieta: "Geral",
+  },
+  {
+    id: "m5",
+    dia: "Terça-Feira",
+    refeicao: "Almoço",
+    itens: ["Carne de Panela", "Farofa"],
+    dieta: "Geral",
+  },
+  {
+    id: "m6",
+    dia: "Terça-Feira",
+    refeicao: "Jantar",
+    itens: ["Macarrão ao Sugo"],
+    dieta: "Vegetariana",
+  },
+  {
+    id: "m7",
+    dia: "Quarta-Feira",
+    refeicao: "Café da Manhã",
+    itens: ["Bolo de milho", "Iogurte"],
+    dieta: "Energética",
+  },
+  {
+    id: "m8",
+    dia: "Quarta-Feira",
+    refeicao: "Almoço",
+    itens: ["Feijoada", "Couve"],
+    dieta: "Geral",
+  },
+  {
+    id: "m9",
+    dia: "Quarta-Feira",
+    refeicao: "Jantar",
+    itens: ["Caldo Verde"],
+    dieta: "Leve",
+  },
+  {
+    id: "m10",
+    dia: "Quinta-Feira",
+    refeicao: "Café da Manhã",
+    itens: ["Tapioca", "Frutas"],
+    dieta: "Sem Glúten",
+  },
+  {
+    id: "m11",
+    dia: "Quinta-Feira",
+    refeicao: "Almoço",
+    itens: ["Peixe Assado", "Pirão"],
+    dieta: "Saudável",
+  },
+  {
+    id: "m12",
+    dia: "Quinta-Feira",
+    refeicao: "Jantar",
+    itens: ["Sanduíche Natural"],
+    dieta: "Proteica",
+  },
+  {
+    id: "m13",
+    dia: "Sexta-Feira",
+    refeicao: "Café da Manhã",
+    itens: ["Ovos Mexidos", "Torrada"],
+    dieta: "Fitness",
+  },
+  {
+    id: "m14",
+    dia: "Sexta-Feira",
+    refeicao: "Almoço",
+    itens: ["Estrogonofe", "Batata Palha"],
+    dieta: "Geral",
+  },
+  {
+    id: "m15",
+    dia: "Sexta-Feira",
+    refeicao: "Jantar",
+    itens: ["Pizza artesanal"],
+    dieta: "Geral",
   },
 ];
 
-const listChamados = () => chamados;
-const listReservas = () => reservas;
-const listRefeicoes = () => refeicoes;
-
-const removeChamado = (id) => {
-  const index = chamados.findIndex((c) => c.id === id);
-  if (index !== -1) return chamados.splice(index, 1)[0];
-  return null;
-};
-
-const removeReserva = (id) => {
-  const index = reservas.findIndex((r) => r.id === id);
-  if (index !== -1) return reservas.splice(index, 1)[0];
-  return null;
-};
-
-const updateChamado = (id, dados) => {
-  const chamado = chamados.find((c) => c.id === id);
-  if (chamado) {
-    Object.assign(chamado, dados);
-    return chamado;
-  }
-  return null;
-};
-
-const updateReserva = (id, dados) => {
-  const reserva = reservas.find((r) => r.id === id);
-  if (reserva) {
-    Object.assign(reserva, dados);
-    return reserva;
-  }
-  return null;
-};
-
-const createChamado = (dados) => {
-  const chamado = {
-    id: randomUUID(),
-    criadoEm: new Date().toISOString(),
-    status: "Aberto",
-    responsavel: null,
-    sla_limite: new Date(Date.now() + 1000 * 60 * 60 * 4).toISOString(), // 4h SLA by default
-    ...dados,
-  };
-  chamados.push(chamado);
-  return chamado;
-};
-
-const createReserva = (dados) => {
-  const reserva = {
-    id: randomUUID(),
-    criadoEm: new Date().toISOString(),
-    status: "Pendente",
-    ...dados,
-  };
-  reservas.push(reserva);
-  return reserva;
-};
+// ---------------------------------------------------------
+// REFEITORIO LOGIC (VOLUME)
+// ---------------------------------------------------------
 
 const createRefeicao = (dados) => {
-  const refeicao = {
+  const registro = {
     id: randomUUID(),
     criadoEm: new Date().toISOString(),
-    ...dados,
+    data: dados.data || new Date().toISOString().slice(0, 10),
+    refeicao: dados.refeicao || "Desconhecido",
+    aluno: dados.aluno || "Anônimo",
+    quantidade: Number(dados.quantidade) || 1,
+    itens: dados.itens || [],
   };
-  refeicoes.push(refeicao);
-  return refeicao;
+  refeicoes.push(registro);
+  return registro;
 };
 
-const getStatus = () => ({
-  versao: "1.0.0",
-  status: "active",
-  metrics: {
-    open_tickets: chamados.filter((c) => c.status !== "Concluído").length,
-    critical_tickets: chamados.filter(
-      (c) => c.prioridade === "Alta" && c.status !== "Concluído",
-    ).length,
-    delayed_tickets: chamados.filter(
-      (c) => new Date(c.sla_limite) < new Date() && c.status !== "Concluído",
-    ).length,
-  },
-});
-
-const clearRefeicoes = () => {
-  refeicoes.length = 0;
-};
+// ---------------------------------------------------------
+// EXPORTS
+// ---------------------------------------------------------
 
 module.exports = {
-  createChamado,
-  createReserva,
-  createRefeicao,
-  removeChamado,
-  removeReserva,
-  updateChamado,
-  updateReserva,
-  listChamados,
-  listReservas,
-  listRefeicoes,
-  clearRefeicoes,
-  getStatus,
+  // Lists
+  listChamados: () => chamados,
+  listReservas: () => reservas,
+	  listRefeicoes: (data) =>
+	    data ? refeicoes.filter((r) => r.data === data) : refeicoes,
+	  listCardapio: () => cardapio,
+	  listAvisos: () => avisos,
+
+  // Create
+  createChamado: (d) => {
+    const c = {
+      id: randomUUID(),
+      criadoEm: new Date().toISOString(),
+      status: "Aberto",
+      ...d,
+    };
+    chamados.push(c);
+    return c;
+  },
+  createReserva: (d) => {
+    const r = {
+      id: randomUUID(),
+      criadoEm: new Date().toISOString(),
+      status: "Aberto",
+      ...d,
+    };
+    reservas.push(r);
+    return r;
+  },
+	  createRefeicao,
+	  createAviso: (d) => {
+	    const aviso = {
+	      id: randomUUID(),
+	      criadoEm: new Date().toISOString(),
+	      ativo: true,
+	      tipo: "warning",
+	      link: "",
+	      linkLabel: "",
+	      ...d,
+	    };
+	    avisos.push(aviso);
+	    return aviso;
+	  },
+
+  // Delete
+  removeChamado: (id) => {
+    const i = chamados.findIndex((c) => c.id === id);
+    return i !== -1 ? chamados.splice(i, 1)[0] : null;
+  },
+	  removeReserva: (id) => {
+	    const i = reservas.findIndex((r) => r.id === id);
+	    return i !== -1 ? reservas.splice(i, 1)[0] : null;
+	  },
+	  removeAviso: (id) => {
+	    const i = avisos.findIndex((a) => a.id === id);
+	    return i !== -1 ? avisos.splice(i, 1)[0] : null;
+	  },
+  clearRefeicoes: (data) => {
+    if (!data) {
+      refeicoes.length = 0;
+      return;
+    }
+    for (let i = refeicoes.length - 1; i >= 0; i -= 1) {
+      if (refeicoes[i].data === data) refeicoes.splice(i, 1);
+    }
+  },
+
+  // Update
+  updateChamado: (id, d) => {
+    const c = chamados.find((x) => x.id === id);
+    if (c) Object.assign(c, d);
+    return c;
+  },
+  updateReserva: (id, d) => {
+    const r = reservas.find((x) => x.id === id);
+    if (r) Object.assign(r, d);
+    return r;
+  },
+	  updateCardapio: (id, d) => {
+	    const x = cardapio.find((i) => i.id === id);
+	    if (x) Object.assign(x, d);
+	    return x;
+	  },
+	  updateAviso: (id, d) => {
+	    const aviso = avisos.find((x) => x.id === id);
+	    if (aviso) Object.assign(aviso, d);
+	    return aviso;
+	  },
+
+  // System
+  getStatus: () => ({
+    status: "active",
+    metrics: { open_tickets: chamados.length },
+  }),
 };

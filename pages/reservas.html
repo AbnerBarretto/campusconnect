@@ -37,11 +37,11 @@
     </script>
     <style>
       :root {
-        --bg: #f6f8ff;
+        --bg: #d4caca8c;
         --card: #ffffff;
         --card-hover: #fafafa;
         --border: #e5e7eb;
-        --border-soft: #f1f5f9;
+        --border-soft: #e4e4e4;
         --text-primary: #0f172a;
         --text-secondary: #64748b;
         --text-muted: #94a3b8;
@@ -95,6 +95,22 @@
       }
       .sidebar-scroll::-webkit-scrollbar-thumb {
         background: #e5e7eb;
+        border-radius: 10px;
+      }
+      .agenda-scroll::-webkit-scrollbar,
+      .reservas-scroll::-webkit-scrollbar {
+        width: 4px;
+      }
+      .agenda-scroll::-webkit-scrollbar-track,
+      .reservas-scroll::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .agenda-scroll::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+      }
+      .reservas-scroll::-webkit-scrollbar-thumb {
+        background: #e2e8f0;
         border-radius: 10px;
       }
     </style>
@@ -239,9 +255,11 @@
 
     <div class="flex-grow md:ml-[260px] flex flex-col min-h-screen">
       <main
-        class="max-w-4xl mx-auto w-full px-6 py-10 md:py-20 space-y-12 flex-grow"
+        class="max-w-7xl mx-auto w-full px-6 lg:px-10 xl:px-12 py-10 md:py-14 space-y-10 flex-grow"
       >
-        <header class="space-y-4">
+        <header
+          class="flex flex-col md:flex-row md:items-center justify-between gap-8"
+        >
           <div class="space-y-2">
             <h2
               class="text-3xl md:text-5xl font-black tracking-tighter text-black"
@@ -253,67 +271,48 @@
             </p>
           </div>
 
-          <!-- Search and Filter Bar -->
-          <div class="flex flex-col md:flex-row gap-4 pt-4">
-            <div class="relative flex-grow group">
-              <span
-                class="material-symbols-outlined absolute left-5 top-1/2 -translate-y-1/2 text-[#475569] group-focus-within:text-black transition-colors"
-                >search</span
-              >
-              <input
-                type="text"
-                id="space-search"
-                placeholder="Buscar por sala, bloco ou nome..."
-                class="w-full pl-14 pr-6 py-4 bg-[var(--border-soft)] border-none rounded-2xl font-bold text-sm focus:ring-2 focus:ring-[var(--accent)] transition-all"
-              />
-            </div>
-            <div
-              class="flex gap-2 overflow-x-auto pb-2 md:pb-0"
-              id="filter-buttons"
+          <div class="flex flex-row flex-wrap gap-3">
+            <a
+              href="historico.html?filter=reserva"
+              class="bg-white text-black border border-gray-200 px-5 py-3 rounded-xl font-bold text-xs tracking-tight hover:bg-gray-50 transition-all active:scale-95 flex items-center justify-center gap-2.5 whitespace-nowrap"
             >
-              <button
-                data-filter="Mais Recentes"
-                class="filter-btn active px-6 py-4 bg-[var(--accent)] text-white rounded-2xl text-xs font-black uppercase tracking-widest transition-all"
-              >
-                Mais Recentes
-              </button>
-              <button
-                data-filter="Estudo"
-                class="filter-btn px-6 py-4 bg-[var(--border-soft)] text-[#475569] hover:text-black rounded-2xl text-xs font-black uppercase tracking-widest transition-all"
-              >
-                Estudo
-              </button>
-              <button
-                data-filter="Esportes"
-                class="filter-btn px-6 py-4 bg-[var(--border-soft)] text-[#475569] hover:text-black rounded-2xl text-xs font-black uppercase tracking-widest transition-all"
-              >
-                Esportes
-              </button>
-              <button
-                data-filter="Labs"
-                class="filter-btn px-6 py-4 bg-[var(--border-soft)] text-[#475569] hover:text-black rounded-2xl text-xs font-black uppercase tracking-widest transition-all"
-              >
-                Labs
-              </button>
-            </div>
+              <span class="material-symbols-outlined">history</span>
+              Histórico
+            </a>
+            <button
+              data-action
+              data-action-type="nova-reserva"
+              data-action-title="Nova Reserva"
+              class="bg-[var(--accent)] text-white px-5 py-3 rounded-xl font-bold text-xs tracking-tight hover:shadow-2xl hover:shadow-black/20 transition-all active:scale-95 flex items-center justify-center gap-2.5 whitespace-nowrap"
+              onclick="openActionModalFromElement(this)"
+            >
+              <span class="material-symbols-outlined">add_circle</span>
+              Nova Reserva
+            </button>
           </div>
         </header>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
           <!-- Left: Space Catalog & My Reservations -->
           <div class="lg:col-span-2 space-y-16">
-            <section
-              class="grid grid-cols-1 sm:grid-cols-2 gap-6"
-              id="space-catalog"
-            >
-              <!-- Dynamically populated -->
+            <section class="space-y-8">
+              <h3 class="font-black text-xl tracking-tight">Mais recentes</h3>
+              <div
+                class="grid grid-cols-1 sm:grid-cols-2 gap-6"
+                id="space-catalog"
+              >
+                <!-- Dynamically populated -->
+              </div>
             </section>
 
             <section class="space-y-8 pt-8 border-t border-gray-50">
               <h3 class="font-black text-xl tracking-tight">
                 Minhas Reservas Ativas
               </h3>
-              <div class="space-y-4" id="reservas-list">
+              <div
+                class="space-y-4 max-h-[360px] overflow-y-auto reservas-scroll pr-2"
+                id="reservas-list"
+              >
                 <div class="p-12 text-center">
                   <div
                     class="animate-spin inline-block w-6 h-6 border-4 border-[var(--accent)] border-t-transparent rounded-full"
@@ -343,7 +342,10 @@
                 </div>
                 <span class="w-2 h-2 rounded-full bg-green-500"></span>
               </div>
-              <div class="space-y-8" id="agenda-global">
+              <div
+                class="space-y-8 max-h-[180px] overflow-y-auto agenda-scroll pr-2"
+                id="agenda-global"
+              >
                 <p class="text-xs font-bold opacity-40 italic text-center py-4">
                   Carregando agenda...
                 </p>
@@ -535,11 +537,19 @@
       (() => {
         const actionModal = document.querySelector("[data-action-modal]");
         const actionTitle = document.querySelector("[data-action-modal-title]");
-        const actionSubtitle = document.querySelector("[data-action-modal-subtitle]");
-        const actionContent = document.querySelector("[data-action-modal-content]");
+        const actionSubtitle = document.querySelector(
+          "[data-action-modal-subtitle]",
+        );
+        const actionContent = document.querySelector(
+          "[data-action-modal-content]",
+        );
         const actionAlert = document.querySelector("[data-action-modal-alert]");
-        const actionConfirm = document.querySelector("[data-action-modal-confirm]");
-        const actionDelete = document.querySelector("[data-action-modal-delete]");
+        const actionConfirm = document.querySelector(
+          "[data-action-modal-confirm]",
+        );
+        const actionDelete = document.querySelector(
+          "[data-action-modal-delete]",
+        );
 
         const confirmModal = document.querySelector("[data-confirm-modal]");
         const confirmYes = document.querySelector("[data-confirm-yes]");
@@ -548,36 +558,42 @@
         const reservasList = document.getElementById("reservas-list");
         const agendaGlobal = document.getElementById("agenda-global");
         const spaceCatalog = document.getElementById("space-catalog");
-        const searchInput = document.getElementById("space-search");
-        const filterButtons = document.querySelectorAll(".filter-btn");
 
         let currentReservas = [];
-        let activeFilter = "Mais Recentes";
 
         const spaces = [
-          { id: 1, name: "Quadra Poliesportiva", category: "Esportes", location: "Bloco de Esportes • Externo", icon: "sports_soccer", status: "Livre" },
-          { id: 4, name: "Sala de Estudo B", category: "Estudo", location: "Bloco Central • 2º Andar", icon: "menu_book", status: "Livre" }
+          {
+            id: 1,
+            name: "Quadra Poliesportiva",
+            category: "Esportes",
+            location: "Bloco de Esportes • Externo",
+            icon: "sports_soccer",
+            status: "Livre",
+          },
+          {
+            id: 4,
+            name: "Sala de Estudo B",
+            category: "Estudo",
+            location: "Bloco Central • 2º Andar",
+            icon: "menu_book",
+            status: "Livre",
+          },
         ];
 
         const renderCatalog = () => {
-          const searchTerm = searchInput.value.toLowerCase();
-          const filtered = spaces.filter(s => {
-            const matchesFilter = activeFilter === "Mais Recentes" || s.category === activeFilter;
-            const matchesSearch = s.name.toLowerCase().includes(searchTerm) || s.location.toLowerCase().includes(searchTerm);
-            return matchesFilter && matchesSearch;
-          });
+          spaceCatalog.innerHTML = spaces
+            .map((s) => {
+              const statusClass =
+                s.status === "Livre"
+                  ? "bg-green-50 text-green-600"
+                  : "bg-yellow-50 text-yellow-600";
+              const pulse =
+                s.status === "Livre"
+                  ? '<span class="w-1.5 h-1.5 rounded-full bg-green-600 animate-pulse"></span>'
+                  : '<span class="w-1.5 h-1.5 rounded-full bg-yellow-600"></span>';
 
-          if (filtered.length === 0) {
-            spaceCatalog.innerHTML = `<div class="col-span-full py-12 text-center text-[#475569] font-bold">Nenhum espaço encontrado.</div>`;
-            return;
-          }
-
-          spaceCatalog.innerHTML = filtered.map(s => {
-            const statusClass = s.status === "Livre" ? "bg-green-50 text-green-600" : "bg-yellow-50 text-yellow-600";
-            const pulse = s.status === "Livre" ? '<span class="w-1.5 h-1.5 rounded-full bg-green-600 animate-pulse"></span>' : '<span class="w-1.5 h-1.5 rounded-full bg-yellow-600"></span>';
-
-            return `
-              <div class="p-8 bg-white border border-[var(--border)] rounded-[32px] hover:border-[var(--accent)]/10 hover:shadow-xl hover:shadow-black/5 transition-all group relative overflow-hidden">
+              return `
+              <div class="flex flex-col p-8 bg-white border border-[var(--border)] rounded-[32px] hover:border-[var(--accent)]/10 hover:shadow-xl hover:shadow-black/5 transition-all group relative overflow-hidden h-full">
                 <div class="absolute top-6 right-6 flex items-center gap-1.5 px-3 py-1 ${statusClass} rounded-full">
                   ${pulse}
                   <span class="text-[10px] font-black uppercase tracking-widest">${s.status}</span>
@@ -585,33 +601,22 @@
                 <div class="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center text-black mb-6">
                   <span class="material-symbols-outlined text-2xl">${s.icon}</span>
                 </div>
-                <h4 class="font-black text-lg mb-1">${s.name}</h4>
-                <p class="text-xs text-[#475569] font-bold uppercase tracking-wider mb-6">${s.location}</p>
-                <button data-action data-action-type="nova-reserva" data-action-title="Reserva: ${s.name}" class="w-full py-4 bg-[var(--accent)] text-white rounded-2xl text-sm font-bold hover:scale-[1.02] active:scale-95 transition-all" onclick="openActionModalFromElement(this)">
+                <div class="flex-grow">
+                  <h4 class="font-black text-lg mb-1">${s.name}</h4>
+                  <p class="text-xs text-[#475569] font-bold uppercase tracking-wider mb-6">${s.location}</p>
+                </div>
+                <button data-action data-action-type="nova-reserva" data-action-title="Reserva: ${s.name}" class="w-full py-4 bg-[var(--accent)] text-white rounded-2xl text-sm font-bold hover:scale-[1.02] active:scale-95 transition-all mt-auto" onclick="openActionModalFromElement(this)">
                   ${s.status === "Livre" ? "Reservar Agora" : "Reservar Horário"}
                 </button>
               </div>
             `;
-          }).join("");
+            })
+            .join("");
         };
 
         window.openActionModalFromElement = (el) => {
           openActionModal(el);
         };
-
-        searchInput.addEventListener("input", renderCatalog);
-        filterButtons.forEach(btn => {
-          btn.addEventListener("click", () => {
-            filterButtons.forEach(b => {
-              b.classList.remove("active", "bg-[var(--accent)]", "text-white");
-              b.classList.add("bg-[var(--border-soft)]", "text-[#475569]");
-            });
-            btn.classList.add("active", "bg-[var(--accent)]", "text-white");
-            btn.classList.remove("bg-[var(--border-soft)]", "text-[#475569]");
-            activeFilter = btn.getAttribute("data-filter");
-            renderCatalog();
-          });
-        });
 
         const loadReservas = async () => {
           try {
@@ -630,11 +635,13 @@
             reservasList.innerHTML = `<p class="text-[#475569] font-bold p-8 border-2 border-dashed border-[var(--border-soft)] rounded-[32px] text-center">Nenhum agendamento realizado.</p>`;
             return;
           }
-          reservasList.innerHTML = reservas.map(res => {
-            let icon = "event_available";
-            if (res.local.toLowerCase().includes("quadra")) icon = "sports_soccer";
-            if (res.local.toLowerCase().includes("sala")) icon = "menu_book";
-            return `
+          reservasList.innerHTML = reservas
+            .map((res) => {
+              let icon = "event_available";
+              if (res.local.toLowerCase().includes("quadra"))
+                icon = "sports_soccer";
+              if (res.local.toLowerCase().includes("sala")) icon = "menu_book";
+              return `
               <div class="p-6 bg-white border border-[var(--border-soft)] rounded-[28px] flex items-center justify-between hover:bg-gray-50 transition-all cursor-pointer group" onclick="window.openDetails('${res.id}')">
                 <div class="flex items-center gap-6">
                   <div class="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center text-black">
@@ -648,30 +655,35 @@
                 <button class="px-4 py-2 text-[10px] font-black uppercase tracking-widest border border-[var(--border-soft)] rounded-lg hover:bg-black hover:text-white transition-all">Detalhes</button>
               </div>
             `;
-          }).join("");
+            })
+            .join("");
         };
 
         const renderAgenda = (reservas) => {
-          const dates = [...new Set(reservas.map(r => r.data))].sort().slice(0, 4);
+          const dates = [...new Set(reservas.map((r) => r.data))]
+            .sort()
+            .slice(0, 4);
           if (dates.length === 0) {
             agendaGlobal.innerHTML = `<p class="text-xs font-bold opacity-40 italic">Sem eventos próximos.</p>`;
             return;
           }
-          agendaGlobal.innerHTML = dates.map(date => {
-            const bookings = reservas.filter(r => r.data === date);
-            return `
+          agendaGlobal.innerHTML = dates
+            .map((date) => {
+              const bookings = reservas.filter((r) => r.data === date);
+              return `
               <div class="space-y-4">
                 <p class="text-[10px] font-black uppercase tracking-[0.2em] text-white/40">${date}</p>
                 <div class="space-y-3">
-                  ${bookings.map(b => `<div class="flex items-center justify-between"><span class="text-xs font-black text-white/90">${b.local}</span><span class="text-[10px] font-black text-white/50">${b.horario.split(' - ')[0]}</span></div>`).join("")}
+                  ${bookings.map((b) => `<div class="flex items-center justify-between"><span class="text-xs font-black text-white/90">${b.local}</span><span class="text-[10px] font-black text-white/50">${b.horario.split(" - ")[0]}</span></div>`).join("")}
                 </div>
               </div>
             `;
-          }).join('<div class="h-[1px] bg-white/10 w-full my-4"></div>');
+            })
+            .join('<div class="h-[1px] bg-white/10 w-full my-4"></div>');
         };
 
         window.openDetails = (id) => {
-          const res = currentReservas.find(r => r.id === id);
+          const res = currentReservas.find((r) => r.id === id);
           if (!res) return;
           actionTitle.textContent = "Detalhes da Reserva";
           actionSubtitle.textContent = `Protocolo #${id.substring(0, 5).toUpperCase()}`;
@@ -681,7 +693,9 @@
           }
           actionConfirm.textContent = "Fechar";
           actionConfirm.onclick = closeActionModal;
-          const cancelBtn = actionModal.querySelector("[data-action-modal-cancel]");
+          const cancelBtn = actionModal.querySelector(
+            "[data-action-modal-cancel]",
+          );
           if (cancelBtn) cancelBtn.classList.add("hidden");
 
           actionContent.innerHTML = `
@@ -702,17 +716,25 @@
         const showConfirmation = (id) => {
           confirmModal.classList.remove("hidden");
           confirmModal.classList.add("flex");
-          confirmNo.onclick = () => { confirmModal.classList.add("hidden"); confirmModal.classList.remove("flex"); };
+          confirmNo.onclick = () => {
+            confirmModal.classList.add("hidden");
+            confirmModal.classList.remove("flex");
+          };
           confirmYes.onclick = async () => {
             confirmYes.disabled = true;
             try {
-              const res = await fetch(`${API_BASE_URL}/api/reservas/${id}`, { method: `DELETE` });
+              const res = await fetch(`${API_BASE_URL}/api/reservas/${id}`, {
+                method: `DELETE`,
+              });
               if (!res.ok) throw new Error();
               confirmModal.classList.add("hidden");
               confirmYes.disabled = false;
               closeActionModal();
               loadReservas();
-            } catch (e) { alert("Erro ao cancelar."); confirmYes.disabled = false; }
+            } catch (e) {
+              alert("Erro ao cancelar.");
+              confirmYes.disabled = false;
+            }
           };
         };
 
@@ -725,11 +747,14 @@
         const openActionModal = (button) => {
           const type = button.getAttribute("data-action-type");
           if (type !== "nova-reserva") return;
-          const title = button.getAttribute("data-action-title") || "Nova Reserva";
+          const title =
+            button.getAttribute("data-action-title") || "Nova Reserva";
 
           actionTitle.textContent = "Confirmar Agendamento";
           actionSubtitle.textContent = "Preencha os dados finais.";
-          const cancelBtn = actionModal.querySelector("[data-action-modal-cancel]");
+          const cancelBtn = actionModal.querySelector(
+            "[data-action-modal-cancel]",
+          );
           if (cancelBtn) cancelBtn.classList.remove("hidden");
           if (actionDelete) actionDelete.classList.add("hidden");
 
@@ -783,23 +808,28 @@
           let hasError = false;
 
           // Clear previous errors
-          form.querySelectorAll(".error-msg").forEach(e => e.remove());
+          form.querySelectorAll(".error-msg").forEach((e) => e.remove());
 
-          inputs.forEach(input => {
+          inputs.forEach((input) => {
             if (!input.value.trim()) {
               hasError = true;
               const error = document.createElement("span");
-              error.className = "error-msg text-[10px] font-bold text-red-500 mt-1 ml-1 block";
+              error.className =
+                "error-msg text-[10px] font-bold text-red-500 mt-1 ml-1 block";
               error.textContent = "Preencha este campo";
               input.parentNode.appendChild(error);
 
               // Apply red border
               input.style.boxShadow = "0 0 0 2px #ef4444";
 
-              input.addEventListener("input", () => {
-                error.remove();
-                input.style.boxShadow = "";
-              }, { once: true });
+              input.addEventListener(
+                "input",
+                () => {
+                  error.remove();
+                  input.style.boxShadow = "";
+                },
+                { once: true },
+              );
             }
           });
 
@@ -810,7 +840,7 @@
             const res = await fetch(`${API_BASE_URL}/api/reservas`, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(data)
+              body: JSON.stringify(data),
             });
             if (!res.ok) throw new Error();
             closeActionModal();
@@ -820,12 +850,19 @@
           }
         };
 
-        document.querySelectorAll("[data-action]").forEach(b => b.addEventListener("click", () => openActionModal(b)));
-        [actionModal.querySelector("[data-action-modal-close]"), actionModal.querySelector("[data-action-modal-cancel]")].forEach(el => el.addEventListener("click", closeActionModal));
+        document
+          .querySelectorAll("[data-action]")
+          .forEach((b) =>
+            b.addEventListener("click", () => openActionModal(b)),
+          );
+        [
+          actionModal.querySelector("[data-action-modal-close]"),
+          actionModal.querySelector("[data-action-modal-cancel]"),
+        ].forEach((el) => el.addEventListener("click", closeActionModal));
 
         loadReservas().then(() => {
           renderCatalog();
-          const id = new URLSearchParams(window.location.search).get('id');
+          const id = new URLSearchParams(window.location.search).get("id");
           if (id) window.openDetails(id);
         });
 
