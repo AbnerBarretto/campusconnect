@@ -195,8 +195,8 @@
           href="pages/historico.html"
           class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black"
         >
-          <span class="material-symbols-outlined">history</span>
-          Histórico
+          <span class="material-symbols-outlined">check_circle</span>
+          Concluído
         </a>
         <div class="pt-6 pb-2 px-4">
           <span
@@ -379,8 +379,10 @@
           </div>
         </section>
 
-	        <div class="grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_360px] gap-10 items-start">
-	          <section class="space-y-8">
+        <div
+          class="grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_360px] gap-10 items-start"
+        >
+          <section class="space-y-8">
             <div class="flex items-center justify-between">
               <h3 class="font-black text-xl tracking-tight">
                 Atividades Recentes
@@ -421,7 +423,9 @@
         </div>
 
         <section class="space-y-6">
-          <div class="flex flex-col md:flex-row md:items-end justify-between gap-3">
+          <div
+            class="flex flex-col md:flex-row md:items-end justify-between gap-3"
+          >
             <div>
               <h3 class="font-black text-xl tracking-tight">
                 Alertas de Infraestrutura
@@ -430,19 +434,30 @@
                 Informações críticas do campus que podem afetar seu trajeto.
               </p>
             </div>
-            <span id="infra-alerts-updated" class="text-[10px] font-black uppercase tracking-widest text-[#475569]">
+            <span
+              id="infra-alerts-updated"
+              class="text-[10px] font-black uppercase tracking-widest text-[#475569]"
+            >
               Atualizado agora
             </span>
           </div>
 
-          <div class="bg-white border border-gray-200 rounded-[28px] overflow-hidden shadow-sm">
+          <div
+            class="bg-white border border-gray-200 rounded-[28px] overflow-hidden shadow-sm"
+          >
             <div class="px-6 py-5 border-b border-gray-100">
               <div class="flex items-start gap-4">
-                <div class="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center shrink-0">
-                  <span class="material-symbols-outlined text-[22px]">warning</span>
+                <div
+                  class="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center shrink-0"
+                >
+                  <span class="material-symbols-outlined text-[22px]"
+                    >warning</span
+                  >
                 </div>
                 <div class="min-w-0">
-                  <p class="text-[10px] font-black uppercase tracking-[0.22em] text-red-600">
+                  <p
+                    class="text-[10px] font-black uppercase tracking-[0.22em] text-red-600"
+                  >
                     Avisos ativos
                   </p>
                   <h4 class="font-black text-lg text-black mt-1">
@@ -454,7 +469,9 @@
 
             <div class="divide-y divide-gray-100" id="infra-alerts-list">
               <div class="px-6 py-5">
-                <p class="text-sm font-bold text-slate-700">Carregando avisos...</p>
+                <p class="text-sm font-bold text-slate-700">
+                  Carregando avisos...
+                </p>
               </div>
             </div>
           </div>
@@ -533,7 +550,9 @@
         const activitiesList = document.getElementById("dashboard-activities");
         const nextMealCard = document.getElementById("next-meal-card");
         const infraAlertsList = document.getElementById("infra-alerts-list");
-        const infraAlertsUpdated = document.getElementById("infra-alerts-updated");
+        const infraAlertsUpdated = document.getElementById(
+          "infra-alerts-updated",
+        );
 
         const actionModal = document.querySelector("[data-action-modal]");
         const actionTitle = document.querySelector("[data-action-modal-title]");
@@ -608,7 +627,8 @@
             tipo: "info",
             categoria: "Rota alternativa",
             titulo: "Refeitório: acesso lateral recomendado",
-            descricao: "Use a passagem pela biblioteca durante a obra no pátio.",
+            descricao:
+              "Use a passagem pela biblioteca durante a obra no pátio.",
             link: "pages/mapa-campus.html",
             linkLabel: "Ver no Mapa",
             ativo: true,
@@ -666,7 +686,8 @@
             })
             .join("");
 
-          if (infraAlertsUpdated) infraAlertsUpdated.textContent = "Atualizado agora";
+          if (infraAlertsUpdated)
+            infraAlertsUpdated.textContent = "Atualizado agora";
         };
 
         const renderUnifiedActivities = (chamados, reservas) => {

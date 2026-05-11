@@ -6,253 +6,791 @@
     <script>
       (() => {
         const savedTheme = localStorage.getItem("theme");
-        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
         const shouldUseDark = savedTheme ? savedTheme === "dark" : prefersDark;
         document.documentElement.classList.toggle("dark", shouldUseDark);
         document.documentElement.classList.toggle("light", !shouldUseDark);
       })();
     </script>
     <title>Painel Geral | CampusConnect Admin</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='0' y='0' width='100' height='100' fill='%23ffffff'/><path d='M20 50V20H80V80H50' stroke='%23000000' stroke-width='10' stroke-linecap='square' fill='none'/><path d='M40 40L60 60' stroke='%23000000' stroke-width='10' stroke-linecap='square'/><rect x='20' y='40' width='15' height='20' fill='%23ffffff'/></svg>"/>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='0' y='0' width='100' height='100' fill='%23ffffff'/><path d='M20 50V20H80V80H50' stroke='%23000000' stroke-width='10' stroke-linecap='square' fill='none'/><path d='M40 40L60 60' stroke='%23000000' stroke-width='10' stroke-linecap='square'/><rect x='20' y='40' width='15' height='20' fill='%23ffffff'/></svg>"
+    />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1" rel="stylesheet"/>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1"
+      rel="stylesheet"
+    />
     <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
         theme: {
           extend: {
             colors: {
-              brand: { 50: "#f8fafc", 100: "#f1f5f9", 200: "#e2e8f0", 300: "#94a3b8", 400: "#64748b", 500: "#475569", 600: "#334155", 700: "#1e293b", 800: "#0f172a", 900: "#020617" },
-              accent: { DEFAULT: "#8b5cf6", hover: "#7c3aed", soft: "rgba(139, 92, 246, 0.12)" },
+              brand: {
+                50: "#f8fafc",
+                100: "#f1f5f9",
+                200: "#e2e8f0",
+                300: "#94a3b8",
+                400: "#64748b",
+                500: "#475569",
+                600: "#334155",
+                700: "#1e293b",
+                800: "#0f172a",
+                900: "#020617",
+              },
+              accent: {
+                DEFAULT: "#8b5cf6",
+                hover: "#7c3aed",
+                soft: "rgba(139, 92, 246, 0.12)",
+              },
               success: { DEFAULT: "#10b981", soft: "rgba(16, 185, 129, 0.12)" },
               warning: { DEFAULT: "#f59e0b", soft: "rgba(245, 158, 11, 0.12)" },
               danger: { DEFAULT: "#ef4444", soft: "rgba(239, 68, 68, 0.12)" },
               info: { DEFAULT: "#3b82f6", soft: "rgba(59, 130, 246, 0.12)" },
-              darkbg: "#0b1220", darkcard: "#111827", darkborder: "#1f2937",
+              darkbg: "#0b1220",
+              darkcard: "#111827",
+              darkborder: "#1f2937",
             },
             fontFamily: { sans: ["'Inter'", "sans-serif"] },
-            boxShadow: { premium: "0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)", "premium-hover": "0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02)" },
+            boxShadow: {
+              premium:
+                "0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)",
+              "premium-hover":
+                "0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02)",
+            },
           },
         },
       };
     </script>
     <style type="text/tailwindcss">
-      .material-symbols-outlined { font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24; vertical-align: middle; }
-      .custom-scrollbar::-webkit-scrollbar { width: 4px; }
-      .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-      .custom-scrollbar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
-      .dark .custom-scrollbar::-webkit-scrollbar-thumb { background: #1e293b; }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+        vertical-align: middle;
+      }
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 4px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #e2e8f0;
+        border-radius: 10px;
+      }
+      .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #1e293b;
+      }
 
-      .premium-card { @apply bg-white dark:bg-darkcard border border-white dark:border-darkborder rounded-[24px] shadow-sm transition-all duration-300 ease-out; }
-      .premium-card:hover { @apply border-white dark:border-slate-700 shadow-premium-hover translate-y-[-2px]; }
-      
-      .trend-badge { @apply flex items-center gap-1 text-[10px] font-black uppercase tracking-widest transition-all duration-300; }
-      .trend-positive { color: #10b981 !important; }
-      .trend-negative { color: #ef4444 !important; }
-      .trend-neutral { @apply text-slate-400 dark:text-slate-500; }
+      .premium-card {
+        @apply bg-white dark:bg-darkcard border border-white dark:border-darkborder rounded-[24px] shadow-sm transition-all duration-300 ease-out;
+      }
+      .premium-card:hover {
+        @apply border-white dark:border-slate-700 shadow-premium-hover translate-y-[-2px];
+      }
 
-      .heatmap-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
-      .heatmap-cell { @apply flex items-center justify-center text-[9px] font-black rounded-md transition-all duration-200; aspect-ratio: 1; }
-      .heatmap-cell:hover { transform: scale(1.15); z-index: 10; }
+      .trend-badge {
+        @apply flex items-center gap-1 text-[10px] font-black uppercase tracking-widest transition-all duration-300;
+      }
+      .trend-positive {
+        color: #10b981 !important;
+      }
+      .trend-negative {
+        color: #ef4444 !important;
+      }
+      .trend-neutral {
+        @apply text-slate-400 dark:text-slate-500;
+      }
 
-      .queue-progress { @apply h-2 w-full bg-slate-50 dark:bg-slate-800/50 rounded-full overflow-hidden; }
+      .heatmap-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 6px;
+      }
+      .heatmap-cell {
+        @apply flex items-center justify-center text-[9px] font-black rounded-md transition-all duration-200;
+        aspect-ratio: 1;
+      }
+      .heatmap-cell:hover {
+        transform: scale(1.15);
+        z-index: 10;
+      }
 
-      #sidebar { transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-      .collapsed #sidebar { width: 80px; }
-      .collapsed #sidebar .nav-text, .collapsed #sidebar .nav-section-title, .collapsed #sidebar .sidebar-header-text, .collapsed #sidebar .profile-text { display: none; }
-      .collapsed #sidebar .nav-item { justify-content: center; padding: 0.75rem 0; }
-      .collapsed #sidebar .logo-container h1 { display: none; }
-      
-      @keyframes dropdown-in { from { opacity: 0; transform: translateY(-8px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
-      .animate-dropdown { animation: dropdown-in 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+      .queue-progress {
+        @apply h-2 w-full bg-slate-50 dark:bg-slate-800/50 rounded-full overflow-hidden;
+      }
 
-      .action-btn-hidden { @apply opacity-0 group-hover:opacity-100 transition-opacity duration-200; }
-      .subtext-accessible { @apply text-slate-500 dark:text-slate-400; }
+      #sidebar {
+        transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .collapsed #sidebar {
+        width: 80px;
+      }
+      .collapsed #sidebar .nav-text,
+      .collapsed #sidebar .nav-section-title,
+      .collapsed #sidebar .sidebar-header-text,
+      .collapsed #sidebar .profile-text {
+        display: none;
+      }
+      .collapsed #sidebar .nav-item {
+        justify-content: center;
+        padding: 0.75rem 0;
+      }
+      .collapsed #sidebar .logo-container h1 {
+        display: none;
+      }
+
+      @keyframes dropdown-in {
+        from {
+          opacity: 0;
+          transform: translateY(-8px) scale(0.98);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+      .animate-dropdown {
+        animation: dropdown-in 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      .action-btn-hidden {
+        @apply opacity-0 group-hover:opacity-100 transition-opacity duration-200;
+      }
+      .subtext-accessible {
+        @apply text-slate-500 dark:text-slate-400;
+      }
     </style>
     <script src="../js/api.js"></script>
   </head>
-  <body class="font-sans text-[#0f172a] dark:text-slate-200 bg-[#E5E7EB] dark:bg-darkbg flex h-screen overflow-hidden antialiased">
+  <body
+    class="font-sans text-[#0f172a] dark:text-slate-200 bg-[#E5E7EB] dark:bg-darkbg flex h-screen overflow-hidden antialiased"
+  >
     <!-- Sidebar -->
-    <aside id="sidebar" class="w-64 bg-white dark:bg-darkcard border-r border-gray-100 dark:border-darkborder flex flex-col shrink-0 z-[500]">
+    <aside
+      id="sidebar"
+      class="w-64 bg-white dark:bg-darkcard border-r border-gray-100 dark:border-darkborder flex flex-col shrink-0 z-[500]"
+    >
       <div class="p-8 border-b border-gray-100 dark:border-darkborder">
-        <a href="../dashboard.html" class="flex items-center gap-3 logo-container group">
-          <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-mark shrink-0">
-            <path d="M20 50V20H80V80H50" stroke="#000" stroke-width="12" stroke-linecap="square" class="dark:stroke-white"/>
-            <path d="M40 40L60 60" stroke="#000" stroke-width="12" stroke-linecap="square" class="dark:stroke-white"/>
-            <rect x="20" y="40" width="15" height="20" fill="white" class="dark:fill-darkcard" />
+        <a
+          href="../dashboard.html"
+          class="flex items-center gap-3 logo-container group"
+        >
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 100 100"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="logo-mark shrink-0"
+          >
+            <path
+              d="M20 50V20H80V80H50"
+              stroke="#000"
+              stroke-width="12"
+              stroke-linecap="square"
+              class="dark:stroke-white"
+            />
+            <path
+              d="M40 40L60 60"
+              stroke="#000"
+              stroke-width="12"
+              stroke-linecap="square"
+              class="dark:stroke-white"
+            />
+            <rect
+              x="20"
+              y="40"
+              width="15"
+              height="20"
+              fill="white"
+              class="dark:fill-darkcard"
+            />
           </svg>
-          <h1 class="text-sm font-black tracking-widest uppercase dark:text-white sidebar-header-text">Campus<span class="font-light">Connect</span></h1>
+          <h1
+            class="text-sm font-black tracking-widest uppercase dark:text-white sidebar-header-text"
+          >
+            Campus<span class="font-light">Connect</span>
+          </h1>
         </a>
       </div>
       <nav class="flex-grow p-6 space-y-6 overflow-y-auto custom-scrollbar">
         <div>
-          <p class="text-[10px] font-black text-slate-400 dark:text-slate-600 uppercase tracking-[0.2em] px-4 mb-4 nav-section-title">Operação</p>
+          <p
+            class="text-[10px] font-black text-slate-400 dark:text-slate-600 uppercase tracking-[0.2em] px-4 mb-4 nav-section-title"
+          >
+            Operação
+          </p>
           <div class="space-y-1">
-            <a href="geral.html" class="flex items-center gap-3 px-4 py-3 bg-accent text-white rounded-2xl text-xs font-bold shadow-lg shadow-accent/20 transition-all hover:translate-x-1 nav-item active"><span class="material-symbols-outlined text-[20px] shrink-0" style="font-variation-settings: 'FILL' 1">dashboard</span><span class="nav-text">Painel Geral</span></a>
-            <a href="chamados.html" class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"><span class="material-symbols-outlined text-[20px] shrink-0">confirmation_number</span><span class="nav-text">Chamados</span></a>
-            <a href="historico.html" class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"><span class="material-symbols-outlined text-[20px] shrink-0">history</span><span class="nav-text">Histórico</span></a>
-            <a href="refeitorio.html" class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"><span class="material-symbols-outlined text-[20px] shrink-0">restaurant</span><span class="nav-text">Refeitório</span></a>
-            <a href="volume.html" class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"><span class="material-symbols-outlined text-[20px] shrink-0">bar_chart</span><span class="nav-text">Volume de Demandas</span></a>
+            <a
+              href="geral.html"
+              class="flex items-center gap-3 px-4 py-3 bg-accent text-white rounded-2xl text-xs font-bold shadow-lg shadow-accent/20 transition-all hover:translate-x-1 nav-item active"
+              ><span
+                class="material-symbols-outlined text-[20px] shrink-0"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >dashboard</span
+              ><span class="nav-text">Painel Geral</span></a
+            >
+            <a
+              href="chamados.html"
+              class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"
+              ><span class="material-symbols-outlined text-[20px] shrink-0"
+                >confirmation_number</span
+              ><span class="nav-text">Chamados</span></a
+            >
+            <a
+              href="historico.html"
+              class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"
+              ><span class="material-symbols-outlined text-[20px] shrink-0"
+                >check_circle</span
+              ><span class="nav-text">Concluído</span></a
+            >
+            <a
+              href="refeitorio.html"
+              class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"
+              ><span class="material-symbols-outlined text-[20px] shrink-0"
+                >restaurant</span
+              ><span class="nav-text">Refeitório</span></a
+            >
+            <a
+              href="volume.html"
+              class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"
+              ><span class="material-symbols-outlined text-[20px] shrink-0"
+                >bar_chart</span
+              ><span class="nav-text">Volume de Demandas</span></a
+            >
           </div>
         </div>
         <div>
-          <p class="text-[10px] font-black text-slate-400 dark:text-slate-600 uppercase tracking-[0.2em] px-4 mb-4 nav-section-title">Gestão</p>
+          <p
+            class="text-[10px] font-black text-slate-400 dark:text-slate-600 uppercase tracking-[0.2em] px-4 mb-4 nav-section-title"
+          >
+            Gestão
+          </p>
           <div class="space-y-1">
-            <a href="reservas.html" class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"><span class="material-symbols-outlined text-[20px] shrink-0">event_seat</span><span class="nav-text">Reservas</span></a>
-            <a href="calendario.html" class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"><span class="material-symbols-outlined text-[20px] shrink-0">calendar_today</span><span class="nav-text">Calendário</span></a>
-            <a href="avisos.html" class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"><span class="material-symbols-outlined text-[20px] shrink-0">campaign</span><span class="nav-text">Avisos</span></a>
+            <a
+              href="reservas.html"
+              class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"
+              ><span class="material-symbols-outlined text-[20px] shrink-0"
+                >event_seat</span
+              ><span class="nav-text">Reservas</span></a
+            >
+            <a
+              href="calendario.html"
+              class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"
+              ><span class="material-symbols-outlined text-[20px] shrink-0"
+                >calendar_today</span
+              ><span class="nav-text">Calendário</span></a
+            >
+            <a
+              href="avisos.html"
+              class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"
+              ><span class="material-symbols-outlined text-[20px] shrink-0"
+                >campaign</span
+              ><span class="nav-text">Avisos</span></a
+            >
           </div>
         </div>
       </nav>
-      <div class="p-6 border-t border-slate-50 dark:border-darkborder/50 mt-auto">
+      <div
+        class="p-6 border-t border-slate-50 dark:border-darkborder/50 mt-auto"
+      >
         <div class="relative" id="profile-container">
-          <button onclick="toggleProfileDropdown(event)" class="flex items-center gap-3 w-full p-2 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-all group">
-            <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-transparent group-hover:border-accent transition-all shrink-0"><img src="https://ui-avatars.com/api/?name=Admin&background=000&color=fff" alt="Avatar"/></div>
-            <div class="text-left profile-text"><p class="text-xs font-bold text-slate-900 dark:text-white">Admin</p><p class="text-[9px] font-black uppercase tracking-widest text-slate-400">Administrador</p></div>
+          <button
+            onclick="toggleProfileDropdown(event)"
+            class="flex items-center gap-3 w-full p-2 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-all group"
+          >
+            <div
+              class="w-10 h-10 rounded-full overflow-hidden border-2 border-transparent group-hover:border-accent transition-all shrink-0"
+            >
+              <img
+                src="https://ui-avatars.com/api/?name=Admin&background=000&color=fff"
+                alt="Avatar"
+              />
+            </div>
+            <div class="text-left profile-text">
+              <p class="text-xs font-bold text-slate-900 dark:text-white">
+                Admin
+              </p>
+              <p
+                class="text-[9px] font-black uppercase tracking-widest text-slate-400"
+              >
+                Administrador
+              </p>
+            </div>
           </button>
-          <div id="profile-dropdown" class="absolute bottom-full left-0 mb-2 w-full bg-white dark:bg-darkcard border border-slate-100 dark:border-darkborder rounded-2xl shadow-xl hidden z-[600] overflow-hidden animate-dropdown"><button onclick="logout()" class="w-full flex items-center gap-3 px-5 py-4 text-xs font-bold text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"><span class="material-symbols-outlined text-lg">logout</span> Sair</button></div>
+          <div
+            id="profile-dropdown"
+            class="absolute bottom-full left-0 mb-2 w-full bg-white dark:bg-darkcard border border-slate-100 dark:border-darkborder rounded-2xl shadow-xl hidden z-[600] overflow-hidden animate-dropdown"
+          >
+            <button
+              onclick="logout()"
+              class="w-full flex items-center gap-3 px-5 py-4 text-xs font-bold text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+            >
+              <span class="material-symbols-outlined text-lg">logout</span> Sair
+            </button>
+          </div>
         </div>
       </div>
     </aside>
 
     <div id="main-content" class="flex-grow flex flex-col overflow-hidden">
       <!-- Header -->
-      <header class="h-20 bg-white/90 dark:bg-darkcard/90 backdrop-blur-md border-b border-gray-100 dark:border-darkborder flex items-center justify-between px-10 shrink-0 z-[100]">
+      <header
+        class="h-20 bg-white/90 dark:bg-darkcard/90 backdrop-blur-md border-b border-gray-100 dark:border-darkborder flex items-center justify-between px-10 shrink-0 z-[100]"
+      >
         <div class="flex items-center gap-8">
-            <button onclick="toggleSidebar()" class="w-10 h-10 flex items-center justify-center rounded-2xl bg-white dark:bg-slate-800 text-slate-500 hover:text-accent transition-all group"><span class="material-symbols-outlined text-[20px] group-active:scale-90" id="sidebar-toggle-icon">menu_open</span></button>
-            <div><h2 class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Ambiente Operacional</h2><div class="flex items-center gap-2 mt-1"><div class="w-1.5 h-1.5 rounded-full bg-success animate-pulse"></div><p id="welcome-msg" class="text-xs text-slate-600 dark:text-slate-300 font-bold tracking-tight">Status: Monitorando fluxos em tempo real</p></div></div>
+          <button
+            onclick="toggleSidebar()"
+            class="w-10 h-10 flex items-center justify-center rounded-2xl bg-white dark:bg-slate-800 text-slate-500 hover:text-accent transition-all group"
+          >
+            <span
+              class="material-symbols-outlined text-[20px] group-active:scale-90"
+              id="sidebar-toggle-icon"
+              >menu_open</span
+            >
+          </button>
+          <div>
+            <h2
+              class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]"
+            >
+              Ambiente Operacional
+            </h2>
+            <div class="flex items-center gap-2 mt-1">
+              <div
+                class="w-1.5 h-1.5 rounded-full bg-success animate-pulse"
+              ></div>
+              <p
+                id="welcome-msg"
+                class="text-xs text-slate-600 dark:text-slate-300 font-bold tracking-tight"
+              >
+                Status: Monitorando fluxos em tempo real
+              </p>
+            </div>
+          </div>
         </div>
         <div class="flex items-center gap-4">
           <div class="relative" id="chamados-dropdown-container">
-            <button onclick="toggleChamadosDropdown()" id="chamados-dropdown-btn" class="w-10 h-10 flex items-center justify-center rounded-2xl bg-white dark:bg-darkborder text-slate-500 dark:text-slate-400 hover:bg-slate-200 transition-all active:scale-90 relative">
-              <span class="material-symbols-outlined text-[20px]">notifications</span>
-              <span id="chamados-badge" class="absolute -top-1 -right-1 w-4 h-4 bg-danger text-white text-[9px] font-black rounded-full flex items-center justify-center hidden">0</span>
+            <button
+              onclick="toggleChamadosDropdown()"
+              id="chamados-dropdown-btn"
+              class="w-10 h-10 flex items-center justify-center rounded-2xl bg-white dark:bg-darkborder text-slate-500 dark:text-slate-400 hover:bg-slate-200 transition-all active:scale-90 relative"
+            >
+              <span class="material-symbols-outlined text-[20px]"
+                >notifications</span
+              >
+              <span
+                id="chamados-badge"
+                class="absolute -top-1 -right-1 w-4 h-4 bg-danger text-white text-[9px] font-black rounded-full flex items-center justify-center hidden"
+                >0</span
+              >
             </button>
-            <div id="chamados-dropdown-menu" class="absolute right-0 mt-3 w-80 bg-white dark:bg-darkcard border border-gray-100 dark:border-darkborder rounded-[24px] shadow-xl hidden z-[200] animate-dropdown">
-              <div class="p-5 border-b border-gray-50 dark:border-darkborder/50 flex items-center justify-between">
-                <h4 class="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">Notificações</h4>
-                <a href="chamados.html" class="text-[9px] font-black text-accent uppercase hover:underline">Ver todos</a>
+            <div
+              id="chamados-dropdown-menu"
+              class="absolute right-0 mt-3 w-80 bg-white dark:bg-darkcard border border-gray-100 dark:border-darkborder rounded-[24px] shadow-xl hidden z-[200] animate-dropdown"
+            >
+              <div
+                class="p-5 border-b border-gray-50 dark:border-darkborder/50 flex items-center justify-between"
+              >
+                <h4
+                  class="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest"
+                >
+                  Notificações
+                </h4>
+                <a
+                  href="chamados.html"
+                  class="text-[9px] font-black text-accent uppercase hover:underline"
+                  >Ver todos</a
+                >
               </div>
-              <div id="chamados-dropdown-list" class="max-h-[400px] overflow-y-auto custom-scrollbar">
-                <div class="p-8 text-center text-[10px] font-bold text-slate-400 uppercase">Nenhum chamado aberto</div>
+              <div
+                id="chamados-dropdown-list"
+                class="max-h-[400px] overflow-y-auto custom-scrollbar"
+              >
+                <div
+                  class="p-8 text-center text-[10px] font-bold text-slate-400 uppercase"
+                >
+                  Nenhum chamado aberto
+                </div>
               </div>
             </div>
           </div>
-          <button onclick="toggleTheme()" id="theme-toggle" class="w-10 h-10 flex items-center justify-center rounded-2xl bg-white dark:bg-darkborder text-slate-500 dark:text-slate-400 hover:bg-slate-200 transition-all active:scale-90 shadow-sm"><span id="theme-icon" class="material-symbols-outlined text-[20px]">dark_mode</span></button>
-          <button onclick="fetchData()" class="w-10 h-10 flex items-center justify-center rounded-2xl bg-accent text-white hover:opacity-90 active:scale-90 shadow-lg shadow-accent/20"><span class="material-symbols-outlined text-[20px]">refresh</span></button>
+          <button
+            onclick="toggleTheme()"
+            id="theme-toggle"
+            class="w-10 h-10 flex items-center justify-center rounded-2xl bg-white dark:bg-darkborder text-slate-500 dark:text-slate-400 hover:bg-slate-200 transition-all active:scale-90 shadow-sm"
+          >
+            <span id="theme-icon" class="material-symbols-outlined text-[20px]"
+              >dark_mode</span
+            >
+          </button>
+          <button
+            onclick="fetchData()"
+            class="w-10 h-10 flex items-center justify-center rounded-2xl bg-accent text-white hover:opacity-90 active:scale-90 shadow-lg shadow-accent/20"
+          >
+            <span class="material-symbols-outlined text-[20px]">refresh</span>
+          </button>
         </div>
       </header>
 
       <div class="flex-grow flex overflow-hidden">
-        <main class="flex-grow overflow-y-auto custom-scrollbar p-10 space-y-10">
+        <main
+          class="flex-grow overflow-y-auto custom-scrollbar p-10 space-y-10"
+        >
           <!-- KPIs -->
           <section class="grid grid-cols-1 md:grid-cols-5 gap-6">
             <div class="premium-card p-6">
-                <p class="text-[10px] font-bold text-slate-400 uppercase mb-3 tracking-widest">Abertos</p>
-                <div class="flex items-baseline justify-between"><p id="kpi-open" class="text-4xl font-black text-slate-900 dark:text-white tracking-tighter">0</p><div class="trend-badge trend-positive"><span class="material-symbols-outlined text-xs">arrow_upward</span> 12%</div></div>
+              <p
+                class="text-[10px] font-bold text-slate-400 uppercase mb-3 tracking-widest"
+              >
+                Abertos
+              </p>
+              <div class="flex items-baseline justify-between">
+                <p
+                  id="kpi-open"
+                  class="text-4xl font-black text-slate-900 dark:text-white tracking-tighter"
+                >
+                  0
+                </p>
+                <div class="trend-badge trend-positive">
+                  <span class="material-symbols-outlined text-xs"
+                    >arrow_upward</span
+                  >
+                  12%
+                </div>
+              </div>
             </div>
             <div class="premium-card p-6">
-                <p class="text-[10px] font-bold text-slate-400 uppercase mb-3 tracking-widest">Resolução</p>
-                <div class="flex items-baseline justify-between"><p id="kpi-mttr" class="text-4xl font-black text-slate-900 dark:text-white tracking-tighter">2.4h</p><div class="trend-badge trend-positive"><span class="material-symbols-outlined text-xs">trending_down</span> 0.3h</div></div>
+              <p
+                class="text-[10px] font-bold text-slate-400 uppercase mb-3 tracking-widest"
+              >
+                Resolução
+              </p>
+              <div class="flex items-baseline justify-between">
+                <p
+                  id="kpi-mttr"
+                  class="text-4xl font-black text-slate-900 dark:text-white tracking-tighter"
+                >
+                  2.4h
+                </p>
+                <div class="trend-badge trend-positive">
+                  <span class="material-symbols-outlined text-xs"
+                    >trending_down</span
+                  >
+                  0.3h
+                </div>
+              </div>
             </div>
             <div class="premium-card p-6">
-                <p class="text-[10px] font-bold text-slate-400 uppercase mb-3 tracking-widest">SLA</p>
-                <div class="flex items-baseline justify-between"><p id="kpi-sla" class="text-4xl font-black text-slate-900 dark:text-white tracking-tighter">94%</p><div class="trend-badge trend-negative"><span class="material-symbols-outlined text-xs">trending_down</span> 2%</div></div>
+              <p
+                class="text-[10px] font-bold text-slate-400 uppercase mb-3 tracking-widest"
+              >
+                SLA
+              </p>
+              <div class="flex items-baseline justify-between">
+                <p
+                  id="kpi-sla"
+                  class="text-4xl font-black text-slate-900 dark:text-white tracking-tighter"
+                >
+                  94%
+                </p>
+                <div class="trend-badge trend-negative">
+                  <span class="material-symbols-outlined text-xs"
+                    >trending_down</span
+                  >
+                  2%
+                </div>
+              </div>
             </div>
-            <div class="bg-red-50 dark:bg-red-900/20 border-2 border-danger rounded-[24px] shadow-lg shadow-danger/30 transition-all duration-300 ease-out hover:translate-y-[-2px] p-6">
-                <p class="text-[11px] font-black text-danger uppercase mb-3 tracking-widest">Alertas Críticos</p>
-                <div class="flex items-baseline justify-between"><p id="kpi-critical" class="text-4xl font-black text-danger dark:text-red-400 tracking-tighter">0</p><span class="material-symbols-outlined text-danger animate-pulse text-4xl drop-shadow-md">emergency</span></div>
+            <div
+              class="bg-red-50 dark:bg-red-900/20 border-2 border-danger rounded-[24px] shadow-lg shadow-danger/30 transition-all duration-300 ease-out hover:translate-y-[-2px] p-6"
+            >
+              <p
+                class="text-[11px] font-black text-danger uppercase mb-3 tracking-widest"
+              >
+                Alertas Críticos
+              </p>
+              <div class="flex items-baseline justify-between">
+                <p
+                  id="kpi-critical"
+                  class="text-4xl font-black text-danger dark:text-red-400 tracking-tighter"
+                >
+                  0
+                </p>
+                <span
+                  class="material-symbols-outlined text-danger animate-pulse text-4xl drop-shadow-md"
+                  >emergency</span
+                >
+              </div>
             </div>
             <div class="premium-card p-6">
-                <p class="text-[10px] font-bold text-slate-400 uppercase mb-3 tracking-widest">Status</p>
-                <p id="kpi-trend" class="text-xl font-black text-success uppercase tracking-tight">Normal</p>
+              <p
+                class="text-[10px] font-bold text-slate-400 uppercase mb-3 tracking-widest"
+              >
+                Status
+              </p>
+              <p
+                id="kpi-trend"
+                class="text-xl font-black text-success uppercase tracking-tight"
+              >
+                Normal
+              </p>
             </div>
           </section>
 
           <!-- Evolution Chart & Queue -->
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
-              <section class="premium-card p-10 flex flex-col h-[450px] lg:col-span-2">
-                  <div class="flex items-center justify-between mb-10">
-                      <div><h3 class="font-black text-slate-900 dark:text-white text-sm uppercase tracking-[0.2em]">Evolução Operacional</h3><p class="text-[9px] subtext-accessible font-bold uppercase tracking-widest mt-1">Dados reais de Chamados vs Resolução</p></div>
-                      <div class="flex gap-4">
-                          <div class="flex items-center gap-1.5 px-3 py-1.5 bg-slate-50 dark:bg-slate-800 rounded-lg"><span class="w-3 h-3 rounded bg-info"></span><span class="text-[9px] font-black uppercase text-slate-400">Abertos</span></div>
-                          <div class="flex items-center gap-1.5 px-3 py-1.5 bg-slate-50 dark:bg-slate-800 rounded-lg"><span class="w-3 h-0.5 bg-success"></span><span class="text-[9px] font-black uppercase text-slate-400">Resolvidos</span></div>
-                          <div class="flex items-center gap-1.5 px-3 py-1.5 border border-dashed border-danger/30 rounded-lg"><span class="text-[9px] font-black uppercase text-danger/50">Meta SLA</span></div>
-                      </div>
+            <section
+              class="premium-card p-10 flex flex-col h-[450px] lg:col-span-2"
+            >
+              <div class="flex items-center justify-between mb-10">
+                <div>
+                  <h3
+                    class="font-black text-slate-900 dark:text-white text-sm uppercase tracking-[0.2em]"
+                  >
+                    Evolução Operacional
+                  </h3>
+                  <p
+                    class="text-[9px] subtext-accessible font-bold uppercase tracking-widest mt-1"
+                  >
+                    Dados reais de Chamados vs Resolução
+                  </p>
+                </div>
+                <div class="flex gap-4">
+                  <div
+                    class="flex items-center gap-1.5 px-3 py-1.5 bg-slate-50 dark:bg-slate-800 rounded-lg"
+                  >
+                    <span class="w-3 h-3 rounded bg-info"></span
+                    ><span
+                      class="text-[9px] font-black uppercase text-slate-400"
+                      >Abertos</span
+                    >
                   </div>
-                  <div class="flex-grow relative"><canvas id="evolutionChart"></canvas></div>
-              </section>
-              <section class="premium-card p-10 flex flex-col h-[450px]">
-                  <div class="flex items-center justify-between mb-10"><h3 class="font-black text-slate-900 dark:text-white text-sm uppercase tracking-[0.2em]">Fila Operacional</h3><span class="material-symbols-outlined text-slate-300 dark:text-slate-600">reorder</span></div>
-                  <div id="operational-queue" class="space-y-6 flex-grow"></div>
-              </section>
+                  <div
+                    class="flex items-center gap-1.5 px-3 py-1.5 bg-slate-50 dark:bg-slate-800 rounded-lg"
+                  >
+                    <span class="w-3 h-0.5 bg-success"></span
+                    ><span
+                      class="text-[9px] font-black uppercase text-slate-400"
+                      >Resolvidos</span
+                    >
+                  </div>
+                  <div
+                    class="flex items-center gap-1.5 px-3 py-1.5 border border-dashed border-danger/30 rounded-lg"
+                  >
+                    <span class="text-[9px] font-black uppercase text-danger/50"
+                      >Meta SLA</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="flex-grow relative">
+                <canvas id="evolutionChart"></canvas>
+              </div>
+            </section>
+            <section class="premium-card p-10 flex flex-col h-[450px]">
+              <div class="flex items-center justify-between mb-10">
+                <h3
+                  class="font-black text-slate-900 dark:text-white text-sm uppercase tracking-[0.2em]"
+                >
+                  Fila Operacional
+                </h3>
+                <span
+                  class="material-symbols-outlined text-slate-300 dark:text-slate-600"
+                  >reorder</span
+                >
+              </div>
+              <div id="operational-queue" class="space-y-6 flex-grow"></div>
+            </section>
           </div>
 
-          <!-- Category Table -->
-          <section class="premium-card overflow-hidden">
-              <div class="p-8 border-b border-slate-50 dark:border-darkborder/50 flex items-center justify-between">
-                  <div><h3 class="font-black text-slate-900 dark:text-white text-sm uppercase tracking-[0.2em]">Detalhamento por Setor</h3><p class="text-[9px] font-bold text-slate-400 uppercase mt-1">Resumo das últimas ocorrências</p></div>
-              </div>
-              <div class="overflow-x-auto">
-                  <table class="w-full text-left">
-                      <thead><tr class="bg-slate-50/50 dark:bg-slate-800/30 text-[9px] font-black text-slate-400 uppercase tracking-widest"><th class="px-8 py-4">Categoria</th><th class="px-8 py-4">Última Ocorrência</th><th class="px-8 py-4">Solicitante</th><th class="px-8 py-4">Local</th><th class="px-8 py-4 text-right">Horário</th></tr></thead>
-                      <tbody id="category-details-tbody" class="divide-y divide-slate-50 dark:divide-darkborder/30"></tbody>
-                  </table>
-              </div>
-          </section>
-
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-              <!-- Categorias Chart -->
-              <section class="bg-white dark:bg-darkcard border border-white dark:border-darkborder p-10 flex flex-col min-h-[400px] rounded-[32px] shadow-sm">
-                  <div class="flex items-center justify-between mb-8"><h3 class="font-black text-slate-900 dark:text-white text-sm uppercase tracking-[0.2em]">Demandas por Categoria</h3><span class="material-symbols-outlined text-slate-300 dark:text-slate-600">bar_chart</span></div>
-                  <div class="flex-grow relative"><canvas id="categoryChart"></canvas></div>
-              </section>
+            <!-- Categorias Chart -->
+            <section
+              class="bg-white dark:bg-darkcard border border-white dark:border-darkborder p-10 flex flex-col min-h-[400px] rounded-[32px] shadow-sm"
+            >
+              <div class="flex items-center justify-between mb-8">
+                <h3
+                  class="font-black text-slate-900 dark:text-white text-sm uppercase tracking-[0.2em]"
+                >
+                  Demandas por Categoria
+                </h3>
+                <span
+                  class="material-symbols-outlined text-slate-300 dark:text-slate-600"
+                  >bar_chart</span
+                >
+              </div>
+              <div class="flex-grow relative">
+                <canvas id="categoryChart"></canvas>
+              </div>
+            </section>
 
-              <!-- Heatmap -->
-              <section class="bg-white dark:bg-darkcard border border-white dark:border-darkborder p-10 flex flex-col min-h-[400px] rounded-[32px] shadow-sm">
-                  <div class="flex items-center justify-between mb-8"><div><h3 class="font-black text-slate-900 dark:text-white text-sm uppercase tracking-[0.2em]">Mapa de Calor</h3><p class="text-[9px] subtext-accessible font-bold uppercase tracking-widest mt-1">Frequência por dia e turno</p></div></div>
-                  <div class="flex-grow flex flex-col justify-center w-full">
-                      <div class="flex justify-between text-[8px] font-black text-slate-400 dark:text-slate-600 mb-2 px-1"><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sab</span><span>Dom</span></div>
-                      <div id="weekly-heatmap" class="heatmap-grid"></div>
-                      <div class="mt-8 flex items-center justify-between border-t border-slate-100 dark:border-darkborder/50 pt-4">
-                          <div class="flex items-center gap-2"><span class="w-6 h-6 rounded-md bg-accent/5 flex items-center justify-center text-[9px] font-black text-slate-400 dark:text-slate-600">0-2</span></div>
-                          <div class="flex items-center gap-2"><span class="w-6 h-6 rounded-md bg-accent/40 flex items-center justify-center text-[9px] font-black text-slate-900 dark:text-white">3-5</span></div>
-                          <div class="flex items-center gap-2"><span class="w-6 h-6 rounded-md bg-accent flex items-center justify-center text-[9px] font-black text-white">6+</span></div>
-                      </div>
+            <!-- Heatmap -->
+            <section
+              class="bg-white dark:bg-darkcard border border-white dark:border-darkborder p-10 flex flex-col min-h-[400px] rounded-[32px] shadow-sm"
+            >
+              <div class="flex items-center justify-between mb-8">
+                <div>
+                  <h3
+                    class="font-black text-slate-900 dark:text-white text-sm uppercase tracking-[0.2em]"
+                  >
+                    Mapa de Calor
+                  </h3>
+                  <p
+                    class="text-[9px] subtext-accessible font-bold uppercase tracking-widest mt-1"
+                  >
+                    Frequência por dia e turno
+                  </p>
+                </div>
+              </div>
+              <div class="flex-grow flex flex-col justify-center w-full">
+                <div
+                  class="flex justify-between text-[8px] font-black text-slate-400 dark:text-slate-600 mb-2 px-1"
+                >
+                  <span>Seg</span><span>Ter</span><span>Qua</span
+                  ><span>Qui</span><span>Sex</span><span>Sab</span
+                  ><span>Dom</span>
+                </div>
+                <div id="weekly-heatmap" class="heatmap-grid"></div>
+                <div
+                  class="mt-8 flex items-center justify-between border-t border-slate-100 dark:border-darkborder/50 pt-4"
+                >
+                  <div class="flex items-center gap-2">
+                    <span
+                      class="w-6 h-6 rounded-md bg-accent/5 flex items-center justify-center text-[9px] font-black text-slate-400 dark:text-slate-600"
+                      >0-2</span
+                    >
                   </div>
-              </section>
+                  <div class="flex items-center gap-2">
+                    <span
+                      class="w-6 h-6 rounded-md bg-accent/40 flex items-center justify-center text-[9px] font-black text-slate-900 dark:text-white"
+                      >3-5</span
+                    >
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span
+                      class="w-6 h-6 rounded-md bg-accent flex items-center justify-center text-[9px] font-black text-white"
+                      >6+</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </section>
           </div>
 
           <!-- Locais Críticos -->
-          <section class="bg-white dark:bg-darkcard border border-white dark:border-darkborder p-10 flex flex-col rounded-[32px] shadow-sm">
-              <div class="flex items-center justify-between mb-8">
-                  <div><h3 class="font-black text-slate-900 dark:text-white text-sm uppercase tracking-[0.2em]">Locais Críticos</h3><p class="text-[9px] subtext-accessible font-bold uppercase tracking-widest mt-1">Tempo médio de resolução por local</p></div>
-                  <span class="material-symbols-outlined text-danger">warning</span>
+          <section
+            class="bg-white dark:bg-darkcard border border-white dark:border-darkborder p-10 flex flex-col rounded-[32px] shadow-sm"
+          >
+            <div class="flex items-center justify-between mb-8">
+              <div>
+                <h3
+                  class="font-black text-slate-900 dark:text-white text-sm uppercase tracking-[0.2em]"
+                >
+                  Locais Críticos
+                </h3>
+                <p
+                  class="text-[9px] subtext-accessible font-bold uppercase tracking-widest mt-1"
+                >
+                  Tempo médio de resolução por local
+                </p>
               </div>
-              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="critical-locations-grid">
-                  <!-- JS Render -->
+              <span class="material-symbols-outlined text-danger">warning</span>
+            </div>
+            <div
+              class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+              id="critical-locations-grid"
+            >
+              <!-- JS Render -->
+            </div>
+          </section>
+
+          <!-- Blocos com mais ocorrências -->
+          <section class="premium-card p-10">
+            <div class="flex items-center justify-between mb-8">
+              <div>
+                <h3
+                  class="font-black text-slate-900 dark:text-white text-sm uppercase tracking-[0.2em]"
+                >
+                  Blocos com mais ocorrências
+                </h3>
+                <p class="text-[9px] font-bold text-slate-400 uppercase mt-1">
+                  Ranking por volume de chamados
+                </p>
               </div>
+              <span
+                class="material-symbols-outlined text-slate-300 dark:text-slate-600"
+                >apartment</span
+              >
+            </div>
+            <div
+              class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+              id="top-blocks-grid"
+            >
+              <!-- JS Render -->
+            </div>
           </section>
         </main>
 
         <!-- Sidebar Monitoring -->
-        <aside class="w-80 bg-white dark:bg-darkcard border-l border-transparent dark:border-darkborder flex flex-col shrink-0 z-40">
-          <div class="p-8 border-b border-slate-100 dark:border-darkborder/50 bg-white dark:bg-darkcard space-y-6 shrink-0">
+        <aside
+          class="w-80 bg-white dark:bg-darkcard border-l border-transparent dark:border-darkborder flex flex-col shrink-0 z-40"
+        >
+          <div
+            class="p-8 border-b border-slate-100 dark:border-darkborder/50 bg-white dark:bg-darkcard space-y-6 shrink-0"
+          >
             <div class="flex items-center justify-between">
-                <div><h4 class="font-black text-[11px] uppercase tracking-[0.2em] text-slate-900 dark:text-white">Gestão de Equipe</h4><p class="text-[9px] subtext-accessible font-bold uppercase tracking-widest mt-1">Capacidade Operacional</p></div>
-                <span class="material-symbols-outlined text-slate-300 dark:text-slate-600 text-sm">groups</span>
+              <div>
+                <h4
+                  class="font-black text-[11px] uppercase tracking-[0.2em] text-slate-900 dark:text-white"
+                >
+                  Gestão de Equipe
+                </h4>
+                <p
+                  class="text-[9px] subtext-accessible font-bold uppercase tracking-widest mt-1"
+                >
+                  Capacidade Operacional
+                </p>
+              </div>
+              <span
+                class="material-symbols-outlined text-slate-300 dark:text-slate-600 text-sm"
+                >groups</span
+              >
             </div>
             <div id="service-team-list" class="space-y-4"></div>
           </div>
 
-          <div class="flex-grow flex flex-col overflow-hidden bg-white dark:bg-darkbg/20">
-              <div class="p-8 pb-4 shrink-0 flex items-center justify-between">
-                  <h4 class="font-black text-[11px] uppercase tracking-[0.2em] text-slate-900 dark:text-white">Feed de Atividade</h4>
-                  <span class="material-symbols-outlined text-slate-300 dark:text-slate-600 text-sm">notifications</span>
-              </div>
-              <div class="flex-grow overflow-y-auto custom-scrollbar px-8 pb-8 space-y-3" id="system-log"></div>
+          <div
+            class="flex-grow flex flex-col overflow-hidden bg-white dark:bg-darkbg/20"
+          >
+            <div class="p-8 pb-4 shrink-0 flex items-center justify-between">
+              <h4
+                class="font-black text-[11px] uppercase tracking-[0.2em] text-slate-900 dark:text-white"
+              >
+                Feed de Atividade
+              </h4>
+              <span
+                class="material-symbols-outlined text-slate-300 dark:text-slate-600 text-sm"
+                >notifications</span
+              >
+            </div>
+            <div
+              class="flex-grow overflow-y-auto custom-scrollbar px-8 pb-8 space-y-3"
+              id="system-log"
+            ></div>
           </div>
         </aside>
       </div>
@@ -260,75 +798,154 @@
 
     <script>
       (() => {
-        let allTickets = []; let allReservas = []; let alerts = []; let evolutionChart = null; let categoryChart = null;
+        let allTickets = [];
+        let allReservas = [];
+        let alerts = [];
+        let evolutionChart = null;
+        let categoryChart = null;
 
         // --- DEFINITIONS ---
         function calculateChartData(status) {
-            const days = [0,0,0,0,0,0,0];
-            allTickets.forEach(t => {
-                if(t.status === status || (status === 'Aberto' && t.status !== 'Concluído')) {
-                    const day = new Date(t.criadoEm).getDay();
-                    const index = day === 0 ? 6 : day - 1;
-                    days[index]++;
-                }
-            });
-            return days;
+          const days = [0, 0, 0, 0, 0, 0, 0];
+          allTickets.forEach((t) => {
+            if (
+              t.status === status ||
+              (status === "Aberto" && t.status !== "Concluído")
+            ) {
+              const day = new Date(t.criadoEm).getDay();
+              const index = day === 0 ? 6 : day - 1;
+              days[index]++;
+            }
+          });
+          return days;
         }
 
         function calculateCategoryStats() {
-            const s = { Limpeza: 0, Hidráulica: 0, ArCondicionado: 0, Elétrica: 0, Mobiliário: 0, Outros: 0 };
-            allTickets.forEach(t => {
-                const title = (t.titulo || "").toLowerCase();
-                const desc = (t.descricao || "").toLowerCase();
-                const content = title + " " + desc;
-                if (content.includes('limpeza')) s.Limpeza++;
-                else if (content.includes('vazamento') || content.includes('hidráulica') || content.includes('água')) s.Hidráulica++;
-                else if (content.includes('ar condicionado') || content.includes('climatização')) s.ArCondicionado++;
-                else if (content.includes('lâmpada') || content.includes('elétrica') || content.includes('luz')) s.Elétrica++;
-                else if (content.includes('mobiliário') || content.includes('mesa') || content.includes('cadeira')) s.Mobiliário++;
-                else s.Outros++;
-            });
-            return s;
+          const s = {
+            Limpeza: 0,
+            Hidráulica: 0,
+            ArCondicionado: 0,
+            Elétrica: 0,
+            Mobiliário: 0,
+            Outros: 0,
+          };
+          allTickets.forEach((t) => {
+            const title = (t.titulo || "").toLowerCase();
+            const desc = (t.descricao || "").toLowerCase();
+            const content = title + " " + desc;
+            if (content.includes("limpeza")) s.Limpeza++;
+            else if (
+              content.includes("vazamento") ||
+              content.includes("hidráulica") ||
+              content.includes("água")
+            )
+              s.Hidráulica++;
+            else if (
+              content.includes("ar condicionado") ||
+              content.includes("climatização")
+            )
+              s.ArCondicionado++;
+            else if (
+              content.includes("lâmpada") ||
+              content.includes("elétrica") ||
+              content.includes("luz")
+            )
+              s.Elétrica++;
+            else if (
+              content.includes("mobiliário") ||
+              content.includes("mesa") ||
+              content.includes("cadeira")
+            )
+              s.Mobiliário++;
+            else s.Outros++;
+          });
+          return s;
         }
 
         function initCharts() {
           const isDark = document.documentElement.classList.contains("dark");
           const textColor = "#64748b";
-          const gridColor = isDark ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.03)";
-          
+          const gridColor = isDark
+            ? "rgba(255,255,255,0.03)"
+            : "rgba(0,0,0,0.03)";
+
           const evCtx = document.getElementById("evolutionChart");
           if (evCtx) {
             const ctx = evCtx.getContext("2d");
             if (evolutionChart) evolutionChart.destroy();
             evolutionChart = new Chart(ctx, {
-              type: 'bar',
+              type: "bar",
               data: {
-                labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab', 'Dom'],
+                labels: ["Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"],
                 datasets: [
-                  { label: 'Abertos', data: calculateChartData('Aberto'), backgroundColor: '#3b82f6', borderRadius: 4, barThickness: 24, order: 2 },
-                  { label: 'Resolvidos', type: 'line', data: calculateChartData('Concluído'), borderColor: '#10b981', backgroundColor: 'transparent', fill: false, tension: 0.4, borderWidth: 3, pointRadius: 5, pointBackgroundColor: '#10b981', order: 1 }
-                ]
+                  {
+                    label: "Abertos",
+                    data: calculateChartData("Aberto"),
+                    backgroundColor: "#3b82f6",
+                    borderRadius: 4,
+                    barThickness: 24,
+                    order: 2,
+                  },
+                  {
+                    label: "Resolvidos",
+                    type: "line",
+                    data: calculateChartData("Concluído"),
+                    borderColor: "#10b981",
+                    backgroundColor: "transparent",
+                    fill: false,
+                    tension: 0.4,
+                    borderWidth: 3,
+                    pointRadius: 5,
+                    pointBackgroundColor: "#10b981",
+                    order: 1,
+                  },
+                ],
               },
               options: {
-                responsive: true, maintainAspectRatio: false,
+                responsive: true,
+                maintainAspectRatio: false,
                 plugins: { legend: { display: false } },
                 scales: {
-                  x: { grid: { display: false }, ticks: { color: textColor, font: { size: 10, weight: 'bold' } } },
-                  y: { grid: { color: gridColor }, ticks: { color: textColor, font: { size: 10 } }, suggestedMax: 25 }
-                }
+                  x: {
+                    grid: { display: false },
+                    ticks: {
+                      color: textColor,
+                      font: { size: 10, weight: "bold" },
+                    },
+                  },
+                  y: {
+                    grid: { color: gridColor },
+                    ticks: { color: textColor, font: { size: 10 } },
+                    suggestedMax: 25,
+                  },
+                },
               },
-              plugins: [{
-                  id: 'sla-line',
+              plugins: [
+                {
+                  id: "sla-line",
                   afterDraw: (chart) => {
-                      const { ctx, chartArea: { left, right }, scales: { y } } = chart;
-                      const yPos = y.getPixelForValue(20);
-                      if (yPos < y.top || yPos > y.bottom) return;
-                      ctx.save(); ctx.beginPath(); ctx.setLineDash([5, 5]); ctx.moveTo(left, yPos); ctx.lineTo(right, yPos);
-                      ctx.strokeStyle = '#ef4444'; ctx.lineWidth = 2; ctx.stroke();
-                      ctx.fillStyle = '#ef4444'; ctx.font = 'bold 9px Inter'; ctx.fillText('META SLA', left + 5, yPos - 5);
-                      ctx.restore();
-                  }
-              }]
+                    const {
+                      ctx,
+                      chartArea: { left, right },
+                      scales: { y },
+                    } = chart;
+                    const yPos = y.getPixelForValue(20);
+                    if (yPos < y.top || yPos > y.bottom) return;
+                    ctx.save();
+                    ctx.beginPath();
+                    ctx.setLineDash([5, 5]);
+                    ctx.moveTo(left, yPos);
+                    ctx.lineTo(right, yPos);
+                    ctx.strokeStyle = "#ef4444";
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+                    ctx.fillStyle = "#ef4444";
+                    ctx.font = "bold 9px Inter";
+                    ctx.fillText("META SLA", left + 5, yPos - 5);
+                    ctx.restore();
+                  },
+                },
+              ],
             });
           }
 
@@ -338,50 +955,101 @@
             if (categoryChart) categoryChart.destroy();
             const stats = calculateCategoryStats();
             categoryChart = new Chart(ctx, {
-              type: 'bar',
-              data: { 
-                  labels: ['Limpeza', 'Hidráulica', 'Ar Condicionado', 'Elétrica', 'Mobiliário', 'Outros'], 
-                  datasets: [{ data: [stats.Limpeza, stats.Hidráulica, stats.ArCondicionado, stats.Elétrica, stats.Mobiliário, stats.Outros], backgroundColor: '#8b5cf6', borderRadius: 8, barThickness: 16 }] 
+              type: "bar",
+              data: {
+                labels: [
+                  "Limpeza",
+                  "Hidráulica",
+                  "Ar Condicionado",
+                  "Elétrica",
+                  "Mobiliário",
+                  "Outros",
+                ],
+                datasets: [
+                  {
+                    data: [
+                      stats.Limpeza,
+                      stats.Hidráulica,
+                      stats.ArCondicionado,
+                      stats.Elétrica,
+                      stats.Mobiliário,
+                      stats.Outros,
+                    ],
+                    backgroundColor: "#8b5cf6",
+                    borderRadius: 8,
+                    barThickness: 16,
+                  },
+                ],
               },
-              options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { display: false }, ticks: { color: textColor, font: { size: 10, weight: 'bold' }, stepSize: 1 } }, y: { grid: { display: false }, ticks: { color: textColor, font: { size: 10, weight: 'bold' } } } } }
+              options: {
+                indexAxis: "y",
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                  x: {
+                    grid: { display: false },
+                    ticks: {
+                      color: textColor,
+                      font: { size: 10, weight: "bold" },
+                      stepSize: 1,
+                    },
+                  },
+                  y: {
+                    grid: { display: false },
+                    ticks: {
+                      color: textColor,
+                      font: { size: 10, weight: "bold" },
+                    },
+                  },
+                },
+              },
             });
           }
         }
 
         function updateStats() {
-          const open = allTickets.filter(t => t.status !== "Concluído");
-          const critCount = allTickets.filter(t => t.prioridade === "Alta" && t.status !== "Concluído").length;
-          const k1 = document.getElementById("kpi-open"); if(k1) k1.textContent = open.length;
-          const k2 = document.getElementById("kpi-critical"); if(k2) k2.textContent = critCount;
+          const open = allTickets.filter((t) => t.status !== "Concluído");
+          const critCount = allTickets.filter(
+            (t) => t.prioridade === "Alta" && t.status !== "Concluído",
+          ).length;
+          const k1 = document.getElementById("kpi-open");
+          if (k1) k1.textContent = open.length;
+          const k2 = document.getElementById("kpi-critical");
+          if (k2) k2.textContent = critCount;
           const kt = document.getElementById("kpi-trend");
           if (kt) {
-              kt.textContent = open.length > 10 ? "SOBRECARGA" : "NORMAL";
-              kt.className = `text-xl font-black uppercase tracking-tight ${open.length > 10 ? 'text-danger' : 'text-success'}`;
+            kt.textContent = open.length > 10 ? "SOBRECARGA" : "NORMAL";
+            kt.className = `text-xl font-black uppercase tracking-tight ${open.length > 10 ? "text-danger" : "text-success"}`;
           }
 
           // Dynamic MTTR & SLA
-          const closed = allTickets.filter(t => t.status === "Concluído" && t.atualizadoEm);
+          const closed = allTickets.filter(
+            (t) => t.status === "Concluído" && t.atualizadoEm,
+          );
           let mttr = 2.4; // Default fallback
           let slaPercent = 94; // Default fallback
-          
+
           if (closed.length > 0) {
-              const totalHours = closed.reduce((acc, t) => {
-                  const created = new Date(t.criadoEm);
-                  const updated = new Date(t.atualizadoEm);
-                  return acc + (updated - created) / (1000 * 60 * 60);
-              }, 0);
-              mttr = totalHours / closed.length;
-              
-              const withinSla = closed.filter(t => {
-                  const hours = (new Date(t.atualizadoEm) - new Date(t.criadoEm)) / (1000 * 60 * 60);
-                  return hours <= 2; // Assuming 2 hours is the SLA target
-              }).length;
-              slaPercent = (withinSla / closed.length) * 100;
+            const totalHours = closed.reduce((acc, t) => {
+              const created = new Date(t.criadoEm);
+              const updated = new Date(t.atualizadoEm);
+              return acc + (updated - created) / (1000 * 60 * 60);
+            }, 0);
+            mttr = totalHours / closed.length;
+
+            const withinSla = closed.filter((t) => {
+              const hours =
+                (new Date(t.atualizadoEm) - new Date(t.criadoEm)) /
+                (1000 * 60 * 60);
+              return hours <= 2; // Assuming 2 hours is the SLA target
+            }).length;
+            slaPercent = (withinSla / closed.length) * 100;
           }
 
           const kMttr = document.getElementById("kpi-mttr");
           if (kMttr) kMttr.textContent = mttr.toFixed(1) + "h";
-          
+
           const kSla = document.getElementById("kpi-sla");
           if (kSla) kSla.textContent = Math.round(slaPercent) + "%";
         }
@@ -389,108 +1057,246 @@
         function renderQueue() {
           const container = document.getElementById("operational-queue");
           if (!container) return;
-          const waiting = allTickets.filter(t => t.status === 'Aberto');
-          const inProgress = allTickets.filter(t => t.status === 'Em progresso');
-          let oldestTime = "--:--"; let isWaitingDelayed = false;
+          const waiting = allTickets.filter((t) => t.status === "Aberto");
+          const inProgress = allTickets.filter(
+            (t) => t.status === "Em progresso",
+          );
+          let oldestTime = "--:--";
+          let isWaitingDelayed = false;
           if (waiting.length > 0) {
-              const oldest = waiting.reduce((a, b) => new Date(a.criadoEm) < new Date(b.criadoEm) ? a : b);
-              oldestTime = new Date(oldest.criadoEm).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
-              if ((new Date() - new Date(oldest.criadoEm)) / (1000 * 60) > 30) isWaitingDelayed = true;
+            const oldest = waiting.reduce((a, b) =>
+              new Date(a.criadoEm) < new Date(b.criadoEm) ? a : b,
+            );
+            oldestTime = new Date(oldest.criadoEm).toLocaleTimeString([], {
+              hour: "2-digit",
+              minute: "2-digit",
+            });
+            if ((new Date() - new Date(oldest.criadoEm)) / (1000 * 60) > 30)
+              isWaitingDelayed = true;
           }
-          const slaRisk = allTickets.filter(t => t.status !== 'Concluído' && (new Date() - new Date(t.criadoEm)) > (1000 * 60 * 120)).length;
-          const stats = [ 
-              { label: 'Aguardando', count: waiting.length, color: 'bg-info', icon: 'schedule', sub: `Antigo: ${oldestTime}`, delayed: isWaitingDelayed }, 
-              { label: 'Em Atendimento', count: inProgress.length, color: 'bg-warning', icon: 'handyman', sub: 'Fluxo ativo' },
-              { label: 'SLA em Risco', count: slaRisk, color: 'bg-danger', icon: 'notification_important', sub: 'Ação requerida', isRisk: true }
+          const slaRisk = allTickets.filter(
+            (t) =>
+              t.status !== "Concluído" &&
+              new Date() - new Date(t.criadoEm) > 1000 * 60 * 120,
+          ).length;
+          const stats = [
+            {
+              label: "Aguardando",
+              count: waiting.length,
+              color: "bg-info",
+              icon: "schedule",
+              sub: `Antigo: ${oldestTime}`,
+              delayed: isWaitingDelayed,
+            },
+            {
+              label: "Em Atendimento",
+              count: inProgress.length,
+              color: "bg-warning",
+              icon: "handyman",
+              sub: "Fluxo ativo",
+            },
+            {
+              label: "SLA em Risco",
+              count: slaRisk,
+              color: "bg-danger",
+              icon: "notification_important",
+              sub: "Ação requerida",
+              isRisk: true,
+            },
           ];
-          container.innerHTML = stats.map(s => `
+          container.innerHTML = stats
+            .map(
+              (s) => `
             <div class="block space-y-3 group p-2 rounded-xl">
                 <div class="flex justify-between items-start">
                     <div class="flex items-center gap-2.5">
                         <span class="material-symbols-outlined text-sm text-slate-400 group-hover:text-accent transition-colors">${s.icon}</span>
-                        <div><span class="text-[10px] font-black text-slate-400 uppercase tracking-widest block leading-none">${s.label}</span><span class="text-[8px] font-bold ${s.isRisk ? 'text-danger' : 'text-slate-300'} uppercase mt-1">${s.sub}</span></div>
+                        <div><span class="text-[10px] font-black text-slate-400 uppercase tracking-widest block leading-none">${s.label}</span><span class="text-[8px] font-bold ${s.isRisk ? "text-danger" : "text-slate-300"} uppercase mt-1">${s.sub}</span></div>
                     </div>
-                    <span class="text-xl font-black ${s.delayed ? 'text-warning' : 'text-slate-900 dark:text-white'} tabular-nums transition-colors">${s.count}</span>
+                    <span class="text-xl font-black ${s.delayed ? "text-warning" : "text-slate-900 dark:text-white"} tabular-nums transition-colors">${s.count}</span>
                 </div>
-                <div class="queue-progress"><div class="${s.color} h-full transition-all duration-1000" style="width: ${Math.min((s.count/Math.max(allTickets.length,1))*100+5,100)}%"></div></div>
-            </div>`).join("");
+                <div class="queue-progress"><div class="${s.color} h-full transition-all duration-1000" style="width: ${Math.min((s.count / Math.max(allTickets.length, 1)) * 100 + 5, 100)}%"></div></div>
+            </div>`,
+            )
+            .join("");
         }
 
         function renderHeatmap() {
           const heatmap = document.getElementById("weekly-heatmap");
           if (!heatmap) return;
           const grid = Array(21).fill(0);
-          allTickets.forEach(t => {
-              const date = new Date(t.criadoEm);
-              const hour = date.getHours();
-              const day = date.getDay();
-              const dayIdx = day === 0 ? 6 : day - 1;
-              let turn = hour >= 12 && hour < 18 ? 1 : (hour >= 18 || hour < 6 ? 2 : 0);
-              grid[dayIdx + (turn * 7)]++;
+          allTickets.forEach((t) => {
+            const date = new Date(t.criadoEm);
+            const hour = date.getHours();
+            const day = date.getDay();
+            const dayIdx = day === 0 ? 6 : day - 1;
+            let turn =
+              hour >= 12 && hour < 18 ? 1 : hour >= 18 || hour < 6 ? 2 : 0;
+            grid[dayIdx + turn * 7]++;
           });
-          heatmap.innerHTML = grid.map(v => `<div class="heatmap-cell ${v > 5 ? "bg-accent text-white" : v > 2 ? "bg-accent/40 text-slate-900 dark:text-white" : "bg-accent/5 text-slate-400 dark:text-slate-600"}">${v}</div>`).join("");
+          heatmap.innerHTML = grid
+            .map(
+              (v) =>
+                `<div class="heatmap-cell ${v > 5 ? "bg-accent text-white" : v > 2 ? "bg-accent/40 text-slate-900 dark:text-white" : "bg-accent/5 text-slate-400 dark:text-slate-600"}">${v}</div>`,
+            )
+            .join("");
         }
 
         function renderLog() {
           const log = document.getElementById("system-log");
           if (!log) return;
-          const events = [ ...allTickets.map(t => ({ t: t.titulo, time: new Date(t.criadoEm).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}), aluno: t.aluno || "Aluno", local: t.local || "Campus" })) ].sort((a,b) => b.time - a.time).slice(0, 10);
-          log.innerHTML = events.map(ev => `
+          const events = [
+            ...allTickets.map((t) => ({
+              t: t.titulo,
+              time: new Date(t.criadoEm).toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+              }),
+              aluno: t.aluno || "Aluno",
+              local: t.local || "Campus",
+            })),
+          ]
+            .sort((a, b) => b.time - a.time)
+            .slice(0, 10);
+          log.innerHTML = events
+            .map(
+              (ev) => `
               <div class="p-4 bg-white dark:bg-darkcard border border-slate-100 dark:border-darkborder/50 rounded-xl space-y-2 group hover:border-accent transition-all relative overflow-hidden">
                 <div class="flex justify-between items-start">
                     <div class="min-w-0 flex-grow"><p class="text-[11px] font-black text-slate-900 dark:text-white leading-tight truncate">${ev.t}</p><p class="text-[9px] font-bold text-slate-500 uppercase mt-0.5">${ev.aluno} • ${ev.local}</p></div>
                     <span class="text-[9px] font-bold text-slate-400 tabular-nums ml-2">${ev.time}</span>
                 </div>
                 <button class="w-full py-1.5 bg-slate-900 dark:bg-slate-800 text-white rounded-lg text-[8px] font-black uppercase opacity-0 group-hover:opacity-100 transition-opacity">Visualizar</button>
-              </div>`).join("");
+              </div>`,
+            )
+            .join("");
         }
 
         function renderTeam() {
           const list = document.getElementById("service-team-list");
           if (!list) return;
-          const team = [{ name: 'Carlos Silva', load: allTickets.filter(t => t.responsavel === 'Carlos Silva' && t.status !== 'Concluído').length }, { name: 'José Santos', load: allTickets.filter(t => t.responsavel === 'José Santos' && t.status !== 'Concluído').length }];
-          list.innerHTML = team.map(t => `
+          const team = [
+            {
+              name: "Carlos Silva",
+              load: allTickets.filter(
+                (t) =>
+                  t.responsavel === "Carlos Silva" && t.status !== "Concluído",
+              ).length,
+            },
+            {
+              name: "José Santos",
+              load: allTickets.filter(
+                (t) =>
+                  t.responsavel === "José Santos" && t.status !== "Concluído",
+              ).length,
+            },
+          ];
+          list.innerHTML = team
+            .map(
+              (t) => `
             <div class="space-y-2">
                 <div class="flex justify-between items-center"><span class="text-xs font-bold text-slate-700 dark:text-gray-300">${t.name}</span><span class="text-[10px] font-black text-slate-400">${t.load} abertos</span></div>
-                <div class="h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden"><div class="h-full ${t.load < 5 ? 'bg-success' : 'bg-danger animate-pulse'}" style="width: ${Math.min((t.load/10)*100,100)}%"></div></div>
-            </div>`).join("");
+                <div class="h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden"><div class="h-full ${t.load < 5 ? "bg-success" : "bg-danger animate-pulse"}" style="width: ${Math.min((t.load / 10) * 100, 100)}%"></div></div>
+            </div>`,
+            )
+            .join("");
         }
 
         function renderCriticalLocations() {
-            const grid = document.getElementById("critical-locations-grid");
-            if (!grid) return;
-            
-            const stats = {};
-            allTickets.forEach(t => {
-                const loc = t.local || "Geral";
-                if (!stats[loc]) stats[loc] = { totalAbertos: 0, prioridadeAlta: 0 };
-                if (t.status !== "Concluído") {
-                    stats[loc].totalAbertos++;
-                    if (t.prioridade === "Alta") stats[loc].prioridadeAlta++;
-                }
-            });
+          const grid = document.getElementById("critical-locations-grid");
+          if (!grid) return;
 
-            const locList = Object.keys(stats).map(loc => ({
-                local: loc,
-                abertos: stats[loc].totalAbertos,
-                criticos: stats[loc].prioridadeAlta,
-                mttr: (1.5 + (stats[loc].prioridadeAlta * 0.5)).toFixed(1) + "h" 
-            })).filter(l => l.abertos > 0).sort((a, b) => b.criticos - a.criticos || b.abertos - a.abertos).slice(0, 4);
-
-            if (locList.length === 0) {
-                grid.innerHTML = '<div class="col-span-full text-center text-[10px] font-bold text-slate-400 uppercase py-6">Nenhum local com chamados ativos</div>';
-                return;
+          const stats = {};
+          allTickets.forEach((t) => {
+            const loc = t.local || "Geral";
+            if (!stats[loc])
+              stats[loc] = { totalAbertos: 0, prioridadeAlta: 0 };
+            if (t.status !== "Concluído") {
+              stats[loc].totalAbertos++;
+              if (t.prioridade === "Alta") stats[loc].prioridadeAlta++;
             }
+          });
 
-            grid.innerHTML = locList.map(l => `
+          const locList = Object.keys(stats)
+            .map((loc) => ({
+              local: loc,
+              abertos: stats[loc].totalAbertos,
+              criticos: stats[loc].prioridadeAlta,
+              mttr: (1.5 + stats[loc].prioridadeAlta * 0.5).toFixed(1) + "h",
+            }))
+            .filter((l) => l.abertos > 0)
+            .sort((a, b) => b.criticos - a.criticos || b.abertos - a.abertos)
+            .slice(0, 4);
+
+          if (locList.length === 0) {
+            grid.innerHTML =
+              '<div class="col-span-full text-center text-[10px] font-bold text-slate-400 uppercase py-6">Nenhum local com chamados ativos</div>';
+            return;
+          }
+
+          grid.innerHTML = locList
+            .map(
+              (l) => `
                 <div class="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-2xl border border-slate-100 dark:border-darkborder hover:border-danger/30 transition-all">
                     <p class="text-xs font-black text-slate-900 dark:text-white truncate" title="${l.local}">${l.local}</p>
                     <div class="mt-4 flex items-center justify-between">
-                        <div><p class="text-[9px] font-bold text-slate-400 uppercase">Tempo Médio</p><p class="text-lg font-black ${l.criticos > 0 ? 'text-danger' : 'text-slate-700 dark:text-slate-300'} tabular-nums">${l.mttr}</p></div>
-                        <div class="text-right"><p class="text-[9px] font-bold text-slate-400 uppercase">Abertos</p><p class="text-lg font-black text-slate-900 dark:text-white">${l.abertos}</p></div>
+                        <div><p class="text-[9px] font-bold text-slate-400 uppercase">Tempo Médio</p><p class="text-lg font-black ${l.criticos > 0 ? "text-danger" : "text-slate-700 dark:text-slate-300"} tabular-nums">${l.mttr}</p></div>
+                        <div class="text-right"><p class="text-lg font-black text-slate-900 dark:text-white">${l.abertos}</p></div>
                     </div>
                 </div>
-            `).join("");
+            `,
+            )
+            .join("");
+        }
+
+        function renderTopBlocks() {
+          const grid = document.getElementById("top-blocks-grid");
+          if (!grid) return;
+
+          const normalizeBlock = (value) => {
+            if (!value) return "Geral";
+            const match = value.match(/bloco\s+[a-z0-9]+/i);
+            if (match) return match[0].replace(/\b\w/g, (c) => c.toUpperCase());
+            const firstPart = value.split("-")[0].trim();
+            return firstPart || "Geral";
+          };
+
+          const stats = {};
+          allTickets.forEach((t) => {
+            const bloco = normalizeBlock(t.local);
+            if (!stats[bloco]) stats[bloco] = { total: 0, abertos: 0 };
+            stats[bloco].total += 1;
+            if (t.status !== "Concluído") stats[bloco].abertos += 1;
+          });
+
+          const blockList = Object.keys(stats)
+            .map((bloco) => ({
+              bloco,
+              total: stats[bloco].total,
+              abertos: stats[bloco].abertos,
+            }))
+            .sort((a, b) => b.total - a.total)
+            .slice(0, 4);
+
+          if (blockList.length === 0) {
+            grid.innerHTML =
+              '<div class="col-span-full text-center text-[10px] font-bold text-slate-400 uppercase py-6">Nenhum chamado registrado</div>';
+            return;
+          }
+
+          grid.innerHTML = blockList
+            .map(
+              (b) => `
+                <div class="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-2xl border border-slate-100 dark:border-darkborder hover:border-accent/30 transition-all">
+                    <p class="text-xs font-black text-slate-900 dark:text-white truncate" title="${b.bloco}">${b.bloco}</p>
+                    <div class="mt-4 flex items-center justify-between">
+                        <div><p class="text-[9px] font-bold text-slate-400 uppercase">Ocorrências</p><p class="text-lg font-black text-slate-900 dark:text-white tabular-nums">${b.total}</p></div>
+                        <div class="text-right"><p class="text-[9px] font-bold text-slate-400 uppercase">Abertos</p><p class="text-lg font-black ${b.abertos > 0 ? "text-warning" : "text-slate-700 dark:text-slate-300"} tabular-nums">${b.abertos}</p></div>
+                    </div>
+                </div>
+            `,
+            )
+            .join("");
         }
 
         // --- CORE LOGIC ---
@@ -498,11 +1304,18 @@
           document.body.classList.toggle("collapsed");
           const isCollapsed = document.body.classList.contains("collapsed");
           localStorage.setItem("sidebar-collapsed", isCollapsed);
-          document.getElementById("sidebar-toggle-icon").textContent = isCollapsed ? "menu" : "menu_open";
-          setTimeout(() => { if (evolutionChart) evolutionChart.resize(); if (categoryChart) categoryChart.resize(); }, 350);
+          document.getElementById("sidebar-toggle-icon").textContent =
+            isCollapsed ? "menu" : "menu_open";
+          setTimeout(() => {
+            if (evolutionChart) evolutionChart.resize();
+            if (categoryChart) categoryChart.resize();
+          }, 350);
         };
         const savedSidebar = localStorage.getItem("sidebar-collapsed");
-        if (savedSidebar === "true") { document.body.classList.add("collapsed"); document.getElementById("sidebar-toggle-icon").textContent = "menu"; }
+        if (savedSidebar === "true") {
+          document.body.classList.add("collapsed");
+          document.getElementById("sidebar-toggle-icon").textContent = "menu";
+        }
 
         const applyTheme = (isDark) => {
           document.documentElement.classList.toggle("dark", isDark);
@@ -512,54 +1325,121 @@
           if (icon) icon.textContent = isDark ? "light_mode" : "dark_mode";
           setTimeout(() => initCharts(), 100);
         };
-        window.toggleTheme = () => applyTheme(!document.documentElement.classList.contains("dark"));
+        window.toggleTheme = () =>
+          applyTheme(!document.documentElement.classList.contains("dark"));
         applyTheme(document.documentElement.classList.contains("dark"));
 
         window.fetchData = async () => {
           try {
             const fetchSafe = async (url) => {
-              try { const res = await fetch(url); return res.ok ? await res.json() : []; } catch (e) { return []; }
+              try {
+                const res = await fetch(url);
+                return res.ok ? await res.json() : [];
+              } catch (e) {
+                return [];
+              }
             };
             const [tData, rData, aData] = await Promise.all([
-                fetchSafe(`${API_BASE_URL}/api/chamados`),
-                fetchSafe(`${API_BASE_URL}/api/reservas`),
-                fetchSafe(`${API_BASE_URL}/api/avisos`)
+              fetchSafe(`${API_BASE_URL}/api/chamados`),
+              fetchSafe(`${API_BASE_URL}/api/reservas`),
+              fetchSafe(`${API_BASE_URL}/api/avisos`),
             ]);
-            allTickets = tData; allReservas = rData; alerts = aData;
-          } catch (e) { console.error("Erro no carregamento:", e); } finally {
-            updateStats(); renderQueue(); renderHeatmap(); renderLog(); renderTeam(); renderCriticalLocations(); renderChamadosDropdown(); initCharts();
+            allTickets = tData;
+            allReservas = rData;
+            alerts = aData;
+          } catch (e) {
+            console.error("Erro no carregamento:", e);
+          } finally {
+            updateStats();
+            renderQueue();
+            renderHeatmap();
+            renderLog();
+            renderTeam();
+            renderCriticalLocations();
+            renderTopBlocks();
+            renderChamadosDropdown();
+            initCharts();
           }
         };
 
-        window.toggleChamadosDropdown = () => { document.getElementById("chamados-dropdown-menu").classList.toggle("hidden"); };
+        window.toggleChamadosDropdown = () => {
+          document
+            .getElementById("chamados-dropdown-menu")
+            .classList.toggle("hidden");
+        };
 
         function renderChamadosDropdown() {
-          const list = document.getElementById("chamados-dropdown-list"); 
+          const list = document.getElementById("chamados-dropdown-list");
           const badge = document.getElementById("chamados-badge");
           if (!list || !badge) return;
-          const openTickets = allTickets.filter(t => t.status !== "Concluído").map(t => ({ title: t.titulo, subtitle: `${t.local} • Chamado`, time: t.criadoEm, link: 'chamados.html', icon: 'confirmation_number' }));
-          const activeAlerts = (typeof alerts !== 'undefined' ? alerts : []).filter(a => a.ativo !== false).slice(0, 3).map(a => ({ title: a.titulo, subtitle: `${a.categoria} • Aviso`, time: new Date().toISOString(), link: 'avisos.html', icon: 'campaign' }));
-          const allNotifications = [...openTickets, ...activeAlerts].sort((a, b) => new Date(b.time) - new Date(a.time)).slice(0, 5);
+          const openTickets = allTickets
+            .filter((t) => t.status !== "Concluído")
+            .map((t) => ({
+              title: t.titulo,
+              subtitle: `${t.local} • Chamado`,
+              time: t.criadoEm,
+              link: "chamados.html",
+              icon: "confirmation_number",
+            }));
+          const activeAlerts = (typeof alerts !== "undefined" ? alerts : [])
+            .filter((a) => a.ativo !== false)
+            .slice(0, 3)
+            .map((a) => ({
+              title: a.titulo,
+              subtitle: `${a.categoria} • Aviso`,
+              time: new Date().toISOString(),
+              link: "avisos.html",
+              icon: "campaign",
+            }));
+          const allNotifications = [...openTickets, ...activeAlerts]
+            .sort((a, b) => new Date(b.time) - new Date(a.time))
+            .slice(0, 5);
           if (allNotifications.length > 0) {
-              badge.textContent = allNotifications.length; badge.classList.remove("hidden");
-              list.innerHTML = allNotifications.map(n => `
+            badge.textContent = allNotifications.length;
+            badge.classList.remove("hidden");
+            list.innerHTML = allNotifications
+              .map(
+                (n) => `
                   <div class="p-4 border-b border-slate-50 dark:border-darkborder/50 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all cursor-pointer group" onclick="window.location.href='${n.link}'">
                       <div class="flex items-start gap-3"><span class="material-symbols-outlined text-slate-400 group-hover:text-accent text-sm mt-0.5">${n.icon}</span><div><p class="text-[11px] font-black text-slate-900 dark:text-white group-hover:text-accent transition-colors">${n.title}</p><p class="text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase mt-1">${n.subtitle}</p></div></div>
-                  </div>`).join("");
+                  </div>`,
+              )
+              .join("");
           } else {
-              badge.classList.add("hidden"); list.innerHTML = '<div class="p-8 text-center text-[10px] font-bold text-slate-400">Nenhuma notificação</div>';
+            badge.classList.add("hidden");
+            list.innerHTML =
+              '<div class="p-8 text-center text-[10px] font-bold text-slate-400">Nenhuma notificação</div>';
           }
         }
 
-        window.logout = () => { localStorage.removeItem("userRole"); window.location.href = "../login.html"; };
-        window.toggleProfileDropdown = (e) => { e.stopPropagation(); document.getElementById("profile-dropdown").classList.toggle("hidden"); };
-        
-        document.addEventListener("click", (e) => { 
-            const pD = document.getElementById("profile-dropdown");
-            if (pD && !pD.classList.contains("hidden") && !document.getElementById("profile-container").contains(e.target)) pD.classList.add("hidden");
-            const cM = document.getElementById("chamados-dropdown-menu");
-            const cC = document.getElementById("chamados-dropdown-container");
-            if (cM && !cM.classList.contains("hidden") && cC && !cC.contains(e.target)) cM.classList.add("hidden");
+        window.logout = () => {
+          localStorage.removeItem("userRole");
+          window.location.href = "../login.html";
+        };
+        window.toggleProfileDropdown = (e) => {
+          e.stopPropagation();
+          document
+            .getElementById("profile-dropdown")
+            .classList.toggle("hidden");
+        };
+
+        document.addEventListener("click", (e) => {
+          const pD = document.getElementById("profile-dropdown");
+          if (
+            pD &&
+            !pD.classList.contains("hidden") &&
+            !document.getElementById("profile-container").contains(e.target)
+          )
+            pD.classList.add("hidden");
+          const cM = document.getElementById("chamados-dropdown-menu");
+          const cC = document.getElementById("chamados-dropdown-container");
+          if (
+            cM &&
+            !cM.classList.contains("hidden") &&
+            cC &&
+            !cC.contains(e.target)
+          )
+            cM.classList.add("hidden");
         });
         fetchData();
       })();

@@ -471,18 +471,28 @@
       (() => {
         const actionModal = document.querySelector("[data-action-modal]");
         const actionTitle = document.querySelector("[data-action-modal-title]");
-        const actionSubtitle = document.querySelector("[data-action-modal-subtitle]");
-        const actionContent = document.querySelector("[data-action-modal-content]");
+        const actionSubtitle = document.querySelector(
+          "[data-action-modal-subtitle]",
+        );
+        const actionContent = document.querySelector(
+          "[data-action-modal-content]",
+        );
         const actionAlert = document.querySelector("[data-action-modal-alert]");
-        const actionConfirm = document.querySelector("[data-action-modal-confirm]");
-        const actionDelete = document.querySelector("[data-action-modal-delete]");
+        const actionConfirm = document.querySelector(
+          "[data-action-modal-confirm]",
+        );
+        const actionDelete = document.querySelector(
+          "[data-action-modal-delete]",
+        );
 
         const confirmModal = document.querySelector("[data-confirm-modal]");
         const confirmYes = document.querySelector("[data-confirm-yes]");
         const confirmNo = document.querySelector("[data-confirm-no]");
 
         const chamadosList = document.getElementById("chamados-list");
-        const chamadosCountText = document.getElementById("chamados-count-text");
+        const chamadosCountText = document.getElementById(
+          "chamados-count-text",
+        );
         let currentChamados = [];
 
         const loadChamados = async () => {
@@ -497,22 +507,28 @@
         };
 
         const renderChamados = (chamados) => {
-          const activeChamados = chamados.filter(c => c.status !== "Concluído");
+          const activeChamados = chamados.filter(
+            (c) => c.status !== "Concluído",
+          );
 
           if (activeChamados.length === 0) {
-            chamadosCountText.innerHTML = "Você não tem <span class='font-black text-black'>nenhum chamado</span> ativo.";
+            chamadosCountText.innerHTML =
+              "Você não tem <span class='font-black text-black'>nenhum chamado</span> ativo.";
             chamadosList.innerHTML = `<div class="p-12 text-center bg-gray-50 rounded-[40px] border-2 border-dashed border-[var(--border-soft)]"><p class="text-[var(--text-secondary)] font-bold">Nenhum chamado ativo encontrado.</p></div>`;
             return;
           }
           chamadosCountText.innerHTML = `Você tem <span class="font-black text-black">${activeChamados.length} chamado${activeChamados.length > 1 ? "s" : ""}</span> ativo${activeChamados.length > 1 ? "s" : ""} no momento.`;
-          chamadosList.innerHTML = activeChamados.map(c => {
-             const date = new Date(c.criadoEm).toLocaleDateString('pt-BR');
-             
-             let statusColor = "bg-yellow-50 text-yellow-700";
-             if (c.status === "Aberto") statusColor = "bg-blue-50 text-blue-700";
-             else if (c.status === "Concluído") statusColor = "bg-green-50 text-green-700";
+          chamadosList.innerHTML = activeChamados
+            .map((c) => {
+              const date = new Date(c.criadoEm).toLocaleDateString("pt-BR");
 
-             return `
+              let statusColor = "bg-yellow-50 text-yellow-700";
+              if (c.status === "Aberto")
+                statusColor = "bg-blue-50 text-blue-700";
+              else if (c.status === "Concluído")
+                statusColor = "bg-green-50 text-green-700";
+
+              return `
               <div class="p-8 bg-white border border-[var(--border-soft)] rounded-[32px] hover:border-[var(--accent)]/10 transition-all flex items-center justify-between group">
                 <div class="flex items-center gap-6">
                   <div class="w-16 h-16 rounded-2xl bg-gray-50 flex items-center justify-center text-black">
@@ -529,16 +545,19 @@
                 <button onclick="window.openTicketDetails('${c.id}')" class="px-6 py-3 border border-[var(--border-soft)] rounded-xl text-sm font-bold hover:bg-gray-50 transition-colors">Ver Detalhes</button>
               </div>
              `;
-          }).join("");
+            })
+            .join("");
         };
 
         window.openTicketDetails = (id) => {
-          const c = currentChamados.find(i => i.id === id);
+          const c = currentChamados.find((i) => i.id === id);
           if (!c) return;
           actionTitle.textContent = "Detalhes do Chamado";
-          actionSubtitle.textContent = `ID: ${c.id.substring(0,8).toUpperCase()}`;
+          actionSubtitle.textContent = `ID: ${c.id.substring(0, 8).toUpperCase()}`;
 
-          const cancelBtn = actionModal.querySelector("[data-action-modal-cancel]");
+          const cancelBtn = actionModal.querySelector(
+            "[data-action-modal-cancel]",
+          );
           if (cancelBtn) cancelBtn.classList.add("hidden");
 
           if (actionDelete) {
@@ -572,11 +591,16 @@
         const showConfirmation = (id) => {
           confirmModal.classList.remove("hidden");
           confirmModal.classList.add("flex");
-          confirmNo.onclick = () => { confirmModal.classList.add("hidden"); confirmModal.classList.remove("flex"); };
+          confirmNo.onclick = () => {
+            confirmModal.classList.add("hidden");
+            confirmModal.classList.remove("flex");
+          };
           confirmYes.onclick = async () => {
             confirmYes.disabled = true;
             try {
-              const res = await fetch(`${API_BASE_URL}/api/chamados/${id}`, { method: `DELETE` });
+              const res = await fetch(`${API_BASE_URL}/api/chamados/${id}`, {
+                method: `DELETE`,
+              });
               if (!res.ok) throw new Error();
               confirmModal.classList.add("hidden");
               confirmYes.disabled = false;
@@ -600,9 +624,12 @@
           if (type !== "novo-chamado") return;
 
           actionTitle.textContent = "Novo Chamado";
-          actionSubtitle.textContent = "Selecione o problema e informe o local.";
+          actionSubtitle.textContent =
+            "Selecione o problema e informe o local.";
 
-          const cancelBtn = actionModal.querySelector("[data-action-modal-cancel]");
+          const cancelBtn = actionModal.querySelector(
+            "[data-action-modal-cancel]",
+          );
           if (cancelBtn) cancelBtn.classList.remove("hidden");
           if (actionDelete) actionDelete.classList.add("hidden");
 
@@ -666,23 +693,28 @@
           let hasError = false;
 
           // Clear previous errors
-          form.querySelectorAll(".error-msg").forEach(e => e.remove());
+          form.querySelectorAll(".error-msg").forEach((e) => e.remove());
 
-          inputs.forEach(input => {
+          inputs.forEach((input) => {
             if (!input.value.trim() && !input.closest(".hidden")) {
               hasError = true;
               const error = document.createElement("span");
-              error.className = "error-msg text-[10px] font-bold text-red-500 mt-1 ml-1 block";
+              error.className =
+                "error-msg text-[10px] font-bold text-red-500 mt-1 ml-1 block";
               error.textContent = "Preencha este campo";
               input.parentNode.appendChild(error);
 
               // Apply red border
               input.style.boxShadow = "0 0 0 2px #ef4444";
 
-              input.addEventListener("input", () => {
-                error.remove();
-                input.style.boxShadow = "";
-              }, { once: true });
+              input.addEventListener(
+                "input",
+                () => {
+                  error.remove();
+                  input.style.boxShadow = "";
+                },
+                { once: true },
+              );
             }
           });
 
@@ -704,8 +736,8 @@
               body: JSON.stringify({
                 titulo: data.titulo,
                 local: data.local,
-                descricao: data.descricao
-              })
+                descricao: data.descricao,
+              }),
             });
             if (!res.ok) throw new Error();
             closeActionModal();
@@ -715,11 +747,18 @@
           }
         };
 
-        document.querySelectorAll("[data-action]").forEach(b => b.addEventListener("click", () => openActionModal(b)));
-        [actionModal.querySelector("[data-action-modal-close]"), actionModal.querySelector("[data-action-modal-cancel]")].forEach(el => el.addEventListener("click", closeActionModal));
+        document
+          .querySelectorAll("[data-action]")
+          .forEach((b) =>
+            b.addEventListener("click", () => openActionModal(b)),
+          );
+        [
+          actionModal.querySelector("[data-action-modal-close]"),
+          actionModal.querySelector("[data-action-modal-cancel]"),
+        ].forEach((el) => el.addEventListener("click", closeActionModal));
 
         loadChamados().then(() => {
-          const id = new URLSearchParams(window.location.search).get('id');
+          const id = new URLSearchParams(window.location.search).get("id");
           if (id) window.openTicketDetails(id);
         });
 

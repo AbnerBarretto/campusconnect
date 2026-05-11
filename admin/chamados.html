@@ -6,173 +6,510 @@
     <script>
       (() => {
         const savedTheme = localStorage.getItem("theme");
-        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
         const shouldUseDark = savedTheme ? savedTheme === "dark" : prefersDark;
         document.documentElement.classList.toggle("dark", shouldUseDark);
         document.documentElement.classList.toggle("light", !shouldUseDark);
       })();
     </script>
     <title>Manutenção Operacional | CampusConnect Admin</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='0' y='0' width='100' height='100' fill='%23ffffff'/><path d='M20 50V20H80V80H50' stroke='%23000000' stroke-width='10' stroke-linecap='square' fill='none'/><path d='M40 40L60 60' stroke='%23000000' stroke-width='10' stroke-linecap='square'/><rect x='20' y='40' width='15' height='20' fill='%23ffffff'/></svg>"/>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='0' y='0' width='100' height='100' fill='%23ffffff'/><path d='M20 50V20H80V80H50' stroke='%23000000' stroke-width='10' stroke-linecap='square' fill='none'/><path d='M40 40L60 60' stroke='%23000000' stroke-width='10' stroke-linecap='square'/><rect x='20' y='40' width='15' height='20' fill='%23ffffff'/></svg>"
+    />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1" rel="stylesheet"/>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1"
+      rel="stylesheet"
+    />
     <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
         theme: {
           extend: {
             colors: {
-              brand: { 50: "#f8fafc", 100: "#f1f5f9", 200: "#e2e8f0", 300: "#94a3b8", 400: "#64748b", 500: "#475569", 600: "#334155", 700: "#1e293b", 800: "#0f172a", 900: "#020617" },
-              accent: { DEFAULT: "#8b5cf6", hover: "#7c3aed", soft: "rgba(139, 92, 246, 0.12)" },
+              brand: {
+                50: "#f8fafc",
+                100: "#f1f5f9",
+                200: "#e2e8f0",
+                300: "#94a3b8",
+                400: "#64748b",
+                500: "#475569",
+                600: "#334155",
+                700: "#1e293b",
+                800: "#0f172a",
+                900: "#020617",
+              },
+              accent: {
+                DEFAULT: "#8b5cf6",
+                hover: "#7c3aed",
+                soft: "rgba(139, 92, 246, 0.12)",
+              },
               success: { DEFAULT: "#10b981", soft: "rgba(16, 185, 129, 0.12)" },
               warning: { DEFAULT: "#f59e0b", soft: "rgba(245, 158, 11, 0.12)" },
               danger: { DEFAULT: "#ef4444", soft: "rgba(239, 68, 68, 0.12)" },
               info: { DEFAULT: "#3b82f6", soft: "rgba(59, 130, 246, 0.12)" },
-              darkbg: "#0b1220", darkcard: "#111827", darkborder: "#1f2937",
+              darkbg: "#0b1220",
+              darkcard: "#111827",
+              darkborder: "#1f2937",
             },
             fontFamily: { sans: ["'Inter'", "sans-serif"] },
-            boxShadow: { premium: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)" },
+            boxShadow: {
+              premium:
+                "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+            },
           },
         },
       };
     </script>
     <style>
-      .material-symbols-outlined { font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24; vertical-align: middle; }
-      .custom-scrollbar::-webkit-scrollbar { width: 4px; }
-      .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-      .custom-scrollbar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
-      .dark .custom-scrollbar::-webkit-scrollbar-thumb { background: #1e293b; }
-      
-      .status-badge {
-        font-size: 10px; font-weight: 700; padding: 6px 12px; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.05em; min-width: 110px; text-align: left; appearance: none !important; cursor: pointer; transition: all 0.2s ease;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23475569' stroke-width='3'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7' /%3E%3C/svg%3E") !important;
-        background-repeat: no-repeat !important; background-position: right 10px center !important; background-size: 10px !important; border: 1px solid transparent !important; outline: none;
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+        vertical-align: middle;
       }
-      .dark .status-badge { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8' stroke-width='3'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7' /%3E%3C/svg%3E") !important; }
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 4px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #e2e8f0;
+        border-radius: 10px;
+      }
+      .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #1e293b;
+      }
 
-      .badge-success { background-color: #ecfdf5; color: #065f46; }
-      .badge-warning { background-color: #fffbeb; color: #92400e; }
-      .badge-danger { background-color: #fef2f2; color: #991b1b; }
-      .badge-info { background-color: #eff6ff; color: #1e40af; }
-      .badge-neutral { background-color: #f8fafc; color: #475569; }
+      .status-badge {
+        font-size: 10px;
+        font-weight: 700;
+        padding: 6px 12px;
+        border-radius: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        min-width: 110px;
+        text-align: left;
+        appearance: none !important;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23475569' stroke-width='3'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7' /%3E%3C/svg%3E") !important;
+        background-repeat: no-repeat !important;
+        background-position: right 10px center !important;
+        background-size: 10px !important;
+        border: 1px solid transparent !important;
+        outline: none;
+      }
+      .dark .status-badge {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8' stroke-width='3'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7' /%3E%3C/svg%3E") !important;
+      }
 
-      .dark .badge-success { background-color: rgba(16, 185, 129, 0.1); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.2) !important; }
-      .dark .badge-warning { background-color: rgba(245, 158, 11, 0.1); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.2) !important; }
-      .dark .badge-danger { background-color: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.2) !important; }
-      .dark .badge-info { background-color: rgba(59, 130, 246, 0.1); color: #3b82f6; border: 1px solid rgba(59, 130, 246, 0.2) !important; }
-      .dark .badge-neutral { background-color: rgba(148, 163, 184, 0.1); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.2) !important; }
+      .badge-success {
+        background-color: #ecfdf5;
+        color: #065f46;
+      }
+      .badge-warning {
+        background-color: #fffbeb;
+        color: #92400e;
+      }
+      .badge-danger {
+        background-color: #fef2f2;
+        color: #991b1b;
+      }
+      .badge-info {
+        background-color: #eff6ff;
+        color: #1e40af;
+      }
+      .badge-neutral {
+        background-color: #f8fafc;
+        color: #475569;
+      }
 
-      #sidebar { transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-      .collapsed #sidebar { width: 80px; }
-      .collapsed #sidebar .nav-text, .collapsed #sidebar .nav-section-title, .collapsed #sidebar .sidebar-header-text, .collapsed #sidebar .profile-text { display: none; }
-      .collapsed #sidebar .nav-item { justify-content: center; padding-left: 0; padding-right: 0; }
-      .collapsed #sidebar .logo-container h1 { display: none; }
+      .dark .badge-success {
+        background-color: rgba(16, 185, 129, 0.1);
+        color: #10b981;
+        border: 1px solid rgba(16, 185, 129, 0.2) !important;
+      }
+      .dark .badge-warning {
+        background-color: rgba(245, 158, 11, 0.1);
+        color: #f59e0b;
+        border: 1px solid rgba(245, 158, 11, 0.2) !important;
+      }
+      .dark .badge-danger {
+        background-color: rgba(239, 68, 68, 0.1);
+        color: #ef4444;
+        border: 1px solid rgba(239, 68, 68, 0.2) !important;
+      }
+      .dark .badge-info {
+        background-color: rgba(59, 130, 246, 0.1);
+        color: #3b82f6;
+        border: 1px solid rgba(59, 130, 246, 0.2) !important;
+      }
+      .dark .badge-neutral {
+        background-color: rgba(148, 163, 184, 0.1);
+        color: #94a3b8;
+        border: 1px solid rgba(148, 163, 184, 0.2) !important;
+      }
+
+      #sidebar {
+        transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .collapsed #sidebar {
+        width: 80px;
+      }
+      .collapsed #sidebar .nav-text,
+      .collapsed #sidebar .nav-section-title,
+      .collapsed #sidebar .sidebar-header-text,
+      .collapsed #sidebar .profile-text {
+        display: none;
+      }
+      .collapsed #sidebar .nav-item {
+        justify-content: center;
+        padding-left: 0;
+        padding-right: 0;
+      }
+      .collapsed #sidebar .logo-container h1 {
+        display: none;
+      }
     </style>
     <script src="../js/api.js"></script>
   </head>
-  <body class="font-sans text-[#0f172a] dark:text-slate-200 bg-[#E5E7EB] dark:bg-darkbg flex h-screen overflow-hidden antialiased transition-colors duration-300">
-    <aside id="sidebar" class="w-64 bg-white dark:bg-darkcard border-r border-gray-100 dark:border-darkborder flex flex-col shrink-0 z-50">
+  <body
+    class="font-sans text-[#0f172a] dark:text-slate-200 bg-[#E5E7EB] dark:bg-darkbg flex h-screen overflow-hidden antialiased transition-colors duration-300"
+  >
+    <aside
+      id="sidebar"
+      class="w-64 bg-white dark:bg-darkcard border-r border-gray-100 dark:border-darkborder flex flex-col shrink-0 z-50"
+    >
       <div class="p-8 border-b border-gray-100 dark:border-darkborder">
-        <a href="../dashboard.html" class="flex items-center gap-3 logo-container group">
-          <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-mark shrink-0">
-            <path d="M20 50V20H80V80H50" stroke="#000" stroke-width="12" stroke-linecap="square" class="dark:stroke-white"/>
-            <path d="M40 40L60 60" stroke="#000" stroke-width="12" stroke-linecap="square" class="dark:stroke-white"/>
+        <a
+          href="../dashboard.html"
+          class="flex items-center gap-3 logo-container group"
+        >
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 100 100"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="logo-mark shrink-0"
+          >
+            <path
+              d="M20 50V20H80V80H50"
+              stroke="#000"
+              stroke-width="12"
+              stroke-linecap="square"
+              class="dark:stroke-white"
+            />
+            <path
+              d="M40 40L60 60"
+              stroke="#000"
+              stroke-width="12"
+              stroke-linecap="square"
+              class="dark:stroke-white"
+            />
             <rect x="20" y="40" width="15" height="20" fill="white" />
           </svg>
-          <h1 class="text-sm font-black tracking-widest uppercase dark:text-white sidebar-header-text">Campus<span class="font-light">Connect</span></h1>
+          <h1
+            class="text-sm font-black tracking-widest uppercase dark:text-white sidebar-header-text"
+          >
+            Campus<span class="font-light">Connect</span>
+          </h1>
         </a>
       </div>
       <nav class="flex-grow p-6 space-y-6 overflow-y-auto custom-scrollbar">
         <div>
-          <p class="text-[10px] font-black text-slate-400 dark:text-slate-600 uppercase tracking-[0.2em] px-4 mb-4 nav-section-title">Operação</p>
+          <p
+            class="text-[10px] font-black text-slate-400 dark:text-slate-600 uppercase tracking-[0.2em] px-4 mb-4 nav-section-title"
+          >
+            Operação
+          </p>
           <div class="space-y-1">
-            <a href="geral.html" class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"><span class="material-symbols-outlined text-[20px] shrink-0">dashboard</span><span class="nav-text">Painel Geral</span></a>
-            <a href="chamados.html" class="flex items-center gap-3 px-4 py-3 bg-accent text-white rounded-2xl text-xs font-bold shadow-lg shadow-accent/20 transition-all hover:translate-x-1 nav-item"><span class="material-symbols-outlined text-[20px] shrink-0" style="font-variation-settings: 'FILL' 1">confirmation_number</span><span class="nav-text">Chamados</span></a>
-            <a href="historico.html" class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"><span class="material-symbols-outlined text-[20px] shrink-0">history</span><span class="nav-text">Histórico</span></a>
-            <a href="refeitorio.html" class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"><span class="material-symbols-outlined text-[20px] shrink-0">restaurant</span><span class="nav-text">Refeitório</span></a>
-            <a href="volume.html" class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"><span class="material-symbols-outlined text-[20px] shrink-0">bar_chart</span><span class="nav-text">Volume de Demandas</span></a>
+            <a
+              href="geral.html"
+              class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"
+              ><span class="material-symbols-outlined text-[20px] shrink-0"
+                >dashboard</span
+              ><span class="nav-text">Painel Geral</span></a
+            >
+            <a
+              href="chamados.html"
+              class="flex items-center gap-3 px-4 py-3 bg-accent text-white rounded-2xl text-xs font-bold shadow-lg shadow-accent/20 transition-all hover:translate-x-1 nav-item"
+              ><span
+                class="material-symbols-outlined text-[20px] shrink-0"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >confirmation_number</span
+              ><span class="nav-text">Chamados</span></a
+            >
+            <a
+              href="historico.html"
+              class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"
+              ><span class="material-symbols-outlined text-[20px] shrink-0"
+                >check_circle</span
+              ><span class="nav-text">Concluído</span></a
+            >
+            <a
+              href="refeitorio.html"
+              class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"
+              ><span class="material-symbols-outlined text-[20px] shrink-0"
+                >restaurant</span
+              ><span class="nav-text">Refeitório</span></a
+            >
+            <a
+              href="volume.html"
+              class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"
+              ><span class="material-symbols-outlined text-[20px] shrink-0"
+                >bar_chart</span
+              ><span class="nav-text">Volume de Demandas</span></a
+            >
           </div>
         </div>
         <div>
-          <p class="text-[10px] font-black text-slate-400 dark:text-slate-600 uppercase tracking-[0.2em] px-4 mb-4 nav-section-title">Gestão</p>
+          <p
+            class="text-[10px] font-black text-slate-400 dark:text-slate-600 uppercase tracking-[0.2em] px-4 mb-4 nav-section-title"
+          >
+            Gestão
+          </p>
           <div class="space-y-1">
-            <a href="reservas.html" class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"><span class="material-symbols-outlined text-[20px] shrink-0">event_seat</span><span class="nav-text">Reservas</span></a>
-            <a href="calendario.html" class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"><span class="material-symbols-outlined text-[20px] shrink-0">calendar_today</span><span class="nav-text">Calendário</span></a>
-            <a href="avisos.html" class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"><span class="material-symbols-outlined text-[20px] shrink-0">campaign</span><span class="nav-text">Avisos</span></a>
+            <a
+              href="reservas.html"
+              class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"
+              ><span class="material-symbols-outlined text-[20px] shrink-0"
+                >event_seat</span
+              ><span class="nav-text">Reservas</span></a
+            >
+            <a
+              href="calendario.html"
+              class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"
+              ><span class="material-symbols-outlined text-[20px] shrink-0"
+                >calendar_today</span
+              ><span class="nav-text">Calendário</span></a
+            >
+            <a
+              href="avisos.html"
+              class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-accent dark:hover:text-white rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 nav-item"
+              ><span class="material-symbols-outlined text-[20px] shrink-0"
+                >campaign</span
+              ><span class="nav-text">Avisos</span></a
+            >
           </div>
         </div>
       </nav>
-      <div class="p-6 border-t border-slate-50 dark:border-darkborder/50 mt-auto">
+      <div
+        class="p-6 border-t border-slate-50 dark:border-darkborder/50 mt-auto"
+      >
         <div class="relative" id="profile-container">
-          <button onclick="toggleProfileDropdown(event)" class="flex items-center gap-3 w-full p-2 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-all group">
-            <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-transparent group-hover:border-accent transition-all shrink-0"><img src="https://ui-avatars.com/api/?name=Admin&background=000&color=fff" alt="Avatar"/></div>
-            <div class="text-left profile-text"><p class="text-xs font-bold text-slate-900 dark:text-white">Admin</p><p class="text-[9px] font-black uppercase tracking-widest text-slate-400">Administrador</p></div>
+          <button
+            onclick="toggleProfileDropdown(event)"
+            class="flex items-center gap-3 w-full p-2 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-all group"
+          >
+            <div
+              class="w-10 h-10 rounded-full overflow-hidden border-2 border-transparent group-hover:border-accent transition-all shrink-0"
+            >
+              <img
+                src="https://ui-avatars.com/api/?name=Admin&background=000&color=fff"
+                alt="Avatar"
+              />
+            </div>
+            <div class="text-left profile-text">
+              <p class="text-xs font-bold text-slate-900 dark:text-white">
+                Admin
+              </p>
+              <p
+                class="text-[9px] font-black uppercase tracking-widest text-slate-400"
+              >
+                Administrador
+              </p>
+            </div>
           </button>
-          <div id="profile-dropdown" class="absolute bottom-full left-0 mb-2 w-full bg-white dark:bg-darkcard border border-slate-100 dark:border-darkborder rounded-2xl shadow-xl hidden z-50 overflow-hidden"><button onclick="logout()" class="w-full flex items-center gap-3 px-5 py-4 text-xs font-bold text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"><span class="material-symbols-outlined text-lg">logout</span> Sair</button></div>
+          <div
+            id="profile-dropdown"
+            class="absolute bottom-full left-0 mb-2 w-full bg-white dark:bg-darkcard border border-slate-100 dark:border-darkborder rounded-2xl shadow-xl hidden z-50 overflow-hidden"
+          >
+            <button
+              onclick="logout()"
+              class="w-full flex items-center gap-3 px-5 py-4 text-xs font-bold text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+            >
+              <span class="material-symbols-outlined text-lg">logout</span> Sair
+            </button>
+          </div>
         </div>
       </div>
     </aside>
 
     <div id="main-content" class="flex-grow flex flex-col overflow-hidden">
-      <header class="h-20 bg-white/90 dark:bg-darkcard/90 backdrop-blur-md border-b border-gray-100 dark:border-darkborder flex items-center justify-between px-10 shrink-0 z-[100]">
+      <header
+        class="h-20 bg-white/90 dark:bg-darkcard/90 backdrop-blur-md border-b border-gray-100 dark:border-darkborder flex items-center justify-between px-10 shrink-0 z-[100]"
+      >
         <div class="flex items-center gap-8">
-            <button onclick="toggleSidebar()" class="w-10 h-10 flex items-center justify-center rounded-2xl bg-white dark:bg-slate-800 text-slate-500 hover:text-accent transition-all group"><span class="material-symbols-outlined text-[20px] group-active:scale-90" id="sidebar-toggle-icon">menu_open</span></button>
-            <div><h2 class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Ambiente Operacional</h2><div class="flex items-center gap-2 mt-1"><div class="w-1.5 h-1.5 rounded-full bg-success animate-pulse"></div><p id="welcome-msg" class="text-xs text-slate-600 dark:text-slate-300 font-bold tracking-tight">Status: Monitorando fluxos em tempo real</p></div></div>
+          <button
+            onclick="toggleSidebar()"
+            class="w-10 h-10 flex items-center justify-center rounded-2xl bg-white dark:bg-slate-800 text-slate-500 hover:text-accent transition-all group"
+          >
+            <span
+              class="material-symbols-outlined text-[20px] group-active:scale-90"
+              id="sidebar-toggle-icon"
+              >menu_open</span
+            >
+          </button>
+          <div>
+            <h2
+              class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]"
+            >
+              Ambiente Operacional
+            </h2>
+            <div class="flex items-center gap-2 mt-1">
+              <div
+                class="w-1.5 h-1.5 rounded-full bg-success animate-pulse"
+              ></div>
+              <p
+                id="welcome-msg"
+                class="text-xs text-slate-600 dark:text-slate-300 font-bold tracking-tight"
+              >
+                Status: Monitorando fluxos em tempo real
+              </p>
+            </div>
+          </div>
         </div>
         <div class="flex items-center gap-4">
           <div class="relative" id="chamados-dropdown-container">
-            <button onclick="toggleChamadosDropdown()" id="chamados-dropdown-btn" class="w-10 h-10 flex items-center justify-center rounded-2xl bg-white dark:bg-darkborder text-slate-500 dark:text-slate-400 hover:bg-slate-200 transition-all active:scale-90 relative">
-              <span class="material-symbols-outlined text-[20px]">notifications</span>
-              <span id="chamados-badge" class="absolute -top-1 -right-1 w-4 h-4 bg-danger text-white text-[9px] font-black rounded-full flex items-center justify-center hidden">0</span>
+            <button
+              onclick="toggleChamadosDropdown()"
+              id="chamados-dropdown-btn"
+              class="w-10 h-10 flex items-center justify-center rounded-2xl bg-white dark:bg-darkborder text-slate-500 dark:text-slate-400 hover:bg-slate-200 transition-all active:scale-90 relative"
+            >
+              <span class="material-symbols-outlined text-[20px]"
+                >notifications</span
+              >
+              <span
+                id="chamados-badge"
+                class="absolute -top-1 -right-1 w-4 h-4 bg-danger text-white text-[9px] font-black rounded-full flex items-center justify-center hidden"
+                >0</span
+              >
             </button>
-            <div id="chamados-dropdown-menu" class="absolute right-0 mt-3 w-80 bg-white dark:bg-darkcard border border-gray-100 dark:border-darkborder rounded-[24px] shadow-xl hidden z-[200] animate-dropdown">
-              <div class="p-5 border-b border-gray-50 dark:border-darkborder/50 flex items-center justify-between">
-                <h4 class="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">Notificações</h4>
-                <a href="chamados.html" class="text-[9px] font-black text-accent uppercase hover:underline">Ver todos</a>
+            <div
+              id="chamados-dropdown-menu"
+              class="absolute right-0 mt-3 w-80 bg-white dark:bg-darkcard border border-gray-100 dark:border-darkborder rounded-[24px] shadow-xl hidden z-[200] animate-dropdown"
+            >
+              <div
+                class="p-5 border-b border-gray-50 dark:border-darkborder/50 flex items-center justify-between"
+              >
+                <h4
+                  class="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest"
+                >
+                  Notificações
+                </h4>
+                <a
+                  href="chamados.html"
+                  class="text-[9px] font-black text-accent uppercase hover:underline"
+                  >Ver todos</a
+                >
               </div>
-              <div id="chamados-dropdown-list" class="max-h-[400px] overflow-y-auto custom-scrollbar">
-                <div class="p-8 text-center text-[10px] font-bold text-slate-400 uppercase">Nenhum chamado aberto</div>
+              <div
+                id="chamados-dropdown-list"
+                class="max-h-[400px] overflow-y-auto custom-scrollbar"
+              >
+                <div
+                  class="p-8 text-center text-[10px] font-bold text-slate-400 uppercase"
+                >
+                  Nenhum chamado aberto
+                </div>
               </div>
             </div>
           </div>
-          <button onclick="toggleTheme()" id="theme-toggle" class="w-10 h-10 flex items-center justify-center rounded-2xl bg-white dark:bg-darkborder text-slate-500 dark:text-slate-400 hover:bg-slate-200 transition-all active:scale-90 shadow-sm"><span id="theme-icon" class="material-symbols-outlined text-[20px]">dark_mode</span></button>
-          <button onclick="fetchData()" class="w-10 h-10 flex items-center justify-center rounded-2xl bg-accent text-white hover:opacity-90 active:scale-90 shadow-lg shadow-accent/20"><span class="material-symbols-outlined text-[20px]">refresh</span></button>
+          <button
+            onclick="toggleTheme()"
+            id="theme-toggle"
+            class="w-10 h-10 flex items-center justify-center rounded-2xl bg-white dark:bg-darkborder text-slate-500 dark:text-slate-400 hover:bg-slate-200 transition-all active:scale-90 shadow-sm"
+          >
+            <span id="theme-icon" class="material-symbols-outlined text-[20px]"
+              >dark_mode</span
+            >
+          </button>
+          <button
+            onclick="fetchData()"
+            class="w-10 h-10 flex items-center justify-center rounded-2xl bg-accent text-white hover:opacity-90 active:scale-90 shadow-lg shadow-accent/20"
+          >
+            <span class="material-symbols-outlined text-[20px]">refresh</span>
+          </button>
         </div>
       </header>
 
       <main class="flex-grow overflow-y-auto custom-scrollbar p-8 space-y-8">
-        <section class="bg-white dark:bg-darkcard border border-transparent dark:border-darkborder p-6 rounded-[24px] shadow-sm flex flex-wrap items-center justify-between gap-4">
-            <h3 class="font-bold text-sm text-slate-900 dark:text-white">Gerenciar Operações</h3>
-            <div class="flex items-center gap-3">
-                <div class="flex items-center bg-white dark:bg-slate-900/50 px-3 py-1.5 rounded-lg border border-transparent dark:border-darkborder">
-                    <span class="material-symbols-outlined text-slate-400 text-[16px]">search</span>
-                    <input type="text" id="search-input" placeholder="Filtrar local..." class="bg-transparent border-none p-0 text-xs font-medium focus:ring-0 w-48 text-slate-900 dark:text-white ml-2"/>
-                </div>
-                <select id="priority-filter" class="w-48 bg-white dark:bg-slate-900 border border-transparent dark:border-darkborder rounded-lg px-4 py-2 text-[10px] font-black uppercase tracking-widest outline-none cursor-pointer text-slate-900 dark:text-slate-200">
-                    <option value="all">Todas as Prioridades</option>
-                    <option value="Alta">Prioridade Alta</option>
-                    <option value="Média">Prioridade Média</option>
-                    <option value="Baixa">Prioridade Baixa</option>
-                </select>
-                <select id="sort-filter" class="bg-white dark:bg-slate-900 border border-transparent dark:border-darkborder rounded-lg px-4 py-2 text-[10px] font-black uppercase tracking-widest outline-none cursor-pointer text-slate-900 dark:text-slate-200">
-                    <option value="recent">Mais Recentes</option>
-                    <option value="oldest">Menos Recentes</option>
-                    <option value="priority-desc">Prioridade: Alta → Baixa</option>
-                    <option value="priority-asc">Prioridade: Baixa → Alta</option>
-                </select>
+        <section
+          class="bg-white dark:bg-darkcard border border-transparent dark:border-darkborder p-6 rounded-[24px] shadow-sm flex flex-wrap items-center justify-between gap-4"
+        >
+          <h3 class="font-bold text-sm text-slate-900 dark:text-white">
+            Gerenciar Operações
+          </h3>
+          <div class="flex items-center gap-3">
+            <div
+              class="flex items-center bg-white dark:bg-slate-900/50 px-3 py-1.5 rounded-lg border border-transparent dark:border-darkborder"
+            >
+              <span class="material-symbols-outlined text-slate-400 text-[16px]"
+                >search</span
+              >
+              <input
+                type="text"
+                id="search-input"
+                placeholder="Filtrar local..."
+                class="bg-transparent border-none p-0 text-xs font-medium focus:ring-0 w-48 text-slate-900 dark:text-white ml-2"
+              />
             </div>
+            <select
+              id="priority-filter"
+              class="w-48 bg-white dark:bg-slate-900 border border-transparent dark:border-darkborder rounded-lg px-4 py-2 text-[10px] font-black uppercase tracking-widest outline-none cursor-pointer text-slate-900 dark:text-slate-200"
+            >
+              <option value="all">Todas as Prioridades</option>
+              <option value="Alta">Prioridade Alta</option>
+              <option value="Média">Prioridade Média</option>
+              <option value="Baixa">Prioridade Baixa</option>
+            </select>
+            <select
+              id="sort-filter"
+              class="bg-white dark:bg-slate-900 border border-transparent dark:border-darkborder rounded-lg px-4 py-2 text-[10px] font-black uppercase tracking-widest outline-none cursor-pointer text-slate-900 dark:text-slate-200"
+            >
+              <option value="recent">Mais Recentes</option>
+              <option value="oldest">Menos Recentes</option>
+              <option value="priority-desc">Prioridade: Alta → Baixa</option>
+              <option value="priority-asc">Prioridade: Baixa → Alta</option>
+            </select>
+          </div>
         </section>
 
-        <section class="bg-white dark:bg-darkcard border border-transparent dark:border-darkborder overflow-hidden rounded-[24px] shadow-sm">
+        <section
+          class="bg-white dark:bg-darkcard border border-transparent dark:border-darkborder overflow-hidden rounded-[24px] shadow-sm"
+        >
           <div class="overflow-x-auto">
             <table class="w-full text-left">
               <thead>
-                <tr class="bg-slate-50/50 dark:bg-slate-800/30 text-[10px] font-bold text-slate-500 uppercase tracking-widest border-b border-slate-100 dark:border-darkborder">
-                  <th class="px-8 py-4">Local</th><th class="px-8 py-4">Assunto</th><th class="px-8 py-4 text-center">Aberto em</th><th class="px-8 py-4 text-center">Profissional</th><th class="px-8 py-4 text-center">Prioridade</th><th class="px-8 py-4 text-center">Status</th><th class="px-8 py-4 text-right">Ação</th>
+                <tr
+                  class="bg-slate-50/50 dark:bg-slate-800/30 text-[10px] font-bold text-slate-500 uppercase tracking-widest border-b border-slate-100 dark:border-darkborder"
+                >
+                  <th class="px-8 py-4">Local</th>
+                  <th class="px-8 py-4">Assunto</th>
+                  <th class="px-8 py-4 text-center">Aberto em</th>
+                  <th class="px-8 py-4 text-center">Profissional</th>
+                  <th class="px-8 py-4 text-center">Prioridade</th>
+                  <th class="px-8 py-4 text-center">Status</th>
+                  <th class="px-8 py-4 text-right">Ação</th>
                 </tr>
               </thead>
-              <tbody id="tickets-tbody" class="divide-y divide-slate-50 dark:divide-darkborder/50"></tbody>
+              <tbody
+                id="tickets-tbody"
+                class="divide-y divide-slate-50 dark:divide-darkborder/50"
+              ></tbody>
             </table>
           </div>
         </section>
@@ -180,54 +517,85 @@
     </div>
 
     <!-- Modal de Confirmação -->
-    <div id="confirm-modal" class="fixed inset-0 z-[200] hidden items-center justify-center bg-black/60 p-4 backdrop-blur-md">
-      <div class="bg-white dark:bg-darkcard rounded-[24px] shadow-2xl w-full max-w-sm overflow-hidden border border-slate-200 dark:border-darkborder p-8">
-          <div class="w-12 h-12 rounded-full bg-success/10 text-success flex items-center justify-center mx-auto mb-4">
-              <span class="material-symbols-outlined text-2xl">check_circle</span>
-          </div>
-          <h3 class="font-black text-slate-900 dark:text-white text-center text-lg uppercase tracking-tight mb-2">Concluir Chamado?</h3>
-          <p class="text-[11px] font-bold text-slate-500 dark:text-slate-400 text-center mb-8">Essa ação marcará o chamado como resolvido e o removerá da fila de pendências.</p>
-          <div class="flex items-center gap-3">
-              <button onclick="closeConfirmModal()" class="flex-1 py-3 bg-slate-50 dark:bg-slate-800 text-slate-500 dark:text-slate-300 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">Cancelar</button>
-              <button onclick="executeConclusion()" class="flex-1 py-3 bg-success text-white rounded-xl text-[10px] font-black uppercase tracking-widest shadow-lg shadow-success/20 hover:opacity-90 active:scale-95 transition-all">Confirmar</button>
-          </div>
+    <div
+      id="confirm-modal"
+      class="fixed inset-0 z-[200] hidden items-center justify-center bg-black/60 p-4 backdrop-blur-md"
+    >
+      <div
+        class="bg-white dark:bg-darkcard rounded-[24px] shadow-2xl w-full max-w-sm overflow-hidden border border-slate-200 dark:border-darkborder p-8"
+      >
+        <div
+          class="w-12 h-12 rounded-full bg-success/10 text-success flex items-center justify-center mx-auto mb-4"
+        >
+          <span class="material-symbols-outlined text-2xl">check_circle</span>
+        </div>
+        <h3
+          class="font-black text-slate-900 dark:text-white text-center text-lg uppercase tracking-tight mb-2"
+        >
+          Concluir Chamado?
+        </h3>
+        <p
+          class="text-[11px] font-bold text-slate-500 dark:text-slate-400 text-center mb-8"
+        >
+          Essa ação marcará o chamado como resolvido e o removerá da fila de
+          pendências.
+        </p>
+        <div class="flex items-center gap-3">
+          <button
+            onclick="closeConfirmModal()"
+            class="flex-1 py-3 bg-slate-50 dark:bg-slate-800 text-slate-500 dark:text-slate-300 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+          >
+            Cancelar
+          </button>
+          <button
+            onclick="executeConclusion()"
+            class="flex-1 py-3 bg-success text-white rounded-xl text-[10px] font-black uppercase tracking-widest shadow-lg shadow-success/20 hover:opacity-90 active:scale-95 transition-all"
+          >
+            Confirmar
+          </button>
+        </div>
       </div>
     </div>
 
     <script>
       (() => {
-        let allTickets = []; let alerts = [];
+        let allTickets = [];
+        let alerts = [];
         let pendingConclusionId = null;
         const tbody = document.getElementById("tickets-tbody");
         const searchInput = document.getElementById("search-input");
         const confirmModal = document.getElementById("confirm-modal");
 
         window.confirmConclusion = (id) => {
-            pendingConclusionId = id;
-            confirmModal.classList.remove("hidden");
-            confirmModal.classList.add("flex");
+          pendingConclusionId = id;
+          confirmModal.classList.remove("hidden");
+          confirmModal.classList.add("flex");
         };
 
         window.closeConfirmModal = () => {
-            pendingConclusionId = null;
-            confirmModal.classList.add("hidden");
-            confirmModal.classList.remove("flex");
+          pendingConclusionId = null;
+          confirmModal.classList.add("hidden");
+          confirmModal.classList.remove("flex");
         };
 
         window.executeConclusion = async () => {
-            if (!pendingConclusionId) return;
-            await updateStatus(pendingConclusionId, 'Concluído');
-            closeConfirmModal();
+          if (!pendingConclusionId) return;
+          await updateStatus(pendingConclusionId, "Concluído");
+          closeConfirmModal();
         };
 
         window.toggleSidebar = () => {
           document.body.classList.toggle("collapsed");
           const isCollapsed = document.body.classList.contains("collapsed");
           localStorage.setItem("sidebar-collapsed", isCollapsed);
-          document.getElementById("sidebar-toggle-icon").textContent = isCollapsed ? "menu" : "menu_open";
+          document.getElementById("sidebar-toggle-icon").textContent =
+            isCollapsed ? "menu" : "menu_open";
         };
         const savedSidebar = localStorage.getItem("sidebar-collapsed");
-        if (savedSidebar === "true") { document.body.classList.add("collapsed"); document.getElementById("sidebar-toggle-icon").textContent = "menu"; }
+        if (savedSidebar === "true") {
+          document.body.classList.add("collapsed");
+          document.getElementById("sidebar-toggle-icon").textContent = "menu";
+        }
 
         const applyTheme = (isDark) => {
           document.documentElement.classList.toggle("dark", isDark);
@@ -236,7 +604,8 @@
           const icon = document.getElementById("theme-icon");
           if (icon) icon.textContent = isDark ? "light_mode" : "dark_mode";
         };
-        window.toggleTheme = () => applyTheme(!document.documentElement.classList.contains("dark"));
+        window.toggleTheme = () =>
+          applyTheme(!document.documentElement.classList.contains("dark"));
         applyTheme(document.documentElement.classList.contains("dark"));
 
         window.fetchData = async () => {
@@ -252,8 +621,8 @@
             };
 
             const [tData, aData] = await Promise.all([
-                fetchSafe(`${API_BASE_URL}/api/chamados`),
-                fetchSafe(`${API_BASE_URL}/api/avisos`)
+              fetchSafe(`${API_BASE_URL}/api/chamados`),
+              fetchSafe(`${API_BASE_URL}/api/avisos`),
             ]);
             allTickets = tData;
             alerts = aData;
@@ -269,32 +638,45 @@
           const search = searchInput.value.toLowerCase();
           const sortVal = document.getElementById("sort-filter").value;
           const priorityVal = document.getElementById("priority-filter").value;
-          
-          let filtered = allTickets.filter(t => {
-              const matchSearch = t.local.toLowerCase().includes(search) || t.titulo.toLowerCase().includes(search);
-              const matchPriority = priorityVal === "all" || t.prioridade === priorityVal;
-              return t.status !== "Concluído" && matchSearch && matchPriority;
-          });
-          
-          // Apply Sorting
-          filtered.sort((a, b) => {
-              if (sortVal === "recent") return new Date(b.criadoEm) - new Date(a.criadoEm);
-              if (sortVal === "oldest") return new Date(a.criadoEm) - new Date(b.criadoEm);
-              
-              const pWeight = { "Alta": 3, "Média": 2, "Baixa": 1 };
-              if (sortVal === "priority-desc") return pWeight[b.prioridade] - pWeight[a.prioridade];
-              if (sortVal === "priority-asc") return pWeight[a.prioridade] - pWeight[b.prioridade];
-              return 0;
+
+          let filtered = allTickets.filter((t) => {
+            const matchSearch =
+              t.local.toLowerCase().includes(search) ||
+              t.titulo.toLowerCase().includes(search);
+            const matchPriority =
+              priorityVal === "all" || t.prioridade === priorityVal;
+            return t.status !== "Concluído" && matchSearch && matchPriority;
           });
 
-          tbody.innerHTML = filtered.map(t => {
-            const pClass = t.prioridade === 'Alta' ? 'badge-danger' : t.prioridade === 'Média' ? 'badge-warning' : 'badge-success';
-            const sClass = getStatusBadgeClass(t.status);
-            return `
+          // Apply Sorting
+          filtered.sort((a, b) => {
+            if (sortVal === "recent")
+              return new Date(b.criadoEm) - new Date(a.criadoEm);
+            if (sortVal === "oldest")
+              return new Date(a.criadoEm) - new Date(b.criadoEm);
+
+            const pWeight = { Alta: 3, Média: 2, Baixa: 1 };
+            if (sortVal === "priority-desc")
+              return pWeight[b.prioridade] - pWeight[a.prioridade];
+            if (sortVal === "priority-asc")
+              return pWeight[a.prioridade] - pWeight[b.prioridade];
+            return 0;
+          });
+
+          tbody.innerHTML = filtered
+            .map((t) => {
+              const pClass =
+                t.prioridade === "Alta"
+                  ? "badge-danger"
+                  : t.prioridade === "Média"
+                    ? "badge-warning"
+                    : "badge-success";
+              const sClass = getStatusBadgeClass(t.status);
+              return `
               <tr class="table-row-hover transition-all group">
                 <td class="px-8 py-5 text-xs font-bold text-slate-900 dark:text-white uppercase">${t.local}</td>
                 <td class="px-8 py-5"><p class="text-xs font-medium text-slate-700 dark:text-slate-300">${t.titulo}</p></td>
-                <td class="px-8 py-5 text-center"><p class="text-[10px] font-bold text-slate-500 tabular-nums">${new Date(t.criadoEm).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}</p></td>
+                <td class="px-8 py-5 text-center"><p class="text-[10px] font-bold text-slate-500 tabular-nums">${new Date(t.criadoEm).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</p></td>
                 <td class="px-8 py-5 text-center">
                     <select onchange="updateResponsavel('${t.id}', this.value)" class="status-badge badge-neutral min-w-[140px] border-none outline-none cursor-pointer">
                         <option value="">Não atribuído</option>
@@ -321,28 +703,47 @@
                     <button onclick="confirmConclusion('${t.id}')" class="p-2 text-slate-400 hover:text-success transition-all" title="Marcar como concluído"><span class="material-symbols-outlined">check_circle</span></button>
                 </td>
               </tr>`;
-	          }).join("");
-	        };
+            })
+            .join("");
+        };
 
         const getStatusBadgeClass = (status = "Em análise") => {
           if (status === "Aberto") return "badge-info";
-          if (status === "Concluído" || status === "Concluido") return "badge-success";
-          if (status === "Em progresso" || status === "Em análise" || status === "Em analise") return "badge-warning";
+          if (status === "Concluído" || status === "Concluido")
+            return "badge-success";
+          if (
+            status === "Em progresso" ||
+            status === "Em análise" ||
+            status === "Em analise"
+          )
+            return "badge-warning";
           return "badge-neutral";
         };
 
         window.updateStatus = async (id, status) => {
-          await fetch(`${API_BASE_URL}/api/chamados/${id}`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ status }) });
+          await fetch(`${API_BASE_URL}/api/chamados/${id}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ status }),
+          });
           fetchData();
         };
 
         window.updatePriority = async (id, prioridade) => {
-          await fetch(`${API_BASE_URL}/api/chamados/${id}`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ prioridade }) });
+          await fetch(`${API_BASE_URL}/api/chamados/${id}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ prioridade }),
+          });
           fetchData();
         };
 
         window.updateResponsavel = async (id, responsavel) => {
-          await fetch(`${API_BASE_URL}/api/chamados/${id}`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ responsavel }) });
+          await fetch(`${API_BASE_URL}/api/chamados/${id}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ responsavel }),
+          });
           fetchData();
         };
 
@@ -352,32 +753,41 @@
         };
 
         const renderChamadosDropdown = () => {
-          const list = document.getElementById("chamados-dropdown-list"); 
+          const list = document.getElementById("chamados-dropdown-list");
           const badge = document.getElementById("chamados-badge");
           if (!list || !badge) return;
 
-          const openTickets = allTickets.filter(t => t.status !== "Concluído").map(t => ({
+          const openTickets = allTickets
+            .filter((t) => t.status !== "Concluído")
+            .map((t) => ({
               title: t.titulo,
               subtitle: `${t.local} • Chamado`,
               time: t.criadoEm,
-              link: 'chamados.html',
-              icon: 'confirmation_number'
-          }));
+              link: "chamados.html",
+              icon: "confirmation_number",
+            }));
 
-          const activeAlerts = (typeof alerts !== 'undefined' ? alerts : []).filter(a => a.ativo !== false).slice(0, 3).map(a => ({
+          const activeAlerts = (typeof alerts !== "undefined" ? alerts : [])
+            .filter((a) => a.ativo !== false)
+            .slice(0, 3)
+            .map((a) => ({
               title: a.titulo,
               subtitle: `${a.categoria} • Aviso`,
-              time: new Date().toISOString(), 
-              link: 'avisos.html',
-              icon: 'campaign'
-          }));
+              time: new Date().toISOString(),
+              link: "avisos.html",
+              icon: "campaign",
+            }));
 
-          const allNotifications = [...openTickets, ...activeAlerts].sort((a, b) => new Date(b.time) - new Date(a.time)).slice(0, 5);
-          
+          const allNotifications = [...openTickets, ...activeAlerts]
+            .sort((a, b) => new Date(b.time) - new Date(a.time))
+            .slice(0, 5);
+
           if (allNotifications.length > 0) {
-              badge.textContent = allNotifications.length;
-              badge.classList.remove("hidden");
-              list.innerHTML = allNotifications.map(n => `
+            badge.textContent = allNotifications.length;
+            badge.classList.remove("hidden");
+            list.innerHTML = allNotifications
+              .map(
+                (n) => `
                   <div class="p-4 border-b border-slate-50 dark:border-darkborder/50 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all cursor-pointer group" onclick="window.location.href='${n.link}'">
                       <div class="flex items-start gap-3">
                           <span class="material-symbols-outlined text-slate-400 group-hover:text-accent text-sm mt-0.5">${n.icon}</span>
@@ -387,26 +797,52 @@
                           </div>
                       </div>
                   </div>
-              `).join("");
+              `,
+              )
+              .join("");
           } else {
-              badge.classList.add("hidden");
-              list.innerHTML = '<div class="p-8 text-center text-[10px] font-bold text-slate-400 dark:text-slate-600 uppercase">Nenhuma notificação</div>';
+            badge.classList.add("hidden");
+            list.innerHTML =
+              '<div class="p-8 text-center text-[10px] font-bold text-slate-400 dark:text-slate-600 uppercase">Nenhuma notificação</div>';
           }
         };
 
         searchInput.addEventListener("input", renderTable);
-        document.getElementById("priority-filter").addEventListener("change", renderTable);
-        document.getElementById("sort-filter").addEventListener("change", renderTable);
-        window.logout = () => { localStorage.removeItem("userRole"); window.location.href = "../login.html"; };
-        window.toggleProfileDropdown = (e) => { e.stopPropagation(); document.getElementById("profile-dropdown").classList.toggle("hidden"); };
-        
-        document.addEventListener("click", (e) => { 
-            const pD = document.getElementById("profile-dropdown");
-            if (pD && !pD.classList.contains("hidden") && !document.getElementById("profile-container").contains(e.target)) pD.classList.add("hidden");
-            
-            const cM = document.getElementById("chamados-dropdown-menu");
-            const cC = document.getElementById("chamados-dropdown-container");
-            if (cM && !cM.classList.contains("hidden") && cC && !cC.contains(e.target)) cM.classList.add("hidden");
+        document
+          .getElementById("priority-filter")
+          .addEventListener("change", renderTable);
+        document
+          .getElementById("sort-filter")
+          .addEventListener("change", renderTable);
+        window.logout = () => {
+          localStorage.removeItem("userRole");
+          window.location.href = "../login.html";
+        };
+        window.toggleProfileDropdown = (e) => {
+          e.stopPropagation();
+          document
+            .getElementById("profile-dropdown")
+            .classList.toggle("hidden");
+        };
+
+        document.addEventListener("click", (e) => {
+          const pD = document.getElementById("profile-dropdown");
+          if (
+            pD &&
+            !pD.classList.contains("hidden") &&
+            !document.getElementById("profile-container").contains(e.target)
+          )
+            pD.classList.add("hidden");
+
+          const cM = document.getElementById("chamados-dropdown-menu");
+          const cC = document.getElementById("chamados-dropdown-container");
+          if (
+            cM &&
+            !cM.classList.contains("hidden") &&
+            cC &&
+            !cC.contains(e.target)
+          )
+            cM.classList.add("hidden");
         });
 
         fetchData();

@@ -383,7 +383,7 @@
       aria-hidden="true"
     >
       <div
-        class="bg-white rounded-[40px] shadow-2xl w-full max-lg overflow-hidden animate-in fade-in zoom-in duration-300"
+        class="bg-white rounded-[40px] shadow-2xl w-full max-w-lg overflow-hidden animate-in fade-in zoom-in duration-300"
         role="dialog"
         aria-modal="true"
       >
@@ -698,14 +698,25 @@
           );
           if (cancelBtn) cancelBtn.classList.add("hidden");
 
+          let dotColor = "bg-yellow-400";
+          const statusLabel = res.status || "Confirmado";
+          if (statusLabel === "Confirmado" || statusLabel === "Confirmada")
+            dotColor = "bg-green-400";
+          else if (statusLabel === "Cancelado" || statusLabel === "Cancelada")
+            dotColor = "bg-red-400";
+
           actionContent.innerHTML = `
             <div class="space-y-6">
               <div class="grid grid-cols-2 gap-6">
-                <div><label class="text-[10px] font-black uppercase text-[#475569]">Local</label><p class="font-black text-black">${res.local}</p></div>
-                <div><label class="text-[10px] font-black uppercase text-[#475569]">Data</label><p class="font-black text-black">${res.data}</p></div>
+                <div><label class="text-[10px] font-black uppercase text-[var(--text-secondary)]">Local</label><p class="font-black text-black">${res.local}</p></div>
+                <div><label class="text-[10px] font-black uppercase text-[var(--text-secondary)]">Data</label><p class="font-black text-black">${res.data}</p></div>
               </div>
-              <div><label class="text-[10px] font-black uppercase text-[#475569]">Horário</label><p class="text-xl font-black text-black">${res.horario}</p></div>
-              <div><label class="text-[10px] font-black uppercase text-[#475569]">Atividade</label><p class="text-sm text-[#475569] bg-gray-50 p-4 rounded-2xl mt-2 font-bold">${res.obs || "Nenhuma observação."}</p></div>
+              <div><label class="text-[10px] font-black uppercase text-[var(--text-secondary)]">Horário</label><p class="text-xl font-black text-black">${res.horario}</p></div>
+              <div><label class="text-[10px] font-black uppercase text-[var(--text-secondary)]">Atividade</label><p class="text-sm text-[var(--text-secondary)] bg-gray-50 p-4 rounded-2xl mt-2 font-bold">${res.obs || "Nenhuma observação."}</p></div>
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full ${dotColor} animate-pulse"></span>
+                <p class="text-[10px] font-black uppercase tracking-widest text-black">Status: ${statusLabel}</p>
+              </div>
             </div>
           `;
           actionModal.classList.remove("hidden");
@@ -764,8 +775,8 @@
           actionContent.innerHTML = `
             <form id="res-form" class="space-y-4">
               <div class="space-y-2">
-                <label class="text-[10px] font-black uppercase tracking-widest text-[#475569] ml-1">Espaço Selecionado</label>
-                <select name="local" id="espaco-select" class="w-full rounded-2xl border-none bg-gray-50 p-4 font-bold focus:ring-2 focus:ring-[var(--accent)] transition-all">
+                <label class="text-[10px] font-black uppercase tracking-widest text-[var(--text-secondary)] ml-1">Espaço Selecionado</label>
+                <select name="local" id="espaco-select" class="w-full rounded-2xl border-none bg-gray-50 p-4 font-bold focus:ring-2 focus:ring-[var(--accent)]">
                     <option value="Quadra Poliesportiva">Quadra Poliesportiva</option>
                     <option value="Sala de Estudo A">Sala de Estudo A</option>
                     <option value="Sala de Estudo B">Sala de Estudo B</option>
@@ -774,12 +785,12 @@
               </div>
               <div class="grid grid-cols-2 gap-4">
                 <div class="space-y-2">
-                    <label class="text-[10px] font-black uppercase tracking-widest text-[#475569] ml-1">Data</label>
-                    <input type="date" name="data" class="w-full rounded-2xl border-none bg-gray-50 p-4 font-bold transition-all focus:ring-2 focus:ring-[var(--accent)]" required />
+                    <label class="text-[10px] font-black uppercase tracking-widest text-[var(--text-secondary)] ml-1">Data</label>
+                    <input type="date" name="data" class="w-full rounded-2xl border-none bg-gray-50 p-4 font-bold focus:ring-2 focus:ring-[var(--accent)]" required />
                 </div>
                 <div class="space-y-2">
-                    <label class="text-[10px] font-black uppercase tracking-widest text-[#475569] ml-1">Horário</label>
-                    <select name="horario" class="w-full rounded-2xl border-none bg-gray-50 p-4 font-bold transition-all focus:ring-2 focus:ring-[var(--accent)]">
+                    <label class="text-[10px] font-black uppercase tracking-widest text-[var(--text-secondary)] ml-1">Horário</label>
+                    <select name="horario" class="w-full rounded-2xl border-none bg-gray-50 p-4 font-bold focus:ring-2 focus:ring-[var(--accent)]">
                         <option value="08:00 - 10:00">08:00 - 10:00</option>
                         <option value="10:00 - 12:00">10:00 - 12:00</option>
                         <option value="14:00 - 16:00">14:00 - 16:00</option>
@@ -788,8 +799,8 @@
                 </div>
               </div>
               <div class="space-y-2">
-                <label class="text-[10px] font-black uppercase tracking-widest text-[#475569] ml-1">Finalidade (Opcional)</label>
-                <input name="obs" placeholder="Ex: Treino de Vôlei" class="w-full rounded-2xl border-none bg-gray-50 p-4 font-bold transition-all focus:ring-2 focus:ring-[var(--accent)]" />
+                <label class="text-[10px] font-black uppercase tracking-widest text-[var(--text-secondary)] ml-1">Finalidade (Opcional)</label>
+                <input name="obs" placeholder="Ex: Treino de Vôlei" class="w-full rounded-2xl border-none bg-gray-50 p-4 font-bold focus:ring-2 focus:ring-[var(--accent)]" />
               </div>
             </form>
           `;

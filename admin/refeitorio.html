@@ -167,8 +167,9 @@
             <a
               href="historico.html"
               class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-2xl text-xs font-semibold transition-all nav-item"
-              ><span class="material-symbols-outlined text-[20px]">history</span
-              ><span class="nav-text">Histórico</span></a
+              ><span class="material-symbols-outlined text-[20px]"
+                >check_circle</span
+              ><span class="nav-text">Concluído</span></a
             >
             <a
               href="refeitorio.html"
@@ -202,21 +203,21 @@
                 >event_seat</span
               ><span class="nav-text">Reservas</span></a
             >
-	            <a
-	              href="calendario.html"
-	              class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-2xl text-xs font-semibold transition-all nav-item"
-	              ><span class="material-symbols-outlined text-[20px]"
-	                >calendar_today</span
-	              ><span class="nav-text">Calendário</span></a
-	            >
-	            <a
-	              href="avisos.html"
-	              class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-2xl text-xs font-semibold transition-all nav-item"
-	              ><span class="material-symbols-outlined text-[20px]"
-	                >campaign</span
-	              ><span class="nav-text">Avisos</span></a
-	            >
-	          </div>
+            <a
+              href="calendario.html"
+              class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-2xl text-xs font-semibold transition-all nav-item"
+              ><span class="material-symbols-outlined text-[20px]"
+                >calendar_today</span
+              ><span class="nav-text">Calendário</span></a
+            >
+            <a
+              href="avisos.html"
+              class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-2xl text-xs font-semibold transition-all nav-item"
+              ><span class="material-symbols-outlined text-[20px]"
+                >campaign</span
+              ><span class="nav-text">Avisos</span></a
+            >
+          </div>
         </div>
       </nav>
       <div
@@ -263,29 +264,100 @@
 
     <div id="main-content" class="flex-grow flex flex-col overflow-hidden">
       <!-- Header -->
-      <header class="h-20 bg-white/90 dark:bg-darkcard/90 backdrop-blur-md border-b border-gray-100 dark:border-darkborder flex items-center justify-between px-10 shrink-0 z-[100]">
+      <header
+        class="h-20 bg-white/90 dark:bg-darkcard/90 backdrop-blur-md border-b border-gray-100 dark:border-darkborder flex items-center justify-between px-10 shrink-0 z-[100]"
+      >
         <div class="flex items-center gap-8">
-            <button onclick="toggleSidebar()" class="w-10 h-10 flex items-center justify-center rounded-2xl bg-white dark:bg-slate-800 text-slate-500 hover:text-accent transition-all group"><span class="material-symbols-outlined text-[20px] group-active:scale-90" id="sidebar-toggle-icon">menu_open</span></button>
-            <div><h2 class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Ambiente Operacional</h2><div class="flex items-center gap-2 mt-1"><div class="w-1.5 h-1.5 rounded-full bg-success animate-pulse"></div><p id="welcome-msg" class="text-xs text-slate-600 dark:text-slate-300 font-bold tracking-tight">Status: Monitorando fluxos em tempo real</p></div></div>
+          <button
+            onclick="toggleSidebar()"
+            class="w-10 h-10 flex items-center justify-center rounded-2xl bg-white dark:bg-slate-800 text-slate-500 hover:text-accent transition-all group"
+          >
+            <span
+              class="material-symbols-outlined text-[20px] group-active:scale-90"
+              id="sidebar-toggle-icon"
+              >menu_open</span
+            >
+          </button>
+          <div>
+            <h2
+              class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]"
+            >
+              Ambiente Operacional
+            </h2>
+            <div class="flex items-center gap-2 mt-1">
+              <div
+                class="w-1.5 h-1.5 rounded-full bg-success animate-pulse"
+              ></div>
+              <p
+                id="welcome-msg"
+                class="text-xs text-slate-600 dark:text-slate-300 font-bold tracking-tight"
+              >
+                Status: Monitorando fluxos em tempo real
+              </p>
+            </div>
+          </div>
         </div>
         <div class="flex items-center gap-4">
           <div class="relative" id="chamados-dropdown-container">
-            <button onclick="toggleChamadosDropdown()" id="chamados-dropdown-btn" class="w-10 h-10 flex items-center justify-center rounded-2xl bg-white dark:bg-darkborder text-slate-500 dark:text-slate-400 hover:bg-slate-200 transition-all active:scale-90 relative">
-              <span class="material-symbols-outlined text-[20px]">notifications</span>
-              <span id="chamados-badge" class="absolute -top-1 -right-1 w-4 h-4 bg-danger text-white text-[9px] font-black rounded-full flex items-center justify-center hidden">0</span>
+            <button
+              onclick="toggleChamadosDropdown()"
+              id="chamados-dropdown-btn"
+              class="w-10 h-10 flex items-center justify-center rounded-2xl bg-white dark:bg-darkborder text-slate-500 dark:text-slate-400 hover:bg-slate-200 transition-all active:scale-90 relative"
+            >
+              <span class="material-symbols-outlined text-[20px]"
+                >notifications</span
+              >
+              <span
+                id="chamados-badge"
+                class="absolute -top-1 -right-1 w-4 h-4 bg-danger text-white text-[9px] font-black rounded-full flex items-center justify-center hidden"
+                >0</span
+              >
             </button>
-            <div id="chamados-dropdown-menu" class="absolute right-0 mt-3 w-80 bg-white dark:bg-darkcard border border-gray-100 dark:border-darkborder rounded-[24px] shadow-xl hidden z-[200] animate-dropdown">
-              <div class="p-5 border-b border-gray-50 dark:border-darkborder/50 flex items-center justify-between">
-                <h4 class="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">Notificações</h4>
-                <a href="chamados.html" class="text-[9px] font-black text-accent uppercase hover:underline">Ver todos</a>
+            <div
+              id="chamados-dropdown-menu"
+              class="absolute right-0 mt-3 w-80 bg-white dark:bg-darkcard border border-gray-100 dark:border-darkborder rounded-[24px] shadow-xl hidden z-[200] animate-dropdown"
+            >
+              <div
+                class="p-5 border-b border-gray-50 dark:border-darkborder/50 flex items-center justify-between"
+              >
+                <h4
+                  class="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest"
+                >
+                  Notificações
+                </h4>
+                <a
+                  href="chamados.html"
+                  class="text-[9px] font-black text-accent uppercase hover:underline"
+                  >Ver todos</a
+                >
               </div>
-              <div id="chamados-dropdown-list" class="max-h-[400px] overflow-y-auto custom-scrollbar">
-                <div class="p-8 text-center text-[10px] font-bold text-slate-400 uppercase">Nenhum chamado aberto</div>
+              <div
+                id="chamados-dropdown-list"
+                class="max-h-[400px] overflow-y-auto custom-scrollbar"
+              >
+                <div
+                  class="p-8 text-center text-[10px] font-bold text-slate-400 uppercase"
+                >
+                  Nenhum chamado aberto
+                </div>
               </div>
             </div>
           </div>
-          <button onclick="toggleTheme()" id="theme-toggle" class="w-10 h-10 flex items-center justify-center rounded-2xl bg-white dark:bg-darkborder text-slate-500 dark:text-slate-400 hover:bg-slate-200 transition-all active:scale-90 shadow-sm"><span id="theme-icon" class="material-symbols-outlined text-[20px]">dark_mode</span></button>
-          <button onclick="fetchData()" class="w-10 h-10 flex items-center justify-center rounded-2xl bg-accent text-white hover:opacity-90 active:scale-90 shadow-lg shadow-accent/20"><span class="material-symbols-outlined text-[20px]">refresh</span></button>
+          <button
+            onclick="toggleTheme()"
+            id="theme-toggle"
+            class="w-10 h-10 flex items-center justify-center rounded-2xl bg-white dark:bg-darkborder text-slate-500 dark:text-slate-400 hover:bg-slate-200 transition-all active:scale-90 shadow-sm"
+          >
+            <span id="theme-icon" class="material-symbols-outlined text-[20px]"
+              >dark_mode</span
+            >
+          </button>
+          <button
+            onclick="fetchData()"
+            class="w-10 h-10 flex items-center justify-center rounded-2xl bg-accent text-white hover:opacity-90 active:scale-90 shadow-lg shadow-accent/20"
+          >
+            <span class="material-symbols-outlined text-[20px]">refresh</span>
+          </button>
         </div>
       </header>
 
@@ -329,6 +401,19 @@
               <p
                 class="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1"
               >
+                Café da Manhã
+              </p>
+              <p
+                class="text-2xl font-black text-slate-900 dark:text-white tabular-nums"
+                id="count-cafe"
+              >
+                0
+              </p>
+            </div>
+            <div class="text-center">
+              <p
+                class="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1"
+              >
                 Almoço
               </p>
               <p
@@ -347,19 +432,6 @@
               <p
                 class="text-2xl font-black text-slate-900 dark:text-white tabular-nums"
                 id="count-jantar"
-              >
-                0
-              </p>
-            </div>
-            <div class="text-center">
-              <p
-                class="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1"
-              >
-                Lanche
-              </p>
-              <p
-                class="text-2xl font-black text-slate-900 dark:text-white tabular-nums"
-                id="count-lanche"
               >
                 0
               </p>
@@ -443,7 +515,9 @@
             <div
               class="p-6 border-b border-slate-100 dark:border-darkborder/50 flex items-center justify-between"
             >
-              <h3 class="font-black text-[10px] uppercase tracking-widest text-slate-400 dark:text-slate-500">
+              <h3
+                class="font-black text-[10px] uppercase tracking-widest text-slate-400 dark:text-slate-500"
+              >
                 Logs Hoje
               </h3>
               <button
@@ -474,7 +548,9 @@
           class="px-6 pt-6 pb-3 border-b border-slate-100 dark:border-darkborder/50 flex items-center justify-between bg-white/30 dark:bg-slate-800/30"
         >
           <div>
-            <h3 class="font-black uppercase text-xs text-slate-900 dark:text-white">
+            <h3
+              class="font-black uppercase text-xs text-slate-900 dark:text-white"
+            >
               Atualizar Cardápio
             </h3>
             <p
@@ -544,7 +620,9 @@
           class="px-6 pt-6 pb-3 border-b border-slate-100 dark:border-darkborder/50 flex items-center justify-between bg-white/30 dark:bg-slate-800/30"
         >
           <div>
-            <h3 class="font-black uppercase text-xs text-slate-900 dark:text-white">
+            <h3
+              class="font-black uppercase text-xs text-slate-900 dark:text-white"
+            >
               Registrar Fluxo
             </h3>
             <p
@@ -571,9 +649,9 @@
                 id="access-meal-select"
                 class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-darkborder rounded-xl px-4 py-3 text-[11px] font-black uppercase text-slate-900 dark:text-slate-200 focus:ring-4 focus:ring-accent/5 outline-none transition-all"
               >
+                <option value="Café da Manhã">Café da Manhã</option>
                 <option value="Almoço">Almoço</option>
                 <option value="Jantar">Jantar</option>
-                <option value="Lanche">Lanche</option>
               </select>
             </div>
             <div class="space-y-1.5">
@@ -799,7 +877,8 @@
           const icon = document.getElementById("theme-icon");
           if (icon) icon.textContent = isDark ? "light_mode" : "dark_mode";
         };
-        window.toggleTheme = () => applyTheme(!document.documentElement.classList.contains("dark"));
+        window.toggleTheme = () =>
+          applyTheme(!document.documentElement.classList.contains("dark"));
         applyTheme(document.documentElement.classList.contains("dark"));
 
         const normalizeText = (value) =>
@@ -815,27 +894,34 @@
 
         const getTodayKey = () => new Date().toLocaleDateString("en-CA");
 
+        const getMealType = (value) => {
+          const n = normalizeText(value);
+          if (n.includes("cafe")) return "cafe";
+          if (n.includes("almo")) return "almoco";
+          if (n.includes("jant")) return "jantar";
+          if (n.includes("lanc")) return "lanche";
+          return "outro";
+        };
+
         const updateStats = (r) => {
-          const filterSum = (term1, term2 = "") =>
+          const sumByType = (type) =>
             r
-              .filter((i) => {
-                const n = normalizeText(i.refeicao);
-                return n.includes(term1) || (term2 && n.includes(term2));
-              })
+              .filter((i) => getMealType(i.refeicao) === type)
               .reduce((acc, i) => acc + getQuantityValue(i.quantidade), 0);
 
-          const aCount = filterSum("almo");
-          const jCount = filterSum("jant");
-          const lCount = filterSum("lanc", "caf");
+          const cafeCount = sumByType("cafe");
+          const almocoCount = sumByType("almoco");
+          const jantarCount = sumByType("jantar");
+          const lancheCount = sumByType("lanche");
 
-          document.getElementById("count-almoco").textContent = aCount;
-          document.getElementById("count-jantar").textContent = jCount;
-          document.getElementById("count-lanche").textContent = lCount;
+          document.getElementById("count-cafe").textContent = cafeCount;
+          document.getElementById("count-almoco").textContent = almocoCount;
+          document.getElementById("count-jantar").textContent = jantarCount;
           document.getElementById("count-refeicoes").textContent =
-            aCount + jCount + lCount;
+            cafeCount + almocoCount + jantarCount + lancheCount;
 
           const qStatus = document.getElementById("queue-status");
-          if (Math.max(aCount, jCount, lCount) > 50) {
+          if (Math.max(cafeCount, almocoCount, jantarCount, lancheCount) > 50) {
             qStatus.textContent = "ALTA";
             qStatus.className =
               "text-xl font-black text-danger uppercase animate-pulse";
@@ -859,13 +945,10 @@
 
           container.innerHTML = items
             .map((m) => {
-              const term = m.refeicao.toLowerCase().substring(0, 4);
+              const type = getMealType(m.refeicao);
               const count = records
                 .filter((r) => {
-                  const n = normalizeText(r.refeicao);
-                  if (term === "café" || term === "caf")
-                    return n.includes("caf") || n.includes("lanc");
-                  return n.includes(term);
+                  return getMealType(r.refeicao) === type;
                 })
                 .reduce((acc, r) => acc + getQuantityValue(r.quantidade), 0);
 
@@ -942,7 +1025,6 @@
             accessRecords = Array.isArray(rData) ? rData : [];
             allTickets = Array.isArray(tData) ? tData : [];
             alerts = Array.isArray(aData) ? aData : [];
-
           } catch (e) {
             console.error("Erro no carregamento de dados do refeitório:", e);
           } finally {
@@ -1100,36 +1182,47 @@
         };
 
         window.toggleChamadosDropdown = () => {
-          document.getElementById("chamados-dropdown-menu").classList.toggle("hidden");
+          document
+            .getElementById("chamados-dropdown-menu")
+            .classList.toggle("hidden");
         };
 
         const renderChamadosDropdown = () => {
-          const list = document.getElementById("chamados-dropdown-list"); 
+          const list = document.getElementById("chamados-dropdown-list");
           const badge = document.getElementById("chamados-badge");
           if (!list || !badge) return;
 
-          const openTickets = allTickets.filter(t => t.status !== "Concluído").map(t => ({
+          const openTickets = allTickets
+            .filter((t) => t.status !== "Concluído")
+            .map((t) => ({
               title: t.titulo,
               subtitle: `${t.local} • Chamado`,
               time: t.criadoEm,
-              link: 'chamados.html',
-              icon: 'confirmation_number'
-          }));
+              link: "chamados.html",
+              icon: "confirmation_number",
+            }));
 
-          const activeAlerts = (typeof alerts !== 'undefined' ? alerts : []).filter(a => a.ativo !== false).slice(0, 3).map(a => ({
+          const activeAlerts = (typeof alerts !== "undefined" ? alerts : [])
+            .filter((a) => a.ativo !== false)
+            .slice(0, 3)
+            .map((a) => ({
               title: a.titulo,
               subtitle: `${a.categoria} • Aviso`,
-              time: new Date().toISOString(), 
-              link: 'avisos.html',
-              icon: 'campaign'
-          }));
+              time: new Date().toISOString(),
+              link: "avisos.html",
+              icon: "campaign",
+            }));
 
-          const allNotifications = [...openTickets, ...activeAlerts].sort((a, b) => new Date(b.time) - new Date(a.time)).slice(0, 5);
-          
+          const allNotifications = [...openTickets, ...activeAlerts]
+            .sort((a, b) => new Date(b.time) - new Date(a.time))
+            .slice(0, 5);
+
           if (allNotifications.length > 0) {
-              badge.textContent = allNotifications.length;
-              badge.classList.remove("hidden");
-              list.innerHTML = allNotifications.map(n => `
+            badge.textContent = allNotifications.length;
+            badge.classList.remove("hidden");
+            list.innerHTML = allNotifications
+              .map(
+                (n) => `
                   <div class="p-4 border-b border-slate-50 dark:border-darkborder/50 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all cursor-pointer group" onclick="window.location.href='${n.link}'">
                       <div class="flex items-start gap-3">
                           <span class="material-symbols-outlined text-slate-400 group-hover:text-accent text-sm mt-0.5">${n.icon}</span>
@@ -1139,20 +1232,31 @@
                           </div>
                       </div>
                   </div>
-              `).join("");
+              `,
+              )
+              .join("");
           } else {
-              badge.classList.add("hidden");
-              list.innerHTML = '<div class="p-8 text-center text-[10px] font-bold text-slate-400 dark:text-slate-600 uppercase">Nenhuma notificação</div>';
+            badge.classList.add("hidden");
+            list.innerHTML =
+              '<div class="p-8 text-center text-[10px] font-bold text-slate-400 dark:text-slate-600 uppercase">Nenhuma notificação</div>';
           }
         };
 
         document.addEventListener("click", (e) => {
-          if (!document.getElementById("profile-container").contains(e.target)) {
+          if (
+            !document.getElementById("profile-container").contains(e.target)
+          ) {
             document.getElementById("profile-dropdown").classList.add("hidden");
           }
           const cM = document.getElementById("chamados-dropdown-menu");
           const cC = document.getElementById("chamados-dropdown-container");
-          if (cM && !cM.classList.contains("hidden") && cC && !cC.contains(e.target)) cM.classList.add("hidden");
+          if (
+            cM &&
+            !cM.classList.contains("hidden") &&
+            cC &&
+            !cC.contains(e.target)
+          )
+            cM.classList.add("hidden");
         });
 
         fetchData();

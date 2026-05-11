@@ -263,12 +263,6 @@
           >
             Reservas
           </button>
-          <button
-            data-filter="refeicao"
-            class="px-6 py-2 bg-gray-50 text-[var(--text-secondary)] rounded-full text-xs font-black uppercase tracking-widest hover:bg-gray-100 transition-all"
-          >
-            Refeições
-          </button>
         </div>
 
         <section class="space-y-4" id="history-content">
@@ -404,25 +398,35 @@
         const filterBtns = document.querySelectorAll("[data-filter]");
         const actionModal = document.querySelector("[data-action-modal]");
         const actionTitle = document.querySelector("[data-action-modal-title]");
-        const actionSubtitle = document.querySelector("[data-action-modal-subtitle]");
-        const actionContent = document.querySelector("[data-action-modal-content]");
+        const actionSubtitle = document.querySelector(
+          "[data-action-modal-subtitle]",
+        );
+        const actionContent = document.querySelector(
+          "[data-action-modal-content]",
+        );
 
         let allActivities = [];
         let currentFilter = "all";
 
         const fetchData = async () => {
           try {
-            const [cRes, rRes, fRes] = await Promise.all([
+            const [cRes, rRes] = await Promise.all([
               fetch(`${API_BASE_URL}/api/chamados`),
               fetch(`${API_BASE_URL}/api/reservas`),
-              fetch(`${API_BASE_URL}/api/refeicoes`)
             ]);
 
-            const chamados = (await cRes.json()).map(i => ({ ...i, type: 'chamado' }));
-            const reservas = (await rRes.json()).map(i => ({ ...i, type: 'reserva' }));
-            const refeicoes = (await fRes.json()).map(i => ({ ...i, type: 'refeicao' }));
+            const chamados = (await cRes.json()).map((i) => ({
+              ...i,
+              type: "chamado",
+            }));
+            const reservas = (await rRes.json()).map((i) => ({
+              ...i,
+              type: "reserva",
+            }));
 
-            allActivities = [...chamados, ...reservas, ...refeicoes].sort((a, b) => new Date(b.criadoEm) - new Date(a.criadoEm));
+            allActivities = [...chamados, ...reservas].sort(
+              (a, b) => new Date(b.criadoEm) - new Date(a.criadoEm),
+            );
             renderHistory();
           } catch (error) {
             historyContent.innerHTML = `<p class="text-center p-12 text-[var(--text-secondary)] font-bold">Erro ao carregar histórico.</p>`;
@@ -430,7 +434,10 @@
         };
 
         const renderHistory = () => {
-          const filtered = currentFilter === "all" ? allActivities : allActivities.filter(a => a.type === currentFilter);
+          const filtered =
+            currentFilter === "all"
+              ? allActivities
+              : allActivities.filter((a) => a.type === currentFilter);
 
           if (filtered.length === 0) {
             historyContent.innerHTML = `
@@ -441,39 +448,39 @@
             return;
           }
 
-          historyContent.innerHTML = filtered.map(act => {
-            let icon = "info";
-            let label = "";
-            let subtitle = "";
-            let status = "Concluído";
-            let statusClass = "bg-gray-100 text-[var(--text-secondary)]";
+          historyContent.innerHTML = filtered
+            .map((act) => {
+              let icon = "info";
+              let label = "";
+              let subtitle = "";
+              let status = "Concluído";
+              let statusClass = "bg-gray-100 text-[var(--text-secondary)]";
 
-            if (act.type === 'chamado') {
-              icon = "build";
-              label = act.titulo;
-              subtitle = `Manutenção • ${act.local}`;
-              status = act.status || "Em análise";
-              if (status === "Aberto") statusClass = "bg-blue-50 text-blue-700";
-              else if (status === "Concluído") statusClass = "bg-green-50 text-green-700";
-              else statusClass = "bg-yellow-50 text-yellow-700";
-            } else if (act.type === 'reserva') {
-              icon = "event_available";
-              label = `Reserva: ${act.local}`;
-              subtitle = `Agendamento • ${act.data}`;
-              status = "Confirmado";
-              statusClass = "bg-green-50 text-green-700";
-            } else if (act.type === 'refeicao') {
-              icon = "restaurant";
-              label = act.refeicao;
-              subtitle = `Consumo • ${act.itens.join(", ")}`;
-              status = "Registrado";
-              statusClass = "bg-blue-50 text-blue-700";
-            }
+              if (act.type === "chamado") {
+                icon = "build";
+                label = act.titulo;
+                subtitle = `Manutenção • ${act.local}`;
+                status = act.status || "Em análise";
+                if (status === "Aberto")
+                  statusClass = "bg-blue-50 text-blue-700";
+                else if (status === "Concluído")
+                  statusClass = "bg-green-50 text-green-700";
+                else statusClass = "bg-yellow-50 text-yellow-700";
+              } else if (act.type === "reserva") {
+                icon = "event_available";
+                label = `Reserva: ${act.local}`;
+                subtitle = `Agendamento • ${act.data}`;
+                status = "Confirmado";
+                statusClass = "bg-green-50 text-green-700";
+              }
 
-            const date = new Date(act.criadoEm);
-            const dateStr = date.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
+              const date = new Date(act.criadoEm);
+              const dateStr = date.toLocaleDateString("pt-BR", {
+                day: "2-digit",
+                month: "2-digit",
+              });
 
-            return `
+              return `
               <div onclick="window.showDetails('${act.id}', '${act.type}')" class="p-6 bg-white border border-[var(--border-soft)] rounded-[32px] flex items-center justify-between hover:bg-gray-50 transition-all cursor-pointer group">
                 <div class="flex items-center gap-6">
                   <div class="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center text-black">
@@ -486,22 +493,23 @@
                 </div>
                 <div class="flex items-center gap-4">
                   <span class="hidden md:inline-block px-3 py-1 ${statusClass} text-[10px] font-black uppercase tracking-widest rounded-full">${status}</span>
-                  <span class="text-xs font-black text-[var(--text-muted)]">#${act.id.substring(0,4).toUpperCase()}</span>
+                  <span class="text-xs font-black text-[var(--text-muted)]">#${act.id.substring(0, 4).toUpperCase()}</span>
                 </div>
               </div>
             `;
-          }).join("");
+            })
+            .join("");
         };
 
         window.showDetails = (id, type) => {
-          const act = allActivities.find(a => a.id === id);
+          const act = allActivities.find((a) => a.id === id);
           if (!act) return;
 
           actionTitle.textContent = "Detalhes do Registro";
-          actionSubtitle.textContent = `Protocolo #${id.substring(0,8).toUpperCase()}`;
+          actionSubtitle.textContent = `Protocolo #${id.substring(0, 8).toUpperCase()}`;
 
           let content = "";
-          if (type === 'chamado') {
+          if (type === "chamado") {
             content = `
               <div class="space-y-6">
                 <div>
@@ -527,7 +535,7 @@
                 <p class="text-[10px] font-bold text-[var(--text-secondary)] uppercase">Aberto em ${new Date(act.criadoEm).toLocaleString()}</p>
               </div>
             `;
-          } else if (type === 'reserva') {
+          } else if (type === "reserva") {
             content = `
               <div class="space-y-6">
                 <div>
@@ -550,36 +558,18 @@
                 </div>
               </div>
             `;
-          } else {
-            content = `
-              <div class="space-y-6">
-                <div class="flex items-center gap-4 p-6 bg-blue-50 rounded-[32px] text-blue-700">
-                  <span class="material-symbols-outlined text-4xl">restaurant</span>
-                  <div>
-                    <p class="text-[10px] font-black uppercase tracking-widest opacity-60">Refeição Confirmada</p>
-                    <h4 class="font-black text-xl">${act.refeicao}</h4>
-                  </div>
-                </div>
-                <div>
-                  <label class="text-[10px] font-black uppercase tracking-widest text-[var(--text-secondary)]">Itens Consumidos</label>
-                  <ul class="mt-2 space-y-2">
-                    ${act.itens.map(i => `<li class="flex items-center gap-2 text-sm font-bold text-black"><span class="w-1.5 h-1.5 rounded-full bg-black"></span> ${i}</li>`).join("")}
-                  </ul>
-                </div>
-                <p class="text-[10px] font-bold text-[var(--text-secondary)] uppercase">Registrado em ${new Date(act.criadoEm).toLocaleString()}</p>
-              </div>
-            `;
           }
 
           actionContent.innerHTML = content;
           actionModal.classList.remove("hidden");
           actionModal.classList.add("flex");
           document.body.classList.add("overflow-hidden");
-	        };
+        };
 
         const getChamadoStatusTextClass = (status = "Em análise") => {
           if (status === "Aberto") return "text-blue-600";
-          if (status === "Concluído" || status === "Concluido") return "text-green-600";
+          if (status === "Concluído" || status === "Concluido")
+            return "text-green-600";
           return "text-yellow-600";
         };
 
@@ -589,27 +579,43 @@
           document.body.classList.remove("overflow-hidden");
         };
 
-        filterBtns.forEach(btn => {
+        filterBtns.forEach((btn) => {
           btn.addEventListener("click", () => {
-            filterBtns.forEach(b => {
-              b.classList.remove("bg-black", "text-white", "shadow-xl", "shadow-black/10");
+            filterBtns.forEach((b) => {
+              b.classList.remove(
+                "bg-black",
+                "text-white",
+                "shadow-xl",
+                "shadow-black/10",
+              );
               b.classList.add("bg-gray-50", "text-[var(--text-secondary)]");
             });
-            btn.classList.add("bg-black", "text-white", "shadow-xl", "shadow-black/10");
+            btn.classList.add(
+              "bg-black",
+              "text-white",
+              "shadow-xl",
+              "shadow-black/10",
+            );
             btn.classList.remove("bg-gray-50", "text-[var(--text-secondary)]");
             currentFilter = btn.getAttribute("data-filter");
             renderHistory();
           });
         });
 
-        actionModal.querySelector("[data-action-modal-close]").addEventListener("click", closeActionModal);
-        actionModal.querySelector("[data-action-modal-close-btn]").addEventListener("click", closeActionModal);
+        actionModal
+          .querySelector("[data-action-modal-close]")
+          .addEventListener("click", closeActionModal);
+        actionModal
+          .querySelector("[data-action-modal-close-btn]")
+          .addEventListener("click", closeActionModal);
 
         fetchData().then(() => {
           const params = new URLSearchParams(window.location.search);
-          const filterParam = params.get('filter');
+          const filterParam = params.get("filter");
           if (filterParam) {
-            const btn = document.querySelector(`[data-filter="${filterParam}"]`);
+            const btn = document.querySelector(
+              `[data-filter="${filterParam}"]`,
+            );
             if (btn) btn.click();
           }
         });
