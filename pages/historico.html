@@ -35,6 +35,11 @@
       };
     </script>
     <style>
+      html,
+      body {
+        max-width: 100%;
+        overflow-x: hidden;
+      }
       :root {
         --bg: #d4caca8c;
         --card: #ffffff;
@@ -86,11 +91,25 @@
           "GRAD" 0,
           "opsz" 24;
       }
+      .bottom-nav-item {
+        transition: color 0.2s ease;
+        color: var(--text-secondary);
+      }
+      .bottom-nav-item.active {
+        color: var(--accent);
+      }
+      .bottom-nav-item.active .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 1,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
     </style>
     <script src="../js/api.js"></script>
   </head>
   <body
-    class="font-sans text-[var(--text-primary)] bg-[var(--bg)] min-h-screen flex"
+    class="font-sans text-[var(--text-primary)] bg-[var(--bg)] min-h-screen flex overflow-x-hidden"
   >
     <!-- Sidebar -->
     <aside
@@ -218,8 +237,16 @@
     </aside>
 
     <div class="flex-grow md:ml-[260px] flex flex-col min-h-screen">
+      <header
+        class="md:hidden sticky top-0 bg-[var(--bg)]/80 backdrop-blur-md border-b border-[var(--border-soft)] h-16 flex items-center px-6 z-40"
+      >
+        <h1 class="text-sm font-black tracking-widest uppercase">
+          Campus<span class="font-light">Connect</span>
+        </h1>
+      </header>
+
       <main
-        class="max-w-7xl mx-auto w-full px-6 lg:px-10 xl:px-12 py-10 md:py-14 space-y-10 flex-grow"
+        class="max-w-7xl mx-auto w-full px-6 lg:px-10 xl:px-12 py-10 md:py-14 pb-24 md:pb-14 space-y-10 flex-grow"
       >
         <header
           class="flex flex-col md:flex-row md:items-center justify-between gap-8"
@@ -324,13 +351,13 @@
     >
       <a
         href="../dashboard.html"
-        class="flex flex-col items-center justify-center gap-1 text-[var(--text-secondary)]"
+        class="bottom-nav-item flex flex-col items-center justify-center gap-1"
       >
         <span class="material-symbols-outlined text-[28px]">home</span>
       </a>
       <a
         href="chamados.html"
-        class="flex flex-col items-center justify-center gap-1 text-[var(--text-secondary)]"
+        class="bottom-nav-item flex flex-col items-center justify-center gap-1"
       >
         <span class="material-symbols-outlined text-[28px]"
           >confirmation_number</span
@@ -338,7 +365,7 @@
       </a>
       <a
         href="reservas.html"
-        class="flex flex-col items-center justify-center gap-1 text-[var(--text-secondary)]"
+        class="bottom-nav-item flex flex-col items-center justify-center gap-1"
       >
         <span class="material-symbols-outlined text-[28px]"
           >event_available</span
@@ -346,7 +373,7 @@
       </a>
       <a
         href="cardapio.html"
-        class="flex flex-col items-center justify-center gap-1 text-[var(--text-secondary)]"
+        class="bottom-nav-item flex flex-col items-center justify-center gap-1"
       >
         <span class="material-symbols-outlined text-[28px]"
           >restaurant_menu</span
@@ -354,7 +381,7 @@
       </a>
       <a
         href="historico.html"
-        class="flex flex-col items-center justify-center gap-1 text-black"
+        class="bottom-nav-item active flex flex-col items-center justify-center gap-1"
       >
         <span class="material-symbols-outlined text-[28px]">history</span>
       </a>

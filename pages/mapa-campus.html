@@ -184,10 +184,18 @@
       </div>
     </aside>
 
-    <div class="md:ml-[260px] min-h-screen px-6 py-10 md:py-16">
-      <main class="max-w-7xl mx-auto space-y-8">
+    <div class="flex-grow md:ml-[260px] flex flex-col min-h-screen">
+      <header
+        class="md:hidden sticky top-0 bg-[var(--bg)]/80 backdrop-blur-md border-b border-[var(--border-soft)] h-16 flex items-center px-6 z-40"
+      >
+        <h1 class="text-sm font-black tracking-widest uppercase">
+          Campus<span class="font-light">Connect</span>
+        </h1>
+      </header>
+
+      <main class="max-w-7xl mx-auto w-full px-6 lg:px-10 xl:px-12 py-10 md:py-16 pb-24 md:pb-16 space-y-8 flex-grow">
         <header class="space-y-2">
-          <h2 class="text-3xl md:text-5xl font-black tracking-tighter">
+          <h2 class="text-3xl md:text-5xl font-black tracking-tighter text-black">
             Mapa do Campus
           </h2>
           <p class="text-[var(--text-secondary)] font-medium text-lg">
@@ -233,6 +241,49 @@
         </section>
       </main>
     </div>
+
+    <nav
+      class="md:hidden fixed bottom-0 left-0 w-full bg-[var(--card)] border-t border-[var(--border-soft)] flex justify-around items-center h-16 z-50 px-4"
+    >
+      <a
+        href="../dashboard.html"
+        class="bottom-nav-item flex flex-col items-center justify-center gap-1"
+      >
+        <span class="material-symbols-outlined text-[28px]">home</span>
+      </a>
+      <a
+        href="chamados.html"
+        class="bottom-nav-item flex flex-col items-center justify-center gap-1"
+      >
+        <span class="material-symbols-outlined text-[28px]"
+          >confirmation_number</span
+        >
+      </a>
+      <a
+        href="reservas.html"
+        class="bottom-nav-item flex flex-col items-center justify-center gap-1"
+      >
+        <span class="material-symbols-outlined text-[28px]"
+          >event_available</span
+        >
+      </a>
+      <a
+        href="cardapio.html"
+        class="bottom-nav-item flex flex-col items-center justify-center gap-1"
+      >
+        <span class="material-symbols-outlined text-[28px]"
+          >restaurant_menu</span
+        >
+      </a>
+      <a
+        href="calendario.html"
+        class="bottom-nav-item flex flex-col items-center justify-center gap-1"
+      >
+        <span class="material-symbols-outlined text-[28px]"
+          >calendar_today</span
+        >
+      </a>
+    </nav>
 
     <script>
       // Profile Dropdown
