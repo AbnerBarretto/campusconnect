@@ -10,7 +10,6 @@
 
 - 📅 **Calendário Acadêmico** - Visualize datas importantes e eventos
 - 🍽️ **Cardápio** - Consulte o menu do refeitório da semana
-- 🗺️ **Mapa do Campus** - Navegação interativa pelos espaços
 - 📊 **Histórico Acadêmico** - Consulte suas notas e disciplinas
 - 🎟️ **Sistema de Chamados** - Abra solicitações de suporte
 - 📦 **Reservas** - Reserve espaços e recursos disponíveis
