@@ -674,9 +674,6 @@
           infraAlertsList.innerHTML = activeAlerts
             .map((aviso) => {
               const tone = getAlertTone(aviso.tipo);
-              const link = aviso.link
-                ? `<a href="${aviso.link}" class="text-[10px] font-black uppercase tracking-widest ${tone.text} hover:opacity-80 whitespace-nowrap">${aviso.linkLabel || "Ver detalhes"}</a>`
-                : "";
 
               return `
                 <div class="grid grid-cols-[4px_minmax(0,1fr)] gap-4 px-6 py-5">
@@ -686,7 +683,6 @@
                     <p class="text-sm font-black text-black mt-1">${aviso.titulo}</p>
                     <div class="flex flex-col sm:flex-row sm:items-center gap-3 mt-1">
                       <p class="text-sm font-bold text-slate-700 leading-relaxed">${aviso.descricao}</p>
-                      ${link}
                     </div>
                   </div>
                 </div>
