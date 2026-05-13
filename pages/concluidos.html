@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Histórico - CampusConnect</title>
+    <title>Concluídos - CampusConnect</title>
     <link
       rel="icon"
       type="image/svg+xml"
@@ -151,48 +151,48 @@
       <nav class="flex-grow px-4 space-y-1 overflow-y-auto">
         <a
           href="../dashboard.html"
-          class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[var(--text-secondary)] hover:text-black"
+          class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black"
         >
           <span class="material-symbols-outlined">home</span>
           Início
         </a>
         <a
           href="chamados.html"
-          class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[var(--text-secondary)] hover:text-black"
+          class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black"
         >
           <span class="material-symbols-outlined">confirmation_number</span>
           Chamados
         </a>
         <a
           href="reservas.html"
-          class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[var(--text-secondary)] hover:text-black"
+          class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black"
         >
           <span class="material-symbols-outlined">event_available</span>
           Espaços e Reservas
         </a>
         <a
           href="cardapio.html"
-          class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[var(--text-secondary)] hover:text-black"
+          class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black"
         >
           <span class="material-symbols-outlined">restaurant_menu</span>
           Cardápio
         </a>
         <a
-          href="historico.html"
+          href="concluidos.html"
           class="nav-item active flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight"
         >
-          <span class="material-symbols-outlined">history</span>
-          Histórico
+          <span class="material-symbols-outlined">check_circle</span>
+          Concluídos
         </a>
         <div class="pt-6 pb-2 px-4">
           <span
-            class="text-[10px] font-black uppercase tracking-[0.3em] text-[var(--text-secondary)]"
+            class="text-[10px] font-black uppercase tracking-[0.3em] text-[#475569]"
             >Explorar</span
           >
         </div>
         <a
           href="calendario.html"
-          class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[var(--text-secondary)] hover:text-black"
+          class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black"
         >
           <span class="material-symbols-outlined">calendar_today</span>
           Calendário
@@ -213,7 +213,7 @@
           <div class="text-left">
             <p class="text-sm font-bold">Aluno</p>
             <p
-              class="text-[10px] font-black uppercase tracking-widest text-[var(--text-secondary)]"
+              class="text-[10px] font-black uppercase tracking-widest text-[#475569]"
             >
               Ver Perfil
             </p>
@@ -255,10 +255,10 @@
             <h2
               class="text-3xl md:text-5xl font-black tracking-tighter text-black"
             >
-              Histórico
+              Concluídos
             </h2>
             <p class="text-[var(--text-secondary)] font-medium text-lg">
-              Registro completo de todas as suas atividades e solicitações.
+              Registro completo de todas as suas atividades e solicitações concluídas.
             </p>
           </div>
         </header>
@@ -380,10 +380,10 @@
         >
       </a>
       <a
-        href="historico.html"
+        href="concluidos.html"
         class="bottom-nav-item active flex flex-col items-center justify-center gap-1"
       >
-        <span class="material-symbols-outlined text-[28px]">history</span>
+        <span class="material-symbols-outlined text-[28px]">check_circle</span>
       </a>
     </nav>
 
@@ -449,7 +449,7 @@
             );
             renderHistory();
           } catch (error) {
-            historyContent.innerHTML = `<p class="text-center p-12 text-[var(--text-secondary)] font-bold">Erro ao carregar histórico.</p>`;
+            historyContent.innerHTML = `<p class="text-center p-12 text-[var(--text-secondary)] font-bold">Erro ao carregar itens concluídos.</p>`;
           }
         };
 
