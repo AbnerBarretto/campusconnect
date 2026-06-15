@@ -16,5 +16,18 @@
   },
   "engines": {
     "node": "24.x"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AbnerBarretto/campusconnect.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/AbnerBarretto/campusconnect/issues"
+  },
+  "homepage": "https://github.com/AbnerBarretto/campusconnect#readme"
 }
