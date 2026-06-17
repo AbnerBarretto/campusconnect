@@ -904,10 +904,11 @@
         };
 
         window.updateStatus = async (id, status) => {
+          const finalStatus = status === "Atualizar" ? "Em progresso" : status;
           await fetch(`${API_BASE_URL}/api/chamados/${id}`, {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ status }),
+            body: JSON.stringify({ status: finalStatus }),
           });
           fetchData();
         };
