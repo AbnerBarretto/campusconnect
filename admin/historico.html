@@ -70,6 +70,12 @@
       };
     </script>
     <style>
+      html {
+        font-size: 18.66px !important;
+      }
+      .page-title {
+        font-size: 24px !important;
+      }
       .material-symbols-outlined {
         font-variation-settings:
           "FILL" 0,
@@ -372,9 +378,9 @@
           </button>
           <div>
             <h2
-              class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]"
+              class="page-title text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]"
             >
-              Histórico Operacional
+              Ambiente Operacional
             </h2>
             <div class="flex items-center gap-2 mt-1">
               <div
@@ -758,6 +764,7 @@
                   : t.prioridade === "Média"
                     ? "text-warning"
                     : "text-success";
+              const sClass = getStatusBadgeClass(t.status);
               const date = new Date(t.criadoEm).toLocaleDateString("pt-BR");
               const time = new Date(t.criadoEm).toLocaleTimeString([], {
                 hour: "2-digit",
@@ -786,11 +793,37 @@
                    <span class="text-[9px] font-black ${pColor} uppercase tracking-widest">${t.prioridade}</span>
                 </td>
                 <td class="px-8 py-5">
-                  <span class="px-3 py-1.5 bg-success/10 text-success rounded-lg text-[9px] font-black uppercase tracking-widest border border-success/20">Finalizado</span>
+                  <select onchange="updateStatus('${t.id}', this.value)" class="status-badge ${sClass} border-none outline-none cursor-pointer rounded-lg text-[9px] font-black scale-90 origin-left">
+                      <option value="Concluído" selected>Finalizado</option>
+                      <option value="Atualizar">Atualizar</option>
+                  </select>
                 </td>
               </tr>`;
             })
             .join("");
+        };
+
+        const getStatusBadgeClass = (status = "Aberto") => {
+          if (status === "Aberto") return "badge-info";
+          if (status === "Concluído" || status === "Concluido")
+            return "badge-success";
+          if (
+            status === "Em progresso" ||
+            status === "Em análise" ||
+            status === "Em analise"
+          )
+            return "badge-warning";
+          return "badge-neutral";
+        };
+
+        window.updateStatus = async (id, status) => {
+          const finalStatus = status === "Atualizar" ? "Em progresso" : status;
+          await fetch(`${API_BASE_URL}/api/chamados/${id}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ status: finalStatus }),
+          });
+          fetchData();
         };
 
         window.toggleChamadosDropdown = () => {

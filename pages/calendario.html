@@ -37,6 +37,17 @@
       };
     </script>
     <style>
+      html {
+        font-size: 18.66px !important;
+      }
+      .page-title {
+        font-size: 30px !important;
+      }
+      @media (min-width: 768px) {
+        .page-title {
+          font-size: 48px !important;
+        }
+      }
       html,
       body {
         max-width: 100%;
@@ -351,7 +362,7 @@
         >
           <div class="space-y-3">
             <h2
-              class="text-2xl sm:text-3xl md:text-5xl font-black tracking-tighter text-black"
+              class="page-title text-2xl sm:text-3xl md:text-5xl font-black tracking-tighter text-black"
             >
               Calendário Acadêmico
             </h2>
@@ -1368,6 +1379,19 @@
       // Close dropdown when clicking outside
       document.addEventListener("click", (e) => {
         const dropdown = document.getElementById("profile-dropdown");
+        const container = document.getElementById("profile-container");
+        if (
+          dropdown &&
+          !dropdown.classList.contains("hidden") &&
+          !container.contains(e.target)
+        ) {
+          dropdown.classList.add("hidden");
+        }
+      });
+    </script>
+  </body>
+</html>
+ElementById("profile-dropdown");
         const container = document.getElementById("profile-container");
         if (
           dropdown &&

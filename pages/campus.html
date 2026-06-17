@@ -10,6 +10,17 @@
       rel="stylesheet"
     />
     <style>
+      html {
+        font-size: 18.66px !important;
+      }
+      .page-title {
+        font-size: 10px !important;
+      }
+      @media (min-width: 768px) {
+        .page-title {
+          font-size: 10px !important;
+        }
+      }
       :root {
         --bg: #d4caca8c;
         --card: #ffffff;
@@ -217,7 +228,7 @@
         >
           <div>
             <h1
-              class="text-[10px] font-black uppercase tracking-[0.8em] text-[#475569] mb-2"
+              class="page-title text-[10px] font-black uppercase tracking-[0.8em] text-[#475569] mb-2"
             >
               Technical Branding v3.0
             </h1>
@@ -432,6 +443,14 @@
           dropdown &&
           !dropdown.classList.contains("hidden") &&
           !container.contains(e.target)
+        ) {
+          dropdown.classList.add("hidden");
+        }
+      });
+    </script>
+  </body>
+</html>
+t)
         ) {
           dropdown.classList.add("hidden");
         }
