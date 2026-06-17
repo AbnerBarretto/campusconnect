@@ -356,9 +356,12 @@
         <!-- Stats Grid -->
         <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div
-            class="p-8 text-white rounded-[32px] space-y-4"
+            class="p-8 text-white rounded-[32px] space-y-4 relative group"
             style="background: var(--accent)"
           >
+            <button onclick="showInfo('chamados-ativos')" class="absolute top-6 right-6 text-white/50 hover:text-white transition-colors">
+              <span class="material-symbols-outlined text-[18px]">info</span>
+            </button>
             <div class="flex items-center justify-between">
               <span class="material-symbols-outlined opacity-50"
                 >confirmation_number</span
@@ -371,7 +374,10 @@
             <p class="text-4xl font-black" id="stats-chamados">0</p>
             <p class="text-xs font-bold opacity-50">Total ativos no semestre</p>
           </div>
-          <div class="p-8 rounded-[32px] space-y-4 surface-card">
+          <div class="p-8 rounded-[32px] space-y-4 surface-card relative group">
+            <button onclick="showInfo('reservas-ativas')" class="absolute top-6 right-6 text-slate-300 hover:text-accent transition-colors">
+              <span class="material-symbols-outlined text-[18px]">info</span>
+            </button>
             <div class="flex items-center justify-between text-black">
               <span class="material-symbols-outlined opacity-30"
                 >event_available</span
@@ -389,11 +395,16 @@
         <div
           class="grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_360px] gap-10 items-start"
         >
-          <section class="space-y-8">
+          <section class="space-y-8 relative group">
             <div class="flex items-center justify-between">
-              <h3 class="font-black text-xl tracking-tight">
-                Atividades Recentes
-              </h3>
+              <div class="flex items-center gap-2">
+                <h3 class="font-black text-xl tracking-tight">
+                  Atividades Recentes
+                </h3>
+                <button onclick="showInfo('atividades-recentes')" class="text-slate-300 hover:text-accent transition-colors">
+                  <span class="material-symbols-outlined text-[18px]">info</span>
+                </button>
+              </div>
               <a
                 href="pages/concluidos.html"
                 class="text-xs font-black uppercase tracking-widest text-[#475569] hover:text-black transition-colors"
@@ -417,8 +428,13 @@
             </div>
           </section>
 
-          <aside class="space-y-8">
-            <h3 class="font-black text-xl tracking-tight">Próxima Refeição</h3>
+          <aside class="space-y-8 relative group">
+            <div class="flex items-center gap-2">
+              <h3 class="font-black text-xl tracking-tight">Próxima Refeição</h3>
+              <button onclick="showInfo('proxima-refeicao')" class="text-slate-300 hover:text-accent transition-colors">
+                <span class="material-symbols-outlined text-[18px]">info</span>
+              </button>
+            </div>
             <div
               id="next-meal-card"
               class="p-8 rounded-[32px] shadow-sm space-y-6 surface-card"
@@ -428,14 +444,19 @@
           </aside>
         </div>
 
-        <section class="space-y-6">
+        <section class="space-y-6 relative group">
           <div
             class="flex flex-col md:flex-row md:items-end justify-between gap-3"
           >
             <div>
-              <h3 class="font-black text-xl tracking-tight">
-                Alertas de Infraestrutura
-              </h3>
+              <div class="flex items-center gap-2">
+                <h3 class="font-black text-xl tracking-tight">
+                  Alertas de Infraestrutura
+                </h3>
+                <button onclick="showInfo('alertas-infraestrutura')" class="text-slate-300 hover:text-accent transition-colors">
+                  <span class="material-symbols-outlined text-[18px]">info</span>
+                </button>
+              </div>
               <p class="text-sm font-medium text-[#475569] mt-1">
                 Informações críticas do campus que podem afetar seu trajeto.
               </p>
@@ -573,6 +594,34 @@
           "[data-action-modal-confirm]",
         );
         let activeActionButton = null;
+
+        const INFO_SUMMARIES = {
+          'chamados-ativos': 'Exibe a quantidade de solicitações de manutenção ou suporte que você abriu e que ainda estão sendo processadas.',
+          'reservas-ativas': 'Número de espaços ou recursos (como salas de estudo ou laboratórios) que você reservou para hoje ou próximos dias.',
+          'atividades-recentes': 'Um resumo das suas últimas ações, como abertura de chamados, check-ins em reservas e interações com o sistema.',
+          'proxima-refeicao': 'Informações sobre o cardápio da próxima refeição disponível no refeitório universitário.',
+          'alertas-infraestrutura': 'Comunicados sobre manutenções programadas, interrupções de serviços ou problemas técnicos em blocos específicos.'
+        };
+
+        window.showInfo = (key) => {
+          if (!actionModal || !actionTitle || !actionContent) return;
+          
+          actionTitle.textContent = "Informação";
+          if (actionSubtitle) actionSubtitle.textContent = key.replace(/-/g, ' ').toUpperCase();
+          if (actionAlert) actionAlert.classList.add("hidden");
+          
+          actionContent.innerHTML = `<p class="leading-relaxed">${INFO_SUMMARIES[key] || 'Informação não disponível.'}</p>`;
+          
+          // Hide cancel button and rename confirm to "Entendi"
+          const cancelBtn = actionModal.querySelector("[data-action-modal-cancel]");
+          if (cancelBtn) cancelBtn.classList.add("hidden");
+          if (actionConfirm) actionConfirm.textContent = "Entendi";
+          
+          actionModal.classList.remove("hidden");
+          actionModal.classList.add("flex");
+          actionModal.setAttribute("aria-hidden", "false");
+          document.body.classList.add("overflow-hidden");
+        };
 
         const fetchData = async () => {
           try {
