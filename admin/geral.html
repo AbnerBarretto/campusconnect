@@ -430,8 +430,35 @@
           class="flex-grow overflow-y-auto custom-scrollbar p-10 space-y-10"
         >
           <!-- KPI Cards -->
-          <section class="grid grid-cols-1 md:grid-cols-5 gap-6">
-            <div class="premium-card p-6">
+          <section class="grid grid-cols-1 md:grid-cols-4 gap-6" id="kpi-grid">
+            <div
+              class="bg-red-50 dark:bg-red-900/20 border-2 border-danger rounded-[24px] shadow-lg shadow-danger/30 transition-all duration-300 ease-out hover:translate-y-[-2px] p-6 relative group"
+            >
+              <button onclick="showInfo('alertas-criticos')" class="absolute top-4 right-4 text-danger/50 hover:text-danger transition-colors">
+                <span class="material-symbols-outlined text-[18px]">info</span>
+              </button>
+              <p
+                class="text-[11px] font-black text-danger uppercase mb-3 tracking-widest"
+              >
+                Alertas Críticos
+              </p>
+              <div class="flex items-baseline justify-between">
+                <p
+                  id="kpi-critical"
+                  class="text-4xl font-black text-danger dark:text-red-400 tracking-tighter"
+                >
+                  3
+                </p>
+                <span
+                  class="material-symbols-outlined text-danger animate-pulse text-4xl drop-shadow-md"
+                  >emergency</span
+                >
+              </div>
+            </div>
+            <div class="premium-card p-6 relative group">
+              <button onclick="showInfo('chamados-abertos')" class="absolute top-4 right-4 text-slate-300 hover:text-accent transition-colors">
+                <span class="material-symbols-outlined text-[18px]">info</span>
+              </button>
               <p
                 class="text-[10px] font-bold text-slate-400 uppercase mb-3 tracking-widest"
               >
@@ -452,7 +479,10 @@
                 </div>
               </div>
             </div>
-            <div class="premium-card p-6">
+            <div class="premium-card p-6 relative group">
+              <button onclick="showInfo('tempo-resolucao')" class="absolute top-4 right-4 text-slate-300 hover:text-accent transition-colors">
+                <span class="material-symbols-outlined text-[18px]">info</span>
+              </button>
               <p
                 class="text-[10px] font-bold text-slate-400 uppercase mb-3 tracking-widest"
               >
@@ -473,49 +503,10 @@
                 </div>
               </div>
             </div>
-            <div class="premium-card p-6">
-              <p
-                class="text-[10px] font-bold text-slate-400 uppercase mb-3 tracking-widest"
-              >
-                SLA
-              </p>
-              <div class="flex items-baseline justify-between">
-                <p
-                  id="kpi-sla"
-                  class="text-4xl font-black text-slate-900 dark:text-white tracking-tighter"
-                >
-                  96%
-                </p>
-                <div class="trend-badge trend-negative">
-                  <span class="material-symbols-outlined text-xs"
-                    >trending_down</span
-                  >
-                  2%
-                </div>
-              </div>
-            </div>
-            <div
-              class="bg-red-50 dark:bg-red-900/20 border-2 border-danger rounded-[24px] shadow-lg shadow-danger/30 transition-all duration-300 ease-out hover:translate-y-[-2px] p-6"
-            >
-              <p
-                class="text-[11px] font-black text-danger uppercase mb-3 tracking-widest"
-              >
-                Alertas Críticos
-              </p>
-              <div class="flex items-baseline justify-between">
-                <p
-                  id="kpi-critical"
-                  class="text-4xl font-black text-danger dark:text-red-400 tracking-tighter"
-                >
-                  3
-                </p>
-                <span
-                  class="material-symbols-outlined text-danger animate-pulse text-4xl drop-shadow-md"
-                  >emergency</span
-                >
-              </div>
-            </div>
-            <div class="premium-card p-6">
+            <div class="premium-card p-6 relative group">
+              <button onclick="showInfo('status-geral')" class="absolute top-4 right-4 text-slate-300 hover:text-accent transition-colors">
+                <span class="material-symbols-outlined text-[18px]">info</span>
+              </button>
               <p
                 class="text-[10px] font-bold text-slate-400 uppercase mb-3 tracking-widest"
               >
@@ -533,7 +524,10 @@
           <!-- Mocked Sections for Presentation -->
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
             <!-- Expanded Team Management -->
-            <section class="premium-card p-10 flex flex-col">
+            <section class="premium-card p-10 flex flex-col relative group">
+              <button onclick="showInfo('gestao-equipe')" class="absolute top-8 right-10 text-slate-300 hover:text-accent transition-colors">
+                <span class="material-symbols-outlined text-[20px]">info</span>
+              </button>
               <div class="flex items-center justify-between mb-8">
                 <div>
                   <h3
@@ -547,9 +541,6 @@
                     Visão detalhada da carga de trabalho
                   </p>
                 </div>
-                <span class="material-symbols-outlined text-accent"
-                  >groups</span
-                >
               </div>
               <div
                 id="main-team-list"
@@ -560,7 +551,10 @@
             </section>
 
             <!-- Expanded Activity Feed -->
-            <section class="premium-card p-10 flex flex-col">
+            <section class="premium-card p-10 flex flex-col relative group">
+              <button onclick="showInfo('feed-atividade')" class="absolute top-8 right-10 text-slate-300 hover:text-accent transition-colors">
+                <span class="material-symbols-outlined text-[20px]">info</span>
+              </button>
               <div class="flex items-center justify-between mb-8">
                 <div>
                   <h3
@@ -574,9 +568,6 @@
                     Últimas interações do sistema
                   </p>
                 </div>
-                <span class="material-symbols-outlined text-accent"
-                  >notifications</span
-                >
               </div>
               <div
                 id="main-activity-log"
@@ -590,28 +581,28 @@
 
         <!-- Sidebar Quick Access -->
         <aside
-          class="w-80 bg-white dark:bg-darkcard border-l border-transparent dark:border-darkborder flex flex-col shrink-0 z-40"
+          class="w-80 bg-white dark:bg-darkcard border-l border-transparent dark:border-darkborder flex flex-col shrink-0 z-40 p-6 space-y-6 overflow-y-auto custom-scrollbar"
         >
+          <!-- Acesso Rápido Block -->
           <div
-            class="p-8 border-b border-slate-100 dark:border-darkborder/50 bg-white dark:bg-darkcard space-y-6 shrink-0"
+            class="border-2 border-slate-900 dark:border-slate-800 rounded-[32px] p-6 space-y-6 relative group"
           >
-            <div class="flex items-center justify-between">
-              <div>
+            <div>
+              <div class="flex items-center gap-2">
                 <h4
                   class="font-black text-[11px] uppercase tracking-[0.2em] text-slate-900 dark:text-white"
                 >
                   Acesso Rápido: Volume
                 </h4>
-                <p
-                  class="text-[9px] subtext-accessible font-bold uppercase tracking-widest mt-1"
-                >
-                  Dashboard de Demandas
-                </p>
+                <button onclick="showInfo('acesso-rapido')" class="text-slate-300 hover:text-accent transition-colors">
+                  <span class="material-symbols-outlined text-[16px]">info</span>
+                </button>
               </div>
-              <span
-                class="material-symbols-outlined text-slate-300 dark:text-slate-600 text-sm"
-                >query_stats</span
+              <p
+                class="text-[9px] subtext-accessible font-bold uppercase tracking-widest mt-1"
               >
+                Dashboard de Demandas
+              </p>
             </div>
 
             <div class="space-y-3">
@@ -674,18 +665,24 @@
             </div>
           </div>
 
+          <!-- Métricas de Volume Block -->
           <div
-            class="flex-grow flex flex-col overflow-hidden bg-white dark:bg-darkbg/20 p-8 pb-32 space-y-6"
+            class="border-2 border-slate-900 dark:border-slate-800 rounded-[32px] p-6 space-y-6 relative group"
           >
             <div>
-              <h4
-                class="font-black text-[11px] uppercase tracking-[0.2em] text-slate-900 dark:text-white mb-4"
-              >
-                Métricas de Volume
-              </h4>
+              <div class="flex items-center gap-2 mb-4">
+                <h4
+                  class="font-black text-[11px] uppercase tracking-[0.2em] text-slate-900 dark:text-white"
+                >
+                  Métricas de Volume
+                </h4>
+                <button onclick="showInfo('metricas-volume')" class="text-slate-300 hover:text-accent transition-colors">
+                  <span class="material-symbols-outlined text-[16px]">info</span>
+                </button>
+              </div>
               <div class="space-y-4">
                 <div
-                  class="p-4 bg-white dark:bg-darkcard border border-slate-100 dark:border-darkborder/50 rounded-xl"
+                  class="p-4 bg-slate-50 dark:bg-slate-800/30 border border-slate-100 dark:border-darkborder/50 rounded-2xl shadow-sm"
                 >
                   <p
                     class="text-[9px] font-bold text-slate-400 uppercase tracking-widest"
@@ -698,13 +695,13 @@
                     14:30h
                   </p>
                   <div
-                    class="w-full h-1 bg-slate-100 dark:bg-slate-800 rounded-full mt-2 overflow-hidden"
+                    class="w-full h-1 bg-slate-200 dark:bg-slate-700 rounded-full mt-2 overflow-hidden"
                   >
                     <div class="bg-accent h-full w-[75%]"></div>
                   </div>
                 </div>
                 <div
-                  class="p-4 bg-white dark:bg-darkcard border border-slate-100 dark:border-darkborder/50 rounded-xl"
+                  class="p-4 bg-slate-50 dark:bg-slate-800/30 border border-slate-100 dark:border-darkborder/50 rounded-2xl shadow-sm"
                 >
                   <p
                     class="text-[9px] font-bold text-slate-400 uppercase tracking-widest"
@@ -722,21 +719,72 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="mt-auto pt-20 pb-20">
-              <button
-                onclick="window.location.href = 'volume.html'"
-                class="w-full py-4 bg-slate-900 dark:bg-slate-800 text-white rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] hover:bg-accent transition-colors shadow-lg shadow-slate-200 dark:shadow-none"
-              >
-                Abrir Análise Completa
-              </button>
-            </div>
+          <div class="pt-4 pb-10">
+            <button
+              onclick="window.location.href = 'volume.html'"
+              class="w-full py-4 bg-slate-900 dark:bg-slate-800 text-white rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] hover:bg-accent transition-colors shadow-lg shadow-slate-200 dark:shadow-none"
+            >
+              Abrir Análise Completa
+            </button>
           </div>
         </aside>
       </div>
     </div>
 
+    <!-- Info Modal -->
+    <div
+      id="info-modal"
+      class="fixed inset-0 z-[1000] hidden items-center justify-center p-4 backdrop-blur-sm bg-black/50"
+    >
+      <div class="bg-white dark:bg-darkcard rounded-[32px] shadow-2xl w-full max-w-md overflow-hidden animate-dropdown border border-gray-100 dark:border-darkborder">
+        <div class="p-8 border-b border-gray-50 dark:border-darkborder/50 flex items-center justify-between">
+          <h3 class="text-xl font-black text-slate-900 dark:text-white uppercase tracking-tight" id="info-modal-title">Informação</h3>
+          <button onclick="closeInfo()" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors">
+            <span class="material-symbols-outlined text-slate-400">close</span>
+          </button>
+        </div>
+        <div class="p-8">
+          <p class="text-sm font-medium text-slate-600 dark:text-slate-400 leading-relaxed" id="info-modal-content"></p>
+        </div>
+        <div class="p-8 bg-gray-50 dark:bg-slate-800/50">
+          <button onclick="closeInfo()" class="w-full py-4 bg-slate-900 dark:bg-slate-700 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-accent transition-colors">Entendi</button>
+        </div>
+      </div>
+    </div>
+
     <script>
+      const INFO_SUMMARIES = {
+        'alertas-criticos': 'Exibe a quantidade de chamados com prioridade ALTA que ainda não foram concluídos. Requer atenção imediata da equipe.',
+        'chamados-abertos': 'Total de chamados que foram abertos e ainda não foram finalizados (inclui "Aberto" e "Em progresso").',
+        'tempo-resolucao': 'Média de tempo (em horas) que a equipe leva para concluir um chamado desde a sua abertura.',
+        'status-geral': 'Indicação visual do volume atual de demandas em relação à capacidade operacional da equipe.',
+        'gestao-equipe': 'Lista de técnicos e gestores com suas respectivas cargas de trabalho atuais e status de disponibilidade.',
+        'feed-atividade': 'Histórico em tempo real das últimas ações realizadas no sistema por alunos e pela equipe técnica.',
+        'acesso-rapido': 'Atalhos para as principais visões analíticas de volume e evolução de demandas no campus.',
+        'metricas-volume': 'Dados consolidados sobre os horários de pico e os locais que mais geram chamados no dia de hoje.'
+      };
+
+      window.showInfo = (key) => {
+        const modal = document.getElementById('info-modal');
+        const content = document.getElementById('info-modal-content');
+        const title = document.getElementById('info-modal-title');
+        
+        if (INFO_SUMMARIES[key]) {
+          content.textContent = INFO_SUMMARIES[key];
+          title.textContent = key.replace(/-/g, ' ').toUpperCase();
+          modal.classList.remove('hidden');
+          modal.classList.add('flex');
+        }
+      };
+
+      window.closeInfo = () => {
+        const modal = document.getElementById('info-modal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      };
+
       (() => {
         let allTickets = [];
         let allReservas = [];
@@ -903,9 +951,6 @@
 
           const kMttr = document.getElementById("kpi-mttr");
           if (kMttr) kMttr.textContent = "1.8h";
-
-          const kSla = document.getElementById("kpi-sla");
-          if (kSla) kSla.textContent = "96%";
         }
 
         window.toggleSidebar = () => {
