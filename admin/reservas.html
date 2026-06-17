@@ -63,9 +63,7 @@
             fontFamily: { sans: ["'Inter'", "sans-serif"] },
             boxShadow: {
               premium:
-                "0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)",
-              "premium-hover":
-                "0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02)",
+                "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
             },
           },
         },
@@ -94,6 +92,72 @@
         background: #1e293b;
       }
 
+      .premium-card {
+        @apply bg-white dark:bg-darkcard border border-white dark:border-darkborder rounded-[24px] shadow-sm transition-all duration-300 ease-out;
+      }
+      .premium-card:hover {
+        @apply border-white dark:border-slate-700 shadow-premium-hover translate-y-[-2px];
+      }
+
+      .status-badge {
+        font-size: 10px;
+        font-weight: 700;
+        padding: 6px 12px;
+        border-radius: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        min-width: 110px;
+        text-align: center;
+        border: 1px solid transparent;
+      }
+
+      .badge-success {
+        background-color: #ecfdf5;
+        color: #065f46;
+      }
+      .badge-warning {
+        background-color: #fffbeb;
+        color: #92400e;
+      }
+      .badge-danger {
+        background-color: #fef2f2;
+        color: #991b1b;
+      }
+      .badge-info {
+        background-color: #eff6ff;
+        color: #1e40af;
+      }
+      .badge-neutral {
+        background-color: #f8fafc;
+        color: #475569;
+      }
+
+      .dark .badge-success {
+        background-color: rgba(16, 185, 129, 0.1);
+        color: #10b981;
+        border: 1px solid rgba(16, 185, 129, 0.2);
+      }
+      .dark .badge-warning {
+        background-color: rgba(245, 158, 11, 0.1);
+        color: #f59e0b;
+        border: 1px solid rgba(245, 158, 11, 0.2);
+      }
+      .dark .badge-danger {
+        background-color: rgba(239, 68, 68, 0.1);
+        color: #ef4444;
+        border: 1px solid rgba(239, 68, 68, 0.2);
+      }
+      .dark .badge-info {
+        background-color: rgba(59, 130, 246, 0.1);
+        color: #3b82f6;
+        border: 1px solid rgba(59, 130, 246, 0.2);
+      }
+      .dark .badge-neutral {
+        background-color: rgba(148, 163, 184, 0.1);
+        color: #94a3b8;
+        border: 1px solid rgba(148, 163, 184, 0.2);
+      }
+
       #sidebar {
         transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       }
@@ -114,22 +178,6 @@
       .collapsed #sidebar .logo-container h1 {
         display: none;
       }
-
-      .status-badge {
-        font-size: 9px;
-        font-weight: 700;
-        padding: 4px 10px;
-        border-radius: 6px;
-        text-transform: uppercase;
-      }
-      .badge-warning {
-        background-color: #fffbeb;
-        color: #92400e;
-      }
-      .badge-success {
-        background-color: #ecfdf5;
-        color: #065f46;
-      }
     </style>
     <script src="../js/api.js"></script>
   </head>
@@ -138,9 +186,9 @@
   >
     <aside
       id="sidebar"
-      class="w-64 bg-white dark:bg-darkcard border-r border-white dark:border-darkborder flex flex-col shrink-0 z-50"
+      class="w-64 bg-white dark:bg-darkcard border-r border-gray-100 dark:border-darkborder flex flex-col shrink-0 z-50"
     >
-      <div class="p-8 border-b border-white dark:border-darkborder">
+      <div class="p-8 border-b border-gray-100 dark:border-darkborder">
         <a
           href="../dashboard.html"
           class="flex items-center gap-3 logo-container group"
@@ -254,7 +302,9 @@
           </div>
         </div>
       </nav>
-      <div class="p-6 border-t border-white dark:border-darkborder/50 mt-auto">
+      <div
+        class="p-6 border-t border-slate-50 dark:border-darkborder/50 mt-auto"
+      >
         <div class="relative" id="profile-container">
           <button
             onclick="toggleProfileDropdown(event)"
@@ -281,7 +331,7 @@
           </button>
           <div
             id="profile-dropdown"
-            class="absolute bottom-full left-0 mb-2 w-full bg-white dark:bg-darkcard border border-transparent dark:border-darkborder rounded-2xl shadow-xl hidden z-50 overflow-hidden"
+            class="absolute bottom-full left-0 mb-2 w-full bg-white dark:bg-darkcard border border-slate-100 dark:border-darkborder rounded-2xl shadow-xl hidden z-50 overflow-hidden"
           >
             <button
               onclick="logout()"
@@ -323,7 +373,7 @@
                 id="welcome-msg"
                 class="text-xs text-slate-600 dark:text-slate-300 font-bold tracking-tight"
               >
-                Status: Monitorando fluxos em tempo real
+                Status: Monitorando reservas em tempo real
               </p>
             </div>
           </div>
@@ -333,7 +383,7 @@
             <button
               onclick="toggleChamadosDropdown()"
               id="chamados-dropdown-btn"
-              class="w-10 h-10 flex items-center justify-center rounded-2xl bg-white dark:bg-darkborder text-slate-500 dark:text-slate-400 hover:bg-slate-50 transition-all active:scale-90 relative"
+              class="w-10 h-10 flex items-center justify-center rounded-2xl bg-white dark:bg-darkborder text-slate-500 dark:text-slate-400 hover:bg-slate-200 transition-all active:scale-90 relative"
             >
               <span class="material-symbols-outlined text-[20px]"
                 >notifications</span
@@ -377,7 +427,7 @@
           <button
             onclick="toggleTheme()"
             id="theme-toggle"
-            class="w-10 h-10 flex items-center justify-center rounded-2xl bg-white dark:bg-darkborder text-slate-500 dark:text-slate-400 hover:bg-slate-50 transition-all active:scale-90 shadow-sm"
+            class="w-10 h-10 flex items-center justify-center rounded-2xl bg-white dark:bg-darkborder text-slate-500 dark:text-slate-400 hover:bg-slate-200 transition-all active:scale-90 shadow-sm"
           >
             <span id="theme-icon" class="material-symbols-outlined text-[20px]"
               >dark_mode</span
@@ -393,18 +443,18 @@
       </header>
 
       <main class="flex-grow overflow-y-auto custom-scrollbar p-10 space-y-10">
-        <!-- KPIs em Bloco Separado -->
+        <!-- KPIs -->
         <div
           class="bg-white dark:bg-darkcard border border-transparent dark:border-darkborder p-6 rounded-[40px] shadow-sm"
         >
           <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div
-              class="bg-slate-50 dark:bg-slate-800/50 border border-transparent dark:border-darkborder p-5 rounded-[28px] hover:shadow-md transition-all"
+              class="bg-slate-50 dark:bg-slate-800/50 border border-transparent dark:border-darkborder p-5 rounded-[28px] hover:shadow-md transition-all group"
             >
               <p
                 class="text-[9px] font-bold text-slate-400 uppercase mb-2 tracking-widest"
               >
-                Pedidos Abertos
+                Pedidos Pendentes
               </p>
               <div class="flex items-baseline justify-between">
                 <h3
@@ -413,50 +463,48 @@
                 >
                   0
                 </h3>
-                <span class="material-symbols-outlined text-accent text-2xl"
-                  >event_seat</span
+                <span class="material-symbols-outlined text-accent text-2xl group-hover:scale-110 transition-transform"
+                  >pending_actions</span
                 >
               </div>
             </div>
             <div
-              class="bg-slate-50 dark:bg-slate-800/50 border border-transparent dark:border-darkborder p-5 rounded-[28px] hover:shadow-md transition-all"
+              class="bg-slate-50 dark:bg-slate-800/50 border border-transparent dark:border-darkborder p-5 rounded-[28px] hover:shadow-md transition-all group"
             >
               <p
                 class="text-[9px] font-bold text-slate-400 uppercase mb-2 tracking-widest"
               >
-                Ocupação Hoje
+                Taxa de Aprovação
               </p>
               <div class="flex items-baseline justify-between">
                 <h3
                   class="text-3xl font-black text-slate-900 dark:text-white tracking-tighter"
                 >
-                  94%
+                  88%
                 </h3>
-                <div class="trend-badge text-success font-black">
-                  <span class="material-symbols-outlined text-xs"
-                    >arrow_upward</span
-                  >
-                  +2%
+                <div class="flex items-center gap-1 text-success text-[10px] font-black">
+                   <span class="material-symbols-outlined text-xs">trending_up</span>
+                   +5%
                 </div>
               </div>
             </div>
             <div
-              class="bg-slate-50 dark:bg-slate-800/50 border border-transparent dark:border-darkborder p-5 rounded-[28px] hover:shadow-md transition-all"
+              class="bg-slate-50 dark:bg-slate-800/50 border border-transparent dark:border-darkborder p-5 rounded-[28px] hover:shadow-md transition-all group"
             >
               <p
                 class="text-[9px] font-bold text-slate-400 uppercase mb-2 tracking-widest"
               >
-                Status
+                Espaços Ativos
               </p>
               <div class="flex items-baseline justify-between">
                 <h3
-                  class="text-xl font-black text-success uppercase tracking-tight"
+                  class="text-3xl font-black text-slate-900 dark:text-white tracking-tighter"
                 >
-                  Operacional
+                  12
                 </h3>
                 <span
-                  class="material-symbols-outlined text-success animate-pulse text-2xl"
-                  >check_circle</span
+                  class="material-symbols-outlined text-success text-2xl group-hover:rotate-12 transition-transform"
+                  >meeting_room</span
                 >
               </div>
             </div>
@@ -466,128 +514,119 @@
         <section
           class="bg-white dark:bg-darkcard border border-transparent dark:border-darkborder p-10 rounded-[40px] shadow-sm space-y-10"
         >
-          <div class="flex items-center justify-between">
-            <div>
-              <h3
-                class="font-black text-slate-900 dark:text-white text-sm uppercase tracking-[0.2em]"
+          <div class="flex flex-wrap items-center justify-between gap-6">
+            <div class="flex items-center gap-4">
+              <h2
+                class="text-2xl font-black tracking-tight text-slate-900 dark:text-white uppercase"
               >
                 Gestão de Reservas
-              </h3>
-              <p
-                class="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-1"
+              </h2>
+              <button
+                onclick="showInfo('gestao-reservas')"
+                class="text-slate-300 hover:text-accent transition-colors"
               >
-                Controle total dos agendamentos ativos
-              </p>
+                <span class="material-symbols-outlined text-[20px]">info</span>
+              </button>
             </div>
-            <div
-              class="flex items-center gap-2 px-4 py-2 bg-slate-50 dark:bg-slate-800 rounded-2xl border border-transparent dark:border-darkborder"
-            >
-              <span
-                class="w-2 h-2 rounded-full bg-success animate-pulse"
-              ></span>
-              <span
-                class="text-[9px] font-black uppercase text-slate-500 dark:text-slate-400"
-                >Live</span
+
+            <div class="flex flex-wrap items-center gap-4">
+              <div
+                class="flex items-center bg-slate-50 dark:bg-slate-900/50 px-4 py-2.5 rounded-xl border border-transparent dark:border-darkborder transition-colors focus-within:border-accent"
               >
+                <span
+                  class="material-symbols-outlined text-slate-400 text-[18px]"
+                  >search</span
+                >
+                <input
+                  type="text"
+                  id="search-input"
+                  placeholder="Filtrar local ou solicitante..."
+                  class="bg-transparent border-none p-0 text-xs font-medium focus:ring-0 w-56 text-slate-900 dark:text-white ml-3 placeholder:text-slate-400"
+                />
+              </div>
+              <select
+                id="status-filter"
+                class="w-48 bg-slate-50 dark:bg-slate-900 border border-transparent dark:border-darkborder rounded-xl px-4 py-2.5 text-[10px] font-black uppercase tracking-widest outline-none cursor-pointer text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              >
+                <option value="all">Todos os Status</option>
+                <option value="Aberto">Pendentes</option>
+                <option value="Confirmada">Confirmadas</option>
+                <option value="Negada">Negadas</option>
+              </select>
+              <select
+                id="sort-filter"
+                class="bg-slate-50 dark:bg-slate-900 border border-transparent dark:border-darkborder rounded-xl px-4 py-2.5 text-[10px] font-black uppercase tracking-widest outline-none cursor-pointer text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              >
+                <option value="recent">Mais Recentes</option>
+                <option value="oldest">Menos Recentes</option>
+              </select>
             </div>
           </div>
-          <div class="overflow-x-auto">
-            <table class="w-full text-left">
-              <thead
-                class="bg-slate-50/50 dark:bg-slate-800/30 text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest"
-              >
-                <tr>
-                  <th class="px-8 py-5">Recurso / Usuário</th>
-                  <th class="px-8 py-5">Horário Agendado</th>
-                  <th class="px-8 py-5 text-center">Status</th>
-                  <th class="px-8 py-5 text-right">Ações</th>
-                </tr>
-              </thead>
-              <tbody
-                id="reservas-tbody"
-                class="divide-y divide-slate-100 dark:divide-darkborder/50"
-              ></tbody>
-            </table>
+
+          <div
+            class="bg-white dark:bg-darkcard border border-transparent dark:border-darkborder rounded-[32px] overflow-hidden shadow-sm"
+          >
+            <div class="overflow-x-auto custom-scrollbar">
+              <table class="w-full text-left border-separate border-spacing-0">
+                <thead>
+                  <tr
+                    class="bg-slate-50/50 dark:bg-slate-900/20 border-b border-slate-100 dark:border-darkborder"
+                  >
+                    <th
+                      class="px-8 py-6 text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest"
+                    >
+                      Localização / Espaço
+                    </th>
+                    <th
+                      class="px-8 py-6 text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest"
+                    >
+                      Solicitante / ID
+                    </th>
+                    <th
+                      class="px-8 py-6 text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest text-center"
+                    >
+                      Data / Horário
+                    </th>
+                    <th
+                      class="px-8 py-6 text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest text-center"
+                    >
+                      Status
+                    </th>
+                    <th
+                      class="px-8 py-6 text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest text-right"
+                    >
+                      Ações
+                    </th>
+                  </tr>
+                </thead>
+                <tbody
+                  id="reservas-container"
+                  class="divide-y divide-slate-50 dark:divide-darkborder/50"
+                >
+                  <!-- Dynamically populated rows -->
+                  <tr>
+                    <td
+                      colspan="5"
+                      class="p-20 text-center text-slate-400 font-bold uppercase tracking-widest animate-pulse"
+                    >
+                      Sincronizando agendamentos...
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </section>
       </main>
     </div>
 
-    <div
-      id="deny-modal"
-      class="fixed inset-0 z-[120] hidden items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
-    >
-      <div
-        class="w-full max-w-lg bg-white dark:bg-darkcard rounded-[32px] shadow-2xl border border-transparent dark:border-darkborder overflow-hidden"
-      >
-        <div class="px-8 py-6 border-b border-slate-100 dark:border-darkborder">
-          <h3
-            class="text-lg font-black text-slate-900 dark:text-white tracking-tight"
-          >
-            Motivo da negativa
-          </h3>
-          <p class="text-xs font-bold text-slate-400 mt-1">
-            Escolha um motivo ou detalhe em “Outros”.
-          </p>
-        </div>
-        <form id="deny-form" class="p-8 space-y-5">
-          <div class="space-y-2">
-            <label
-              class="text-[10px] font-black uppercase tracking-widest text-slate-400"
-              >Motivo</label
-            >
-            <select
-              id="deny-reason"
-              class="w-full rounded-xl border-white dark:border-darkborder bg-slate-50 dark:bg-slate-900 px-4 py-3 text-xs font-bold outline-none focus:ring-2 focus:ring-accent"
-              required
-            >
-              <option value="" disabled selected>Selecione um motivo...</option>
-              <option value="Conflito de horário">Conflito de horário</option>
-              <option value="Espaço indisponível">Espaço indisponível</option>
-              <option value="Documentação incompleta">
-                Documentação incompleta
-              </option>
-              <option value="Outro">Outros</option>
-            </select>
-          </div>
-          <div id="deny-other-wrap" class="space-y-2 hidden">
-            <label
-              class="text-[10px] font-black uppercase tracking-widest text-slate-400"
-              >Outros</label
-            >
-            <textarea
-              id="deny-other"
-              rows="3"
-              class="w-full rounded-xl border-white dark:border-darkborder bg-slate-50 dark:bg-slate-900 px-4 py-3 text-xs font-bold outline-none focus:ring-2 focus:ring-accent"
-              placeholder="Explique melhor o motivo da negativa"
-            ></textarea>
-          </div>
-          <div class="flex items-center justify-end gap-3 pt-2">
-            <button
-              type="button"
-              id="deny-cancel"
-              class="px-5 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-500 text-[10px] font-black uppercase tracking-widest hover:bg-slate-100 dark:hover:bg-slate-700 transition-all"
-            >
-              Cancelar
-            </button>
-            <button
-              type="submit"
-              class="px-5 py-3 rounded-xl bg-danger text-white text-[10px] font-black uppercase tracking-widest hover:opacity-90 transition-all"
-            >
-              Negar Reserva
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-
     <!-- Modal de Confirmação de Aprovação -->
     <div
       id="approve-modal"
-      class="fixed inset-0 z-[200] hidden items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+      class="fixed inset-0 z-[200] hidden items-center justify-center bg-black/60 p-4 backdrop-blur-md"
     >
       <div
-        class="bg-white dark:bg-darkcard rounded-[24px] shadow-2xl w-full max-w-sm overflow-hidden border border-slate-200 dark:border-darkborder p-8"
+        class="bg-white dark:bg-darkcard rounded-[24px] shadow-2xl w-full max-sm overflow-hidden border border-slate-200 dark:border-darkborder p-8"
       >
         <div
           class="w-12 h-12 rounded-full bg-success/10 text-success flex items-center justify-center mx-auto mb-4"
@@ -602,7 +641,7 @@
         <p
           class="text-[11px] font-bold text-slate-500 dark:text-slate-400 text-center mb-8"
         >
-          Essa ação confirmará a reserva e notificará o usuário.
+          Essa ação confirmará a reserva e notificará o usuário solicitante.
         </p>
         <div class="flex items-center gap-3">
           <button
@@ -621,21 +660,135 @@
       </div>
     </div>
 
+    <!-- Modal de Negativa -->
+    <div
+      id="deny-modal"
+      class="fixed inset-0 z-[120] hidden items-center justify-center p-4 bg-black/60 backdrop-blur-md"
+    >
+      <div
+        class="w-full max-w-lg bg-white dark:bg-darkcard rounded-[32px] shadow-2xl border border-transparent dark:border-darkborder overflow-hidden animate-dropdown"
+      >
+        <div class="px-8 py-6 border-b border-slate-100 dark:border-darkborder">
+          <h3
+            class="text-lg font-black text-slate-900 dark:text-white tracking-tight uppercase"
+          >
+            Negar Reserva
+          </h3>
+          <p class="text-[10px] font-bold text-slate-400 mt-1 uppercase tracking-widest">
+            Informe o motivo da recusa para o usuário.
+          </p>
+        </div>
+        <form id="deny-form" class="p-8 space-y-5">
+          <div class="space-y-2">
+            <label
+              class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1"
+              >Motivo Principal</label
+            >
+            <select
+              id="deny-reason"
+              class="w-full rounded-xl border-slate-100 dark:border-darkborder bg-slate-50 dark:bg-slate-900 px-4 py-3 text-xs font-bold outline-none focus:ring-2 focus:ring-accent text-slate-900 dark:text-white cursor-pointer"
+              required
+            >
+              <option value="" disabled selected>Selecione um motivo...</option>
+              <option value="Conflito de horário">Conflito de horário</option>
+              <option value="Espaço indisponível">Espaço indisponível</option>
+              <option value="Documentação incompleta">Documentação incompleta</option>
+              <option value="Outro">Outros motivos</option>
+            </select>
+          </div>
+          <div id="deny-other-wrap" class="space-y-2 hidden">
+            <label
+              class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1"
+              >Detalhes Adicionais</label
+            >
+            <textarea
+              id="deny-other"
+              rows="3"
+              class="w-full rounded-xl border-slate-100 dark:border-darkborder bg-slate-50 dark:bg-slate-900 px-4 py-3 text-xs font-bold outline-none focus:ring-2 focus:ring-accent text-slate-900 dark:text-white placeholder:text-slate-400"
+              placeholder="Explique melhor o motivo da negativa..."
+            ></textarea>
+          </div>
+          <div class="flex items-center justify-end gap-3 pt-4">
+            <button
+              type="button"
+              id="deny-cancel"
+              class="px-6 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-500 dark:text-slate-300 text-[10px] font-black uppercase tracking-widest hover:bg-slate-100 dark:hover:bg-slate-700 transition-all"
+            >
+              Cancelar
+            </button>
+            <button
+              type="submit"
+              class="px-6 py-3 rounded-xl bg-danger text-white text-[10px] font-black uppercase tracking-widest hover:opacity-90 transition-all shadow-lg shadow-danger/20"
+            >
+              Confirmar Negativa
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Info Modal -->
+    <div
+      id="info-modal"
+      class="fixed inset-0 z-[1000] hidden items-center justify-center p-4 backdrop-blur-sm bg-black/50"
+    >
+      <div class="bg-white dark:bg-darkcard rounded-[32px] shadow-2xl w-full max-w-md overflow-hidden animate-dropdown border border-gray-100 dark:border-darkborder">
+        <div class="p-8 border-b border-gray-50 dark:border-darkborder/50 flex items-center justify-between">
+          <h3 class="text-xl font-black text-slate-900 dark:text-white uppercase tracking-tight" id="info-modal-title">Informação</h3>
+          <button onclick="closeInfo()" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors">
+            <span class="material-symbols-outlined text-slate-400">close</span>
+          </button>
+        </div>
+        <div class="p-8">
+          <p class="text-sm font-medium text-slate-600 dark:text-slate-400 leading-relaxed" id="info-modal-content"></p>
+        </div>
+        <div class="p-8 bg-gray-50 dark:bg-slate-800/50">
+          <button onclick="closeInfo()" class="w-full py-4 bg-slate-900 dark:bg-slate-700 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-accent transition-colors">Entendi</button>
+        </div>
+      </div>
+    </div>
+
     <script>
+      const INFO_SUMMARIES = {
+        'gestao-reservas': 'Nesta tela você gerencia todos os pedidos de reserva de espaços do campus. Pedidos em "Aberto" aguardam sua aprovação ou negativa. Use os filtros para localizar agendamentos específicos e audite o histórico de ocupação dos recursos.'
+      };
+
+      window.showInfo = (key) => {
+        const modal = document.getElementById('info-modal');
+        const content = document.getElementById('info-modal-content');
+        const title = document.getElementById('info-modal-title');
+        
+        if (INFO_SUMMARIES[key]) {
+          content.textContent = INFO_SUMMARIES[key];
+          title.textContent = key.replace(/-/g, ' ').toUpperCase();
+          modal.classList.remove('hidden');
+          modal.classList.add('flex');
+        }
+      };
+
+      window.closeInfo = () => {
+        const modal = document.getElementById('info-modal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      };
+
       (() => {
         let allRes = [];
         let allTickets = [];
         let alerts = [];
-        const tbody = document.getElementById("reservas-tbody");
+        let pendingDenyId = null;
+        let pendingApproveId = null;
+        
+        const container = document.getElementById("reservas-container");
+        const searchInput = document.getElementById("search-input");
+        const statusFilter = document.getElementById("status-filter");
+        const sortFilter = document.getElementById("sort-filter");
+        const approveModal = document.getElementById("approve-modal");
         const denyModal = document.getElementById("deny-modal");
         const denyForm = document.getElementById("deny-form");
         const denyReason = document.getElementById("deny-reason");
         const denyOtherWrap = document.getElementById("deny-other-wrap");
         const denyOther = document.getElementById("deny-other");
-        const denyCancel = document.getElementById("deny-cancel");
-        let pendingDenyId = null;
-        let pendingApproveId = null;
-        const approveModal = document.getElementById("approve-modal");
 
         window.openApproveModal = (id) => {
           pendingApproveId = id;
@@ -653,6 +806,22 @@
           if (!pendingApproveId) return;
           await updateStatus(pendingApproveId, "Confirmada");
           closeApproveModal();
+        };
+
+        window.openDenyModal = (id) => {
+          pendingDenyId = id;
+          denyModal.classList.remove("hidden");
+          denyModal.classList.add("flex");
+          denyReason.focus();
+        };
+
+        const closeDenyModal = () => {
+          pendingDenyId = null;
+          denyReason.value = "";
+          denyOther.value = "";
+          denyOtherWrap.classList.add("hidden");
+          denyModal.classList.add("hidden");
+          denyModal.classList.remove("flex");
         };
 
         window.toggleSidebar = () => {
@@ -685,10 +854,7 @@
               try {
                 const res = await fetch(url);
                 return res.ok ? await res.json() : [];
-              } catch (e) {
-                console.error(`Fetch failed for ${url}:`, e);
-                return [];
-              }
+              } catch (e) { return []; }
             };
 
             const [rData, tData, aData] = await Promise.all([
@@ -702,120 +868,77 @@
           } catch (e) {
             console.error("Erro ao carregar dados:", e);
           } finally {
-            renderTable();
+            renderCards();
             updateStats();
             renderChamadosDropdown();
           }
         };
 
-        window.toggleChamadosDropdown = () => {
-          document
-            .getElementById("chamados-dropdown-menu")
-            .classList.toggle("hidden");
-        };
+        const renderCards = () => {
+          const search = searchInput.value.toLowerCase();
+          const statusVal = statusFilter.value;
+          const sortVal = sortFilter.value;
 
-        const renderChamadosDropdown = () => {
-          const list = document.getElementById("chamados-dropdown-list");
-          const badge = document.getElementById("chamados-badge");
-          if (!list || !badge) return;
+          let filtered = allRes.filter(r => {
+            const matchSearch = r.local.toLowerCase().includes(search) || 
+                              (r.usuario || "Recurso").toLowerCase().includes(search);
+            const matchStatus = statusVal === "all" || r.status === statusVal;
+            return matchSearch && matchStatus;
+          });
 
-          const openTickets = allTickets
-            .filter((t) => t.status !== "Concluído")
-            .map((t) => ({
-              title: t.titulo,
-              subtitle: `${t.local} • Chamado`,
-              time: t.criadoEm,
-              link: "chamados.html",
-              icon: "confirmation_number",
-            }));
+          filtered.sort((a, b) => {
+            return sortVal === "recent" 
+              ? new Date(b.criadoEm || b.data) - new Date(a.criadoEm || a.data)
+              : new Date(a.criadoEm || a.data) - new Date(b.criadoEm || b.data);
+          });
 
-          const activeAlerts = (typeof alerts !== "undefined" ? alerts : [])
-            .filter((a) => a.ativo !== false)
-            .slice(0, 3)
-            .map((a) => ({
-              title: a.titulo,
-              subtitle: `${a.categoria} • Aviso`,
-              time: new Date().toISOString(),
-              link: "avisos.html",
-              icon: "campaign",
-            }));
-
-          const allNotifications = [...openTickets, ...activeAlerts]
-            .sort((a, b) => new Date(b.time) - new Date(a.time))
-            .slice(0, 5);
-
-          if (allNotifications.length > 0) {
-            badge.textContent = allNotifications.length;
-            badge.classList.remove("hidden");
-            list.innerHTML = allNotifications
-              .map(
-                (n) => `
-                  <div class="p-4 border-b border-slate-50 dark:border-darkborder/50 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all cursor-pointer group" onclick="window.location.href='${n.link}'">
-                      <div class="flex items-start gap-3">
-                          <span class="material-symbols-outlined text-slate-400 group-hover:text-accent text-sm mt-0.5">${n.icon}</span>
-                          <div>
-                              <p class="text-[11px] font-black text-slate-900 dark:text-white group-hover:text-accent transition-colors">${n.title}</p>
-                              <p class="text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase mt-1">${n.subtitle}</p>
-                          </div>
-                      </div>
-                  </div>
-              `,
-              )
-              .join("");
-          } else {
-            badge.classList.add("hidden");
-            list.innerHTML =
-              '<div class="p-8 text-center text-[10px] font-bold text-slate-400 dark:text-slate-600 uppercase">Nenhuma notificação</div>';
+          if (filtered.length === 0) {
+            container.innerHTML = `
+              <tr>
+                <td colspan="5" class="p-20 text-center text-slate-400 font-bold uppercase tracking-widest italic">
+                  Nenhum agendamento encontrado.
+                </td>
+              </tr>
+            `;
+            return;
           }
-        };
 
-        document.addEventListener("click", (e) => {
-          if (
-            !document.getElementById("profile-container").contains(e.target)
-          ) {
-            document.getElementById("profile-dropdown").classList.add("hidden");
-          }
-          const cM = document.getElementById("chamados-dropdown-menu");
-          const cC = document.getElementById("chamados-dropdown-container");
-          if (
-            cM &&
-            !cM.classList.contains("hidden") &&
-            cC &&
-            !cC.contains(e.target)
-          )
-            cM.classList.add("hidden");
-        });
-
-        const renderTable = () => {
-          tbody.innerHTML = allRes
+          container.innerHTML = filtered
             .map((r) => {
-              const isPendente =
-                r.status === "Aberto" || r.status === "Pendente";
-              let sBadge = "badge-warning";
-              if (r.status === "Confirmada") sBadge = "badge-success";
-              if (r.status === "Negada") sBadge = "badge-danger";
+              const isPendente = r.status === "Aberto" || r.status === "Pendente";
+              const sClass = r.status === "Confirmada" ? "badge-success" : isPendente ? "badge-warning" : "badge-danger";
 
               return `
-              <tr class="table-row-hover transition-all">
-                <td class="px-8 py-5"><p class="text-xs font-bold text-slate-900 dark:text-white">${r.local}</p><p class="text-[9px] text-slate-400 uppercase">ID: #RE${r.id.slice(0, 4)}</p></td>
-                <td class="px-8 py-5"><p class="text-xs font-medium">${r.data}</p><p class="text-[10px] text-slate-400">${r.horario}</p></td>
-                <td class="px-8 py-5 text-center">
-                  <div class="space-y-1">
-                    <span class="status-badge ${sBadge}">${r.status}</span>
-                    ${r.motivoNegacao ? `<p class="text-[9px] font-bold text-slate-400 uppercase max-w-[180px] mx-auto">${r.motivoNegacao}</p>` : ""}
+              <tr class="group hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-all duration-200">
+                <td class="px-8 py-5">
+                   <p class="text-[10px] font-black text-slate-900 dark:text-white uppercase tracking-widest">${r.local}</p>
+                </td>
+                <td class="px-8 py-5">
+                  <div>
+                    <p class="text-xs font-black text-slate-900 dark:text-white uppercase tracking-tight mb-0.5">${r.usuario || "Reserva de Recurso"}</p>
+                    <p class="text-[9px] font-bold text-slate-400 tabular-nums uppercase">ID: #RE${r.id.slice(0, 6).toUpperCase()}</p>
                   </div>
                 </td>
+                <td class="px-8 py-5 text-center">
+                  <p class="text-[10px] font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest tabular-nums">${r.horario}</p>
+                  <p class="text-[9px] font-bold text-slate-400 mt-1 italic">${r.data}</p>
+                </td>
+                <td class="px-8 py-5 text-center">
+                   <span class="status-badge ${sClass}">${r.status}</span>
+                </td>
                 <td class="px-8 py-5 text-right">
-                    ${
-                      isPendente
-                        ? `
+                  ${isPendente ? `
                     <div class="flex items-center justify-end gap-2">
-                        <button onclick="openApproveModal('${r.id}')" class="px-3 py-1.5 bg-success/10 text-success hover:bg-success hover:text-white rounded-lg text-[10px] font-bold uppercase transition-all">Confirmar</button>
-                        <button onclick="openDenyModal('${r.id}')" class="px-3 py-1.5 bg-danger/10 text-danger hover:bg-danger hover:text-white rounded-lg text-[10px] font-bold uppercase transition-all">Negar</button>
+                      <button onclick="openApproveModal('${r.id}')" class="w-9 h-9 inline-flex items-center justify-center bg-success/10 text-success hover:bg-success hover:text-white rounded-xl transition-all active:scale-90" title="Confirmar">
+                        <span class="material-symbols-outlined text-[18px]">check_circle</span>
+                      </button>
+                      <button onclick="openDenyModal('${r.id}')" class="w-9 h-9 inline-flex items-center justify-center bg-danger/10 text-danger hover:bg-danger hover:text-white rounded-xl transition-all active:scale-90" title="Negar">
+                        <span class="material-symbols-outlined text-[18px]">block</span>
+                      </button>
                     </div>
-                    `
-                        : `<span class="text-[9px] font-bold text-slate-300 uppercase px-4">Concluído</span>`
-                    }
+                  ` : `
+                    <span class="text-[9px] font-black text-slate-300 uppercase tracking-widest mr-2">Finalizado</span>
+                  `}
                 </td>
               </tr>`;
             })
@@ -824,70 +947,75 @@
 
         const updateStats = () => {
           document.getElementById("count-abertas").textContent = allRes.filter(
-            (r) => r.status === "Aberto",
+            (r) => r.status === "Aberto" || r.status === "Pendente",
           ).length;
         };
-        window.updateStatus = async (id, status) => {
+
+        window.updateStatus = async (id, status, motivo = null) => {
+          const body = { status };
+          if (motivo) body.motivoNegacao = motivo;
+          
           await fetch(`${API_BASE_URL}/api/reservas/${id}`, {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ status }),
+            body: JSON.stringify(body),
           });
           fetchData();
-        };
-        window.deleteReserva = async (id) => {
-          if (!confirm("Cancelar reserva?")) return;
-          await fetch(`${API_BASE_URL}/api/reservas/${id}`, {
-            method: "DELETE",
-          });
-          fetchData();
-        };
-
-        const closeDenyModal = () => {
-          pendingDenyId = null;
-          denyReason.value = "";
-          denyOther.value = "";
-          denyOtherWrap.classList.add("hidden");
-          denyModal.classList.add("hidden");
-          denyModal.classList.remove("flex");
-        };
-
-        window.openDenyModal = (id) => {
-          pendingDenyId = id;
-          denyModal.classList.remove("hidden");
-          denyModal.classList.add("flex");
-          denyReason.focus();
         };
 
         denyReason.addEventListener("change", () => {
           const shouldShowOther = denyReason.value === "Outro";
           denyOtherWrap.classList.toggle("hidden", !shouldShowOther);
-          denyOther.required = shouldShowOther;
+          if(shouldShowOther) denyOther.focus();
         });
 
         denyForm.addEventListener("submit", async (e) => {
           e.preventDefault();
           if (!pendingDenyId) return;
-
-          const motivo =
-            denyReason.value === "Outro"
-              ? `Outros: ${denyOther.value.trim()}`
-              : denyReason.value;
-
-          await fetch(`${API_BASE_URL}/api/reservas/${pendingDenyId}`, {
-            method: "PATCH",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ status: "Negada", motivoNegacao: motivo }),
-          });
-
+          const motivo = denyReason.value === "Outro" ? `Outros: ${denyOther.value.trim()}` : denyReason.value;
+          await updateStatus(pendingDenyId, "Negada", motivo);
           closeDenyModal();
-          fetchData();
         });
 
-        denyCancel.addEventListener("click", closeDenyModal);
-        denyModal.addEventListener("click", (e) => {
-          if (e.target === denyModal) closeDenyModal();
+        document.getElementById("deny-cancel").addEventListener("click", closeDenyModal);
+
+        window.toggleChamadosDropdown = () => {
+          document.getElementById("chamados-dropdown-menu").classList.toggle("hidden");
+        };
+
+        const renderChamadosDropdown = () => {
+          const list = document.getElementById("chamados-dropdown-list");
+          const badge = document.getElementById("chamados-badge");
+          if (!list || !badge) return;
+          const openTickets = allTickets.filter((t) => t.status !== "Concluído");
+          if (openTickets.length > 0) {
+            badge.textContent = openTickets.length;
+            badge.classList.remove("hidden");
+            list.innerHTML = openTickets.map((t) => `
+              <div class="p-4 border-b border-slate-50 dark:border-darkborder/50 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all cursor-pointer group" onclick="window.location.href='chamados.html'">
+                <p class="text-[11px] font-black text-slate-900 dark:text-white group-hover:text-accent transition-colors">${t.titulo}</p>
+                <p class="text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase mt-1">${t.local} • Chamado</p>
+              </div>
+            `).join("");
+          } else {
+            badge.classList.add("hidden");
+            list.innerHTML = '<div class="p-8 text-center text-[10px] font-bold text-slate-400 uppercase">Nenhuma notificação</div>';
+          }
+        };
+
+        document.addEventListener("click", (e) => {
+          const pD = document.getElementById("profile-dropdown");
+          if (pD && !pD.classList.contains("hidden") && !document.getElementById("profile-container").contains(e.target))
+            pD.classList.add("hidden");
+          const cM = document.getElementById("chamados-dropdown-menu");
+          const cC = document.getElementById("chamados-dropdown-container");
+          if (cM && !cM.classList.contains("hidden") && cC && !cC.contains(e.target))
+            cM.classList.add("hidden");
         });
+
+        searchInput.addEventListener("input", renderCards);
+        statusFilter.addEventListener("change", renderCards);
+        sortFilter.addEventListener("change", renderCards);
 
         window.logout = () => {
           localStorage.removeItem("userRole");
@@ -895,13 +1023,8 @@
         };
         window.toggleProfileDropdown = (e) => {
           e.stopPropagation();
-          document
-            .getElementById("profile-dropdown")
-            .classList.toggle("hidden");
+          document.getElementById("profile-dropdown").classList.toggle("hidden");
         };
-        document.addEventListener("click", () => {
-          document.getElementById("profile-dropdown").classList.add("hidden");
-        });
 
         fetchData();
       })();

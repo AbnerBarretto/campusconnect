@@ -92,6 +92,17 @@
         background: #1e293b;
       }
 
+      .premium-card {
+        @apply bg-white dark:bg-darkcard border border-white dark:border-darkborder rounded-[24px] shadow-sm transition-all duration-300 ease-out;
+      }
+      .premium-card:hover {
+        @apply border-white dark:border-slate-700 shadow-premium-hover translate-y-[-2px];
+      }
+
+      .trend-badge {
+        @apply flex items-center gap-1 text-[10px] font-black uppercase tracking-widest transition-all duration-300;
+      }
+
       .status-badge {
         font-size: 10px;
         font-weight: 700;
@@ -446,71 +457,130 @@
         </div>
       </header>
 
-      <main class="flex-grow overflow-y-auto custom-scrollbar p-8 space-y-8">
+      <main class="flex-grow overflow-y-auto custom-scrollbar p-10 space-y-10">
         <section
-          class="bg-white dark:bg-darkcard border border-transparent dark:border-darkborder p-6 rounded-[24px] shadow-sm flex flex-wrap items-center justify-between gap-4"
+          class="bg-white dark:bg-darkcard border border-transparent dark:border-darkborder p-10 rounded-[40px] shadow-sm space-y-10"
         >
-          <h3 class="font-bold text-sm text-slate-900 dark:text-white">
-            Gerenciar Operações
-          </h3>
-          <div class="flex items-center gap-3">
-            <div
-              class="flex items-center bg-white dark:bg-slate-900/50 px-3 py-1.5 rounded-lg border border-transparent dark:border-darkborder"
-            >
-              <span class="material-symbols-outlined text-slate-400 text-[16px]"
-                >search</span
+          <div class="flex flex-wrap items-center justify-between gap-6">
+            <div class="flex items-center gap-4">
+              <h2
+                class="text-2xl font-black tracking-tight text-slate-900 dark:text-white uppercase"
               >
-              <input
-                type="text"
-                id="search-input"
-                placeholder="Filtrar local..."
-                class="bg-transparent border-none p-0 text-xs font-medium focus:ring-0 w-48 text-slate-900 dark:text-white ml-2"
-              />
+                Gerenciar Operações
+              </h2>
+              <button
+                onclick="showInfo('gerenciar-operacoes')"
+                class="text-slate-300 hover:text-accent transition-colors"
+              >
+                <span class="material-symbols-outlined text-[20px]">info</span>
+              </button>
             </div>
-            <select
-              id="priority-filter"
-              class="w-48 bg-white dark:bg-slate-900 border border-transparent dark:border-darkborder rounded-lg px-4 py-2 text-[10px] font-black uppercase tracking-widest outline-none cursor-pointer text-slate-900 dark:text-slate-200"
-            >
-              <option value="all">Todas as Prioridades</option>
-              <option value="Alta">Prioridade Alta</option>
-              <option value="Média">Prioridade Média</option>
-              <option value="Baixa">Prioridade Baixa</option>
-            </select>
-            <select
-              id="sort-filter"
-              class="bg-white dark:bg-slate-900 border border-transparent dark:border-darkborder rounded-lg px-4 py-2 text-[10px] font-black uppercase tracking-widest outline-none cursor-pointer text-slate-900 dark:text-slate-200"
-            >
-              <option value="recent">Mais Recentes</option>
-              <option value="oldest">Menos Recentes</option>
-              <option value="priority-desc">Prioridade: Alta → Baixa</option>
-              <option value="priority-asc">Prioridade: Baixa → Alta</option>
-            </select>
-          </div>
-        </section>
 
-        <section
-          class="bg-white dark:bg-darkcard border border-transparent dark:border-darkborder overflow-hidden rounded-[24px] shadow-sm"
-        >
-          <div class="overflow-x-auto">
-            <table class="w-full text-left">
-              <thead>
-                <tr
-                  class="bg-slate-50/50 dark:bg-slate-800/30 text-[10px] font-bold text-slate-500 uppercase tracking-widest border-b border-slate-100 dark:border-darkborder"
+            <div class="flex flex-wrap items-center gap-4">
+              <div
+                class="flex items-center bg-slate-50 dark:bg-slate-900/50 px-4 py-2.5 rounded-xl border border-transparent dark:border-darkborder transition-colors focus-within:border-accent"
+              >
+                <span
+                  class="material-symbols-outlined text-slate-400 text-[18px]"
+                  >search</span
                 >
-                  <th class="px-8 py-4">Local</th>
-                  <th class="px-8 py-4">Assunto</th>
-                  <th class="px-8 py-4 text-center">Aberto em</th>
-                  <th class="px-8 py-4 text-center">Profissional</th>
-                  <th class="px-8 py-4 text-center">Prioridade</th>
-                  <th class="px-8 py-4 text-center">Status</th>
-                  <th class="px-8 py-4 text-right">Ação</th>
-                </tr>
-              </thead>
-              <tbody
-                id="tickets-tbody"
-                class="divide-y divide-slate-50 dark:divide-darkborder/50"
-              ></tbody>
-            </table>
+                <input
+                  type="text"
+                  id="search-input"
+                  placeholder="Filtrar local ou assunto..."
+                  class="bg-transparent border-none p-0 text-xs font-medium focus:ring-0 w-56 text-slate-900 dark:text-white ml-3 placeholder:text-slate-400"
+                />
+              </div>
+              <select
+                id="priority-filter"
+                class="w-48 bg-slate-50 dark:bg-slate-900 border border-transparent dark:border-darkborder rounded-xl px-4 py-2.5 text-[10px] font-black uppercase tracking-widest outline-none cursor-pointer text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              >
+                <option value="all">Todas as Prioridades</option>
+                <option value="Alta">Prioridade Alta</option>
+                <option value="Média">Prioridade Média</option>
+                <option value="Baixa">Prioridade Baixa</option>
+              </select>
+              <select
+                id="professional-filter"
+                class="w-48 bg-slate-50 dark:bg-slate-900 border border-transparent dark:border-darkborder rounded-xl px-4 py-2.5 text-[10px] font-black uppercase tracking-widest outline-none cursor-pointer text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              >
+                <option value="all">Todos os Profissionais</option>
+                <option value="unassigned">Não Atribuído</option>
+              </select>
+              <select
+                id="sort-filter"
+                class="bg-slate-50 dark:bg-slate-900 border border-transparent dark:border-darkborder rounded-xl px-4 py-2.5 text-[10px] font-black uppercase tracking-widest outline-none cursor-pointer text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              >
+                <option value="recent">Mais Recentes</option>
+                <option value="oldest">Menos Recentes</option>
+                <option value="priority-desc">Alta → Baixa</option>
+                <option value="priority-asc">Baixa → Alta</option>
+              </select>
+            </div>
+          </div>
+
+          <div
+            class="bg-white dark:bg-darkcard border border-transparent dark:border-darkborder rounded-[32px] overflow-hidden shadow-sm"
+          >
+            <div class="overflow-x-auto custom-scrollbar">
+              <table class="w-full text-left border-separate border-spacing-0">
+                <thead>
+                  <tr
+                    class="bg-slate-50/50 dark:bg-slate-900/20 border-b border-slate-100 dark:border-darkborder"
+                  >
+                    <th
+                      class="px-8 py-6 text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest"
+                    >
+                      Localização
+                    </th>
+                    <th
+                      class="px-8 py-6 text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest"
+                    >
+                      Assunto / ID
+                    </th>
+                    <th
+                      class="px-8 py-6 text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest text-center"
+                    >
+                      Abertura
+                    </th>
+                    <th
+                      class="px-8 py-6 text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest"
+                    >
+                      Profissional
+                    </th>
+                    <th
+                      class="px-8 py-6 text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest text-center"
+                    >
+                      Prioridade
+                    </th>
+                    <th
+                      class="px-8 py-6 text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest"
+                    >
+                      Status
+                    </th>
+                    <th
+                      class="px-8 py-6 text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest text-right"
+                    >
+                      Ação
+                    </th>
+                  </tr>
+                </thead>
+                <tbody
+                  id="tickets-container"
+                  class="divide-y divide-slate-50 dark:divide-darkborder/50"
+                >
+                  <!-- Dynamically populated rows -->
+                  <tr>
+                    <td
+                      colspan="6"
+                      class="p-20 text-center text-slate-400 font-bold uppercase tracking-widest animate-pulse"
+                    >
+                      Sincronizando dados...
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </section>
       </main>
@@ -557,12 +627,56 @@
       </div>
     </div>
 
+    <!-- Info Modal -->
+    <div
+      id="info-modal"
+      class="fixed inset-0 z-[1000] hidden items-center justify-center p-4 backdrop-blur-sm bg-black/50"
+    >
+      <div class="bg-white dark:bg-darkcard rounded-[32px] shadow-2xl w-full max-w-md overflow-hidden animate-dropdown border border-gray-100 dark:border-darkborder">
+        <div class="p-8 border-b border-gray-50 dark:border-darkborder/50 flex items-center justify-between">
+          <h3 class="text-xl font-black text-slate-900 dark:text-white uppercase tracking-tight" id="info-modal-title">Informação</h3>
+          <button onclick="closeInfo()" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors">
+            <span class="material-symbols-outlined text-slate-400">close</span>
+          </button>
+        </div>
+        <div class="p-8">
+          <p class="text-sm font-medium text-slate-600 dark:text-slate-400 leading-relaxed" id="info-modal-content"></p>
+        </div>
+        <div class="p-8 bg-gray-50 dark:bg-slate-800/50">
+          <button onclick="closeInfo()" class="w-full py-4 bg-slate-900 dark:bg-slate-700 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-accent transition-colors">Entendi</button>
+        </div>
+      </div>
+    </div>
+
     <script>
+      const INFO_SUMMARIES = {
+        'gerenciar-operacoes': 'Esta tela permite o controle total dos chamados de manutenção. Use a busca para filtrar por local ou assunto, e os seletores de prioridade e profissional para organizar a fila. A tabela exibe o status operacional de cada chamado, permitindo atualizações diretas de responsabilidade, prioridade e estado.'
+      };
+
+      window.showInfo = (key) => {
+        const modal = document.getElementById('info-modal');
+        const content = document.getElementById('info-modal-content');
+        const title = document.getElementById('info-modal-title');
+        
+        if (INFO_SUMMARIES[key]) {
+          content.textContent = INFO_SUMMARIES[key];
+          title.textContent = key.replace(/-/g, ' ').toUpperCase();
+          modal.classList.remove('hidden');
+          modal.classList.add('flex');
+        }
+      };
+
+      window.closeInfo = () => {
+        const modal = document.getElementById('info-modal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      };
+
       (() => {
         let allTickets = [];
         let alerts = [];
         let pendingConclusionId = null;
-        const tbody = document.getElementById("tickets-tbody");
+        const ticketsContainer = document.getElementById("tickets-container");
         const searchInput = document.getElementById("search-input");
         const confirmModal = document.getElementById("confirm-modal");
 
@@ -626,18 +740,40 @@
             ]);
             allTickets = tData;
             alerts = aData;
+            updateProfessionalFilterOptions();
           } catch (e) {
             console.error("Erro ao carregar dados:", e);
           } finally {
-            renderTable();
+            renderCards();
             renderChamadosDropdown();
           }
         };
 
-        const renderTable = () => {
+        const updateProfessionalFilterOptions = () => {
+          const profFilter = document.getElementById("professional-filter");
+          const professionals = [
+            ...new Set(
+              allTickets.map((t) => t.responsavel).filter((r) => r && r !== ""),
+            ),
+          ];
+
+          let options = `
+            <option value="all">Todos os Profissionais</option>
+            <option value="unassigned">Não Atribuído</option>
+          `;
+
+          professionals.sort().forEach((p) => {
+            options += `<option value="${p}">${p}</option>`;
+          });
+
+          profFilter.innerHTML = options;
+        };
+
+        const renderCards = () => {
           const search = searchInput.value.toLowerCase();
           const sortVal = document.getElementById("sort-filter").value;
           const priorityVal = document.getElementById("priority-filter").value;
+          const profVal = document.getElementById("professional-filter").value;
 
           let filtered = allTickets.filter((t) => {
             const matchSearch =
@@ -645,7 +781,11 @@
               t.titulo.toLowerCase().includes(search);
             const matchPriority =
               priorityVal === "all" || t.prioridade === priorityVal;
-            return t.status !== "Concluído" && matchSearch && matchPriority;
+            const matchProf =
+              profVal === "all" ||
+              (profVal === "unassigned" && (!t.responsavel || t.responsavel === "")) ||
+              t.responsavel === profVal;
+            return t.status !== "Concluído" && matchSearch && matchPriority && matchProf;
           });
 
           // Apply Sorting
@@ -663,44 +803,84 @@
             return 0;
           });
 
-          tbody.innerHTML = filtered
+          if (filtered.length === 0) {
+            ticketsContainer.innerHTML = `
+              <tr>
+                <td colspan="6" class="p-20 text-center text-slate-400 font-bold uppercase tracking-widest italic">
+                  Nenhum chamado operacional encontrado.
+                </td>
+              </tr>
+            `;
+            return;
+          }
+
+          ticketsContainer.innerHTML = filtered
             .map((t) => {
-              const pClass =
+              const pColor =
                 t.prioridade === "Alta"
-                  ? "badge-danger"
+                  ? "bg-danger"
                   : t.prioridade === "Média"
-                    ? "badge-warning"
-                    : "badge-success";
+                    ? "bg-warning"
+                    : "bg-success";
               const sClass = getStatusBadgeClass(t.status);
+              const date = new Date(t.criadoEm).toLocaleDateString("pt-BR");
+              const time = new Date(t.criadoEm).toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+              });
+
+              // Determinar ícone baseado na categoria/título
+              let icon = "report";
+              const title = t.titulo.toLowerCase();
+              if (title.includes("lâmpada") || title.includes("elétrica")) icon = "electric_bolt";
+              else if (title.includes("vazamento") || title.includes("hidráulica")) icon = "water_drop";
+              else if (title.includes("ar condicionado") || title.includes("temperatura")) icon = "ac_unit";
+              else if (title.includes("limpeza")) icon = "cleaning_services";
+              else if (title.includes("mobiliário") || title.includes("cadeira")) icon = "chair";
+              else if (title.includes("internet") || title.includes("rede")) icon = "wifi";
+
               return `
-              <tr class="table-row-hover transition-all group">
-                <td class="px-8 py-5 text-xs font-bold text-slate-900 dark:text-white uppercase">${t.local}</td>
-                <td class="px-8 py-5"><p class="text-xs font-medium text-slate-700 dark:text-slate-300">${t.titulo}</p></td>
-                <td class="px-8 py-5 text-center"><p class="text-[10px] font-bold text-slate-500 tabular-nums">${new Date(t.criadoEm).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</p></td>
-                <td class="px-8 py-5 text-center">
-                    <select onchange="updateResponsavel('${t.id}', this.value)" class="status-badge badge-neutral min-w-[140px] border-none outline-none cursor-pointer">
-                        <option value="">Não atribuído</option>
-                        <option value="Carlos Silva" ${t.responsavel === "Carlos Silva" ? "selected" : ""}>Carlos Silva</option>
-                        <option value="José Santos" ${t.responsavel === "José Santos" ? "selected" : ""}>José Santos</option>
-                    </select>
+              <tr class="group hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-all duration-200">
+                <td class="px-8 py-5">
+                  <p class="text-[10px] font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest">${t.local}</p>
+                </td>
+                <td class="px-8 py-5">
+                  <div>
+                    <p class="text-xs font-black text-slate-900 dark:text-white uppercase tracking-tight mb-0.5">${t.titulo}</p>
+                    <p class="text-[9px] font-bold text-slate-400 tabular-nums uppercase">ID: #${t.id.substring(0, 8)}</p>
+                  </div>
                 </td>
                 <td class="px-8 py-5 text-center">
-                    <select onchange="updatePriority('${t.id}', this.value)" class="status-badge ${pClass} border-none outline-none cursor-pointer">
-                        <option value="Alta" ${t.prioridade === "Alta" ? "selected" : ""}>Alta</option>
-                        <option value="Média" ${t.prioridade === "Média" ? "selected" : ""}>Média</option>
-                        <option value="Baixa" ${t.prioridade === "Baixa" ? "selected" : ""}>Baixa</option>
-                    </select>
+                  <p class="text-[10px] font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest tabular-nums">${time}</p>
+                  <p class="text-[9px] font-bold text-slate-400 mt-1 italic">${date}</p>
+                </td>
+                <td class="px-8 py-5">
+                  <select onchange="updateResponsavel('${t.id}', this.value)" class="bg-slate-50 dark:bg-slate-900/50 border-none rounded-lg px-3 py-1.5 text-[10px] font-bold text-slate-600 dark:text-slate-400 outline-none focus:ring-1 focus:ring-accent w-40">
+                      <option value="">Não atribuído</option>
+                      <option value="Carlos Silva" ${t.responsavel === "Carlos Silva" ? "selected" : ""}>Carlos Silva</option>
+                      <option value="José Santos" ${t.responsavel === "José Santos" ? "selected" : ""}>José Santos</option>
+                      <option value="Ana Oliveira" ${t.responsavel === "Ana Oliveira" ? "selected" : ""}>Ana Oliveira</option>
+                  </select>
                 </td>
                 <td class="px-8 py-5 text-center">
-                    <select onchange="updateStatus('${t.id}', this.value)" class="status-badge ${sClass} border-none outline-none cursor-pointer">
-                        <option value="Aberto" ${t.status === "Aberto" ? "selected" : ""}>Aberto</option>
-                        <option value="Em progresso" ${t.status === "Em progresso" ? "selected" : ""}>Em progresso</option>
-                        <option value="Em análise" ${t.status === "Em análise" ? "selected" : ""}>Em análise</option>
-                        <option value="Concluído" ${t.status === "Concluído" ? "selected" : ""}>Concluído</option>
-                    </select>
+                  <select onchange="updatePriority('${t.id}', this.value)" class="bg-slate-50 dark:bg-slate-900/50 border-none rounded-lg px-3 py-1.5 text-[10px] font-black ${pColor.replace('bg-', 'text-')} uppercase tracking-widest outline-none focus:ring-1 focus:ring-accent cursor-pointer">
+                      <option value="Alta" class="text-danger" ${t.prioridade === "Alta" ? "selected" : ""}>Alta</option>
+                      <option value="Média" class="text-warning" ${t.prioridade === "Média" ? "selected" : ""}>Média</option>
+                      <option value="Baixa" class="text-success" ${t.prioridade === "Baixa" ? "selected" : ""}>Baixa</option>
+                  </select>
+                </td>
+                <td class="px-8 py-5">
+                  <select onchange="updateStatus('${t.id}', this.value)" class="status-badge ${sClass} border-none outline-none cursor-pointer rounded-lg text-[9px] font-black">
+                      <option value="Aberto" ${t.status === "Aberto" ? "selected" : ""}>Aberto</option>
+                      <option value="Em progresso" ${t.status === "Em progresso" ? "selected" : ""}>Em progresso</option>
+                      <option value="Em análise" ${t.status === "Em análise" ? "selected" : ""}>Em análise</option>
+                      <option value="Concluído" ${t.status === "Concluído" ? "selected" : ""}>Concluído</option>
+                  </select>
                 </td>
                 <td class="px-8 py-5 text-right">
-                    <button onclick="confirmConclusion('${t.id}')" class="p-2 text-slate-400 hover:text-success transition-all" title="Marcar como concluído"><span class="material-symbols-outlined">check_circle</span></button>
+                  <button onclick="confirmConclusion('${t.id}')" class="w-9 h-9 inline-flex items-center justify-center bg-success/10 text-success hover:bg-success hover:text-white rounded-xl transition-all active:scale-90" title="Concluir">
+                    <span class="material-symbols-outlined text-[18px]">check_circle</span>
+                  </button>
                 </td>
               </tr>`;
             })
@@ -807,13 +987,16 @@
           }
         };
 
-        searchInput.addEventListener("input", renderTable);
+        searchInput.addEventListener("input", renderCards);
         document
           .getElementById("priority-filter")
-          .addEventListener("change", renderTable);
+          .addEventListener("change", renderCards);
+        document
+          .getElementById("professional-filter")
+          .addEventListener("change", renderCards);
         document
           .getElementById("sort-filter")
-          .addEventListener("change", renderTable);
+          .addEventListener("change", renderCards);
         window.logout = () => {
           localStorage.removeItem("userRole");
           window.location.href = "../login.html";
