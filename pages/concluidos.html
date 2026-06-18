@@ -134,7 +134,7 @@
       <div class="p-8">
         <a
           href="../dashboard.html"
-          class="flex items-center gap-3 logo-container group"
+          class="flex items-center gap-1 logo-container group"
         >
           <svg
             width="32"
@@ -143,20 +143,37 @@
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             class="logo-mark"
+            style="display: block !important; width: 32px !important; height: 32px !important; min-width: 32px !important; min-height: 32px !important; opacity: 1 !important; visibility: visible !important;"
           >
+            <!-- Borda Externa (O Campus) -->
+            <path
+              d="M20 20H80V80H20V20Z"
+              fill="none"
+              stroke="#0f172a"
+              stroke-width="4"
+              stroke-opacity="0.25"
+              style="stroke: #0f172a !important; stroke-width: 4px !important; fill: none !important; opacity: 0.25 !important;"
+            />
+            <!-- Estrutura Principal (Monograma Abstracto) -->
             <path
               d="M20 50V20H80V80H50"
-              stroke="#000"
-              stroke-width="12"
+              fill="none"
+              stroke="#0f172a"
+              stroke-width="8"
               stroke-linecap="square"
+              style="stroke: #0f172a !important; stroke-width: 8px !important; fill: none !important;"
             />
+            <!-- Conector Interno (O Connect) -->
             <path
               d="M40 40L60 60"
-              stroke="#000"
-              stroke-width="12"
+              fill="none"
+              stroke="#0f172a"
+              stroke-width="8"
               stroke-linecap="square"
+              style="stroke: #0f172a !important; stroke-width: 8px !important; fill: none !important;"
             />
-            <rect x="20" y="40" width="15" height="20" fill="white" />
+            <!-- Espaço Negativo C Implícito -->
+            <rect x="20" y="40" width="15" height="20" fill="#ffffff" style="fill: #ffffff !important;" />
           </svg>
           <h1 class="text-sm font-black tracking-widest uppercase">
             Campus<span class="font-light">Connect</span>

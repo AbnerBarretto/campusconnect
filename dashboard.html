@@ -189,7 +189,7 @@
       <div class="p-8">
         <a
           href="dashboard.html"
-          class="flex items-center gap-3 logo-container group"
+          class="flex items-center gap-1 logo-container group"
         >
           <svg
             width="32"
@@ -198,20 +198,37 @@
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             class="logo-mark"
+            style="display: block !important; width: 32px !important; height: 32px !important; min-width: 32px !important; min-height: 32px !important; opacity: 1 !important; visibility: visible !important;"
           >
+            <!-- Borda Externa (O Campus) -->
+            <path
+              d="M20 20H80V80H20V20Z"
+              fill="none"
+              stroke="#0f172a"
+              stroke-width="4"
+              stroke-opacity="0.25"
+              style="stroke: #0f172a !important; stroke-width: 4px !important; fill: none !important; opacity: 0.25 !important;"
+            />
+            <!-- Estrutura Principal (Monograma Abstracto) -->
             <path
               d="M20 50V20H80V80H50"
-              stroke="#000"
-              stroke-width="12"
+              fill="none"
+              stroke="#0f172a"
+              stroke-width="8"
               stroke-linecap="square"
+              style="stroke: #0f172a !important; stroke-width: 8px !important; fill: none !important;"
             />
+            <!-- Conector Interno (O Connect) -->
             <path
               d="M40 40L60 60"
-              stroke="#000"
-              stroke-width="12"
+              fill="none"
+              stroke="#0f172a"
+              stroke-width="8"
               stroke-linecap="square"
+              style="stroke: #0f172a !important; stroke-width: 8px !important; fill: none !important;"
             />
-            <rect x="20" y="40" width="15" height="20" fill="white" />
+            <!-- Espaço Negativo C Implícito -->
+            <rect x="20" y="40" width="15" height="20" fill="#ffffff" style="fill: #ffffff !important;" />
           </svg>
           <h1 class="text-sm font-black tracking-widest uppercase">
             Campus<span class="font-light">Connect</span>
@@ -413,20 +430,20 @@
                 <input
                   type="text"
                   id="notices-search"
-                  placeholder="Search notices..."
+                  placeholder="Buscar avisos..."
                   class="w-full bg-[#f3f4f6] border-none rounded-2xl pl-11 pr-4 py-3.5 text-sm font-semibold placeholder-gray-400 focus:ring-2 focus:ring-indigo-600 focus:bg-white transition-all outline-none"
                 />
               </div>
 
               <!-- Filtros (Pills) -->
               <div class="flex items-center gap-3 overflow-x-auto py-2 no-scrollbar whitespace-nowrap" id="notices-filters">
-                <!-- Filtros gerados dinamicamente por JS: All, Urgent, Exams, Events, Holidays, Homework -->
+                <!-- Filtros gerados dinamicamente por JS -->
               </div>
 
               <!-- Lista de Cards de Avisos -->
               <div class="space-y-4" id="infra-alerts-list-desktop">
                 <div class="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
-                  <p class="text-xs md:text-sm font-semibold text-slate-500">Loading notices...</p>
+                  <p class="text-xs md:text-sm font-semibold text-slate-500">Carregando avisos...</p>
                 </div>
               </div>
             </section>
@@ -635,9 +652,9 @@
           {
             id: "default-1",
             tipo: "warning",
-            categoria: "Exams",
-            titulo: "Mid-Term Examination Schedule Released",
-            descricao: "The mid-term examination schedule for all classes has been released. Students are requested to check the detailed timetable...",
+            categoria: "Provas",
+            titulo: "Divulgação do Calendário de Provas Finais",
+            descricao: "O calendário de avaliações finais do período letivo corrente já está disponível para consulta no site oficial do IFPE Campus Belo Jardim e nos murais das coordenações.",
             link: "",
             linkLabel: "",
             anexos: 2,
@@ -647,9 +664,9 @@
           {
             id: "default-2",
             tipo: "danger",
-            categoria: "Homework",
-            titulo: "URGENT: Physics Assignment Submission Deadline",
-            descricao: "All students must submit their Physics project assignments by June 10, 2026. Late submissions will not be accepted...",
+            categoria: "Tarefas",
+            titulo: "ATENÇÃO: Prazo para Entrega dos Relatórios de Estágio",
+            descricao: "Todos os concluintes dos cursos técnicos e superiores do IFPE Belo Jardim devem enviar o relatório final de estágio até o dia 10 de junho de 2026 via sistema acadêmico.",
             link: "",
             linkLabel: "",
             anexos: 1,
@@ -659,9 +676,9 @@
           {
             id: "default-3",
             tipo: "warning",
-            categoria: "Urgent",
-            titulo: "Chemistry Lab Safety Guidelines",
-            descricao: "All students must read and follow the updated chemistry laboratory safety guidelines before attending practical sessions...",
+            categoria: "Urgente",
+            titulo: "Uso Obrigatório de EPIs nos Laboratórios e Campo",
+            descricao: "Para as aulas práticas de Agroindústria, Solos e no setor agrícola, é obrigatório o uso correto de calçado fechado, calça comprida e jaleco com mangas longas.",
             link: "",
             linkLabel: "",
             anexos: 1,
@@ -671,9 +688,9 @@
           {
             id: "default-4",
             tipo: "info",
-            categoria: "",
-            titulo: "Summer Holiday Announcement",
-            descricao: "Summer holidays will commence from June 20, 2026. The institute will remain closed for 15 days...",
+            categoria: "Feriados",
+            titulo: "Início do Recesso Acadêmico - Junho 2026",
+            descricao: "Comunicamos a toda a comunidade acadêmica do IFPE Campus Belo Jardim que o recesso escolar iniciará em 20 de junho de 2026, com retorno previsto em 15 dias.",
             link: "",
             linkLabel: "",
             anexos: 0,
@@ -697,7 +714,7 @@
           }
         };
 
-        let activeFilter = 'All';
+        let activeFilter = 'Todos';
         let searchQuery = '';
         let alertsInitialized = false;
 
@@ -706,8 +723,8 @@
           try {
             const date = new Date(dateStr);
             if (isNaN(date.getTime())) return dateStr;
-            const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-            return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+            const months = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
+            return `${date.getDate()} de ${months[date.getMonth()]}, ${date.getFullYear()}`;
           } catch (_) {
             return dateStr;
           }
@@ -763,8 +780,8 @@
               alertsInitialized = true;
             }
 
-            // Filtros padrão da imagem: All, Urgent, Exams, Events, Holidays, Homework
-            const staticCategories = ["All", "Urgent", "Exams", "Events", "Holidays", "Homework"];
+            // Filtros padrão em português: Todos, Urgente, Provas, Eventos, Feriados, Tarefas
+            const staticCategories = ["Todos", "Urgente", "Provas", "Eventos", "Feriados", "Tarefas"];
             
             // Renderiza pílulas de filtros
             const filtersContainer = document.getElementById("notices-filters");
@@ -798,9 +815,9 @@
               let filtered = [...activeAlerts];
 
               // Aplica filtro de categoria/urgência
-              if (activeFilter === "Urgent") {
-                filtered = filtered.filter(a => a.tipo === "danger" || a.tipo === "warning" || a.categoria === "Urgent");
-              } else if (activeFilter !== "All") {
+              if (activeFilter === "Urgente") {
+                filtered = filtered.filter(a => a.tipo === "danger" || a.tipo === "warning" || a.categoria === "Urgente");
+              } else if (activeFilter !== "Todos") {
                 filtered = filtered.filter(a => a.categoria === activeFilter);
               }
 
@@ -818,7 +835,7 @@
               if (filtered.length === 0) {
                 desktopList.innerHTML = `
                   <div class="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
-                    <p class="text-xs md:text-sm font-semibold text-slate-500">No notices match your criteria.</p>
+                    <p class="text-xs md:text-sm font-semibold text-slate-500">Nenhum aviso corresponde aos seus critérios.</p>
                   </div>
                 `;
                 return;
@@ -826,7 +843,7 @@
 
               desktopList.innerHTML = filtered
                 .map((aviso, idx) => {
-                  const isUrgent = aviso.tipo === "danger" || aviso.tipo === "warning" || aviso.categoria === "Urgent";
+                  const isUrgent = aviso.tipo === "danger" || aviso.tipo === "warning" || aviso.categoria === "Urgente";
                   
                   // Estilo da borda
                   const borderClass = isUrgent

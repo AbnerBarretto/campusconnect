@@ -174,7 +174,7 @@
       <div class="p-8">
         <a
           href="../dashboard.html"
-          class="flex items-center gap-3 logo-container group"
+          class="flex items-center gap-1 logo-container group"
         >
           <svg
             width="32"
@@ -183,30 +183,37 @@
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             class="logo-mark"
+            style="display: block !important; width: 32px !important; height: 32px !important; min-width: 32px !important; min-height: 32px !important; opacity: 1 !important; visibility: visible !important;"
           >
             <!-- Borda Externa (O Campus) -->
             <path
               d="M20 20H80V80H20V20Z"
-              stroke="#000"
+              fill="none"
+              stroke="#0f172a"
               stroke-width="4"
               stroke-opacity="0.25"
+              style="stroke: #0f172a !important; stroke-width: 4px !important; fill: none !important; opacity: 0.25 !important;"
             />
             <!-- Estrutura Principal (Monograma Abstracto) -->
             <path
               d="M20 50V20H80V80H50"
-              stroke="#000"
+              fill="none"
+              stroke="#0f172a"
               stroke-width="8"
               stroke-linecap="square"
+              style="stroke: #0f172a !important; stroke-width: 8px !important; fill: none !important;"
             />
             <!-- Conector Interno (O Connect) -->
             <path
               d="M40 40L60 60"
-              stroke="#000"
+              fill="none"
+              stroke="#0f172a"
               stroke-width="8"
               stroke-linecap="square"
+              style="stroke: #0f172a !important; stroke-width: 8px !important; fill: none !important;"
             />
             <!-- Espaço Negativo C Implícito -->
-            <rect x="20" y="40" width="15" height="20" fill="white" class="logo-bg-rect" />
+            <rect x="20" y="40" width="15" height="20" fill="#ffffff" style="fill: #ffffff !important;" />
           </svg>
           <h1 class="text-sm font-black tracking-widest uppercase logo-text">
             CAMPUS<span class="font-light">CONNECT</span>
@@ -316,7 +323,7 @@
       <header
         class="md:hidden sticky top-0 bg-[var(--card)]/80 backdrop-blur-md border-b border-[var(--border-soft)] h-16 flex items-center px-6 z-40"
       >
-        <a href="../dashboard.html" class="flex items-center gap-3 logo-container group">
+        <a href="../dashboard.html" class="flex items-center gap-1 logo-container group">
           <svg
             width="28"
             height="28"
@@ -324,30 +331,37 @@
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             class="logo-mark"
+            style="display: block !important; width: 28px !important; height: 28px !important; min-width: 28px !important; min-height: 28px !important; opacity: 1 !important; visibility: visible !important;"
           >
             <!-- Borda Externa (O Campus) -->
             <path
               d="M20 20H80V80H20V20Z"
-              stroke="#000"
+              fill="none"
+              stroke="#0f172a"
               stroke-width="4"
               stroke-opacity="0.25"
+              style="stroke: #0f172a !important; stroke-width: 4px !important; fill: none !important; opacity: 0.25 !important;"
             />
             <!-- Estrutura Principal (Monograma Abstracto) -->
             <path
               d="M20 50V20H80V80H50"
-              stroke="#000"
+              fill="none"
+              stroke="#0f172a"
               stroke-width="8"
               stroke-linecap="square"
+              style="stroke: #0f172a !important; stroke-width: 8px !important; fill: none !important;"
             />
             <!-- Conector Interno (O Connect) -->
             <path
               d="M40 40L60 60"
-              stroke="#000"
+              fill="none"
+              stroke="#0f172a"
               stroke-width="8"
               stroke-linecap="square"
+              style="stroke: #0f172a !important; stroke-width: 8px !important; fill: none !important;"
             />
             <!-- Espaço Negativo C Implícito -->
-            <rect x="20" y="40" width="15" height="20" fill="white" class="logo-bg-rect" />
+            <rect x="20" y="40" width="15" height="20" fill="#ffffff" style="fill: #ffffff !important;" />
           </svg>
           <h1 class="text-sm font-black tracking-widest uppercase logo-text">
             CAMPUS<span class="font-light">CONNECT</span>
@@ -491,7 +505,19 @@
 
         if (currentDayIndex < 0 || currentDayIndex > 4) currentDayIndex = 0;
 
-        window.expandedMobileMeal = "Almoço";
+        const getAutoExpandedMeal = () => {
+          const now = new Date();
+          const currentTime = now.getHours() * 60 + now.getMinutes();
+          if (currentTime <= 7 * 60) {
+            return "Café da Manhã";
+          } else if (currentTime <= 13 * 60) {
+            return "Almoço";
+          } else {
+            return "Jantar";
+          }
+        };
+
+        window.expandedMobileMeal = getAutoExpandedMeal();
         window.toggleMobileMeal = (mealName) => {
           const normalized = mealName.toLowerCase();
           if (window.expandedMobileMeal && window.expandedMobileMeal.toLowerCase() === normalized) {
