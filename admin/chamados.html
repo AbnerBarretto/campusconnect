@@ -121,62 +121,53 @@
         appearance: none !important;
         cursor: pointer;
         transition: all 0.2s ease;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23475569' stroke-width='3'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7' /%3E%3C/svg%3E") !important;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23ffffff' stroke-width='3'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7' /%3E%3C/svg%3E") !important;
         background-repeat: no-repeat !important;
         background-position: right 10px center !important;
         background-size: 10px !important;
         border: 1px solid transparent !important;
         outline: none;
+        color: white !important;
       }
       .dark .status-badge {
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8' stroke-width='3'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7' /%3E%3C/svg%3E") !important;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23ffffff' stroke-width='3'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7' /%3E%3C/svg%3E") !important;
       }
 
       .badge-success {
-        background-color: #ecfdf5;
-        color: #065f46;
+        background-color: #10b981;
       }
       .badge-warning {
-        background-color: #fffbeb;
-        color: #92400e;
+        background-color: #f59e0b;
       }
       .badge-danger {
-        background-color: #fef2f2;
-        color: #991b1b;
+        background-color: #ef4444;
       }
       .badge-info {
-        background-color: #eff6ff;
-        color: #1e40af;
+        background-color: #3b82f6;
       }
       .badge-neutral {
-        background-color: #f8fafc;
-        color: #475569;
+        background-color: #64748b;
       }
 
       .dark .badge-success {
-        background-color: rgba(16, 185, 129, 0.1);
-        color: #10b981;
-        border: 1px solid rgba(16, 185, 129, 0.2) !important;
+        background-color: #059669;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
       }
       .dark .badge-warning {
-        background-color: rgba(245, 158, 11, 0.1);
-        color: #f59e0b;
-        border: 1px solid rgba(245, 158, 11, 0.2) !important;
+        background-color: #d97706;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
       }
       .dark .badge-danger {
-        background-color: rgba(239, 68, 68, 0.1);
-        color: #ef4444;
-        border: 1px solid rgba(239, 68, 68, 0.2) !important;
+        background-color: #dc2626;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
       }
       .dark .badge-info {
-        background-color: rgba(59, 130, 246, 0.1);
-        color: #3b82f6;
-        border: 1px solid rgba(59, 130, 246, 0.2) !important;
+        background-color: #2563eb;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
       }
       .dark .badge-neutral {
-        background-color: rgba(148, 163, 184, 0.1);
-        color: #94a3b8;
-        border: 1px solid rgba(148, 163, 184, 0.2) !important;
+        background-color: #475569;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
       }
 
       #sidebar {
@@ -382,7 +373,7 @@
           </button>
           <div>
             <h2
-              class="page-title text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]"
+              class="text-[16px] font-black text-slate-400 uppercase tracking-[0.2em]"
             >
               Ambiente Operacional
             </h2>
@@ -820,12 +811,12 @@
 
           ticketsContainer.innerHTML = filtered
             .map((t) => {
-              const pColor =
+              const pClass =
                 t.prioridade === "Alta"
-                  ? "bg-danger"
+                  ? "badge-danger"
                   : t.prioridade === "Média"
-                    ? "bg-warning"
-                    : "bg-success";
+                    ? "badge-warning"
+                    : "badge-success";
               const sClass = getStatusBadgeClass(t.status);
               const date = new Date(t.criadoEm).toLocaleDateString("pt-BR");
               const time = new Date(t.criadoEm).toLocaleTimeString([], {
@@ -859,7 +850,7 @@
                   <p class="text-[9px] font-bold text-slate-400 mt-1 italic">${date}</p>
                 </td>
                 <td class="px-4 py-3">
-                  <select onchange="updateResponsavel('${t.id}', this.value)" class="bg-slate-50 dark:bg-slate-900/50 border-none rounded-lg px-3 py-1.5 text-[10px] font-bold text-slate-600 dark:text-slate-400 outline-none focus:ring-1 focus:ring-accent w-32">
+                  <select onchange="updateResponsavel('${t.id}', this.value)" class="bg-slate-100 dark:bg-slate-800 border-none rounded-lg px-3 py-1.5 text-[10px] font-bold text-slate-700 dark:text-slate-300 outline-none focus:ring-1 focus:ring-accent w-32 cursor-pointer transition-colors hover:bg-slate-200 dark:hover:bg-slate-700">
                       <option value="">Não atribuído</option>
                       <option value="Carlos Silva" ${t.responsavel === "Carlos Silva" ? "selected" : ""}>Carlos Silva</option>
                       <option value="José Santos" ${t.responsavel === "José Santos" ? "selected" : ""}>José Santos</option>
@@ -867,10 +858,10 @@
                   </select>
                 </td>
                 <td class="px-4 py-3 text-center">
-                  <select onchange="updatePriority('${t.id}', this.value)" class="bg-slate-50 dark:bg-slate-900/50 border-none rounded-lg px-2 py-1.5 text-[10px] font-black ${pColor.replace('bg-', 'text-')} uppercase tracking-widest outline-none focus:ring-1 focus:ring-accent cursor-pointer w-24">
-                      <option value="Alta" class="text-danger" ${t.prioridade === "Alta" ? "selected" : ""}>Alta</option>
-                      <option value="Média" class="text-warning" ${t.prioridade === "Média" ? "selected" : ""}>Média</option>
-                      <option value="Baixa" class="text-success" ${t.prioridade === "Baixa" ? "selected" : ""}>Baixa</option>
+                  <select onchange="updatePriority('${t.id}', this.value)" class="status-badge ${pClass} border-none outline-none cursor-pointer rounded-lg text-[9px] font-black scale-90 origin-center !min-w-[100px]">
+                      <option value="Alta" ${t.prioridade === "Alta" ? "selected" : ""}>Alta</option>
+                      <option value="Média" ${t.prioridade === "Média" ? "selected" : ""}>Média</option>
+                      <option value="Baixa" ${t.prioridade === "Baixa" ? "selected" : ""}>Baixa</option>
                   </select>
                 </td>
                 <td class="px-4 py-3">

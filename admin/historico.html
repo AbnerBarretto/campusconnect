@@ -363,9 +363,9 @@
 
     <div id="main-content" class="flex-grow flex flex-col overflow-hidden">
       <header
-        class="h-20 bg-white/90 dark:bg-darkcard/90 backdrop-blur-md border-b border-gray-100 dark:border-darkborder flex items-center justify-between px-10 shrink-0 z-[100]"
+        class="h-20 bg-white/90 dark:bg-darkcard/90 backdrop-blur-md border-b border-gray-100 dark:border-darkborder flex items-center justify-between px-6 shrink-0 z-[100]"
       >
-        <div class="flex items-center gap-8">
+        <div class="flex items-center gap-6">
           <button
             onclick="toggleSidebar()"
             class="w-10 h-10 flex items-center justify-center rounded-2xl bg-white dark:bg-slate-800 text-slate-500 hover:text-accent transition-all group"
@@ -378,7 +378,7 @@
           </button>
           <div>
             <h2
-              class="page-title text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]"
+              class="text-[16px] font-black text-slate-400 uppercase tracking-[0.2em]"
             >
               Ambiente Operacional
             </h2>
@@ -566,6 +566,11 @@
                     >
                       Status
                     </th>
+                    <th
+                      class="px-8 py-6 text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest text-right"
+                    >
+                      Ação
+                    </th>
                   </tr>
                 </thead>
                 <tbody
@@ -587,6 +592,46 @@
           </div>
         </section>
       </main>
+    </div>
+
+    <!-- Modal de Confirmação -->
+    <div
+      id="confirm-modal"
+      class="fixed inset-0 z-[200] hidden items-center justify-center bg-black/60 p-4 backdrop-blur-md"
+    >
+      <div
+        class="bg-white dark:bg-darkcard rounded-[24px] shadow-2xl w-full max-w-sm overflow-hidden border border-slate-200 dark:border-darkborder p-8"
+      >
+        <div
+          class="w-12 h-12 rounded-full bg-accent/10 text-accent flex items-center justify-center mx-auto mb-4"
+        >
+          <span class="material-symbols-outlined text-2xl">history</span>
+        </div>
+        <h3
+          class="font-black text-slate-900 dark:text-white text-center text-lg uppercase tracking-tight mb-2"
+        >
+          Reabrir Chamado?
+        </h3>
+        <p
+          class="text-[11px] font-bold text-slate-500 dark:text-slate-400 text-center mb-8"
+        >
+          Essa ação enviará o chamado de volta para a lista de atendimentos ativos.
+        </p>
+        <div class="flex items-center gap-3">
+          <button
+            onclick="closeConfirmModal()"
+            class="flex-1 py-3 bg-slate-50 dark:bg-slate-800 text-slate-500 dark:text-slate-300 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+          >
+            Cancelar
+          </button>
+          <button
+            onclick="executeReopen()"
+            class="flex-1 py-3 bg-accent text-white rounded-xl text-[10px] font-black uppercase tracking-widest shadow-lg shadow-accent/20 hover:opacity-90 active:scale-95 transition-all"
+          >
+            Confirmar
+          </button>
+        </div>
+      </div>
     </div>
 
     <!-- Info Modal -->
@@ -637,8 +682,33 @@
       (() => {
         let allTickets = [];
         let alerts = [];
+        let pendingReopenId = null;
         const ticketsContainer = document.getElementById("tickets-container");
         const searchInput = document.getElementById("search-input");
+        const confirmModal = document.getElementById("confirm-modal");
+
+        window.openConfirmModal = (id) => {
+          pendingReopenId = id;
+          confirmModal.classList.remove("hidden");
+          confirmModal.classList.add("flex");
+        };
+
+        window.closeConfirmModal = () => {
+          pendingReopenId = null;
+          confirmModal.classList.add("hidden");
+          confirmModal.classList.remove("flex");
+        };
+
+        window.executeReopen = async () => {
+          if (!pendingReopenId) return;
+          await fetch(`${API_BASE_URL}/api/chamados/${pendingReopenId}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ status: "Aberto" }),
+          });
+          closeConfirmModal();
+          fetchData();
+        };
 
         window.toggleSidebar = () => {
           document.body.classList.toggle("collapsed");
@@ -793,10 +863,12 @@
                    <span class="text-[9px] font-black ${pColor} uppercase tracking-widest">${t.prioridade}</span>
                 </td>
                 <td class="px-8 py-5">
-                  <select onchange="updateStatus('${t.id}', this.value)" class="status-badge ${sClass} border-none outline-none cursor-pointer rounded-lg text-[9px] font-black scale-90 origin-left">
-                      <option value="Concluído" selected>Finalizado</option>
-                      <option value="Atualizar">Atualizar</option>
-                  </select>
+                   <span class="status-badge badge-success !bg-transparent !p-0 !min-w-0 font-black text-success">CONCLUÍDO</span>
+                </td>
+                <td class="px-8 py-5 text-right">
+                  <button onclick="openConfirmModal('${t.id}')" class="w-9 h-9 inline-flex items-center justify-center bg-accent/10 text-accent hover:bg-accent hover:text-white rounded-xl transition-all active:scale-90" title="Reabrir chamado">
+                    <span class="material-symbols-outlined text-[18px]">history</span>
+                  </button>
                 </td>
               </tr>`;
             })
@@ -814,16 +886,6 @@
           )
             return "badge-warning";
           return "badge-neutral";
-        };
-
-        window.updateStatus = async (id, status) => {
-          const finalStatus = status === "Atualizar" ? "Em progresso" : status;
-          await fetch(`${API_BASE_URL}/api/chamados/${id}`, {
-            method: "PATCH",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ status: finalStatus }),
-          });
-          fetchData();
         };
 
         window.toggleChamadosDropdown = () => {
