@@ -344,7 +344,7 @@
         class="max-w-7xl mx-auto w-full px-4 md:px-6 lg:px-10 xl:px-12 py-6 md:py-14 pb-20 md:pb-14 space-y-6 md:space-y-10 flex-grow"
       >
         <header
-          class="flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-8"
+          class="flex flex-row items-center justify-between gap-4 md:gap-8"
         >
           <div class="space-y-1 md:space-y-2">
             <h2
@@ -355,6 +355,17 @@
             <p class="text-[#475569] font-medium text-xs md:text-lg">
               Visão geral do seu dia no campus.
             </p>
+          </div>
+          <div class="flex flex-row flex-wrap gap-3 shrink-0">
+            <button
+              data-action
+              data-action-type="novo-chamado"
+              data-action-title="Novo Chamado"
+              class="bg-[var(--accent)] text-white px-5 py-3 rounded-xl font-bold text-xs tracking-tight hover:shadow-2xl hover:shadow-black/20 transition-all active:scale-95 flex items-center justify-center gap-2.5 whitespace-nowrap"
+            >
+              <span class="material-symbols-outlined">add_circle</span>
+              Novo Chamado
+            </button>
           </div>
         </header>
 
