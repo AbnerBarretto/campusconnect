@@ -160,6 +160,21 @@
         -ms-overflow-style: none;
         scrollbar-width: none;
       }
+      @media (min-width: 1024px) {
+        #next-meal-card {
+          min-height: 280px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+        #next-meal-card > div:nth-child(2) {
+          flex-grow: 1;
+          display: flex;
+          align-items: center;
+          margin-top: 1rem;
+          margin-bottom: 1rem;
+        }
+      }
     </style>
     <script src="js/api.js"></script>
   </head>

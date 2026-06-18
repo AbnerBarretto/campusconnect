@@ -122,6 +122,27 @@
         box-shadow: 0 4px 12px rgba(0,0,0,0.10);
         transform: translateY(-1px);
       }
+      @media (min-width: 768px) {
+        .meal-card {
+          min-height: 160px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+        .meal-card > :first-child {
+          padding-top: 16px !important;
+          padding-bottom: 16px !important;
+          padding-left: 20px !important;
+          padding-right: 20px !important;
+        }
+        .meal-card > :last-child {
+          flex-grow: 1;
+          padding-top: 20px !important;
+          padding-bottom: 20px !important;
+          padding-left: 20px !important;
+          padding-right: 20px !important;
+        }
+      }
       .status-badge {
         display: inline-flex;
         align-items: center;
@@ -338,7 +359,7 @@
         class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-10 xl:px-12 pt-4 md:pt-6 pb-24 md:pb-6 space-y-4 md:space-y-4 flex-grow"
       >
         <header
-          class="w-full flex flex-col md:flex-row items-center justify-center gap-3"
+          class="w-full flex flex-col md:flex-row items-center justify-center gap-3 mb-8 md:mb-10"
         >
           <!-- Título e Subtítulo (apenas no mobile) -->
           <div class="space-y-0.5 text-center md:hidden mb-1">
