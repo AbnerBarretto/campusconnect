@@ -36,14 +36,19 @@
     </script>
     <style>
       html {
-        font-size: 18.66px !important;
+        font-size: 13.5px !important;
+      }
+      @media (min-width: 768px) {
+        html {
+          font-size: 18.66px !important;
+        }
       }
       .page-title {
-        font-size: 30px !important;
+        font-size: 20px !important;
       }
       @media (min-width: 768px) {
         .page-title {
-          font-size: 48px !important;
+          font-size: 32px !important;
         }
       }
       :root {
@@ -325,13 +330,13 @@
         <header
           class="flex flex-col md:flex-row md:items-center justify-between gap-8"
         >
-          <div class="space-y-2">
+          <div class="space-y-2 text-center md:text-left">
             <h2
-              class="text-3xl md:text-5xl font-black tracking-tighter text-black"
+              class="page-title font-black tracking-tighter text-black"
             >
               Cardápio do Dia
             </h2>
-            <p class="text-[#475569] font-medium text-lg">
+            <p class="text-[#475569] font-medium text-xs md:text-lg">
               Confira as opções de refeições para hoje no campus.
             </p>
           </div>
@@ -456,6 +461,17 @@
         let cardapioData = [];
 
         if (currentDayIndex < 0 || currentDayIndex > 4) currentDayIndex = 0;
+
+        window.expandedMobileMeal = "Almoço";
+        window.toggleMobileMeal = (mealName) => {
+          const normalized = mealName.toLowerCase();
+          if (window.expandedMobileMeal && window.expandedMobileMeal.toLowerCase() === normalized) {
+            window.expandedMobileMeal = null;
+          } else {
+            window.expandedMobileMeal = mealName;
+          }
+          render();
+        };
 
         // Feriados Nacionais Fixos (Exemplo de lista para regra de véspera)
         const FERIADOS = ["01/01", "21/04", "01/05", "07/09", "12/10", "02/11", "15/11", "25/12"];
@@ -668,37 +684,56 @@
             </div>`;
           }).join("");
 
-          // Render Mobile Layout (New Neubrutalist Cards)
-          const mobileHtml = dayMeals.map((m) => {
-            const { bg, accent, iconBg } = getMealHeaderBg(m.refeicao);
-            const itens = Array.isArray(m.itens) ? m.itens.join(", ") : (m.itens || "—");
-            return `
-            <div class="flex flex-col bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] overflow-hidden mb-6 last:mb-0">
-              <!-- Card Header -->
-              <div class="flex items-center gap-3 px-5 py-4" style="background:${bg}; border-bottom: 2px solid black;">
-                <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:${iconBg}; border: 1px solid black;">
-                  <span class="material-symbols-outlined text-xl" style="color:black;">${getMealIcon(m.refeicao)}</span>
-                </div>
-                <div class="flex-grow">
-                  <p class="font-black text-base uppercase leading-tight" style="color:black;">${m.refeicao}</p>
-                  <p class="text-[10px] font-bold text-black/60 mt-0.5 uppercase tracking-wide">${getMealTimeLabel(m.refeicao, isEarlyDinner)}</p>
-                </div>
+          // Render Mobile Layout (Table / Strip format)
+          const mobileHtml = `
+            <div class="bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] overflow-hidden">
+              <div class="divide-y-2 divide-black">
+                ${dayMeals.map((m) => {
+                  const { bg, accent, iconBg } = getMealHeaderBg(m.refeicao);
+                  const icon = getMealIcon(m.refeicao);
+                  const isExpanded = window.expandedMobileMeal && window.expandedMobileMeal.toLowerCase() === m.refeicao.toLowerCase();
+                  const itens = Array.isArray(m.itens) ? m.itens.join(", ") : (m.itens || "—");
+                  const arrowChar = isExpanded ? "▲" : "▼";
+
+                  return `
+                  <div class="flex flex-col" style="background:${bg};">
+                    <!-- Row Header (Clickable) -->
+                    <div onclick="window.toggleMobileMeal('${m.refeicao}')" class="p-4 flex items-center justify-between gap-3 cursor-pointer select-none">
+                      <div class="flex items-center gap-3 min-w-0">
+                        <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:${iconBg}; border: 1px solid ${accent};">
+                          <span class="material-symbols-outlined text-xl" style="color:${accent};">${icon}</span>
+                        </div>
+                        <h4 class="font-black text-sm uppercase leading-tight tracking-wider" style="color:${accent};">${m.refeicao}</h4>
+                      </div>
+                      <span class="font-black text-xs leading-none shrink-0" style="color:${accent};">${arrowChar}</span>
+                    </div>
+
+                    <!-- Row Body (Detail Block - Expanded) -->
+                    ${isExpanded ? `
+                    <div class="bg-white border-t border-black p-4 space-y-4">
+                      <!-- Horário -->
+                      <div>
+                        <p class="text-[8px] font-black uppercase tracking-[0.15em] text-gray-400 mb-0.5">HORÁRIO</p>
+                        <p class="text-xs font-bold text-black">${getMealTimeLabel(m.refeicao, isEarlyDinner)}</p>
+                      </div>
+                      <!-- Opções -->
+                      <div>
+                        <p class="text-[8px] font-black uppercase tracking-[0.15em] text-gray-400 mb-0.5">OPÇÕES</p>
+                        <p class="text-xs font-bold text-black leading-snug">${itens}</p>
+                      </div>
+                      <!-- Status -->
+                      <div>
+                        <p class="text-[8px] font-black uppercase tracking-[0.15em] text-gray-400 mb-1">STATUS</p>
+                        ${getMealStatus(m.refeicao, isEarlyDinner, currentDayIndex)}
+                      </div>
+                    </div>
+                    ` : ""}
+                  </div>
+                  `;
+                }).join("")}
               </div>
-              <!-- Card Body -->
-              <div class="bg-white px-5 py-5 space-y-5">
-                <!-- Opções -->
-                <div>
-                  <p class="text-[10px] font-black uppercase tracking-[0.15em] text-gray-400 mb-2">Opções</p>
-                  <p class="text-sm font-bold text-black leading-snug">${itens}</p>
-                </div>
-                <!-- Status row -->
-                <div class="pt-4 border-t-2 border-gray-100">
-                  <p class="text-[10px] font-black uppercase tracking-[0.15em] text-gray-400 mb-2">Status</p>
-                  ${getMealStatus(m.refeicao, isEarlyDinner, currentDayIndex)}
-                </div>
-              </div>
-            </div>`;
-          }).join("");
+            </div>
+          `;
 
           list.innerHTML = `
             <div class="hidden md:block space-y-4">${desktopHtml}</div>

@@ -38,14 +38,19 @@
     </script>
     <style>
       html {
-        font-size: 18.66px !important;
+        font-size: 13.5px !important;
+      }
+      @media (min-width: 768px) {
+        html {
+          font-size: 18.66px !important;
+        }
       }
       .page-title {
-        font-size: 30px !important;
+        font-size: 20px !important;
       }
       @media (min-width: 768px) {
         .page-title {
-          font-size: 48px !important;
+          font-size: 32px !important;
         }
       }
       html,
@@ -422,13 +427,13 @@
         <header
           class="flex flex-col md:flex-row md:items-center justify-between gap-8"
         >
-          <div class="space-y-3">
+          <div class="space-y-2">
             <h2
-              class="page-title text-2xl sm:text-3xl md:text-5xl font-black tracking-tighter text-black"
+              class="page-title font-black tracking-tighter text-black"
             >
               Calendário Acadêmico
             </h2>
-            <p class="text-[var(--text-secondary)] font-bold text-base sm:text-lg md:text-xl break-words">
+            <p class="text-[var(--text-secondary)] font-bold text-xs md:text-lg break-words">
               Ano Letivo 2026 • Cursos Superiores • Semestre 2026.1
             </p>
           </div>
@@ -446,7 +451,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
           <!-- JANEIRO -->
           <div
-            class="p-4 sm:p-6 lg:p-7 bg-[var(--card)] border border-[var(--border-soft)] rounded-[24px] sm:rounded-[32px] space-y-6"
+            class="p-4 md:p-5.5 bg-[var(--card)] border border-[var(--border-soft)] rounded-2xl md:rounded-2xl space-y-6"
           >
             <div class="flex items-center justify-between">
               <h3 class="font-black text-xl sm:text-2xl tracking-tight">Janeiro</h3>
@@ -553,7 +558,7 @@
 
           <!-- FEVEREIRO -->
           <div
-            class="p-4 sm:p-6 lg:p-7 bg-[var(--card)] border border-[var(--border-soft)] rounded-[24px] sm:rounded-[32px] space-y-6"
+            class="p-4 md:p-5.5 bg-[var(--card)] border border-[var(--border-soft)] rounded-2xl md:rounded-2xl space-y-6"
           >
             <div class="flex items-center justify-between">
               <h3 class="font-black text-2xl tracking-tight">Fevereiro</h3>
@@ -652,7 +657,7 @@
 
           <!-- MARÇO -->
           <div
-            class="p-4 sm:p-6 lg:p-7 bg-[var(--card)] border border-[var(--border-soft)] rounded-[24px] sm:rounded-[32px] space-y-6"
+            class="p-4 md:p-5.5 bg-[var(--card)] border border-[var(--border-soft)] rounded-2xl md:rounded-2xl space-y-6"
           >
             <div class="flex items-center justify-between">
               <h3 class="font-black text-2xl tracking-tight">Março</h3>
@@ -754,7 +759,7 @@
 
           <!-- ABRIL -->
           <div
-            class="p-4 sm:p-6 lg:p-7 bg-[var(--card)] border border-[var(--border-soft)] rounded-[24px] sm:rounded-[32px] space-y-6"
+            class="p-4 md:p-5.5 bg-[var(--card)] border border-[var(--border-soft)] rounded-2xl md:rounded-2xl space-y-6"
           >
             <div class="flex items-center justify-between">
               <h3 class="font-black text-2xl tracking-tight">Abril</h3>
@@ -860,7 +865,7 @@
 
           <!-- MAIO -->
           <div
-            class="p-4 sm:p-6 lg:p-7 bg-[var(--card)] border border-[var(--border-soft)] rounded-[24px] sm:rounded-[32px] space-y-6"
+            class="p-4 md:p-5.5 bg-[var(--card)] border border-[var(--border-soft)] rounded-2xl md:rounded-2xl space-y-6"
           >
             <div class="flex items-center justify-between">
               <h3 class="font-black text-2xl tracking-tight">Maio</h3>
@@ -967,7 +972,7 @@
 
           <!-- JUNHO -->
           <div
-            class="p-4 sm:p-6 lg:p-7 bg-[var(--card)] border border-[var(--border-soft)] rounded-[24px] sm:rounded-[32px] space-y-6"
+            class="p-4 md:p-5.5 bg-[var(--card)] border border-[var(--border-soft)] rounded-2xl md:rounded-2xl space-y-6"
           >
             <div class="flex items-center justify-between">
               <h3 class="font-black text-2xl tracking-tight">Junho</h3>
@@ -1070,7 +1075,7 @@
           </div>
 
           <!-- JULHO -->
-          <div class="p-4 sm:p-6 lg:p-7 bg-black text-white rounded-[24px] sm:rounded-[32px] space-y-6">
+          <div class="p-4 md:p-5.5 bg-black text-white rounded-2xl md:rounded-2xl space-y-6">
             <div class="flex items-center justify-between">
               <h3 class="font-black text-2xl tracking-tight">Julho</h3>
               <span
@@ -1246,7 +1251,7 @@
               Resumo do Semestre
             </h3>
             <div
-              class="p-6 sm:p-8 bg-[var(--card)] border border-[var(--border-soft)] rounded-[32px] grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-0 divide-y sm:divide-y-0 sm:divide-x divide-[var(--border-soft)]"
+              class="p-4 md:p-5.5 bg-[var(--card)] border border-[var(--border-soft)] rounded-2xl md:rounded-2xl grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-0 divide-y sm:divide-y-0 sm:divide-x divide-[var(--border-soft)]"
             >
               <div class="text-center pb-6 sm:pb-0">
                 <p class="text-3xl sm:text-4xl font-black text-black">100</p>
@@ -1286,7 +1291,7 @@
             </h3>
           </div>
           <div
-            class="overflow-x-auto max-w-full rounded-[40px] border border-[var(--border-soft)] shadow-sm"
+            class="overflow-x-auto max-w-full rounded-2xl md:rounded-2xl border border-[var(--border-soft)] shadow-sm"
           >
             <table class="w-full text-left border-collapse">
               <thead>

@@ -37,14 +37,19 @@
     </script>
     <style>
       html {
-        font-size: 18.66px !important;
+        font-size: 13.5px !important;
+      }
+      @media (min-width: 768px) {
+        html {
+          font-size: 18.66px !important;
+        }
       }
       .page-title {
-        font-size: 30px !important;
+        font-size: 20px !important;
       }
       @media (min-width: 768px) {
         .page-title {
-          font-size: 48px !important;
+          font-size: 32px !important;
         }
       }
       :root {
@@ -287,11 +292,11 @@
         >
           <div class="space-y-2">
             <h2
-              class="text-3xl md:text-5xl font-black tracking-tighter text-black"
+              class="page-title font-black tracking-tighter text-black"
             >
               Explorar Espaços
             </h2>
-            <p class="text-[#475569] font-medium text-lg">
+            <p class="text-[#475569] font-medium text-xs md:text-lg">
               Encontre e reserve o local ideal para sua atividade.
             </p>
           </div>
@@ -353,7 +358,7 @@
               Ocupação do Campus
             </h3>
             <div
-              class="bg-black text-white p-10 rounded-[40px] space-y-8 shadow-2xl shadow-black/20"
+              class="bg-black text-white p-6 md:p-8 rounded-2xl md:rounded-3xl space-y-8 shadow-2xl shadow-black/20"
             >
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-3">
@@ -384,7 +389,7 @@
             </div>
 
             <!-- Promotion Card for large institutions -->
-            <div class="p-8 bg-blue-50 rounded-[40px] space-y-4">
+            <div class="p-5 md:p-6 bg-blue-50 rounded-2xl md:rounded-3xl space-y-4">
               <h4 class="font-black text-sm text-blue-900">
                 Uso de Laboratórios
               </h4>
@@ -408,7 +413,7 @@
       aria-hidden="true"
     >
       <div
-        class="bg-white rounded-[40px] shadow-2xl w-full max-w-lg overflow-hidden animate-in fade-in zoom-in duration-300"
+        class="bg-white rounded-2xl md:rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden animate-in fade-in zoom-in duration-300"
         role="dialog"
         aria-modal="true"
       >
@@ -479,7 +484,7 @@
       aria-hidden="true"
     >
       <div
-        class="bg-white rounded-[40px] shadow-2xl w-full max-w-sm overflow-hidden animate-in fade-in zoom-in duration-300"
+        class="bg-white rounded-2xl md:rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden animate-in fade-in zoom-in duration-300"
         role="dialog"
         aria-modal="true"
       >
@@ -618,19 +623,19 @@
                   : '<span class="w-1.5 h-1.5 rounded-full bg-yellow-600"></span>';
 
               return `
-              <div class="flex flex-col p-8 bg-white border border-[var(--border)] rounded-[32px] hover:border-[var(--accent)]/10 hover:shadow-xl hover:shadow-black/5 transition-all group relative overflow-hidden h-full">
-                <div class="absolute top-6 right-6 flex items-center gap-1.5 px-3 py-1 ${statusClass} rounded-full">
+              <div class="flex flex-col p-5 md:p-5.5 bg-white border border-[var(--border)] rounded-2xl md:rounded-2xl hover:border-[var(--accent)]/10 hover:shadow-xl hover:shadow-black/5 transition-all group relative overflow-hidden h-full">
+                <div class="absolute top-4 right-4 md:top-4.5 md:right-4.5 flex items-center gap-1.5 px-2 py-0.5 md:px-2.5 md:py-0.5 ${statusClass} rounded-full">
                   ${pulse}
-                  <span class="text-[10px] font-black uppercase tracking-widest">${s.status}</span>
+                  <span class="text-[8px] md:text-[9px] font-black uppercase tracking-widest">${s.status}</span>
                 </div>
-                <div class="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center text-black mb-6">
-                  <span class="material-symbols-outlined text-2xl">${s.icon}</span>
+                <div class="w-11 h-11 md:w-12 md:h-12 rounded-xl md:rounded-xl bg-gray-50 flex items-center justify-center text-black mb-4 md:mb-4">
+                  <span class="material-symbols-outlined text-xl md:text-xl">${s.icon}</span>
                 </div>
                 <div class="flex-grow">
-                  <h4 class="font-black text-lg mb-1">${s.name}</h4>
-                  <p class="text-xs text-[#475569] font-bold uppercase tracking-wider mb-6">${s.location}</p>
+                  <h4 class="font-black text-base md:text-sm mb-1">${s.name}</h4>
+                  <p class="text-[10px] md:text-[11px] text-[#475569] font-bold uppercase tracking-wider mb-4 md:mb-5">${s.location}</p>
                 </div>
-                <button data-action data-action-type="nova-reserva" data-action-title="Reserva: ${s.name}" class="w-full py-4 bg-[var(--accent)] text-white rounded-2xl text-sm font-bold hover:scale-[1.02] active:scale-95 transition-all mt-auto" onclick="openActionModalFromElement(this)">
+                <button data-action data-action-type="nova-reserva" data-action-title="Reserva: ${s.name}" class="w-full py-3 md:py-2.5 bg-[var(--accent)] text-white rounded-xl md:rounded-xl text-xs md:text-xs font-bold hover:scale-[1.02] active:scale-95 transition-all mt-auto" onclick="openActionModalFromElement(this)">
                   ${s.status === "Livre" ? "Reservar Agora" : "Reservar Horário"}
                 </button>
               </div>
@@ -657,7 +662,7 @@
 
         const renderReservas = (reservas) => {
           if (reservas.length === 0) {
-            reservasList.innerHTML = `<p class="text-[#475569] font-bold p-8 border-2 border-dashed border-[var(--border-soft)] rounded-[32px] text-center">Nenhum agendamento realizado.</p>`;
+            reservasList.innerHTML = `<p class="text-[#475569] font-bold p-6 md:p-8 border-2 border-dashed border-[var(--border-soft)] rounded-2xl md:rounded-2xl text-center">Nenhum agendamento realizado.</p>`;
             return;
           }
           reservasList.innerHTML = reservas
@@ -667,17 +672,17 @@
                 icon = "sports_soccer";
               if (res.local.toLowerCase().includes("sala")) icon = "menu_book";
               return `
-              <div class="p-6 bg-white border border-[var(--border-soft)] rounded-[28px] flex items-center justify-between hover:bg-gray-50 transition-all cursor-pointer group" onclick="window.openDetails('${res.id}')">
-                <div class="flex items-center gap-6">
-                  <div class="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center text-black">
-                    <span class="material-symbols-outlined text-2xl">${icon}</span>
+              <div onclick="window.openDetails('${res.id}')" class="p-4 md:p-5 bg-white border border-[var(--border-soft)] rounded-2xl md:rounded-2xl flex flex-col md:flex-row md:items-center md:justify-between gap-4 hover:border-[var(--accent)]/10 hover:shadow-xl hover:shadow-black/5 transition-all cursor-pointer group">
+                <div class="flex items-center gap-4">
+                  <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gray-50 flex items-center justify-center text-black border border-gray-100">
+                    <span class="material-symbols-outlined text-xl md:text-2xl">${icon}</span>
                   </div>
                   <div>
-                    <h4 class="font-black text-base">${res.local}</h4>
-                    <p class="text-[11px] text-[#475569] font-black uppercase tracking-wider mt-1">${res.data} às ${res.horario}</p>
+                    <h4 class="font-black text-sm md:text-base text-black group-hover:text-[var(--accent)] transition-colors">${res.local}</h4>
+                    <p class="text-xs text-[var(--text-secondary)] font-medium mt-0.5">${res.data} • ${res.horario}</p>
                   </div>
                 </div>
-                <button class="px-4 py-2 text-[10px] font-black uppercase tracking-widest border border-[var(--border-soft)] rounded-lg hover:bg-black hover:text-white transition-all">Detalhes</button>
+                <button class="w-full md:w-auto px-5 py-2.5 border border-gray-200 rounded-xl text-xs font-bold hover:bg-black hover:text-white hover:border-black transition-all shrink-0">Detalhes</button>
               </div>
             `;
             })

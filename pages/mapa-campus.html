@@ -11,14 +11,19 @@
     />
     <style>
       html {
-        font-size: 18.66px !important;
+        font-size: 13.5px !important;
+      }
+      @media (min-width: 768px) {
+        html {
+          font-size: 18.66px !important;
+        }
       }
       .page-title {
-        font-size: 30px !important;
+        font-size: 20px !important;
       }
       @media (min-width: 768px) {
         .page-title {
-          font-size: 48px !important;
+          font-size: 32px !important;
         }
       }
       :root {
@@ -206,36 +211,36 @@
 
       <main class="max-w-7xl mx-auto w-full px-6 lg:px-10 xl:px-12 py-10 md:py-16 pb-24 md:pb-16 space-y-8 flex-grow">
         <header class="space-y-2">
-          <h2 class="text-3xl md:text-5xl font-black tracking-tighter text-black">
+          <h2 class="page-title font-black tracking-tighter text-black">
             Mapa do Campus
           </h2>
-          <p class="text-[var(--text-secondary)] font-medium text-lg">
+          <p class="text-[var(--text-secondary)] font-medium text-xs md:text-lg">
             Visualize blocos, refeitório, biblioteca e áreas de convivência.
           </p>
         </header>
 
         <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div
-            class="lg:col-span-2 bg-white border border-[var(--border-soft)] rounded-[32px] p-8"
+            class="lg:col-span-2 bg-white border border-[var(--border-soft)] rounded-2xl md:rounded-2xl p-5 md:p-5.5"
           >
-            <div class="grid grid-cols-3 gap-4 text-center text-sm font-bold">
-              <div class="bg-gray-100 rounded-2xl p-6">Bloco A</div>
-              <div class="bg-gray-100 rounded-2xl p-6">Bloco B</div>
-              <div class="bg-gray-100 rounded-2xl p-6">Biblioteca</div>
-              <div class="bg-gray-100 rounded-2xl p-6">Laboratórios</div>
-              <div class="bg-[var(--accent)] text-white rounded-2xl p-6">
+            <div class="grid grid-cols-3 gap-4 text-center text-xs md:text-sm font-bold">
+              <div class="bg-gray-100 rounded-xl p-4 md:p-5">Bloco A</div>
+              <div class="bg-gray-100 rounded-xl p-4 md:p-5">Bloco B</div>
+              <div class="bg-gray-100 rounded-xl p-4 md:p-5">Biblioteca</div>
+              <div class="bg-gray-100 rounded-xl p-4 md:p-5">Laboratórios</div>
+              <div class="bg-[var(--accent)] text-white rounded-xl p-4 md:p-5">
                 Refeitório
               </div>
-              <div class="bg-gray-100 rounded-2xl p-6">Auditório</div>
-              <div class="bg-gray-100 rounded-2xl p-6 col-span-2">
+              <div class="bg-gray-100 rounded-xl p-4 md:p-5">Auditório</div>
+              <div class="bg-gray-100 rounded-xl p-4 md:p-5 col-span-2">
                 Praça de Convivência
               </div>
-              <div class="bg-gray-100 rounded-2xl p-6">Secretaria</div>
+              <div class="bg-gray-100 rounded-xl p-4 md:p-5">Secretaria</div>
             </div>
           </div>
 
           <aside
-            class="bg-white border border-[var(--border-soft)] rounded-[32px] p-8 space-y-4"
+            class="bg-white border border-[var(--border-soft)] rounded-2xl md:rounded-2xl p-5 md:p-5.5 space-y-4"
           >
             <h3 class="text-xl font-black tracking-tight">Legenda</h3>
             <p class="text-sm text-[var(--text-secondary)]">

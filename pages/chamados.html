@@ -36,14 +36,19 @@
     </script>
     <style>
       html {
-        font-size: 18.66px !important;
+        font-size: 13.5px !important;
+      }
+      @media (min-width: 768px) {
+        html {
+          font-size: 18.66px !important;
+        }
       }
       .page-title {
-        font-size: 30px !important;
+        font-size: 20px !important;
       }
       @media (min-width: 768px) {
         .page-title {
-          font-size: 48px !important;
+          font-size: 32px !important;
         }
       }
       :root {
@@ -269,11 +274,11 @@
         >
           <div class="space-y-2">
             <h2
-              class="text-3xl md:text-5xl font-black tracking-tighter text-black"
+              class="page-title font-black tracking-tighter text-black"
             >
               Meus Chamados
             </h2>
-            <p class="text-[var(--text-secondary)] font-medium text-lg">
+            <p class="text-[var(--text-secondary)] font-medium text-xs md:text-lg">
               Gerencie suas solicitações de manutenção e serviços.
             </p>
           </div>
@@ -299,7 +304,7 @@
 
         <section class="space-y-6">
           <div
-            class="flex items-center gap-4 p-6 bg-[#f9f9f9] border border-[var(--border-soft)] rounded-[32px]"
+            class="flex items-center gap-4 p-4 md:p-5 bg-[#f9f9f9] border border-[var(--border-soft)] rounded-2xl md:rounded-2xl"
           >
             <div
               class="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-black"
@@ -335,7 +340,7 @@
       aria-hidden="true"
     >
       <div
-        class="bg-white rounded-[40px] shadow-2xl w-full max-w-lg overflow-hidden animate-in fade-in zoom-in duration-300"
+        class="bg-white rounded-2xl md:rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden animate-in fade-in zoom-in duration-300"
         role="dialog"
         aria-modal="true"
       >
@@ -406,7 +411,7 @@
       aria-hidden="true"
     >
       <div
-        class="bg-white rounded-[40px] shadow-2xl w-full max-w-sm overflow-hidden animate-in fade-in zoom-in duration-300"
+        class="bg-white rounded-2xl md:rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden animate-in fade-in zoom-in duration-300"
         role="dialog"
         aria-modal="true"
       >
@@ -532,7 +537,7 @@
           if (activeChamados.length === 0) {
             chamadosCountText.innerHTML =
               "Você não tem <span class='font-black text-black'>nenhum chamado</span> ativo.";
-            chamadosList.innerHTML = `<div class="p-12 text-center bg-gray-50 rounded-[40px] border-2 border-dashed border-[var(--border-soft)]"><p class="text-[var(--text-secondary)] font-bold">Nenhum chamado ativo encontrado.</p></div>`;
+            chamadosList.innerHTML = `<div class="p-8 md:p-10 text-center bg-gray-50 rounded-2xl md:rounded-2xl border-2 border-dashed border-[var(--border-soft)]"><p class="text-[var(--text-secondary)] font-bold">Nenhum chamado ativo encontrado.</p></div>`;
             return;
           }
           chamadosCountText.innerHTML = `Você tem <span class="font-black text-black">${activeChamados.length} chamado${activeChamados.length > 1 ? "s" : ""}</span> ativo${activeChamados.length > 1 ? "s" : ""} no momento.`;
@@ -547,20 +552,20 @@
                 statusColor = "bg-green-50 text-green-700";
 
               return `
-              <div class="p-6 sm:p-8 bg-white border border-[var(--border-soft)] rounded-[32px] hover:border-[var(--accent)]/10 transition-all flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 group">
-                <div class="flex items-start sm:items-center gap-4 sm:gap-6 w-full min-w-0">
-                  <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-gray-50 flex items-center justify-center text-black shrink-0">
-                    <span class="material-symbols-outlined text-2xl sm:text-3xl">build</span>
+              <div class="p-4 md:p-5 bg-white border border-[var(--border-soft)] rounded-2xl md:rounded-2xl hover:border-[var(--accent)]/10 hover:shadow-xl hover:shadow-black/5 transition-all flex flex-col md:flex-row md:items-center md:justify-between gap-4 group">
+                <div class="flex items-center gap-4 w-full min-w-0">
+                  <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gray-50 flex items-center justify-center text-black shrink-0 border border-gray-100">
+                    <span class="material-symbols-outlined text-xl md:text-2xl">build</span>
                   </div>
                   <div class="min-w-0">
                     <div class="flex flex-wrap items-center gap-2 mb-1">
-                      <h4 class="font-black text-base sm:text-lg break-words">${c.titulo}</h4>
-                      <span class="px-3 py-1 ${statusColor} text-[10px] font-black uppercase tracking-widest rounded-full whitespace-nowrap">${c.status || "Em análise"}</span>
+                      <h4 class="font-black text-sm md:text-base text-black break-words leading-tight">${c.titulo}</h4>
+                      <span class="px-2 py-0.5 ${statusColor} text-[8px] md:text-[9px] font-black uppercase tracking-widest rounded-full whitespace-nowrap">${c.status || "Em análise"}</span>
                     </div>
-                    <p class="text-sm text-[var(--text-secondary)] font-medium break-words">${c.local || "Campus"} • Aberto em ${date}</p>
+                    <p class="text-xs text-[var(--text-secondary)] font-medium break-words">${c.local || "Campus"} • Aberto em ${date}</p>
                   </div>
                 </div>
-                <button onclick="window.openTicketDetails('${c.id}')" class="w-full sm:w-auto px-5 sm:px-6 py-3 border border-[var(--border-soft)] rounded-xl text-sm font-bold hover:bg-gray-50 transition-colors">Ver Detalhes</button>
+                <button onclick="window.openTicketDetails('${c.id}')" class="w-full md:w-auto px-5 py-2.5 border border-gray-200 rounded-xl text-xs font-bold hover:bg-black hover:text-white hover:border-black transition-all shrink-0">Ver Detalhes</button>
               </div>
              `;
             })
