@@ -811,6 +811,7 @@
 
           ticketsContainer.innerHTML = filtered
             .map((t) => {
+              const isUnassigned = !t.responsavel || t.responsavel === "";
               const pClass =
                 t.prioridade === "Alta"
                   ? "badge-danger"
@@ -835,8 +836,9 @@
               else if (title.includes("internet") || title.includes("rede")) icon = "wifi";
 
               return `
-              <tr class="group hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-all duration-200">
-                <td class="px-4 py-3">
+              <tr class="group hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-all duration-200 relative ${isUnassigned ? "bg-amber-50/40 dark:bg-amber-900/10" : ""}">
+                <td class="px-4 py-3 relative">
+                  ${isUnassigned ? '<div class="absolute left-0 top-0 bottom-0 w-1 bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.5)]"></div>' : ""}
                   <p class="text-[10px] font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest">${t.local}</p>
                 </td>
                 <td class="px-4 py-3">
@@ -850,7 +852,7 @@
                   <p class="text-[9px] font-bold text-slate-400 mt-1 italic">${date}</p>
                 </td>
                 <td class="px-4 py-3">
-                  <select onchange="updateResponsavel('${t.id}', this.value)" class="bg-slate-100 dark:bg-slate-800 border-none rounded-lg px-3 py-1.5 text-[10px] font-bold text-slate-700 dark:text-slate-300 outline-none focus:ring-1 focus:ring-accent w-32 cursor-pointer transition-colors hover:bg-slate-200 dark:hover:bg-slate-700">
+                  <select onchange="updateResponsavel('${t.id}', this.value)" class="bg-slate-100 dark:bg-slate-800 border-none rounded-lg px-3 py-1.5 text-[10px] font-bold text-slate-700 dark:text-slate-300 outline-none focus:ring-1 focus:ring-accent w-32 cursor-pointer transition-colors hover:bg-slate-200 dark:hover:bg-slate-700 ${isUnassigned ? "!bg-amber-100 dark:!bg-amber-900/30 !text-amber-700 dark:!text-amber-400 border border-amber-200 dark:border-amber-800/50" : ""}">
                       <option value="">Não atribuído</option>
                       <option value="Carlos Silva" ${t.responsavel === "Carlos Silva" ? "selected" : ""}>Carlos Silva</option>
                       <option value="José Santos" ${t.responsavel === "José Santos" ? "selected" : ""}>José Santos</option>
