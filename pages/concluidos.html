@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Concluídos - CampusConnect</title>
+    <title>Histórico - CampusConnect</title>
     <link
       rel="icon"
       type="image/svg+xml"
@@ -197,8 +197,8 @@
           href="concluidos.html"
           class="nav-item active flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight"
         >
-          <span class="material-symbols-outlined">check_circle</span>
-          Concluídos
+          <span class="material-symbols-outlined">history</span>
+          Histórico
         </a>
         <div class="pt-6 pb-2 px-4">
           <span
@@ -271,7 +271,7 @@
             <h2
               class="page-title font-black tracking-tighter text-black"
             >
-              Concluídos
+              Histórico
             </h2>
             <p class="text-[var(--text-secondary)] font-medium text-xs md:text-lg">
               Registro completo de todas as suas atividades e solicitações concluídas.
@@ -399,7 +399,7 @@
         href="concluidos.html"
         class="bottom-nav-item active flex flex-col items-center justify-center gap-1"
       >
-        <span class="material-symbols-outlined text-[28px]">check_circle</span>
+        <span class="material-symbols-outlined text-[28px]">history</span>
       </a>
     </nav>
 
@@ -465,7 +465,7 @@
             );
             renderHistory();
           } catch (error) {
-            historyContent.innerHTML = `<p class="text-center p-12 text-[var(--text-secondary)] font-bold">Erro ao carregar itens concluídos.</p>`;
+            historyContent.innerHTML = `<p class="text-center p-12 text-[var(--text-secondary)] font-bold">Erro ao carregar o histórico.</p>`;
           }
         };
 
