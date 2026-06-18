@@ -7,7 +7,7 @@
     <link
       rel="icon"
       type="image/svg+xml"
-      href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='0' y='0' width='100' height='100' fill='%23ffffff'/><path d='M20 50V20H80V80H50' stroke='%23000000' stroke-width='10' stroke-linecap='square' fill='none'/><path d='M40 40L60 60' stroke='%23000000' stroke-width='10' stroke-linecap='square'/><rect x='20' y='40' width='15' height='20' fill='%23ffffff'/></svg>"
+      href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='0' y='0' width='100' height='100' fill='%23ffffff'/><path d='M20 20H80V80H20V20Z' stroke='%23000000' stroke-width='2' stroke-opacity='0.1' fill='none'/><path d='M20 50V20H80V80H50' stroke='%23000000' stroke-width='8' stroke-linecap='square' fill='none'/><path d='M40 40L60 60' stroke='%23000000' stroke-width='8' stroke-linecap='square' fill='none'/><rect x='20' y='40' width='15' height='20' fill='%23ffffff'/></svg>"
     />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
@@ -68,6 +68,12 @@
       .logo-container:hover .logo-mark {
         transform: rotate(90deg);
       }
+      .logo-text {
+        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .logo-container:hover .logo-text {
+        letter-spacing: 0.22em;
+      }
       .nav-item {
         transition: all 0.2s ease;
       }
@@ -122,7 +128,14 @@
         letter-spacing: 0.08em;
         text-transform: uppercase;
       }
-    </style>
+
+      .logo-bg-rect {
+        fill: var(--card, #ffffff);
+      }
+      header .logo-bg-rect {
+        fill: var(--bg, #d4caca);
+      }
+      </style>
     <script src="../js/api.js"></script>
   </head>
   <body
@@ -145,22 +158,32 @@
             xmlns="http://www.w3.org/2000/svg"
             class="logo-mark"
           >
+            <!-- Borda Externa (O Campus) -->
+            <path
+              d="M20 20H80V80H20V20Z"
+              stroke="#000"
+              stroke-width="4"
+              stroke-opacity="0.25"
+            />
+            <!-- Estrutura Principal (Monograma Abstracto) -->
             <path
               d="M20 50V20H80V80H50"
               stroke="#000"
-              stroke-width="12"
+              stroke-width="8"
               stroke-linecap="square"
             />
+            <!-- Conector Interno (O Connect) -->
             <path
               d="M40 40L60 60"
               stroke="#000"
-              stroke-width="12"
+              stroke-width="8"
               stroke-linecap="square"
             />
-            <rect x="20" y="40" width="15" height="20" fill="white" />
+            <!-- Espaço Negativo C Implícito -->
+            <rect x="20" y="40" width="15" height="20" fill="white" class="logo-bg-rect" />
           </svg>
-          <h1 class="text-sm font-black tracking-widest uppercase">
-            Campus<span class="font-light">Connect</span>
+          <h1 class="text-sm font-black tracking-widest uppercase logo-text">
+            CAMPUS<span class="font-light">CONNECT</span>
           </h1>
         </a>
       </div>
@@ -257,9 +280,43 @@
       <header
         class="md:hidden sticky top-0 bg-[var(--card)]/80 backdrop-blur-md border-b border-[var(--border-soft)] h-16 flex items-center px-6 z-40"
       >
-        <h1 class="text-sm font-black tracking-widest uppercase text-black">
-          Campus<span class="font-light">Connect</span>
-        </h1>
+        <a href="../dashboard.html" class="flex items-center gap-3 logo-container group">
+          <svg
+            width="28"
+            height="28"
+            viewBox="0 0 100 100"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="logo-mark"
+          >
+            <!-- Borda Externa (O Campus) -->
+            <path
+              d="M20 20H80V80H20V20Z"
+              stroke="#000"
+              stroke-width="4"
+              stroke-opacity="0.25"
+            />
+            <!-- Estrutura Principal (Monograma Abstracto) -->
+            <path
+              d="M20 50V20H80V80H50"
+              stroke="#000"
+              stroke-width="8"
+              stroke-linecap="square"
+            />
+            <!-- Conector Interno (O Connect) -->
+            <path
+              d="M40 40L60 60"
+              stroke="#000"
+              stroke-width="8"
+              stroke-linecap="square"
+            />
+            <!-- Espaço Negativo C Implícito -->
+            <rect x="20" y="40" width="15" height="20" fill="white" class="logo-bg-rect" />
+          </svg>
+          <h1 class="text-sm font-black tracking-widest uppercase logo-text">
+            CAMPUS<span class="font-light">CONNECT</span>
+          </h1>
+        </a>
       </header>
 
       <main
@@ -555,7 +612,7 @@
           const dateStr = getTargetDateStr(currentDayIndex);
           document.getElementById("current-day-display").textContent = `${dayName} ${dateStr}`;
           document.getElementById("current-day-display-mobile").textContent = `${dayName} ${dateStr}`;
-          
+
           const list = document.getElementById("cardapio-list");
           const isFriday = dayName === "Sexta-Feira";
           const isEarlyDinner = isFriday || isEveOfHoliday(currentDayIndex);

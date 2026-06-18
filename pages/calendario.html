@@ -87,6 +87,15 @@
       .logo-container:hover .logo-mark {
         transform: rotate(90deg);
       }
+      .logo-text {
+        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .logo-container:hover .logo-text {
+        letter-spacing: 0.22em;
+      }
+      .logo-bg-rect {
+        fill: var(--card, #ffffff);
+      }
       .nav-item {
         transition: all 0.2s ease;
       }
@@ -130,8 +139,15 @@
         justify-content: center;
         font-size: 0.875rem;
         font-weight: 700;
-        border-radius: 8px;
+        border-radius: 9999px;
         color: #1a1c1c;
+        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        cursor: default;
+      }
+      .calendar-day:hover:not(:empty) {
+        transform: scale(1.1);
+        z-index: 10;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
       }
       @media (max-width: 640px) {
         .calendar-grid {
@@ -142,20 +158,22 @@
         }
       }
       .day-holiday {
-        background-color: #000;
-        color: #fff;
+        background-color: rgba(239, 68, 68, 0.12);
+        color: #ef4444;
       }
       .day-start-end {
-        border: 2.5px solid #000;
+        background-color: rgba(139, 92, 246, 0.12);
+        color: var(--accent);
         font-weight: 900;
+        box-shadow: inset 0 0 0 2px var(--accent);
       }
       .day-exam {
-        background-color: #e5e7eb;
+        background-color: rgba(245, 158, 11, 0.12);
+        color: #d97706;
       }
       .day-vacation {
-        background-color: var(--card-hover);
+        background-color: rgba(148, 163, 184, 0.12);
         color: #475569;
-        text-decoration: line-through;
       }
 
       .sidebar-scroll::-webkit-scrollbar {
@@ -191,22 +209,32 @@
             xmlns="http://www.w3.org/2000/svg"
             class="logo-mark"
           >
+            <!-- Borda Externa (O Campus) -->
+            <path
+              d="M20 20H80V80H20V20Z"
+              stroke="#000"
+              stroke-width="4"
+              stroke-opacity="0.25"
+            />
+            <!-- Estrutura Principal (Monograma Abstracto) -->
             <path
               d="M20 50V20H80V80H50"
               stroke="#000"
-              stroke-width="12"
+              stroke-width="8"
               stroke-linecap="square"
             />
+            <!-- Conector Interno (O Connect) -->
             <path
               d="M40 40L60 60"
               stroke="#000"
-              stroke-width="12"
+              stroke-width="8"
               stroke-linecap="square"
             />
-            <rect x="20" y="40" width="15" height="20" fill="white" />
+            <!-- Espaço Negativo C Implícito -->
+            <rect x="20" y="40" width="15" height="20" fill="white" class="logo-bg-rect" />
           </svg>
-          <h1 class="text-sm font-black tracking-widest uppercase">
-            Campus<span class="font-light">Connect</span>
+          <h1 class="text-sm font-black tracking-widest uppercase logo-text">
+            CAMPUS<span class="font-light">CONNECT</span>
           </h1>
         </a>
       </div>
@@ -345,13 +373,47 @@
     </nav>
 
     <!-- Main Content -->
-    <div class="flex-grow md:ml-[260px] flex flex-col min-h-screen">
+    <div class="flex-grow md:ml-[260px] flex flex-col min-h-screen w-full max-w-full md:w-auto">
       <header
         class="md:hidden sticky top-0 bg-[var(--bg)]/80 backdrop-blur-md border-b border-[var(--border-soft)] h-16 flex items-center px-6 z-40"
       >
-        <h1 class="text-sm font-black tracking-widest uppercase">
-          Campus<span class="font-light">Connect</span>
-        </h1>
+        <a href="../dashboard.html" class="flex items-center gap-3 logo-container group">
+          <svg
+            width="28"
+            height="28"
+            viewBox="0 0 100 100"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="logo-mark"
+          >
+            <!-- Borda Externa (O Campus) -->
+            <path
+              d="M20 20H80V80H20V20Z"
+              stroke="#000"
+              stroke-width="4"
+              stroke-opacity="0.25"
+            />
+            <!-- Estrutura Principal (Monograma Abstracto) -->
+            <path
+              d="M20 50V20H80V80H50"
+              stroke="#000"
+              stroke-width="8"
+              stroke-linecap="square"
+            />
+            <!-- Conector Interno (O Connect) -->
+            <path
+              d="M40 40L60 60"
+              stroke="#000"
+              stroke-width="8"
+              stroke-linecap="square"
+            />
+            <!-- Espaço Negativo C Implícito -->
+            <rect x="20" y="40" width="15" height="20" fill="white" class="logo-bg-rect" />
+          </svg>
+          <h1 class="text-sm font-black tracking-widest uppercase logo-text">
+            CAMPUS<span class="font-light">CONNECT</span>
+          </h1>
+        </a>
       </header>
 
       <main
@@ -381,10 +443,10 @@
         </header>
 
         <!-- Months Grid -->
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
           <!-- JANEIRO -->
           <div
-            class="p-5 sm:p-10 bg-[#f9f9f9] border border-[var(--border-soft)] rounded-[32px] sm:rounded-[40px] space-y-6 sm:space-y-8"
+            class="p-4 sm:p-6 lg:p-7 bg-[var(--card)] border border-[var(--border-soft)] rounded-[24px] sm:rounded-[32px] space-y-6"
           >
             <div class="flex items-center justify-between">
               <h3 class="font-black text-xl sm:text-2xl tracking-tight">Janeiro</h3>
@@ -491,7 +553,7 @@
 
           <!-- FEVEREIRO -->
           <div
-            class="p-5 sm:p-10 bg-[#f9f9f9] border border-[var(--border-soft)] rounded-[32px] sm:rounded-[40px] space-y-6 sm:space-y-8"
+            class="p-4 sm:p-6 lg:p-7 bg-[var(--card)] border border-[var(--border-soft)] rounded-[24px] sm:rounded-[32px] space-y-6"
           >
             <div class="flex items-center justify-between">
               <h3 class="font-black text-2xl tracking-tight">Fevereiro</h3>
@@ -590,7 +652,7 @@
 
           <!-- MARÇO -->
           <div
-            class="p-5 sm:p-10 bg-[#f9f9f9] border border-[var(--border-soft)] rounded-[32px] sm:rounded-[40px] space-y-6 sm:space-y-8"
+            class="p-4 sm:p-6 lg:p-7 bg-[var(--card)] border border-[var(--border-soft)] rounded-[24px] sm:rounded-[32px] space-y-6"
           >
             <div class="flex items-center justify-between">
               <h3 class="font-black text-2xl tracking-tight">Março</h3>
@@ -692,7 +754,7 @@
 
           <!-- ABRIL -->
           <div
-            class="p-5 sm:p-10 bg-[#f9f9f9] border border-[var(--border-soft)] rounded-[32px] sm:rounded-[40px] space-y-6 sm:space-y-8"
+            class="p-4 sm:p-6 lg:p-7 bg-[var(--card)] border border-[var(--border-soft)] rounded-[24px] sm:rounded-[32px] space-y-6"
           >
             <div class="flex items-center justify-between">
               <h3 class="font-black text-2xl tracking-tight">Abril</h3>
@@ -798,7 +860,7 @@
 
           <!-- MAIO -->
           <div
-            class="p-5 sm:p-10 bg-[#f9f9f9] border border-[var(--border-soft)] rounded-[32px] sm:rounded-[40px] space-y-6 sm:space-y-8"
+            class="p-4 sm:p-6 lg:p-7 bg-[var(--card)] border border-[var(--border-soft)] rounded-[24px] sm:rounded-[32px] space-y-6"
           >
             <div class="flex items-center justify-between">
               <h3 class="font-black text-2xl tracking-tight">Maio</h3>
@@ -905,7 +967,7 @@
 
           <!-- JUNHO -->
           <div
-            class="p-5 sm:p-10 bg-[#f9f9f9] border border-[var(--border-soft)] rounded-[32px] sm:rounded-[40px] space-y-6 sm:space-y-8"
+            class="p-4 sm:p-6 lg:p-7 bg-[var(--card)] border border-[var(--border-soft)] rounded-[24px] sm:rounded-[32px] space-y-6"
           >
             <div class="flex items-center justify-between">
               <h3 class="font-black text-2xl tracking-tight">Junho</h3>
@@ -1008,7 +1070,7 @@
           </div>
 
           <!-- JULHO -->
-          <div class="p-10 bg-black text-white rounded-[40px] space-y-8">
+          <div class="p-4 sm:p-6 lg:p-7 bg-black text-white rounded-[24px] sm:rounded-[32px] space-y-6">
             <div class="flex items-center justify-between">
               <h3 class="font-black text-2xl tracking-tight">Julho</h3>
               <span
@@ -1184,26 +1246,26 @@
               Resumo do Semestre
             </h3>
             <div
-              class="p-6 sm:p-10 bg-[#f9f9f9] border border-gray-50 rounded-[40px] grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-10"
+              class="p-6 sm:p-8 bg-[var(--card)] border border-[var(--border-soft)] rounded-[32px] grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-0 divide-y sm:divide-y-0 sm:divide-x divide-[var(--border-soft)]"
             >
-              <div class="text-center">
-                <p class="text-4xl font-black">100</p>
+              <div class="text-center pb-6 sm:pb-0">
+                <p class="text-3xl sm:text-4xl font-black text-black">100</p>
                 <p
                   class="text-[11px] font-black uppercase tracking-widest text-[var(--text-secondary)] mt-2"
                 >
                   Dias Letivos
                 </p>
               </div>
-              <div class="text-center sm:border-x sm:border-gray-200">
-                <p class="text-4xl font-black">03</p>
+              <div class="text-center py-6 sm:py-0">
+                <p class="text-3xl sm:text-4xl font-black text-black">03</p>
                 <p
                   class="text-[11px] font-black uppercase tracking-widest text-[var(--text-secondary)] mt-2"
                 >
                   Sábados
                 </p>
               </div>
-              <div class="text-center">
-                <p class="text-4xl font-black">01</p>
+              <div class="text-center pt-6 sm:pt-0">
+                <p class="text-3xl sm:text-4xl font-black text-black">01</p>
                 <p
                   class="text-[11px] font-black uppercase tracking-widest text-[var(--text-secondary)] mt-2"
                 >
@@ -1230,85 +1292,85 @@
               <thead>
                 <tr class="bg-[var(--accent)] text-white">
                   <th
-                    class="p-8 text-[11px] font-black uppercase tracking-widest"
+                    class="py-5 px-6 sm:px-8 text-[11px] font-black uppercase tracking-widest"
                   >
                     Dia
                   </th>
                   <th
-                    class="p-8 text-[11px] font-black uppercase tracking-widest"
+                    class="py-5 px-6 sm:px-8 text-[11px] font-black uppercase tracking-widest"
                   >
                     Datas do Semestre 2026.1
                   </th>
                   <th
-                    class="p-8 text-[11px] font-black uppercase tracking-widest"
+                    class="py-5 px-6 sm:px-8 text-[11px] font-black uppercase tracking-widest"
                   >
                     Observações
                   </th>
                 </tr>
               </thead>
-              <tbody class="divide-y divide-gray-100">
+              <tbody class="divide-y divide-gray-100 bg-[var(--card)]">
                 <tr class="hover:bg-gray-50 transition-colors">
-                  <td class="p-8 font-black text-[17px]">SEG</td>
+                  <td class="py-5 px-6 sm:px-8 font-black text-[17px]">SEG</td>
                   <td
-                    class="p-8 text-[14px] leading-relaxed text-[var(--text-secondary)] font-bold"
+                    class="py-5 px-6 sm:px-8 text-[14px] leading-relaxed text-[var(--text-secondary)] font-bold"
                   >
                     09/02, 23/02, 02/03, 09/03, 16/03, 23/03, 30/03, 06/04,
                     13/04, 27/04, 04/05, 11/05, 18/05, 25/05, 01/06, 08/06,
                     15/06, 22/06, 29/06, 14/03*
                   </td>
-                  <td class="p-8 text-[14px] font-black text-black">
+                  <td class="py-5 px-6 sm:px-8 text-[14px] font-black text-black">
                     16/02, 20/04, 06/07 (Ponto Facultativo)
                   </td>
                 </tr>
                 <tr class="hover:bg-gray-50 transition-colors">
-                  <td class="p-8 font-black text-[17px]">TER</td>
+                  <td class="py-5 px-6 sm:px-8 font-black text-[17px]">TER</td>
                   <td
-                    class="p-8 text-[14px] leading-relaxed text-[var(--text-secondary)] font-bold"
+                    class="py-5 px-6 sm:px-8 text-[14px] leading-relaxed text-[var(--text-secondary)] font-bold"
                   >
                     10/02, 24/02, 03/03, 10/03, 17/03, 24/03, 31/03, 07/04,
                     14/04, 28/04, 05/05, 12/05, 19/05, 26/05, 02/06, 09/06,
                     16/06, 23/06, 30/06, 11/04*
                   </td>
-                  <td class="p-8 text-[14px] font-black text-black">
+                  <td class="py-5 px-6 sm:px-8 text-[14px] font-black text-black">
                     17/02, 21/04, 07/07 (Feriados/Pontos)
                   </td>
                 </tr>
                 <tr class="hover:bg-gray-50 transition-colors">
-                  <td class="p-8 font-black text-[17px]">QUA</td>
+                  <td class="py-5 px-6 sm:px-8 font-black text-[17px]">QUA</td>
                   <td
-                    class="p-8 text-[14px] leading-relaxed text-[var(--text-secondary)] font-bold"
+                    class="py-5 px-6 sm:px-8 text-[14px] leading-relaxed text-[var(--text-secondary)] font-bold"
                   >
                     04/02, 11/02, 25/02, 04/03, 11/03, 18/03, 25/03, 01/04,
                     08/04, 15/04, 22/04, 29/04, 06/05, 13/05, 20/05, 27/05,
                     03/06, 10/06, 17/06, 01/07
                   </td>
-                  <td class="p-8 text-[14px] font-black text-black">
+                  <td class="py-5 px-6 sm:px-8 text-[14px] font-black text-black">
                     18/02, 24/06
                   </td>
                 </tr>
                 <tr class="hover:bg-gray-50 transition-colors">
-                  <td class="p-8 font-black text-[17px]">QUI</td>
+                  <td class="py-5 px-6 sm:px-8 font-black text-[17px]">QUI</td>
                   <td
-                    class="p-8 text-[14px] leading-relaxed text-[var(--text-secondary)] font-bold"
+                    class="py-5 px-6 sm:px-8 text-[14px] leading-relaxed text-[var(--text-secondary)] font-bold"
                   >
                     05/02, 12/02, 19/02, 26/02, 05/03, 12/03, 19/03, 26/03,
                     02/04, 09/04, 16/04, 23/04, 30/04, 07/05, 14/05, 21/05,
                     28/05, 11/06, 25/06, 02/07
                   </td>
-                  <td class="p-8 text-[14px] font-black text-black">
+                  <td class="py-5 px-6 sm:px-8 text-[14px] font-black text-black">
                     04/06 (Corpus Christi)
                   </td>
                 </tr>
                 <tr class="hover:bg-gray-50 transition-colors">
-                  <td class="p-8 font-black text-[17px]">SEX</td>
+                  <td class="py-5 px-6 sm:px-8 font-black text-[17px]">SEX</td>
                   <td
-                    class="p-8 text-[14px] leading-relaxed text-[var(--text-secondary)] font-bold"
+                    class="py-5 px-6 sm:px-8 text-[14px] leading-relaxed text-[var(--text-secondary)] font-bold"
                   >
                     06/02, 13/02, 20/02, 27/02, 13/03, 20/03, 27/03, 10/04,
                     17/04, 24/04, 08/05, 15/05, 22/05, 29/05, 12/06, 19/06,
                     26/06, 03/07, 18/06*, 09/05*
                   </td>
-                  <td class="p-8 text-[14px] font-black text-black">
+                  <td class="py-5 px-6 sm:px-8 text-[14px] font-black text-black">
                     06/03, 03/04, 01/05, 05/06
                   </td>
                 </tr>
@@ -1379,19 +1441,6 @@
       // Close dropdown when clicking outside
       document.addEventListener("click", (e) => {
         const dropdown = document.getElementById("profile-dropdown");
-        const container = document.getElementById("profile-container");
-        if (
-          dropdown &&
-          !dropdown.classList.contains("hidden") &&
-          !container.contains(e.target)
-        ) {
-          dropdown.classList.add("hidden");
-        }
-      });
-    </script>
-  </body>
-</html>
-ElementById("profile-dropdown");
         const container = document.getElementById("profile-container");
         if (
           dropdown &&
