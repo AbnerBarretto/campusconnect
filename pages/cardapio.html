@@ -229,6 +229,16 @@
           <span class="material-symbols-outlined">history</span>
           Histórico
         </a>
+        <a
+          href="notificacoes.html"
+          class="nav-item flex items-center justify-between px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black"
+        >
+          <div class="flex items-center gap-4">
+            <span class="material-symbols-outlined">notifications</span>
+            Notificações
+          </div>
+          <span class="alerts-count-badge bg-red-500 text-white text-[9px] font-black px-2 py-0.5 rounded-full shrink-0">0</span>
+        </a>
         <div class="pt-6 pb-2 px-4">
           <span
             class="text-[10px] font-black uppercase tracking-[0.3em] text-[#475569]"
@@ -325,50 +335,51 @@
       </header>
 
       <main
-        class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-10 xl:px-12 py-10 md:py-14 pb-24 md:pb-14 space-y-10 flex-grow"
+        class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-10 xl:px-12 pt-4 md:pt-6 pb-24 md:pb-6 space-y-4 md:space-y-4 flex-grow"
       >
         <header
-          class="flex flex-col md:flex-row md:items-center justify-between gap-8"
+          class="w-full flex flex-col md:flex-row items-center justify-center gap-3"
         >
-          <div class="space-y-2 text-center md:text-left">
+          <!-- Título e Subtítulo (apenas no mobile) -->
+          <div class="space-y-0.5 text-center md:hidden mb-1">
             <h2
               class="page-title font-black tracking-tighter text-black"
             >
               Cardápio do Dia
             </h2>
-            <p class="text-[#475569] font-medium text-xs md:text-lg">
+            <p class="text-[#475569] font-medium text-xs">
               Confira as opções de refeições para hoje no campus.
             </p>
           </div>
 
           <!-- Seletor de Data Desktop -->
           <div
-            class="hidden md:flex flex-col sm:flex-row sm:items-center items-stretch gap-3 sm:gap-0 bg-white border-2 border-black p-2 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] max-w-full w-full sm:w-auto mx-auto overflow-hidden"
+            class="hidden md:flex flex-row items-center bg-white border-2 border-black p-1 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] w-auto max-w-full overflow-hidden mx-auto"
           >
             <button
               onclick="changeDay(-1)"
-              class="w-10 h-10 flex items-center justify-center hover:bg-black hover:text-white transition-colors self-center sm:self-auto"
+              class="w-8 h-8 flex items-center justify-center hover:bg-black hover:text-white transition-colors self-center"
             >
-              <span class="material-symbols-outlined">chevron_left</span>
+              <span class="material-symbols-outlined text-lg">chevron_left</span>
             </button>
-            <div class="px-4 sm:px-6 text-center min-w-[120px] sm:min-w-[140px]">
+            <div class="px-4 text-center min-w-[100px] sm:min-w-[125px]">
               <p
-                class="text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-[#475569]"
+                class="text-[8px] sm:text-[9px] font-black uppercase tracking-widest text-[#475569]"
               >
                 Dia Selecionado
               </p>
               <h3
                 id="current-day-display"
-                class="font-black text-base sm:text-lg uppercase tracking-tight leading-tight"
+                class="font-black text-sm sm:text-base uppercase tracking-tight leading-tight"
               >
                 Segunda-Feira
               </h3>
             </div>
             <button
               onclick="changeDay(1)"
-              class="w-10 h-10 flex items-center justify-center hover:bg-black hover:text-white transition-colors self-center sm:self-auto"
+              class="w-8 h-8 flex items-center justify-center hover:bg-black hover:text-white transition-colors self-center"
             >
-              <span class="material-symbols-outlined">chevron_right</span>
+              <span class="material-symbols-outlined text-lg">chevron_right</span>
             </button>
           </div>
 
@@ -405,45 +416,42 @@
       </main>
     </div>
     <nav
-      class="md:hidden fixed bottom-0 left-0 w-full bg-white border-t border-gray-100 flex justify-around items-center h-16 z-50 px-4"
+      class="md:hidden fixed bottom-0 left-0 w-full bg-white border-t border-gray-100 flex justify-around items-center h-20 z-50 px-4"
     >
       <a
         href="../dashboard.html"
-        class="bottom-nav-item flex flex-col items-center justify-center gap-1"
+        class="bottom-nav-item flex flex-col items-center justify-center gap-0.5"
       >
-        <span class="material-symbols-outlined text-[28px]">home</span>
+        <span class="material-symbols-outlined text-[24px]">home</span>
+        <span class="text-[9px] font-black tracking-tight leading-none">Início</span>
       </a>
       <a
         href="chamados.html"
-        class="bottom-nav-item flex flex-col items-center justify-center gap-1"
+        class="bottom-nav-item flex flex-col items-center justify-center gap-0.5"
       >
-        <span class="material-symbols-outlined text-[28px]"
-          >confirmation_number</span
-        >
+        <span class="material-symbols-outlined text-[24px]">confirmation_number</span>
+        <span class="text-[9px] font-black tracking-tight leading-none">Chamados</span>
       </a>
       <a
         href="reservas.html"
-        class="bottom-nav-item flex flex-col items-center justify-center gap-1"
+        class="bottom-nav-item flex flex-col items-center justify-center gap-0.5"
       >
-        <span class="material-symbols-outlined text-[28px]"
-          >event_available</span
-        >
+        <span class="material-symbols-outlined text-[24px]">event_available</span>
+        <span class="text-[9px] font-black tracking-tight leading-none">Reservas</span>
       </a>
       <a
         href="cardapio.html"
-        class="bottom-nav-item active flex flex-col items-center justify-center gap-1"
+        class="bottom-nav-item active flex flex-col items-center justify-center gap-0.5"
       >
-        <span class="material-symbols-outlined text-[28px]"
-          >restaurant_menu</span
-        >
+        <span class="material-symbols-outlined text-[24px]">restaurant_menu</span>
+        <span class="text-[9px] font-black tracking-tight leading-none">Cardápio</span>
       </a>
       <a
         href="calendario.html"
-        class="bottom-nav-item flex flex-col items-center justify-center gap-1"
+        class="bottom-nav-item flex flex-col items-center justify-center gap-0.5"
       >
-        <span class="material-symbols-outlined text-[28px]"
-          >calendar_today</span
-        >
+        <span class="material-symbols-outlined text-[24px]">calendar_today</span>
+        <span class="text-[9px] font-black tracking-tight leading-none">Calendário</span>
       </a>
     </nav>
 
@@ -583,18 +591,18 @@
 
           if (currentTime >= start && currentTime <= end) {
             return `
-              <div class="flex flex-col gap-3">
+              <div class="flex flex-col gap-1.5 items-end">
                 <span class="status-badge" style="background:#fef2f2;color:#dc2626;">
-                  <span style="width:8px;height:8px;border-radius:50%;background:#dc2626;display:inline-block;animation:pulse 1.5s ease-in-out infinite;"></span>
-                  REFEIÇÃO EM ANDAMENTO
+                  <span style="width:6px;height:6px;border-radius:50%;background:#dc2626;display:inline-block;animation:pulse 1.5s ease-in-out infinite;"></span>
+                  EM ANDAMENTO
                 </span>
-                <button onclick="registerAccess('${tipo}')" class="mt-1 px-4 py-2 rounded-lg bg-black text-white text-[10px] font-black uppercase tracking-widest hover:bg-slate-800 transition-all active:scale-95">Registrar Acesso</button>
+                <button onclick="registerAccess('${tipo}')" class="px-3 py-1.5 rounded-md bg-black text-white text-[9px] font-black uppercase tracking-widest hover:bg-slate-800 transition-all active:scale-95">Registrar Acesso</button>
               </div>
             `;
           } else if (currentTime < start) {
-            return `<span class="status-badge" style="background:#f1f5f9;color:#475569;">REFEIÇÃO FUTURA</span>`;
+            return `<span class="status-badge" style="background:#f1f5f9;color:#475569;">FUTURA</span>`;
           } else {
-            return `<span class="status-badge" style="background:#f8fafc;color:#94a3b8;">REFEIÇÃO ENCERRADA</span>`;
+            return `<span class="status-badge" style="background:#f8fafc;color:#94a3b8;">ENCERRADA</span>`;
           }
         };
 
@@ -650,35 +658,33 @@
             return;
           }
 
-          // Render Desktop Layout (Original Cards)
+          // Render Desktop Layout (Strips identical to screenshot, resized)
           const desktopHtml = dayMeals.map((m) => {
             const { bg, accent, iconBg } = getMealHeaderBg(m.refeicao);
             const itens = Array.isArray(m.itens) ? m.itens.join(", ") : (m.itens || "—");
             return `
             <div class="meal-card">
               <!-- Card Header -->
-              <div class="flex items-center gap-3 px-5 py-4" style="background:${bg};">
-                <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:${iconBg};">
-                  <span class="material-symbols-outlined text-xl" style="color:${accent};">${getMealIcon(m.refeicao)}</span>
+              <div class="flex items-center gap-2.5 px-4 py-2" style="background:${bg}; border-bottom: 1px solid #f1f5f9;">
+                <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background:${iconBg};">
+                  <span class="material-symbols-outlined text-lg" style="color:${accent};">${getMealIcon(m.refeicao)}</span>
                 </div>
-                <div class="flex-grow">
-                  <p class="font-black text-base uppercase leading-tight" style="color:${accent};">${m.refeicao}</p>
-                  <p class="text-xs font-semibold text-gray-500 mt-0.5">${getMealTimeLabel(m.refeicao, isEarlyDinner)}</p>
+                <div>
+                  <p class="font-black text-sm uppercase leading-tight" style="color:${accent};">${m.refeicao}</p>
+                  <p class="text-[10px] font-semibold text-gray-500 mt-0.5">${getMealTimeLabel(m.refeicao, isEarlyDinner)}</p>
                 </div>
               </div>
               <!-- Card Body -->
-              <div class="bg-white px-5 py-4 space-y-4">
+              <div class="bg-white px-4 py-2.5 flex flex-row justify-between items-center">
                 <!-- Opções -->
                 <div>
-                  <p class="text-[10px] font-black uppercase tracking-[0.15em] text-gray-400 mb-1">Opções</p>
-                  <p class="text-sm font-semibold text-gray-800 leading-snug">${itens}</p>
+                  <p class="text-[9px] font-black uppercase tracking-[0.15em] text-gray-400 mb-0.5">Opções</p>
+                  <p class="text-xs font-semibold text-gray-800 leading-snug">${itens}</p>
                 </div>
                 <!-- Status row -->
-                <div class="flex flex-wrap items-center justify-end gap-3 pt-1 border-t border-gray-100">
-                  <div class="text-right">
-                    <p class="text-[10px] font-black uppercase tracking-[0.15em] text-gray-400 mb-1">Status</p>
-                    ${getMealStatus(m.refeicao, isEarlyDinner, currentDayIndex)}
-                  </div>
+                <div class="text-right shrink-0">
+                  <p class="text-[9px] font-black uppercase tracking-[0.15em] text-gray-400 mb-0.5">Status</p>
+                  ${getMealStatus(m.refeicao, isEarlyDinner, currentDayIndex)}
                 </div>
               </div>
             </div>`;
@@ -736,7 +742,7 @@
           `;
 
           list.innerHTML = `
-            <div class="hidden md:block space-y-4">${desktopHtml}</div>
+            <div class="hidden md:block space-y-2">${desktopHtml}</div>
             <div class="md:hidden">${mobileHtml}</div>
           `;
         };

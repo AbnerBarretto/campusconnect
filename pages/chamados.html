@@ -205,6 +205,16 @@
           <span class="material-symbols-outlined">history</span>
           Histórico
         </a>
+        <a
+          href="notificacoes.html"
+          class="nav-item flex items-center justify-between px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black"
+        >
+          <div class="flex items-center gap-4">
+            <span class="material-symbols-outlined">notifications</span>
+            Notificações
+          </div>
+          <span class="alerts-count-badge bg-red-500 text-white text-[9px] font-black px-2 py-0.5 rounded-full shrink-0">0</span>
+        </a>
         <div class="pt-6 pb-2 px-4">
           <span
             class="text-[10px] font-black uppercase tracking-[0.3em] text-[#475569]"
@@ -267,18 +277,18 @@
       </header>
 
       <main
-        class="max-w-7xl mx-auto w-full px-6 lg:px-10 xl:px-12 py-10 md:py-14 pb-24 md:pb-14 space-y-10 flex-grow"
+        class="max-w-7xl mx-auto w-full px-6 lg:px-10 xl:px-12 pt-4 md:pt-6 pb-24 md:pb-6 space-y-4 md:space-y-6 flex-grow"
       >
         <header
-          class="flex flex-col md:flex-row md:items-center justify-between gap-8"
+          class="flex flex-col md:flex-row md:items-center justify-between gap-4"
         >
-          <div class="space-y-2">
+          <div class="space-y-0.5 md:space-y-1">
             <h2
               class="page-title font-black tracking-tighter text-black"
             >
               Meus Chamados
             </h2>
-            <p class="text-[var(--text-secondary)] font-medium text-xs md:text-lg">
+            <p class="text-[var(--text-secondary)] font-medium text-xs md:text-sm">
               Gerencie suas solicitações de manutenção e serviços.
             </p>
           </div>
@@ -448,45 +458,42 @@
     </div>
 
     <nav
-      class="md:hidden fixed bottom-0 left-0 w-full bg-[var(--card)] border-t border-[var(--border-soft)] flex justify-around items-center h-16 z-50 px-4"
+      class="md:hidden fixed bottom-0 left-0 w-full bg-[var(--card)] border-t border-[var(--border-soft)] flex justify-around items-center h-20 z-50 px-4"
     >
       <a
         href="../dashboard.html"
-        class="bottom-nav-item flex flex-col items-center justify-center gap-1"
+        class="bottom-nav-item flex flex-col items-center justify-center gap-0.5"
       >
-        <span class="material-symbols-outlined text-[28px]">home</span>
+        <span class="material-symbols-outlined text-[24px]">home</span>
+        <span class="text-[9px] font-black tracking-tight leading-none">Início</span>
       </a>
       <a
         href="chamados.html"
-        class="bottom-nav-item active flex flex-col items-center justify-center gap-1"
+        class="bottom-nav-item active flex flex-col items-center justify-center gap-0.5"
       >
-        <span class="material-symbols-outlined text-[28px]"
-          >confirmation_number</span
-        >
+        <span class="material-symbols-outlined text-[24px]">confirmation_number</span>
+        <span class="text-[9px] font-black tracking-tight leading-none">Chamados</span>
       </a>
       <a
         href="reservas.html"
-        class="bottom-nav-item flex flex-col items-center justify-center gap-1"
+        class="bottom-nav-item flex flex-col items-center justify-center gap-0.5"
       >
-        <span class="material-symbols-outlined text-[28px]"
-          >event_available</span
-        >
+        <span class="material-symbols-outlined text-[24px]">event_available</span>
+        <span class="text-[9px] font-black tracking-tight leading-none">Reservas</span>
       </a>
       <a
         href="cardapio.html"
-        class="bottom-nav-item flex flex-col items-center justify-center gap-1"
+        class="bottom-nav-item flex flex-col items-center justify-center gap-0.5"
       >
-        <span class="material-symbols-outlined text-[28px]"
-          >restaurant_menu</span
-        >
+        <span class="material-symbols-outlined text-[24px]">restaurant_menu</span>
+        <span class="text-[9px] font-black tracking-tight leading-none">Cardápio</span>
       </a>
       <a
         href="calendario.html"
-        class="bottom-nav-item flex flex-col items-center justify-center gap-1"
+        class="bottom-nav-item flex flex-col items-center justify-center gap-0.5"
       >
-        <span class="material-symbols-outlined text-[28px]"
-          >calendar_today</span
-        >
+        <span class="material-symbols-outlined text-[24px]">calendar_today</span>
+        <span class="text-[9px] font-black tracking-tight leading-none">Calendário</span>
       </a>
     </nav>
 

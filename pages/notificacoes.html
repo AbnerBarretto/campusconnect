@@ -1,0 +1,622 @@
+<!doctype html>
+<html class="light" lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Notificações - CampusConnect</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='0' y='0' width='100' height='100' fill='%23ffffff'/><path d='M20 50V20H80V80H50' stroke='%23000000' stroke-width='10' stroke-linecap='square' fill='none'/><path d='M40 40L60 60' stroke='%23000000' stroke-width='10' stroke-linecap='square'/><rect x='20' y='40' width='15' height='20' fill='%23ffffff'/></svg>"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#000000",
+              surface: "#ffffff",
+            },
+            borderRadius: {
+              xl: "0.75rem",
+              "2xl": "1rem",
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      html {
+        font-size: 13.5px !important;
+      }
+      @media (min-width: 768px) {
+        html {
+          font-size: 18.66px !important;
+        }
+      }
+      .page-title {
+        font-size: 20px !important;
+      }
+      @media (min-width: 768px) {
+        .page-title {
+          font-size: 32px !important;
+        }
+      }
+      html,
+      body {
+        max-width: 100%;
+        overflow-x: hidden;
+      }
+      :root {
+        --bg: #d4caca8c;
+        --card: #ffffff;
+        --card-hover: #fafafa;
+        --border: #e5e7eb;
+        --border-soft: #f1f5f9;
+        --text-primary: #0f172a;
+        --text-secondary: #64748b;
+        --text-muted: #94a3b8;
+        --accent: #8b5cf6;
+        --accent-hover: #7c3aed;
+        --accent-soft: rgba(139, 92, 246, 0.12);
+        --success: #10b981;
+        --success-soft: rgba(16, 185, 129, 0.12);
+        --warning: #f59e0b;
+        --warning-soft: rgba(245, 158, 11, 0.12);
+        --danger: #ef4444;
+        --danger-soft: rgba(239, 68, 68, 0.12);
+        --info: #3b82f6;
+        --info-soft: rgba(59, 130, 246, 0.12);
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .logo-mark {
+        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .logo-container:hover .logo-mark {
+        transform: rotate(90deg);
+      }
+      .nav-item {
+        transition: all 0.2s ease;
+      }
+      .nav-item:hover {
+        background-color: var(--card-hover);
+      }
+      .nav-item.active {
+        background-color: var(--accent);
+        color: #ffffff;
+      }
+      .nav-item.active .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 1,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .bottom-nav-item {
+        transition: color 0.2s ease;
+        color: var(--text-secondary);
+      }
+      .bottom-nav-item.active {
+        color: var(--accent);
+      }
+      .bottom-nav-item.active .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 1,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+    </style>
+    <script src="../js/api.js"></script>
+  </head>
+  <body
+    class="font-sans text-[var(--text-primary)] bg-[var(--bg)] min-h-screen flex overflow-x-hidden"
+  >
+    <!-- Sidebar -->
+    <aside
+      class="hidden md:flex flex-col w-[260px] h-screen border-r border-[var(--border-soft)] fixed left-0 top-0 bg-[var(--card)] z-50"
+    >
+      <div class="p-8">
+        <a
+          href="../dashboard.html"
+          class="flex items-center gap-3 logo-container group"
+        >
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 100 100"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="logo-mark"
+          >
+            <path
+              d="M20 50V20H80V80H50"
+              stroke="#000"
+              stroke-width="12"
+              stroke-linecap="square"
+            />
+            <path
+              d="M40 40L60 60"
+              stroke="#000"
+              stroke-width="12"
+              stroke-linecap="square"
+            />
+            <rect x="20" y="40" width="15" height="20" fill="white" />
+          </svg>
+          <h1 class="text-sm font-black tracking-widest uppercase">
+            Campus<span class="font-light">Connect</span>
+          </h1>
+        </a>
+      </div>
+
+      <nav class="flex-grow px-4 space-y-1 overflow-y-auto">
+        <a
+          href="../dashboard.html"
+          class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black"
+        >
+          <span class="material-symbols-outlined">home</span>
+          Início
+        </a>
+        <a
+          href="chamados.html"
+          class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black"
+        >
+          <span class="material-symbols-outlined">confirmation_number</span>
+          Chamados
+        </a>
+        <a
+          href="reservas.html"
+          class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black"
+        >
+          <span class="material-symbols-outlined">event_available</span>
+          Espaços e Reservas
+        </a>
+        <a
+          href="cardapio.html"
+          class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black"
+        >
+          <span class="material-symbols-outlined">restaurant_menu</span>
+          Cardápio
+        </a>
+        <a
+          href="concluidos.html"
+          class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black"
+        >
+          <span class="material-symbols-outlined">history</span>
+          Histórico
+        </a>
+        <a
+          href="notificacoes.html"
+          class="nav-item active flex items-center justify-between px-4 py-3 rounded-xl font-bold text-sm tracking-tight"
+        >
+          <div class="flex items-center gap-4">
+            <span class="material-symbols-outlined">notifications</span>
+            Notificações
+          </div>
+          <span class="alerts-count-badge bg-red-500 text-white text-[9px] font-black px-2 py-0.5 rounded-full shrink-0" id="alerts-count-badge">0</span>
+        </a>
+        <div class="pt-6 pb-2 px-4">
+          <span
+            class="text-[10px] font-black uppercase tracking-[0.3em] text-[#475569]"
+            >Explorar</span
+          >
+        </div>
+        <a
+          href="calendario.html"
+          class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black"
+        >
+          <span class="material-symbols-outlined">calendar_today</span>
+          Calendário
+        </a>
+      </nav>
+
+      <div class="p-4 mt-auto relative" id="profile-container">
+        <button
+          onclick="toggleProfileDropdown(event)"
+          class="flex items-center gap-4 w-full p-4 rounded-2xl hover:bg-gray-50 transition-all group"
+        >
+          <div class="w-10 h-10 rounded-full overflow-hidden">
+            <img
+              src="https://ui-avatars.com/api/?name=Aluno&background=000&color=fff"
+              alt="Avatar"
+            />
+          </div>
+          <div class="text-left">
+            <p class="text-sm font-bold">Aluno</p>
+            <p
+              class="text-[10px] font-black uppercase tracking-widest text-[#475569]"
+            >
+              Ver Perfil
+            </p>
+          </div>
+        </button>
+
+        <div
+          id="profile-dropdown"
+          class="absolute bottom-full left-4 mb-2 w-48 bg-[var(--card)] border border-[var(--border-soft)] rounded-2xl shadow-xl hidden z-50 overflow-hidden"
+        >
+          <button
+            onclick="logout()"
+            class="w-full flex items-center gap-3 px-5 py-4 text-sm font-bold text-red-600 hover:bg-red-50 transition-colors"
+          >
+            <span class="material-symbols-outlined text-lg">logout</span>
+            Sair
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="flex-grow md:ml-[260px] flex flex-col min-h-screen">
+      <!-- Mobile Top Nav -->
+      <header
+        class="md:hidden sticky top-0 bg-[var(--bg)]/80 backdrop-blur-md border-b border-[var(--border-soft)] h-16 flex items-center px-6 z-40"
+      >
+        <h1 class="text-sm font-black tracking-widest uppercase">
+          Campus<span class="font-light">Connect</span>
+        </h1>
+      </header>
+
+      <main
+        class="max-w-7xl mx-auto w-full px-6 lg:px-10 xl:px-12 pt-4 md:pt-6 pb-24 md:pb-6 space-y-4 md:space-y-6 flex-grow"
+      >
+        <header
+          class="flex flex-col md:flex-row md:items-center justify-between gap-4"
+        >
+          <div class="space-y-0.5 md:space-y-1">
+            <h2
+              class="page-title font-black tracking-tighter text-black"
+            >
+              Central de Notificações
+            </h2>
+            <p class="text-[var(--text-secondary)] font-medium text-xs md:text-sm">
+              Você tem <span class="font-black text-black" id="notifications-count">0</span> notificações hoje.
+            </p>
+          </div>
+
+          <!-- Filtros de Categorias -->
+          <div class="flex flex-wrap items-center gap-2">
+            <button
+              id="tab-all"
+              onclick="setFilter('all')"
+              class="px-4 py-2 text-xs font-black rounded-xl bg-black text-white shadow-sm transition-all"
+            >
+              Todas
+            </button>
+            <button
+              id="tab-alerta"
+              onclick="setFilter('alerta')"
+              class="px-4 py-2 text-xs font-bold rounded-xl bg-white text-gray-500 hover:bg-gray-50 border border-gray-200 transition-all"
+            >
+              Alertas Gerais
+            </button>
+            <button
+              id="tab-chamado"
+              onclick="setFilter('chamado')"
+              class="px-4 py-2 text-xs font-bold rounded-xl bg-white text-gray-500 hover:bg-gray-50 border border-gray-200 transition-all"
+            >
+              Chamados
+            </button>
+            <button
+              id="tab-reserva"
+              onclick="setFilter('reserva')"
+              class="px-4 py-2 text-xs font-bold rounded-xl bg-white text-gray-500 hover:bg-gray-50 border border-gray-200 transition-all"
+            >
+              Reservas
+            </button>
+          </div>
+        </header>
+
+        <!-- Timeline / List Content -->
+        <section class="space-y-4" id="notifications-list">
+          <div class="p-12 text-center space-y-4">
+            <div
+              class="animate-spin inline-block w-8 h-8 border-4 border-[var(--accent)] border-t-transparent rounded-full"
+            ></div>
+            <p class="text-[var(--text-secondary)] font-bold">
+              Buscando notificações...
+            </p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Mobile Bottom Nav -->
+    <nav
+      class="md:hidden fixed bottom-0 left-0 w-full bg-white border-t border-gray-100 flex justify-around items-center h-16 z-50 px-4"
+    >
+      <a
+        href="../dashboard.html"
+        class="bottom-nav-item flex flex-col items-center justify-center gap-1"
+      >
+        <span class="material-symbols-outlined text-[28px]">home</span>
+      </a>
+      <a
+        href="chamados.html"
+        class="bottom-nav-item flex flex-col items-center justify-center gap-1"
+      >
+        <span class="material-symbols-outlined text-[28px]"
+          >confirmation_number</span
+        >
+      </a>
+      <a
+        href="reservas.html"
+        class="bottom-nav-item flex flex-col items-center justify-center gap-1"
+      >
+        <span class="material-symbols-outlined text-[28px]"
+          >event_available</span
+        >
+      </a>
+      <a
+        href="cardapio.html"
+        class="bottom-nav-item flex flex-col items-center justify-center gap-1"
+      >
+        <span class="material-symbols-outlined text-[28px]"
+          >restaurant_menu</span
+        >
+      </a>
+      <a
+        href="notificacoes.html"
+        class="bottom-nav-item active flex flex-col items-center justify-center gap-1"
+      >
+        <span class="material-symbols-outlined text-[28px]">notifications</span>
+      </a>
+    </nav>
+
+    <script>
+      (() => {
+        let allNotifications = [];
+        let activeFilter = 'all';
+
+        const loadNotifications = async () => {
+          try {
+            const [avisosRes, chamadosRes, reservasRes] = await Promise.all([
+              fetch(`${API_BASE_URL}/api/avisos`).then(r => r.ok ? r.json() : []),
+              fetch(`${API_BASE_URL}/api/chamados`).then(r => r.ok ? r.json() : []),
+              fetch(`${API_BASE_URL}/api/reservas`).then(r => r.ok ? r.json() : [])
+            ]);
+
+            allNotifications = [];
+
+            // 1. Process Avisos
+            avisosRes.filter(a => a.ativo !== false).forEach(a => {
+              allNotifications.push({
+                id: a.id,
+                tipo: 'alerta',
+                titulo: a.titulo,
+                descricao: a.descricao,
+                data: a.criadoEm || a.data,
+                categoria: a.categoria || 'Aviso',
+                nivel: a.tipo || 'info', // danger, warning, success, info
+                icone: 'info'
+              });
+            });
+
+            // 2. Process Chamados
+            chamadosRes.forEach(c => {
+              let statusLabel = 'Aberto';
+              let nivel = 'info';
+              if (c.status === 'Em análise' || c.status === 'Em Andamento') {
+                nivel = 'warning';
+              } else if (c.status === 'Concluído') {
+                nivel = 'success';
+              }
+              allNotifications.push({
+                id: c.id,
+                tipo: 'chamado',
+                titulo: `Chamado: ${c.titulo}`,
+                descricao: `O chamado de manutenção para "${c.local || 'Campus'}" foi atualizado para o status: ${c.status || 'Em análise'}.`,
+                data: c.criadoEm,
+                categoria: 'Suporte',
+                nivel: nivel,
+                icone: 'build'
+              });
+            });
+
+            // 3. Process Reservas
+            reservasRes.forEach(r => {
+              let nivel = 'warning';
+              if (r.status === 'Aprovado' || r.status === 'Confirmado') {
+                nivel = 'success';
+              } else if (r.status === 'Cancelado' || r.status === 'Rejeitado') {
+                nivel = 'danger';
+              }
+              allNotifications.push({
+                id: r.id,
+                tipo: 'reserva',
+                titulo: `Reserva: ${r.espaco || 'Espaço'}`,
+                descricao: `A reserva para o espaço "${r.espaco || 'Espaço'}" no dia ${r.data} (${r.horario}) está com status: ${r.status || 'Pendente'}.`,
+                data: r.criadoEm || new Date().toISOString(),
+                categoria: 'Reserva',
+                nivel: nivel,
+                icone: 'event_available'
+              });
+            });
+
+            // Sort by date descending
+            allNotifications.sort((a, b) => new Date(b.data) - new Date(a.data));
+
+            renderNotifications();
+            updateSidebarBadge();
+          } catch (error) {
+            console.warn("Erro ao carregar dados do servidor — usando mock offline.");
+            loadMockNotifications();
+          }
+        };
+
+        const loadMockNotifications = () => {
+          allNotifications = [
+            {
+              id: 'mock-1',
+              tipo: 'alerta',
+              titulo: 'Manutenção Preventiva de Elevador',
+              descricao: 'O elevador do Bloco B estará temporariamente indisponível hoje das 14h às 16h para manutenção preventiva.',
+              data: new Date().toISOString(),
+              categoria: 'Urgente',
+              nivel: 'danger',
+              icone: 'info'
+            },
+            {
+              id: 'mock-2',
+              tipo: 'chamado',
+              titulo: 'Chamado: Ajuste no Ar Condicionado',
+              descricao: 'O chamado solicitado para "Sala 102 - Bloco A" foi concluído pela equipe de manutenção.',
+              data: new Date(Date.now() - 3600000).toISOString(),
+              categoria: 'Suporte',
+              nivel: 'success',
+              icone: 'build'
+            },
+            {
+              id: 'mock-3',
+              tipo: 'reserva',
+              titulo: 'Reserva: Laboratório de Informática II',
+              descricao: 'A reserva de espaço do laboratório para o dia 22/06 no horário noturno foi Aprovada com sucesso.',
+              data: new Date(Date.now() - 7200000).toISOString(),
+              categoria: 'Reserva',
+              nivel: 'success',
+              icone: 'event_available'
+            }
+          ];
+          renderNotifications();
+          updateSidebarBadge();
+        };
+
+        const updateSidebarBadge = () => {
+          const badge = document.getElementById("alerts-count-badge");
+          if (badge) {
+            const count = allNotifications.filter(n => n.tipo === 'alerta').length;
+            badge.textContent = count;
+          }
+        };
+
+        window.setFilter = (filterType) => {
+          activeFilter = filterType;
+          
+          const tabs = ['all', 'alerta', 'chamado', 'reserva'];
+          tabs.forEach(t => {
+            const btn = document.getElementById(`tab-${t}`);
+            if (btn) {
+              if (t === filterType) {
+                btn.className = "px-4 py-2 text-xs font-black rounded-xl bg-black text-white shadow-sm transition-all active:scale-95";
+              } else {
+                btn.className = "px-4 py-2 text-xs font-bold rounded-xl bg-white text-gray-500 hover:bg-gray-50 border border-gray-200 transition-all active:scale-95";
+              }
+            }
+          });
+
+          renderNotifications();
+        };
+
+        const renderNotifications = () => {
+          const list = document.getElementById("notifications-list");
+          const countBadge = document.getElementById("notifications-count");
+          
+          const filtered = activeFilter === 'all' 
+            ? allNotifications 
+            : allNotifications.filter(n => n.tipo === activeFilter);
+
+          if (countBadge) {
+            countBadge.textContent = filtered.length;
+          }
+
+          if (filtered.length === 0) {
+            list.innerHTML = `
+              <div class="p-12 text-center bg-white border border-[var(--border-soft)] rounded-2xl md:rounded-2xl">
+                <span class="material-symbols-outlined text-5xl text-gray-200 block mb-3">notifications_off</span>
+                <p class="text-[var(--text-secondary)] font-bold">Nenhuma notificação encontrada.</p>
+              </div>
+            `;
+            return;
+          }
+
+          list.innerHTML = filtered.map(n => {
+            const dateStr = new Date(n.data).toLocaleString('pt-BR', {
+              day: '2-digit',
+              month: '2-digit',
+              hour: '2-digit',
+              minute: '2-digit'
+            });
+
+            let bgClass = "bg-blue-50/20 hover:bg-blue-50/35 border-blue-100";
+            let iconColor = "text-blue-600 bg-blue-50";
+            let badgeColor = "bg-blue-50 text-blue-700";
+
+            if (n.nivel === 'danger') {
+              bgClass = "bg-red-50/20 hover:bg-red-50/30 border-red-100";
+              iconColor = "text-red-600 bg-red-50";
+              badgeColor = "bg-red-50 text-red-700";
+            } else if (n.nivel === 'warning') {
+              bgClass = "bg-amber-50/20 hover:bg-amber-50/30 border-amber-100";
+              iconColor = "text-amber-600 bg-amber-50";
+              badgeColor = "bg-amber-50 text-amber-700";
+            } else if (n.nivel === 'success') {
+              bgClass = "bg-emerald-50/20 hover:bg-emerald-50/30 border-emerald-100";
+              iconColor = "text-emerald-600 bg-emerald-50";
+              badgeColor = "bg-emerald-50 text-emerald-700";
+            }
+
+            return `
+              <div class="p-4 md:p-5 bg-white border border-[var(--border-soft)] rounded-2xl hover:shadow-xl hover:shadow-black/5 hover:border-[var(--accent)]/10 transition-all flex flex-col md:flex-row md:items-center md:justify-between gap-4 group">
+                <div class="flex items-start md:items-center gap-4 w-full min-w-0">
+                  <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl ${iconColor} flex items-center justify-center shrink-0 border border-gray-100">
+                    <span class="material-symbols-outlined text-xl md:text-2xl">${n.icone}</span>
+                  </div>
+                  <div class="min-w-0 flex-grow">
+                    <div class="flex flex-wrap items-center gap-2 mb-1">
+                      <h4 class="font-black text-sm md:text-base text-black break-words leading-tight">${n.titulo}</h4>
+                      <span class="px-2 py-0.5 ${badgeColor} text-[8px] md:text-[9px] font-black uppercase tracking-widest rounded-full whitespace-nowrap">${n.categoria}</span>
+                    </div>
+                    <p class="text-xs text-[var(--text-secondary)] font-medium break-words leading-relaxed">${n.descricao}</p>
+                    <p class="text-[10px] text-[var(--text-muted)] font-semibold mt-1.5 uppercase tracking-wider">${dateStr}</p>
+                  </div>
+                </div>
+              </div>
+            `;
+          }).join("");
+        };
+
+        // Profile Dropdown
+        window.toggleProfileDropdown = (e) => {
+          e.stopPropagation();
+          const dropdown = document.getElementById("profile-dropdown");
+          dropdown.classList.toggle("hidden");
+        };
+
+        window.logout = () => {
+          localStorage.removeItem("userRole");
+          window.location.href = "../login.html";
+        };
+
+        // Close dropdown when clicking outside
+        document.addEventListener("click", (e) => {
+          const dropdown = document.getElementById("profile-dropdown");
+          const container = document.getElementById("profile-container");
+          if (
+            dropdown &&
+            !dropdown.classList.contains("hidden") &&
+            !container.contains(e.target)
+          ) {
+            dropdown.classList.add("hidden");
+          }
+        });
+
+        loadNotifications();
+        setInterval(loadNotifications, 30000);
+      })();
+    </script>
+  </body>
+</html>

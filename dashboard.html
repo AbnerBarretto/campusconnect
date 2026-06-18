@@ -153,6 +153,13 @@
         background: var(--border-soft);
         border-radius: 10px;
       }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
     </style>
     <script src="js/api.js"></script>
   </head>
@@ -230,9 +237,20 @@
           href="pages/concluidos.html"
           class="nav-item flex items-center gap-4 px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black"
         >
-          <span class="material-symbols-outlined">check_circle</span>
-          Concluídos
-        </a>        <div class="pt-6 pb-2 px-4">
+          <span class="material-symbols-outlined">history</span>
+          Histórico
+        </a>
+        <a
+          href="pages/notificacoes.html"
+          class="nav-item flex items-center justify-between px-4 py-3 rounded-xl font-bold text-sm tracking-tight text-[#475569] hover:text-black"
+        >
+          <div class="flex items-center gap-4">
+            <span class="material-symbols-outlined">notifications</span>
+            Notificações
+          </div>
+          <span class="alerts-count-badge bg-red-500 text-white text-[9px] font-black px-2 py-0.5 rounded-full shrink-0">0</span>
+        </a>
+        <div class="pt-6 pb-2 px-4">
           <span
             class="text-[10px] font-black uppercase tracking-[0.3em] text-[#475569]"
             >Explorar</span
@@ -287,46 +305,43 @@
     </aside>
 
     <nav
-      class="md:hidden fixed bottom-0 left-0 w-full border-t flex justify-around items-center h-16 z-50 px-4"
+      class="md:hidden fixed bottom-0 left-0 w-full border-t flex justify-around items-center h-20 z-50 px-4"
       style="background: var(--card); border-color: var(--border-soft)"
     >
       <a
         href="dashboard.html"
-        class="bottom-nav-item active flex flex-col items-center justify-center gap-1"
+        class="bottom-nav-item active flex flex-col items-center justify-center gap-0.5"
       >
-        <span class="material-symbols-outlined text-[28px]">home</span>
+        <span class="material-symbols-outlined text-[24px]">home</span>
+        <span class="text-[9px] font-black tracking-tight leading-none">Início</span>
       </a>
       <a
         href="pages/chamados.html"
-        class="bottom-nav-item flex flex-col items-center justify-center gap-1"
+        class="bottom-nav-item flex flex-col items-center justify-center gap-0.5"
       >
-        <span class="material-symbols-outlined text-[28px]"
-          >confirmation_number</span
-        >
+        <span class="material-symbols-outlined text-[24px]">confirmation_number</span>
+        <span class="text-[9px] font-black tracking-tight leading-none">Chamados</span>
       </a>
       <a
         href="pages/reservas.html"
-        class="bottom-nav-item flex flex-col items-center justify-center gap-1"
+        class="bottom-nav-item flex flex-col items-center justify-center gap-0.5"
       >
-        <span class="material-symbols-outlined text-[28px]"
-          >event_available</span
-        >
+        <span class="material-symbols-outlined text-[24px]">event_available</span>
+        <span class="text-[9px] font-black tracking-tight leading-none">Reservas</span>
       </a>
       <a
         href="pages/cardapio.html"
-        class="bottom-nav-item flex flex-col items-center justify-center gap-1"
+        class="bottom-nav-item flex flex-col items-center justify-center gap-0.5"
       >
-        <span class="material-symbols-outlined text-[28px]"
-          >restaurant_menu</span
-        >
+        <span class="material-symbols-outlined text-[24px]">restaurant_menu</span>
+        <span class="text-[9px] font-black tracking-tight leading-none">Cardápio</span>
       </a>
       <a
         href="pages/calendario.html"
-        class="bottom-nav-item flex flex-col items-center justify-center gap-1"
+        class="bottom-nav-item flex flex-col items-center justify-center gap-0.5"
       >
-        <span class="material-symbols-outlined text-[28px]"
-          >calendar_today</span
-        >
+        <span class="material-symbols-outlined text-[24px]">calendar_today</span>
+        <span class="text-[9px] font-black tracking-tight leading-none">Calendário</span>
       </a>
     </nav>
 
@@ -341,27 +356,28 @@
       </header>
 
       <main
-        class="max-w-7xl mx-auto w-full px-4 md:px-6 lg:px-10 xl:px-12 py-6 md:py-14 pb-20 md:pb-14 space-y-6 md:space-y-10 flex-grow"
+        class="max-w-7xl mx-auto w-full px-4 md:px-6 lg:px-10 xl:px-12 pt-4 md:pt-6 pb-20 md:pb-6 space-y-4 md:space-y-6 flex-grow"
       >
         <header
-          class="flex flex-row items-center justify-between gap-4 md:gap-8"
+          class="flex flex-row items-center justify-between gap-4 md:gap-4"
         >
-          <div class="space-y-1 md:space-y-2">
+          <div class="space-y-0.5 md:space-y-1">
             <h2
               class="page-title font-black tracking-tighter text-black"
             >
               Início
             </h2>
-            <p class="text-[#475569] font-medium text-xs md:text-lg">
+            <p class="text-[#475569] font-medium text-xs md:text-sm">
               Visão geral do seu dia no campus.
             </p>
           </div>
-          <div class="flex flex-row flex-wrap gap-3 shrink-0">
+
+          <div class="flex flex-row items-center gap-3 shrink-0">
             <button
               data-action
               data-action-type="novo-chamado"
               data-action-title="Novo Chamado"
-              class="bg-[var(--accent)] text-white px-5 py-3 rounded-xl font-bold text-xs tracking-tight hover:shadow-2xl hover:shadow-black/20 transition-all active:scale-95 flex items-center justify-center gap-2.5 whitespace-nowrap"
+              class="bg-[var(--accent)] text-white px-5 py-3 rounded-xl font-bold text-xs tracking-tight hover:shadow-2xl hover:shadow-black/20 transition-all active:scale-95 flex items-center justify-center gap-2.5 whitespace-nowrap h-11"
             >
               <span class="material-symbols-outlined">add_circle</span>
               Novo Chamado
@@ -372,32 +388,61 @@
         <div
           class="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-6 md:gap-10 items-start"
         >
-          <!-- Alertas de Infraestrutura (Avisos Ativos) -->
-          <section class="relative group">
-            <div
-              class="surface-card rounded-2xl shadow-sm overflow-hidden bg-white border border-gray-200"
-            >
-              <div class="px-5 py-4 border-b border-gray-100 flex items-center justify-between bg-white">
-                <div class="flex items-center gap-2.5">
-                  <span class="material-symbols-outlined text-[20px] md:text-[22px] text-black">warning</span>
-                  <h3 class="font-black text-sm md:text-base text-black">Avisos Ativos</h3>
-                  <span id="alerts-count-badge" class="bg-red-500 text-white text-[9px] md:text-[10px] font-black px-2 py-0.5 rounded-full shrink-0">0</span>
-                </div>
+          <!-- Alertas de Infraestrutura (Avisos Ativos / Notices) -->
+          <div class="space-y-6">
+            <!-- VERSÃO DESKTOP: Alertas de Infraestrutura (Notices) -->
+            <section class="hidden md:block space-y-6">
+              <!-- Barra de Busca -->
+              <div class="relative w-full">
+                <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+                <input
+                  type="text"
+                  id="notices-search"
+                  placeholder="Search notices..."
+                  class="w-full bg-[#f3f4f6] border-none rounded-2xl pl-11 pr-4 py-3.5 text-sm font-semibold placeholder-gray-400 focus:ring-2 focus:ring-indigo-600 focus:bg-white transition-all outline-none"
+                />
               </div>
 
-              <div class="divide-y divide-gray-100" id="infra-alerts-list">
-                <div class="px-5 py-4">
-                  <p class="text-xs md:text-sm font-bold text-slate-700">
-                    Carregando avisos...
-                  </p>
-                </div>
+              <!-- Filtros (Pills) -->
+              <div class="flex items-center gap-3 overflow-x-auto py-2 no-scrollbar whitespace-nowrap" id="notices-filters">
+                <!-- Filtros gerados dinamicamente por JS: All, Urgent, Exams, Events, Holidays, Homework -->
               </div>
 
-              <button onclick="window.showAllAlertsModal()" class="w-full text-center py-3.5 md:py-4 border-t border-gray-100 text-[10px] md:text-xs font-black uppercase tracking-widest text-[#475569] hover:text-black transition-colors bg-gray-50/50">
-                Ver todos os avisos
-              </button>
-            </div>
-          </section>
+              <!-- Lista de Cards de Avisos -->
+              <div class="space-y-4" id="infra-alerts-list-desktop">
+                <div class="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
+                  <p class="text-xs md:text-sm font-semibold text-slate-500">Loading notices...</p>
+                </div>
+              </div>
+            </section>
+
+            <!-- VERSÃO MOBILE: Alertas de Infraestrutura (Avisos Ativos) -->
+            <section class="block md:hidden relative group">
+              <div
+                class="surface-card rounded-2xl shadow-sm overflow-hidden bg-white border border-gray-200"
+              >
+                <div class="px-5 py-4 border-b border-gray-100 flex items-center justify-between bg-white">
+                  <div class="flex items-center gap-2.5">
+                    <span class="material-symbols-outlined text-[20px] text-black">warning</span>
+                    <h3 class="font-black text-sm text-black">Avisos Ativos</h3>
+                    <span class="alerts-count-badge bg-red-500 text-white text-[9px] font-black px-2 py-0.5 rounded-full shrink-0">0</span>
+                  </div>
+                </div>
+
+                <div class="divide-y divide-gray-100" id="infra-alerts-list-mobile">
+                  <div class="px-5 py-4">
+                    <p class="text-xs font-bold text-slate-700">
+                      Carregando avisos...
+                    </p>
+                  </div>
+                </div>
+
+                <button onclick="window.showAllAlertsModal()" class="w-full text-center py-3.5 border-t border-gray-100 text-[10px] font-black uppercase tracking-widest text-[#475569] hover:text-black transition-colors bg-gray-50/50">
+                  Ver todos os avisos
+                </button>
+              </div>
+            </section>
+          </div>
 
           <!-- Próxima Refeição -->
           <aside class="space-y-3 relative group">
@@ -573,32 +618,52 @@
 
         const defaultInfrastructureAlerts = [
           {
+            id: "default-1",
             tipo: "warning",
-            categoria: "Manutenção",
-            titulo: "Bloco B: energia em manutenção",
-            descricao: "Evite os corredores próximos aos laboratórios até 15h.",
+            categoria: "Exams",
+            titulo: "Mid-Term Examination Schedule Released",
+            descricao: "The mid-term examination schedule for all classes has been released. Students are requested to check the detailed timetable...",
             link: "",
             linkLabel: "",
+            anexos: 2,
             ativo: true,
+            criadoEm: "2026-06-04T09:00:00Z",
           },
           {
+            id: "default-2",
             tipo: "danger",
-            categoria: "Acesso fechado",
-            titulo: "Quadra Poliesportiva: fechada para evento",
-            descricao: "Atividades esportivas suspensas no período da tarde.",
+            categoria: "Homework",
+            titulo: "URGENT: Physics Assignment Submission Deadline",
+            descricao: "All students must submit their Physics project assignments by June 10, 2026. Late submissions will not be accepted...",
             link: "",
             linkLabel: "",
+            anexos: 1,
             ativo: true,
+            criadoEm: "2026-06-02T10:00:00Z",
           },
           {
-            tipo: "info",
-            categoria: "Rota alternativa",
-            titulo: "Refeitório: acesso lateral recomendado",
-            descricao:
-              "Use a passagem pela biblioteca durante a obra no pátio.",
+            id: "default-3",
+            tipo: "warning",
+            categoria: "Urgent",
+            titulo: "Chemistry Lab Safety Guidelines",
+            descricao: "All students must read and follow the updated chemistry laboratory safety guidelines before attending practical sessions...",
             link: "",
             linkLabel: "",
+            anexos: 1,
             ativo: true,
+            criadoEm: "2026-05-27T11:00:00Z",
+          },
+          {
+            id: "default-4",
+            tipo: "info",
+            categoria: "",
+            titulo: "Summer Holiday Announcement",
+            descricao: "Summer holidays will commence from June 20, 2026. The institute will remain closed for 15 days...",
+            link: "",
+            linkLabel: "",
+            anexos: 0,
+            ativo: true,
+            criadoEm: "2026-05-20T08:30:00Z",
           },
         ];
 
@@ -617,55 +682,220 @@
           }
         };
 
+        let activeFilter = 'All';
+        let searchQuery = '';
+        let alertsInitialized = false;
+
+        const formatDate = (dateStr) => {
+          if (!dateStr) return "";
+          try {
+            const date = new Date(dateStr);
+            if (isNaN(date.getTime())) return dateStr;
+            const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+          } catch (_) {
+            return dateStr;
+          }
+        };
+
         const renderInfrastructureAlerts = (avisos = []) => {
           const activeAlerts = avisos.filter((a) => a.ativo !== false);
           window.loadedActiveAlerts = activeAlerts;
-          
-          const countBadge = document.getElementById("alerts-count-badge");
-          if (countBadge) {
-            countBadge.textContent = activeAlerts.length;
-          }
 
-          if (!infraAlertsList) return;
+          const countBadges = document.querySelectorAll("#alerts-count-badge, .alerts-count-badge");
+          countBadges.forEach(badge => {
+            badge.textContent = activeAlerts.length;
+          });
 
-          if (activeAlerts.length === 0) {
-            infraAlertsList.innerHTML = `
-              <div class="px-5 py-4">
-                <p class="text-xs md:text-sm font-bold text-slate-700">Nenhum aviso ativo no momento.</p>
-              </div>
-            `;
-            return;
-          }
-
-          // Render only up to 3 alerts on the dashboard to save vertical space
-          const dashboardAlerts = activeAlerts.slice(0, 3);
-
-          infraAlertsList.innerHTML = dashboardAlerts
-            .map((aviso, idx) => {
-              const tone = getAlertTone(aviso.tipo);
-
-              return `
-                <div onclick="window.showAlertDetails(${idx})" class="flex items-center justify-between gap-3 px-5 py-4 md:py-4.5 hover:bg-gray-50 transition-colors cursor-pointer group">
-                  <div class="flex items-center gap-3 min-w-0">
-                    <div class="w-2.5 h-2.5 rounded-full ${tone.bar} shrink-0"></div>
-                    <p class="text-sm md:text-base font-black text-slate-800 truncate group-hover:text-[var(--accent)] transition-colors">${aviso.titulo}</p>
-                  </div>
-                  <span class="material-symbols-outlined text-gray-300 text-base md:text-lg shrink-0 group-hover:text-black transition-colors">chevron_right</span>
+          // 1. VERSÃO MOBILE: Renderiza os primeiros 3 avisos de forma simples
+          const mobileList = document.getElementById("infra-alerts-list-mobile");
+          if (mobileList) {
+            if (activeAlerts.length === 0) {
+              mobileList.innerHTML = `
+                <div class="px-5 py-4">
+                  <p class="text-xs font-bold text-slate-700">Nenhum aviso ativo no momento.</p>
                 </div>
               `;
-            })
-            .join("");
+            } else {
+              const dashboardAlerts = activeAlerts.slice(0, 3);
+              mobileList.innerHTML = dashboardAlerts
+                .map((aviso, idx) => {
+                  const tone = getAlertTone(aviso.tipo);
+                  return `
+                    <div onclick="window.showAlertDetails('${aviso.id || idx}')" class="flex items-center justify-between gap-3 px-5 py-4 hover:bg-gray-50 transition-colors cursor-pointer group">
+                      <div class="flex items-center gap-3 min-w-0">
+                        <div class="w-2.5 h-2.5 rounded-full ${tone.bar} shrink-0"></div>
+                        <p class="text-sm font-black text-slate-800 truncate group-hover:text-[var(--accent)] transition-colors">${aviso.titulo}</p>
+                      </div>
+                      <span class="material-symbols-outlined text-gray-300 text-base shrink-0 group-hover:text-black transition-colors">chevron_right</span>
+                    </div>
+                  `;
+                })
+                .join("");
+            }
+          }
+
+          // 2. VERSÃO DESKTOP: Painel dinâmico com filtros e busca
+          const desktopList = document.getElementById("infra-alerts-list-desktop");
+          if (desktopList) {
+            // Inicializa listener do campo de busca uma vez
+            const searchInput = document.getElementById("notices-search");
+            if (searchInput && !alertsInitialized) {
+              searchInput.addEventListener("input", (e) => {
+                searchQuery = e.target.value.toLowerCase().trim();
+                renderFilteredAlerts();
+              });
+              alertsInitialized = true;
+            }
+
+            // Filtros padrão da imagem: All, Urgent, Exams, Events, Holidays, Homework
+            const staticCategories = ["All", "Urgent", "Exams", "Events", "Holidays", "Homework"];
+            
+            // Renderiza pílulas de filtros
+            const filtersContainer = document.getElementById("notices-filters");
+            if (filtersContainer) {
+              filtersContainer.innerHTML = staticCategories
+                .map((cat) => {
+                  const isActive = activeFilter === cat;
+                  const activeClass = isActive 
+                    ? "bg-[var(--accent)] text-white shadow-sm font-bold scale-105" 
+                    : "bg-gray-100 hover:bg-gray-200 text-slate-600 font-semibold";
+                  return `
+                    <button 
+                      onclick="window.setAlertsFilter('${cat}')" 
+                      class="px-5 py-2.5 text-xs rounded-full shrink-0 transition-all duration-200 active:scale-95 cursor-pointer border-none outline-none ${activeClass}"
+                    >
+                      ${cat}
+                    </button>
+                  `;
+                })
+                .join("");
+            }
+
+            window.setAlertsFilter = (filter) => {
+              activeFilter = filter;
+              renderFilteredAlerts();
+              // Re-renderiza filtros para atualizar estilo ativo
+              renderInfrastructureAlerts(avisos);
+            };
+
+            const renderFilteredAlerts = () => {
+              let filtered = [...activeAlerts];
+
+              // Aplica filtro de categoria/urgência
+              if (activeFilter === "Urgent") {
+                filtered = filtered.filter(a => a.tipo === "danger" || a.tipo === "warning" || a.categoria === "Urgent");
+              } else if (activeFilter !== "All") {
+                filtered = filtered.filter(a => a.categoria === activeFilter);
+              }
+
+              // Aplica busca por texto
+              if (searchQuery) {
+                filtered = filtered.filter(a => 
+                  a.titulo.toLowerCase().includes(searchQuery) ||
+                  a.descricao.toLowerCase().includes(searchQuery)
+                );
+              }
+
+              // Salva lista exibida para referência ao abrir modal
+              window.displayedAlerts = filtered;
+
+              if (filtered.length === 0) {
+                desktopList.innerHTML = `
+                  <div class="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
+                    <p class="text-xs md:text-sm font-semibold text-slate-500">No notices match your criteria.</p>
+                  </div>
+                `;
+                return;
+              }
+
+              desktopList.innerHTML = filtered
+                .map((aviso, idx) => {
+                  const isUrgent = aviso.tipo === "danger" || aviso.tipo === "warning" || aviso.categoria === "Urgent";
+                  
+                  // Estilo da borda
+                  const borderClass = isUrgent
+                    ? "border border-indigo-200 hover:border-indigo-400 bg-white"
+                    : "border border-gray-100 hover:border-gray-300 bg-white";
+
+                  // Ponto roxo ao lado do título
+                  const showDot = isUrgent;
+                  const dotHTML = showDot
+                    ? `<span class="inline-block w-2.5 h-2.5 rounded-full bg-[#4f46e5] mr-2.5 shrink-0"></span>`
+                    : "";
+
+                  // Tags das categorias
+                  let tagsHTML = "";
+                  if (aviso.categoria) {
+                    let catColor = "bg-[#eff6ff] text-[#1e40af]";
+                    if (aviso.categoria === "Homework") catColor = "bg-[#fff7ed] text-[#9a3412]";
+                    if (aviso.categoria === "Urgent") catColor = "bg-[#fef2f2] text-[#991b1b]";
+                    
+                    tagsHTML += `<span class="px-2.5 py-1 text-[10px] font-bold rounded-lg ${catColor}">${aviso.categoria}</span>`;
+                  }
+
+                  if (isUrgent && aviso.categoria !== "Urgent") {
+                    tagsHTML += `<span class="px-2.5 py-1 text-[10px] font-bold rounded-lg bg-[#fef2f2] text-[#991b1b]">Urgent</span>`;
+                  }
+
+                  // Anexos (paperclip)
+                  const attachCount = aviso.anexos || (aviso.link ? 1 : 0);
+                  const attachHTML = attachCount > 0
+                    ? `
+                      <div class="flex items-center gap-1 text-slate-400">
+                        <span class="material-symbols-outlined text-base">attachment</span>
+                        <span class="text-xs font-semibold">${attachCount}</span>
+                      </div>
+                    `
+                    : "";
+
+                  return `
+                    <div onclick="window.showAlertDetails('${aviso.id || idx}')" class="rounded-[20px] p-6 shadow-sm hover:shadow-md cursor-pointer transition-all duration-300 flex items-center justify-between gap-4 group ${borderClass}">
+                      <div class="space-y-2.5 min-w-0 flex-grow">
+                        <h4 class="font-bold text-sm md:text-base text-slate-900 flex items-center group-hover:text-indigo-600 transition-colors">
+                          ${dotHTML}
+                          <span class="truncate">${aviso.titulo}</span>
+                        </h4>
+                        <p class="text-xs md:text-sm text-slate-500 line-clamp-2 leading-relaxed">
+                          ${aviso.descricao || ""}
+                        </p>
+                        <div class="flex items-center flex-wrap gap-2.5 pt-1">
+                          ${tagsHTML}
+                          <span class="text-xs text-slate-400 font-semibold">${formatDate(aviso.criadoEm)}</span>
+                          ${attachHTML}
+                        </div>
+                      </div>
+                      <span class="material-symbols-outlined text-gray-300 text-lg md:text-xl shrink-0 group-hover:text-black transition-colors">chevron_right</span>
+                    </div>
+                  `;
+                })
+                .join("");
+            };
+
+            // Roda renderização inicial
+            renderFilteredAlerts();
+          }
 
           if (infraAlertsUpdated)
             infraAlertsUpdated.textContent = "Atualizado agora";
         };
 
-        window.showAlertDetails = (index) => {
-          const aviso = window.loadedActiveAlerts ? window.loadedActiveAlerts[index] : null;
-          if (!aviso) return;
-          
+        window.showAlertDetails = (id) => {
+          const aviso = window.loadedActiveAlerts ? window.loadedActiveAlerts.find(a => (a.id === id || String(a.id) === String(id))) : null;
+          if (!aviso) {
+            // fallback lookup by index
+            const fallbackIdx = Number(id);
+            if (!isNaN(fallbackIdx) && window.loadedActiveAlerts[fallbackIdx]) {
+              displayAvisoModal(window.loadedActiveAlerts[fallbackIdx]);
+            }
+            return;
+          }
+          displayAvisoModal(aviso);
+        };
+
+        const displayAvisoModal = (aviso) => {
           actionTitle.textContent = aviso.titulo;
-          if (actionSubtitle) actionSubtitle.textContent = aviso.categoria;
+          if (actionSubtitle) actionSubtitle.textContent = aviso.categoria || "Aviso";
           if (actionAlert) actionAlert.classList.add("hidden");
           
           actionContent.innerHTML = `<p class="leading-relaxed text-sm text-[#475569]">${aviso.descricao || 'Sem descrição detalhada.'}</p>`;
@@ -1016,6 +1246,16 @@
         });
 
         fetchData();
+
+        // Check if redirected from other page to open notices modal
+        const params = new URLSearchParams(window.location.search);
+        if (params.get("notices") === "true") {
+          setTimeout(() => {
+            if (typeof window.showAllAlertsModal === "function") {
+              window.showAllAlertsModal();
+            }
+          }, 350);
+        }
       })();
     </script>
   </body>
