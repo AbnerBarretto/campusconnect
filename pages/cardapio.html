@@ -99,49 +99,28 @@
           "GRAD" 0,
           "opsz" 24;
       }
-      .cardapio-cell::before {
-        content: attr(data-label);
-        display: none;
+      .meal-card {
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid #e5e7eb;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+        background: #fff;
+        transition: box-shadow 0.2s ease, transform 0.2s ease;
       }
-      .cardapio-table {
-        min-width: 560px;
+      .meal-card:hover {
+        box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+        transform: translateY(-1px);
       }
-      @media (max-width: 768px) {
-        .cardapio-table {
-          display: block;
-          min-width: 100%;
-        }
-        .cardapio-table thead {
-          display: none;
-        }
-        .cardapio-table tbody {
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-          width: 100%;
-        }
-        .cardapio-table tr {
-          display: block;
-          border: 1px solid rgba(0, 0, 0, 0.08);
-          border-radius: 20px;
-          overflow: hidden;
-          background: #fff;
-        }
-        .cardapio-cell {
-          display: flex;
-          flex-direction: column;
-          gap: 6px;
-          border-right: none !important;
-          padding: 12px 16px !important;
-        }
-        .cardapio-cell::before {
-          display: block;
-          font-size: 10px;
-          font-weight: 800;
-          letter-spacing: 0.2em;
-          text-transform: uppercase;
-          color: #64748b;
-        }
+      .status-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
       }
     </style>
     <script src="../js/api.js"></script>
@@ -332,42 +311,8 @@
           </div>
         </header>
 
-        <section class="space-y-8">
-          <div
-            class="bg-white border-2 border-black rounded-none overflow-hidden shadow-none sm:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]"
-          >
-            <div class="overflow-x-auto max-w-full">
-              <table class="cardapio-table w-full text-left border-collapse text-sm sm:text-base">
-                <thead>
-                  <tr class="border-b-2 border-black bg-black text-white">
-                    <th
-                      class="px-4 sm:px-8 py-4 sm:py-5 text-[10px] sm:text-xs font-black uppercase tracking-widest"
-                    >
-                      Refeição / Horário
-                    </th>
-                    <th
-                      class="px-4 sm:px-8 py-4 sm:py-5 text-[10px] sm:text-xs font-black uppercase tracking-widest"
-                    >
-                      Opções do Dia
-                    </th>
-                    <th
-                      class="px-4 sm:px-8 py-4 sm:py-5 text-[10px] sm:text-xs font-black uppercase tracking-widest"
-                    >
-                      Dieta
-                    </th>
-                    <th
-                      class="px-4 sm:px-8 py-4 sm:py-5 text-[10px] sm:text-xs font-black uppercase tracking-widest"
-                    >
-                      Status
-                    </th>
-                  </tr>
-                </thead>
-                <tbody class="divide-y-2 divide-black" id="cardapio-tbody">
-                  <!-- JS Inject -->
-                </tbody>
-              </table>
-            </div>
-          </div>
+        <section class="space-y-4" id="cardapio-list">
+          <!-- JS Inject -->
         </section>
       </main>
     </div>
@@ -429,12 +374,60 @@
 
         if (currentDayIndex < 0 || currentDayIndex > 4) currentDayIndex = 0;
 
+        // Feriados Nacionais Fixos (Exemplo de lista para regra de véspera)
+        const FERIADOS = ["01/01", "21/04", "01/05", "07/09", "12/10", "02/11", "15/11", "25/12"];
+
+        const getTargetDate = (dayIndex, offsetDays = 0) => {
+          const now = new Date();
+          let currentDay = now.getDay() - 1;
+          if (currentDay < 0 || currentDay > 4) currentDay = 0; // fallback to Monday on weekends
+          const diff = dayIndex - currentDay + offsetDays;
+          const targetDate = new Date(now);
+          targetDate.setDate(now.getDate() + diff);
+          return targetDate;
+        };
+
+        const getTargetDateStr = (dayIndex) => {
+          const targetDate = getTargetDate(dayIndex);
+          const dd = String(targetDate.getDate()).padStart(2, '0');
+          const mm = String(targetDate.getMonth() + 1).padStart(2, '0');
+          return `${dd}/${mm}`;
+        };
+
+        const isEveOfHoliday = (dayIndex) => {
+          const nextDate = getTargetDate(dayIndex, 1);
+          const dd = String(nextDate.getDate()).padStart(2, '0');
+          const mm = String(nextDate.getMonth() + 1).padStart(2, '0');
+          return FERIADOS.includes(`${dd}/${mm}`);
+        };
+
+        // Dados mockados idênticos ao backend/store.js — usados quando o servidor não está rodando
+        const MOCK_CARDAPIO = [
+          { id:"m1",  dia:"Segunda-Feira", refeicao:"Café da Manhã", itens:["Pão na chapa","Café"],               dieta:"Geral"       },
+          { id:"m2",  dia:"Segunda-Feira", refeicao:"Almoço",        itens:["Frango Grelhado","Arroz","Feijão"],  dieta:"Saudável"    },
+          { id:"m3",  dia:"Segunda-Feira", refeicao:"Jantar",        itens:["Sopa de Legumes"],                   dieta:"Leve"        },
+          { id:"m4",  dia:"Terça-Feira",   refeicao:"Café da Manhã", itens:["Cuscuz","Ovos"],                     dieta:"Geral"       },
+          { id:"m5",  dia:"Terça-Feira",   refeicao:"Almoço",        itens:["Carne de Panela","Farofa"],          dieta:"Geral"       },
+          { id:"m6",  dia:"Terça-Feira",   refeicao:"Jantar",        itens:["Macarrão ao Sugo"],                  dieta:"Vegetariana" },
+          { id:"m7",  dia:"Quarta-Feira",  refeicao:"Café da Manhã", itens:["Bolo de milho","Iogurte"],           dieta:"Geral"       },
+          { id:"m8",  dia:"Quarta-Feira",  refeicao:"Almoço",        itens:["Feijoada","Couve"],                  dieta:"Geral"       },
+          { id:"m9",  dia:"Quarta-Feira",  refeicao:"Jantar",        itens:["Caldo Verde"],                       dieta:"Leve"        },
+          { id:"m10", dia:"Quinta-Feira",  refeicao:"Café da Manhã", itens:["Tapioca","Frutas"],                  dieta:"Sem Glúten"  },
+          { id:"m11", dia:"Quinta-Feira",  refeicao:"Almoço",        itens:["Peixe Assado","Pirão"],              dieta:"Saudável"    },
+          { id:"m12", dia:"Quinta-Feira",  refeicao:"Jantar",        itens:["Sanduíche Natural"],                 dieta:"Proteica"    },
+          { id:"m13", dia:"Sexta-Feira",   refeicao:"Café da Manhã", itens:["Ovos Mexidos","Torrada"],            dieta:"Fitness"     },
+          { id:"m14", dia:"Sexta-Feira",   refeicao:"Almoço",        itens:["Estrogonofe","Batata Palha"],        dieta:"Geral"       },
+          { id:"m15", dia:"Sexta-Feira",   refeicao:"Jantar",        itens:["Pizza artesanal"],                   dieta:"Geral"       },
+        ];
+
         const fetchData = async () => {
           try {
             const [cRes, rRes] = await Promise.all([
               fetch(`${API_BASE_URL}/api/cardapio`),
               fetch(`${API_BASE_URL}/api/refeicoes`),
             ]);
+
+            if (!cRes.ok) throw new Error("API indisponível");
 
             cardapioData = await cRes.json();
             const refeicoes = await rRes.json();
@@ -450,115 +443,139 @@
 
             render();
           } catch (_) {
-            console.error("Erro ao carregar cardápio real.");
+            console.warn("Servidor backend indisponível — usando dados locais de demonstração.");
+            if (cardapioData.length === 0) {
+              cardapioData = MOCK_CARDAPIO;
+            }
+            render();
           }
         };
 
-        const getMealStatus = (tipo, isFriday) => {
+        const getMealStatus = (tipo, isEarlyDinner, selectedDayIndex) => {
           const now = new Date();
+          let currentDay = now.getDay() - 1;
+          if (currentDay < 0 || currentDay > 4) currentDay = 0;
+
+          if (selectedDayIndex > currentDay) {
+            return `<span class="status-badge" style="background:#f1f5f9;color:#475569;">REFEIÇÃO FUTURA</span>`;
+          } else if (selectedDayIndex < currentDay) {
+            return `<span class="status-badge" style="background:#f8fafc;color:#94a3b8;">REFEIÇÃO ENCERRADA</span>`;
+          }
+
           const currentTime = now.getHours() * 60 + now.getMinutes();
 
           let start, end;
           const t = tipo.toUpperCase();
-          if (t === "CAFÉ" || t === "CAFE") {
+          if (t === "CAFÉ" || t === "CAFE" || t.includes("CAF")) {
             start = 6 * 60 + 30; // 6:30
-            end = 7 * 60; // 7:00
-          } else if (t === "ALMOÇO" || t === "ALMOCO") {
-            start = 12 * 60; // 12:00
-            end = 13 * 60; // 13:00
-          } else if (t === "JANTAR") {
-            if (isFriday) {
+            end = 7 * 60;        // 7:00
+          } else if (t === "ALMOÇO" || t === "ALMOCO" || t.includes("ALMO")) {
+            start = 12 * 60;     // 12:00
+            end = 13 * 60;       // 13:00
+          } else if (t.includes("JANT")) {
+            if (isEarlyDinner) {
               start = 17 * 60 + 30; // 17:30
-              end = 18 * 60 + 30; // 18:30
+              end = 18 * 60 + 30;   // 18:30
             } else {
-              start = 18 * 60; // 18:00
-              end = 19 * 60; // 19:00
+              start = 18 * 60;      // 18:00
+              end = 19 * 60;        // 19:00
             }
           }
 
           if (currentTime >= start && currentTime <= end) {
             return `
               <div class="flex flex-col gap-3">
-                <div class="flex items-center gap-2">
-                  <span class="w-3 h-3 rounded-full bg-red-600 animate-pulse border border-black"></span>
-                  <span class="text-sm font-black text-black uppercase">SERVINDO AGORA</span>
-                </div>
-                <button onclick="registerAccess('${tipo}')" class="px-4 py-2 bg-black text-white text-[10px] font-black uppercase tracking-widest hover:bg-slate-800 transition-all active:scale-95 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.2)]">Registrar Acesso</button>
+                <span class="status-badge" style="background:#fef2f2;color:#dc2626;">
+                  <span style="width:8px;height:8px;border-radius:50%;background:#dc2626;display:inline-block;animation:pulse 1.5s ease-in-out infinite;"></span>
+                  REFEIÇÃO EM ANDAMENTO
+                </span>
+                <button onclick="registerAccess('${tipo}')" class="mt-1 px-4 py-2 rounded-lg bg-black text-white text-[10px] font-black uppercase tracking-widest hover:bg-slate-800 transition-all active:scale-95">Registrar Acesso</button>
               </div>
             `;
           } else if (currentTime < start) {
-            return `<span class="text-sm font-black text-[#475569] uppercase tracking-widest">PROGRAMADO</span>`;
+            return `<span class="status-badge" style="background:#f1f5f9;color:#475569;">REFEIÇÃO FUTURA</span>`;
           } else {
-            return `<span class="text-sm font-black text-slate-300 uppercase tracking-widest italic">ENCERRADO</span>`;
+            return `<span class="status-badge" style="background:#f8fafc;color:#94a3b8;">REFEIÇÃO ENCERRADA</span>`;
           }
         };
 
-        const getMealTimeLabel = (tipo, isFriday) => {
+        const getMealTimeLabel = (tipo, isEarlyDinner) => {
           const t = tipo.toUpperCase();
-          if (t === "CAFÉ" || t === "CAFE") return "06:30 - 07:00";
-          if (t === "ALMOÇO" || t === "ALMOCO") return "12:00 - 13:00";
-          if (t === "JANTAR")
-            return isFriday ? "17:30 - 18:30" : "18:00 - 19:00";
+          if (t === "CAFÉ" || t === "CAFE" || t.includes("CAF")) return "06:30 – 07:00";
+          if (t === "ALMOÇO" || t === "ALMOCO" || t.includes("ALMO")) return "12:00 – 13:00";
+          if (t.includes("JANT")) return isEarlyDinner ? "17:30 – 18:30" : "18:00 – 19:00";
           return "";
         };
 
         const getMealIcon = (tipo) => {
           const t = tipo.toUpperCase();
           if (t.includes("CAF")) return "coffee";
-          if (t.includes("ALMO")) return "sunny";
+          if (t.includes("ALMO")) return "wb_sunny";
           if (t.includes("JANT")) return "nights_stay";
           return "restaurant";
         };
 
-        const getMealColor = (dieta) => {
-          const d = dieta.toUpperCase();
-          if (d.includes("SEM GL")) return "bg-emerald-600";
-          if (d.includes("LEVE")) return "bg-indigo-600";
-          if (d.includes("VEGETA")) return "bg-green-500";
-          if (d.includes("PROT")) return "bg-red-500";
-          return "bg-amber-500";
+        // Pastel header background per meal type
+        const getMealHeaderBg = (tipo) => {
+          const t = tipo.toUpperCase();
+          if (t.includes("CAF"))  return { bg: "#dcfce7", accent: "#16a34a", iconBg: "#bbf7d0" };
+          if (t.includes("ALMO")) return { bg: "#fef9c3", accent: "#ca8a04", iconBg: "#fde68a" };
+          if (t.includes("JANT")) return { bg: "#dbeafe", accent: "#2563eb", iconBg: "#bfdbfe" };
+          return { bg: "#f1f5f9", accent: "#475569", iconBg: "#e2e8f0" };
         };
 
         const render = () => {
           const dayName = days[currentDayIndex];
-          document.getElementById("current-day-display").textContent = dayName;
-          const tbody = document.getElementById("cardapio-tbody");
+          const dateStr = getTargetDateStr(currentDayIndex);
+          document.getElementById("current-day-display").textContent = `${dayName} ${dateStr}`;
+          
+          const list = document.getElementById("cardapio-list");
           const isFriday = dayName === "Sexta-Feira";
+          const isEarlyDinner = isFriday || isEveOfHoliday(currentDayIndex);
 
           const dayMeals = cardapioData.filter((m) => m.dia === dayName);
 
           if (dayMeals.length === 0) {
-            tbody.innerHTML =
-              '<tr><td colspan="4" class="py-12 sm:py-20 px-4 text-center font-black text-slate-300 uppercase italic text-sm sm:text-base">Nenhuma informação para este dia</td></tr>';
+            list.innerHTML = `
+              <div class="meal-card p-12 text-center">
+                <span class="material-symbols-outlined text-5xl text-gray-200 block mb-3">restaurant_menu</span>
+                <p class="font-black text-gray-300 uppercase italic text-sm tracking-widest">Nenhuma informação para este dia</p>
+              </div>`;
             return;
           }
 
-          tbody.innerHTML = dayMeals
-            .map((m) => {
-              return `
-            <tr class="hover:bg-yellow-50 transition-colors group">
-              <td class="cardapio-cell px-4 sm:px-8 py-4 sm:py-6 border-r-2 border-black/5" data-label="Refeição">
-                <div class="flex items-center gap-3">
-                  <span class="material-symbols-outlined text-black font-bold">${getMealIcon(m.refeicao)}</span>
-                  <div>
-                    <span class="font-black text-base sm:text-lg text-black block leading-none uppercase">${m.refeicao}</span>
-                    <span class="text-[10px] font-black text-[#475569] uppercase tracking-widest">${getMealTimeLabel(m.refeicao, isFriday)}</span>
+          list.innerHTML = dayMeals.map((m) => {
+            const { bg, accent, iconBg } = getMealHeaderBg(m.refeicao);
+            const itens = Array.isArray(m.itens) ? m.itens.join(", ") : (m.itens || "—");
+            return `
+            <div class="meal-card">
+              <!-- Card Header -->
+              <div class="flex items-center gap-3 px-5 py-4" style="background:${bg};">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:${iconBg};">
+                  <span class="material-symbols-outlined text-xl" style="color:${accent};">${getMealIcon(m.refeicao)}</span>
+                </div>
+                <div class="flex-grow">
+                  <p class="font-black text-base uppercase leading-tight" style="color:${accent};">${m.refeicao}</p>
+                  <p class="text-xs font-semibold text-gray-500 mt-0.5">${getMealTimeLabel(m.refeicao, isEarlyDinner)}</p>
+                </div>
+              </div>
+              <!-- Card Body -->
+              <div class="bg-white px-5 py-4 space-y-4">
+                <!-- Opções -->
+                <div>
+                  <p class="text-[10px] font-black uppercase tracking-[0.15em] text-gray-400 mb-1">Opções</p>
+                  <p class="text-sm font-semibold text-gray-800 leading-snug">${itens}</p>
+                </div>
+                <!-- Status row -->
+                <div class="flex flex-wrap items-center justify-end gap-3 pt-1 border-t border-gray-100">
+                  <div class="text-right">
+                    <p class="text-[10px] font-black uppercase tracking-[0.15em] text-gray-400 mb-1">Status</p>
+                    ${getMealStatus(m.refeicao, isEarlyDinner, currentDayIndex)}
                   </div>
                 </div>
-              </td>
-              <td class="cardapio-cell px-4 sm:px-8 py-4 sm:py-6 border-r-2 border-black/5" data-label="Opções">
-                <p class="font-bold text-black text-sm sm:text-base">${m.itens.join(", ")}</p>
-              </td>
-              <td class="cardapio-cell px-4 sm:px-8 py-4 sm:py-6 border-r-2 border-black/5" data-label="Dieta">
-                <span class="inline-block px-3 sm:px-4 py-2 ${getMealColor(m.dieta)} text-white text-[11px] sm:text-xs font-black uppercase tracking-widest border border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] whitespace-nowrap">${m.dieta}</span>
-              </td>
-              <td class="cardapio-cell px-4 sm:px-8 py-4 sm:py-6" data-label="Status">
-                ${getMealStatus(m.refeicao, isFriday)}
-              </td>
-            </tr>
-          `;
-            })
-            .join("");
+              </div>
+            </div>`;
+          }).join("");
         };
 
         window.registerAccess = async (tipo) => {
