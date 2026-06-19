@@ -651,7 +651,7 @@
         const defaultInfrastructureAlerts = [
           {
             id: "default-1",
-            tipo: "warning",
+            tipo: "info",
             categoria: "Provas",
             titulo: "Divulgação do Calendário de Provas Finais",
             descricao: "O calendário de avaliações finais do período letivo corrente já está disponível para consulta no site oficial do IFPE Campus Belo Jardim e nos murais das coordenações.",
@@ -663,7 +663,7 @@
           },
           {
             id: "default-2",
-            tipo: "danger",
+            tipo: "warning",
             categoria: "Tarefas",
             titulo: "ATENÇÃO: Prazo para Entrega dos Relatórios de Estágio",
             descricao: "Todos os concluintes dos cursos técnicos e superiores do IFPE Belo Jardim devem enviar o relatório final de estágio até o dia 10 de junho de 2026 via sistema acadêmico.",
@@ -675,7 +675,7 @@
           },
           {
             id: "default-3",
-            tipo: "warning",
+            tipo: "danger",
             categoria: "Urgente",
             titulo: "Uso Obrigatório de EPIs nos Laboratórios e Campo",
             descricao: "Para as aulas práticas de Agroindústria, Solos e no setor agrícola, é obrigatório o uso correto de calçado fechado, calça comprida e jaleco com mangas longas.",
@@ -701,7 +701,20 @@
 
         const getFallbackInfrastructureAlerts = () => {
           const saved = localStorage.getItem("infra-alerts");
-          return saved ? JSON.parse(saved) : defaultInfrastructureAlerts;
+          if (saved) {
+            try {
+              const parsed = JSON.parse(saved);
+              const needsUpdate = parsed.some(a => a.categoria === "Urgente" && a.tipo === "warning");
+              if (needsUpdate) {
+                localStorage.removeItem("infra-alerts");
+                return defaultInfrastructureAlerts;
+              }
+              return parsed;
+            } catch (_) {
+              return defaultInfrastructureAlerts;
+            }
+          }
+          return defaultInfrastructureAlerts;
         };
 
         const loadInfrastructureAlerts = async () => {
@@ -843,7 +856,7 @@
 
               desktopList.innerHTML = filtered
                 .map((aviso, idx) => {
-                  const isUrgent = aviso.tipo === "danger" || aviso.tipo === "warning" || aviso.categoria === "Urgente";
+                  const isUrgent = aviso.tipo === "danger" || aviso.categoria === "Urgente";
                   
                   // Estilo da borda
                   const borderClass = isUrgent
@@ -859,15 +872,22 @@
                   // Tags das categorias
                   let tagsHTML = "";
                   if (aviso.categoria) {
-                    let catColor = "bg-[#eff6ff] text-[#1e40af]";
-                    if (aviso.categoria === "Homework") catColor = "bg-[#fff7ed] text-[#9a3412]";
-                    if (aviso.categoria === "Urgent") catColor = "bg-[#fef2f2] text-[#991b1b]";
+                    let catColor = "bg-[#eff6ff] text-[#1e40af]"; // Default Provas / Feriados / Eventos (Blue)
+                    if (aviso.categoria === "Tarefas" || aviso.categoria === "Tarefa") {
+                      catColor = "bg-[#fff7ed] text-[#9a3412]"; // Orange/Yellow for Tasks
+                    } else if (aviso.categoria === "Urgente") {
+                      catColor = "bg-[#fef2f2] text-[#991b1b]"; // Red for Urgent
+                    } else if (aviso.categoria === "Feriados" || aviso.categoria === "Feriado") {
+                      catColor = "bg-[#ecfdf5] text-[#047857]"; // Green for Holidays
+                    } else if (aviso.categoria === "Eventos" || aviso.categoria === "Evento") {
+                      catColor = "bg-[#faf5ff] text-[#6b21a8]"; // Purple for Events
+                    }
                     
                     tagsHTML += `<span class="px-2.5 py-1 text-[10px] font-bold rounded-lg ${catColor}">${aviso.categoria}</span>`;
                   }
 
-                  if (isUrgent && aviso.categoria !== "Urgent") {
-                    tagsHTML += `<span class="px-2.5 py-1 text-[10px] font-bold rounded-lg bg-[#fef2f2] text-[#991b1b]">Urgent</span>`;
+                  if (isUrgent && aviso.categoria !== "Urgente") {
+                    tagsHTML += `<span class="px-2.5 py-1 text-[10px] font-bold rounded-lg bg-[#fef2f2] text-[#991b1b]">Urgente</span>`;
                   }
 
                   // Anexos (paperclip)

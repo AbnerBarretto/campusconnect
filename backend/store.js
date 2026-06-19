@@ -48,7 +48,7 @@ const refeicoes = []; // Log de acessos detalhados
 const avisos = [
   {
     id: randomUUID(),
-    tipo: "warning",
+    tipo: "info",
     categoria: "Provas",
     titulo: "Divulgação do Calendário de Provas Finais",
     descricao: "O calendário de avaliações finais do período letivo corrente já está disponível para consulta no site oficial do IFPE Campus Belo Jardim e nos murais das coordenações.",
@@ -60,7 +60,7 @@ const avisos = [
   },
   {
     id: randomUUID(),
-    tipo: "danger",
+    tipo: "warning",
     categoria: "Tarefas",
     titulo: "ATENÇÃO: Prazo para Entrega dos Relatórios de Estágio",
     descricao: "Todos os concluintes dos cursos técnicos e superiores do IFPE Belo Jardim devem enviar o relatório final de estágio até o dia 10 de junho de 2026 via sistema acadêmico.",
@@ -72,7 +72,7 @@ const avisos = [
   },
   {
     id: randomUUID(),
-    tipo: "warning",
+    tipo: "danger",
     categoria: "Urgente",
     titulo: "Uso Obrigatório de EPIs nos Laboratórios e Campo",
     descricao: "Para as aulas práticas de Agroindústria, Solos e no setor agrícola, é obrigatório o uso correto de calçado fechado, calça comprida e jaleco com mangas longas.",
